@@ -2419,19 +2419,30 @@ function renderFeed() {
 }
 
 function attachCardListeners() {
+  document.querySelectorAll('.card[data-title], .feed-item[data-title]').forEach(function(el) {
+    el.addEventListener('click', function(e) {
+      if (e.target.closest('.card-btn, .bookmark-btn, .summarize-btn, .share-btn')) return;
+      openReading(this.dataset.title);
+    });
+  });
   document.querySelectorAll('.summarize-btn').forEach(function(btn) {
     btn.addEventListener('click', function(e) {
       e.stopPropagation();
-      var title = this.getAttribute('data-title');
-      openReading(title);
+      openReading(this.getAttribute('data-title'));
     });
   });
   document.querySelectorAll('.bookmark-btn').forEach(function(btn) {
     btn.addEventListener('click', function(e) {
       e.stopPropagation();
-      var title = this.getAttribute('data-title');
-      toggleSaved(title);
+      toggleSaved(this.getAttribute('data-title'));
     });
+  });
+  var saved = getSaved();
+  document.querySelectorAll('.bookmark-btn').forEach(function(btn) {
+    if (saved.includes(btn.dataset.title)) {
+      btn.classList.add('saved');
+      btn.textContent = '\u2713 Saved';
+    }
   });
 }
 
