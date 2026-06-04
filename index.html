@@ -1476,6 +1476,20 @@ a { color: inherit; text-decoration: none; }
 }
 .footer-nav a:hover { color: var(--text); }
 
+
+/* ── HIDE PLACEHOLDER UNTIL SUPABASE LOADS ── */
+.hero-left,
+.card-live-feed .feed-item,
+.small-grid .card {
+  opacity: 0;
+  transition: opacity 0.3s ease;
+}
+.feed-loaded .hero-left,
+.feed-loaded .card-live-feed .feed-item,
+.feed-loaded .small-grid .card {
+  opacity: 1;
+}
+
 </style>
 </head>
 <body>
@@ -2189,12 +2203,14 @@ a { color: inherit; text-decoration: none; }
       <div class="sponsor-wrap">
         <div class="sponsor-card">
           <span class="sponsor-label">Presented By</span>
-          <div class="sponsor-logo-box">⚡</div>
+          <div style="width:48px;height:48px;border-radius:10px;background:#1a3a6b;display:flex;align-items:center;justify-content:center;flex-shrink:0;">
+              <span style="color:#fff;font-size:14px;font-weight:800;letter-spacing:0.02em;">PT</span>
+            </div>
           <div class="sponsor-content">
-            <div class="sponsor-name">Your Brand Here</div>
-            <div class="sponsor-desc">Reach 40,000+ executives, founders, and operators who read the AI Intelligence Brief every week. Partner with Atomic Media Group.</div>
+            <div class="sponsor-name">Penfield Talent</div>
+            <div class="sponsor-desc">Executive talent advisory connecting high-growth companies with exceptional leaders.</div>
           </div>
-          <a href="mailto:hello@atomicmediagroup.ai" class="sponsor-cta">Advertise &#8594;</a>
+          <a href="https://penfieldtalent.com" target="_blank" rel="noopener" class="sponsor-cta">Learn More &#8594;</a>
         </div>
       </div>
       <div class="footer-cta-label">Daily AI Intelligence Brief</div>
@@ -2416,6 +2432,7 @@ function renderFeed() {
   }
 
   attachCardListeners();
+  document.body.classList.add('feed-loaded');
 }
 
 function attachCardListeners() {
