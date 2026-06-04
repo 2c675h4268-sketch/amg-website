@@ -2303,27 +2303,128 @@ function renderYMAL(currentTitle, currentCat){
 </script>
 
 <script>
-// ── ALL STORIES (for search + reading panel) ──
-const STORIES = [
-  {title:"GPT-5 Launches With Native Multimodal Reasoning — Passes Bar Exam in Live Demo",cat:"ai",source:"TechCrunch",time:"2m ago",excerpt:"OpenAI's latest model marks a step change in reasoning capability, demonstrating near-perfect performance on legal, medical, and scientific benchmarks."},
-  {title:"Anthropic Claude 4 Benchmarks Leaked — Tops All Reasoning Tasks",cat:"ai",source:"Anthropic",time:"1m ago",excerpt:"Internal benchmarks reportedly show Claude 4 outperforming all current models on reasoning, coding, and instruction-following tasks."},
-  {title:"Apple Intelligence Adds On-Device Agent Mode in Latest iOS",cat:"tech",source:"Apple",time:"7m ago",excerpt:"Apple's latest iOS update ships an on-device agent mode that can execute multi-app tasks without sending data to the cloud."},
-  {title:"Cursor 2.0 Ships: AI IDE Now Writes Entire Features From Spec",cat:"tools",source:"Cursor",time:"12m ago",excerpt:"Cursor's new release allows developers to describe a feature in plain English and watch the IDE implement it end-to-end."},
-  {title:"DeepSeek V4 Permanently Priced at $0.435/M — Opus-Class Quality",cat:"world",source:"DeepSeek",time:"23m ago",excerpt:"DeepSeek announces permanent pricing for its V4 model at a fraction of comparable US model costs, intensifying competition."},
-  {title:"EU AI Act Goes Live: What Every Enterprise Team Needs to Know",cat:"world",source:"MIT Tech Review",time:"18m ago",excerpt:"The EU AI Act's high-risk provisions are now in force, requiring documentation, oversight mechanisms, and auditability for affected applications."},
-  {title:"The 10 AI Agents Replacing Entire SaaS Categories in 2025",cat:"tools",source:"VentureBeat",time:"1h ago",excerpt:"A new wave of vertical AI agents is beginning to displace traditional SaaS point solutions across sales, HR, legal, and finance."},
-  {title:"Samsung Galaxy Ring Gen 2 Adds Real-Time AI Health Coaching",cat:"gadgets",source:"The Verge",time:"1h ago",excerpt:"The second-generation Galaxy Ring uses on-device AI to monitor biometrics and deliver personalized coaching without a phone connection."},
-  {title:"India Launches National AI Mission with $1.2B Infrastructure Investment",cat:"world",source:"Reuters",time:"2h ago",excerpt:"India commits $1.2 billion to build sovereign AI compute infrastructure, positioning itself as a third pole alongside the US and China."},
-  {title:"AI-Generated Film Wins Major Festival Award — Directors and Studios Respond",cat:"hot",source:"Wired",time:"3h ago",excerpt:"For the first time, an AI-generated short film has claimed a top prize at a major international festival, triggering debate across the industry."},
-  {title:"Agentic AI Is Now Mainstream — Every Major Platform Ships Agent SDKs",cat:"ai",source:"TechCrunch",time:"3h ago",excerpt:"Microsoft, Google, Salesforce, and ServiceNow all shipped agent development kits within the same quarter, marking a clear inflection point."},
-  {title:"Figure 02 Humanoid Robot Begins Shipping to BMW Manufacturing Facilities",cat:"gadgets",source:"Ars Technica",time:"4h ago",excerpt:"Figure's second commercial robot starts commercial deployment at BMW, marking the first large-scale humanoid rollout in automotive manufacturing."},
-  {title:"Mistral Codestral 2.0: Free Tier, 256K Context, Full IDE Plugin Support",cat:"tools",source:"Hacker News",time:"5h ago",excerpt:"Mistral's code-focused model gets a major upgrade with an extended context window and native support for VS Code, Cursor, and JetBrains."},
-  {title:"TSMC 2nm Volume Production Begins — NVIDIA and Apple First in Line",cat:"tech",source:"Bloomberg",time:"6h ago",excerpt:"TSMC confirms volume production of its N2 process node has begun, with NVIDIA and Apple receiving first allocation for AI and consumer chips."},
-  {title:"NVIDIA Blackwell Ultra: The Chip Powering AI Agent Infrastructure",cat:"tech",source:"The Verge",time:"45m ago",excerpt:"How NVIDIA's latest chip architecture quietly became the backbone of every major agentic AI deployment in 2025."},
-  {title:"Sora Real-Time Video Goes Public — The Internet Reacts",cat:"hot",source:"Wired",time:"38m ago",excerpt:"OpenAI's Sora exits preview and opens to all users. Within hours, creators, journalists, and studios post wildly different takes on what this means."},
-  {title:"Microsoft Copilot Completes 40% of Enterprise Tasks in Pilot",cat:"ai",source:"Microsoft",time:"52m ago",excerpt:"Early enterprise pilot data shows Copilot autonomously completing 40% of routine knowledge work tasks, ahead of internal projections."},
-];
+// ── SUPABASE CONFIG ──
+const SUPABASE_URL = 'https://qybwjkyifdroktiriaqt.supabase.co';
+const SUPABASE_KEY = 'sb_publishable_uiFgPzMDcHt7WSzEj4oQxw_yzac5ixg';
 
+// ── ALL STORIES (populated from Supabase) ──
+let STORIES = [];
+
+async function fetchStories() {
+  try {
+    const res = await fetch(
+      SUPABASE_URL + '/rest/v1/stories?select=*&order=created_at.desc&limit=15',
+      {
+        headers: {
+          'apikey': SUPABASE_KEY,
+          'Authorization': 'Bearer ' + SUPABASE_KEY
+        }
+      }
+    );
+    const data = await res.json();
+    if (data && data.length > 0) {
+      STORIES = data.map(function(s) {
+        return {
+          title: s.title || '',
+          cat: (s.category || 'ai').toLowerCase().replace(/\s+/g, '-'),
+          source: s.source || 'AMG',
+          time: s.published_at ? timeAgo(s.published_at) : 'Today',
+          excerpt: s.excerpt || '',
+          url: s.url || '#'
+        };
+      });
+      renderFeed();
+    }
+  } catch(e) {
+    console.error('Supabase fetch error:', e);
+  }
+}
+
+function timeAgo(dateStr) {
+  const now = new Date();
+  const then = new Date(dateStr);
+  const diff = Math.floor((now - then) / 60000);
+  if (diff < 60) return diff + 'm ago';
+  if (diff < 1440) return Math.floor(diff/60) + 'h ago';
+  return Math.floor(diff/1440) + 'd ago';
+}
+
+function renderFeed() {
+  if (!STORIES.length) return;
+
+  // ── HERO LEFT — first 2 stories ──
+  var heroLeft = document.querySelector('.hero-left');
+  if (heroLeft) {
+    heroLeft.innerHTML = STORIES.slice(0, 2).map(function(s) {
+      var safeTitle = s.title.replace(/'/g, "\'");
+      return '<div class="card" data-cat="' + s.cat + '" data-source="' + s.source + '" data-title="' + s.title.replace(/"/g,"&quot;") + '" data-time="' + s.time + '" onclick="openReading('' + safeTitle + '')">' +
+        '<div class="card-body">' +
+        '<div class="tag">' + (s.cat||'AI').toUpperCase() + '</div>' +
+        '<div class="card-title">' + s.title + '</div>' +
+        '<div class="card-excerpt">' + s.excerpt + '</div>' +
+        '<div class="card-footer"><span class="card-source">' + s.source + '</span><span class="card-time">' + s.time + '</span></div>' +
+        '<div class="card-actions">' +
+        '<button class="card-btn summarize-btn" data-title="' + s.title.replace(/"/g,"&quot;") + '">&#9889; AI Summary</button>' +
+        '<button class="card-btn bookmark-btn" data-title="' + s.title.replace(/"/g,"&quot;") + '">&#128278; Save</button>' +
+        '</div></div></div>';
+    }).join('');
+  }
+
+  // ── BREAKING NOW feed — stories 3-8 ──
+  var feedItems = document.querySelector('.card-live-feed');
+  if (feedItems) {
+    var feedInner = feedItems.querySelector('.card-live-head');
+    var feedHtml = feedInner ? feedInner.outerHTML : '';
+    feedHtml += STORIES.slice(2, 8).map(function(s) {
+      var safeTitle = s.title.replace(/'/g, "\'");
+      return '<div class="feed-item" data-cat="' + s.cat + '" data-source="' + s.source + '" data-title="' + s.title.replace(/"/g,"&quot;") + '" onclick="openReading('' + safeTitle + '')">' +
+        '<div class="feed-item-title">' + s.title + '</div>' +
+        '<div class="feed-item-meta"><span class="feed-item-cat">' + (s.cat||'AI').toUpperCase() + '</span><span class="feed-item-time">' + s.time + '</span></div>' +
+        '</div>';
+    }).join('');
+    feedItems.innerHTML = feedHtml;
+  }
+
+  // ── TRENDING — stories 8-14 ──
+  var trendingGrid = document.querySelector('.small-grid');
+  if (trendingGrid) {
+    trendingGrid.innerHTML = STORIES.slice(8, 15).map(function(s) {
+      var safeTitle = s.title.replace(/'/g, "\'");
+      return '<div class="card" data-cat="' + s.cat + '" data-source="' + s.source + '" data-title="' + s.title.replace(/"/g,"&quot;") + '" data-time="' + s.time + '" onclick="openReading('' + safeTitle + '')">' +
+        '<div class="card-body">' +
+        '<div class="tag">' + (s.cat||'AI').toUpperCase() + '</div>' +
+        '<div class="card-title">' + s.title + '</div>' +
+        '<div class="card-footer"><span class="card-source">' + s.source + '</span><span class="card-time">' + s.time + '</span></div>' +
+        '<div class="card-actions">' +
+        '<button class="card-btn summarize-btn" data-title="' + s.title.replace(/"/g,"&quot;") + '">&#9889; Summary</button>' +
+        '<button class="card-btn bookmark-btn" data-title="' + s.title.replace(/"/g,"&quot;") + '">&#128278; Save</button>' +
+        '</div></div></div>';
+    }).join('');
+  }
+
+  // Re-attach event listeners for new cards
+  attachCardListeners();
+}
+
+function attachCardListeners() {
+  document.querySelectorAll('.summarize-btn').forEach(function(btn) {
+    btn.addEventListener('click', function(e) {
+      e.stopPropagation();
+      var title = this.getAttribute('data-title');
+      openReading(title);
+    });
+  });
+  document.querySelectorAll('.bookmark-btn').forEach(function(btn) {
+    btn.addEventListener('click', function(e) {
+      e.stopPropagation();
+      var title = this.getAttribute('data-title');
+      toggleSaved(title);
+    });
+  });
+}
+
+// Fetch stories on page load
+document.addEventListener('DOMContentLoaded', fetchStories);
 // ── SAVED (localStorage) ──
 function getSaved(){ try{return JSON.parse(localStorage.getItem('amg-saved')||'[]');}catch(e){return[];} }
 function setSaved(a){ localStorage.setItem('amg-saved', JSON.stringify(a)); updateSavedBadge(); }
@@ -2381,7 +2482,7 @@ function openReading(title){
   document.getElementById('r-title').textContent = s.title;
   document.getElementById('r-meta').textContent = s.source + ' · ' + s.time;
   document.getElementById('r-body').innerHTML = `<p>${s.excerpt}</p><p>This story is being actively monitored by the Atomic Media Group AI feed. Click the button below to read the full article from the original source.</p>`;
-  document.getElementById('r-link').href = '#';
+  document.getElementById('r-link').href = s && s.url ? s.url : '#';
   document.getElementById('reading-overlay').classList.add('open');
   document.body.style.overflow = 'hidden';
   renderYMAL(s.title, s.cat);
