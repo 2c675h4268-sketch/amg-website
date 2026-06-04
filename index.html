@@ -1490,6 +1490,25 @@ a { color: inherit; text-decoration: none; }
   opacity: 1;
 }
 
+
+/* ── DUAL TRENDING GRID ── */
+.dual-trending-grid {
+  max-width: 1080px;
+  margin: 0 auto;
+  padding: 0 24px;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 24px;
+}
+@media (max-width: 700px) {
+  .dual-trending-grid { grid-template-columns: 1fr; }
+}
+.single-col-grid {
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+}
+
 </style>
 </head>
 <body>
@@ -1593,23 +1612,23 @@ a { color: inherit; text-decoration: none; }
   <div class="about-body">
     <div class="about-mission">
       <div class="about-section-label">Our Mission</div>
-      <p class="about-text">Atomic Media Group exists to make AI intelligence accessible to every executive, founder, and operator — not just those with time to read 50 sources a day.</p>
-      <p class="about-text">We surface the most important AI developments from across the web, filter them by industry relevance, and deliver them in a format built for decision-makers.</p>
+      <p class="about-text">Atomic Media Group covers AI and Robotics — the intelligence and machines reshaping the world. We track the developments that matter most for executives, founders, and operators building in this era.</p>
+      <p class="about-text">Every day our automated intelligence pipeline scans hundreds of sources, curates the signal, and delivers it in a format built for decision-makers who don't have time to waste.</p>
     </div>
     <div class="about-stats-row">
-      <div class="about-stat"><div class="about-stat-n">247</div><div class="about-stat-l">Stories tracked daily</div></div>
-      <div class="about-stat"><div class="about-stat-n">40K+</div><div class="about-stat-l">Executives briefed</div></div>
-      <div class="about-stat"><div class="about-stat-n">9</div><div class="about-stat-l">Industries covered</div></div>
+      <div class="about-stat"><div class="about-stat-n">300+</div><div class="about-stat-l">Stories tracked daily</div></div>
+      <div class="about-stat"><div class="about-stat-n">2x</div><div class="about-stat-l">Daily content refresh</div></div>
+      <div class="about-stat"><div class="about-stat-n">6</div><div class="about-stat-l">Coverage verticals</div></div>
     </div>
     <div class="about-divider"></div>
     <div class="about-section-label">What We Cover</div>
     <div class="about-pillars">
       <div class="about-pillar">⚡ Frontier AI Models</div>
+      <div class="about-pillar">🦾 Robotics & Humanoids</div>
       <div class="about-pillar">🏢 Enterprise Disruption</div>
-      <div class="about-pillar">⚖️ Policy &amp; Regulation</div>
-      <div class="about-pillar">🔧 Hardware &amp; Compute</div>
-      <div class="about-pillar">🛠️ AI Tools &amp; Platforms</div>
-      <div class="about-pillar">🔬 Research &amp; Science</div>
+      <div class="about-pillar">🔧 Hardware & Compute</div>
+      <div class="about-pillar">🛠️ AI Tools & Platforms</div>
+      <div class="about-pillar">⚖️ Policy & Regulation</div>
     </div>
     <div class="about-divider"></div>
     <div class="about-section-label">Contact &amp; Press</div>
@@ -1694,8 +1713,41 @@ a { color: inherit; text-decoration: none; }
 
 <!-- MAIN CONTENT -->
 <main class="site">
+
+  <!-- TAGLINE STRIP -->
+  <div style="
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    padding-bottom: 28px;
+    border-bottom: 1px solid var(--border);
+    margin-bottom: 32px;
+  ">
+    <span style="
+      font-size: 18px;
+      font-weight: 700;
+      letter-spacing: -0.025em;
+      color: var(--text);
+      line-height: 1.2;
+    ">AI &amp; Robotics Intelligence</span>
+    <span style="
+      width: 4px;
+      height: 4px;
+      border-radius: 50%;
+      background: var(--text-dim);
+      flex-shrink: 0;
+      margin-top: 2px;
+    "></span>
+    <span style="
+      font-size: 14px;
+      color: var(--text-muted);
+      font-weight: 400;
+      letter-spacing: -0.01em;
+    ">Everything happening in AI and robotics, curated in one place.</span>
+  </div>
+
   <!-- TOP STORIES -->
-  <div class="section-title">Top AI Stories</div>
+  <div class="section-title">Top Stories</div>
   <div class="hero-grid">
     <div class="hero-left">
       <div class="card" data-cat="ai" data-source="TechCrunch" data-title="GPT-5 Launches With Native Multimodal Reasoning" data-time="2m ago">
@@ -1710,21 +1762,23 @@ a { color: inherit; text-decoration: none; }
           <div class="card-actions">
             <button class="card-btn summarize-btn" data-title="GPT-5 Launches With Native Multimodal Reasoning">⚡ AI Summary</button>
             <button class="card-btn bookmark-btn" data-title="GPT-5 Launches With Native Multimodal Reasoning">🔖 Save</button>
+            <button class="card-btn share-btn" data-title="GPT-5 Launches With Native Multimodal Reasoning"><svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="18" cy="5" r="3"/><circle cx="6" cy="12" r="3"/><circle cx="18" cy="19" r="3"/><line x1="8.59" y1="13.51" x2="15.42" y2="17.49"/><line x1="15.41" y1="6.51" x2="8.59" y2="10.49"/></svg> Share</button>
           </div>
         </div>
       </div>
-      <div class="card" data-cat="ai" data-source="The Verge" data-title="Google Gemini Ultra 2 Quietly Surpasses GPT-4o on Every Major Benchmark" data-time="14m ago">
+      <div class="card" data-cat="robotics" data-source="The Verge" data-title="Figure 02 Humanoid Robot Begins Full Production Deployment" data-time="14m ago">
         <div class="card-body">
-          <div class="tag">AI</div>
-          <div class="card-title">Google Gemini Ultra 2 Quietly Surpasses GPT-4o on Every Major Benchmark</div>
-          <div class="card-excerpt">Internal evals shared by Google researchers show Gemini Ultra 2 outperforming all current frontier models on MMLU, HumanEval, and MATH — with a 2M token context window shipping to enterprise customers this quarter.</div>
+          <div class="tag">Robotics</div>
+          <div class="card-title">Figure 02 Humanoid Robot Begins Full Production Deployment at BMW</div>
+          <div class="card-excerpt">Figure AI's second-generation humanoid is now operating autonomously on BMW's manufacturing floor, marking the first large-scale commercial deployment of a general-purpose humanoid robot.</div>
           <div class="card-footer">
             <span class="card-source">The Verge</span>
             <span class="card-time">14m ago</span>
           </div>
           <div class="card-actions">
-            <button class="card-btn summarize-btn" data-title="Google Gemini Ultra 2 Quietly Surpasses GPT-4o on Every Major Benchmark">⚡ AI Summary</button>
-            <button class="card-btn bookmark-btn" data-title="Google Gemini Ultra 2 Quietly Surpasses GPT-4o on Every Major Benchmark">🔖 Save</button>
+            <button class="card-btn summarize-btn" data-title="Figure 02 Humanoid Robot Begins Full Production Deployment">⚡ AI Summary</button>
+            <button class="card-btn bookmark-btn" data-title="Figure 02 Humanoid Robot Begins Full Production Deployment">🔖 Save</button>
+            <button class="card-btn share-btn" data-title="Figure 02 Humanoid Robot Begins Full Production Deployment"><svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="18" cy="5" r="3"/><circle cx="6" cy="12" r="3"/><circle cx="18" cy="19" r="3"/><line x1="8.59" y1="13.51" x2="15.42" y2="17.49"/><line x1="15.41" y1="6.51" x2="8.59" y2="10.49"/></svg> Share</button>
           </div>
         </div>
       </div>
@@ -1739,21 +1793,21 @@ a { color: inherit; text-decoration: none; }
         <div class="feed-item-title">Anthropic Claude 4 Benchmarks Leaked — Tops All Reasoning Tasks</div>
         <div class="feed-item-meta"><span class="feed-item-cat">AI</span><span class="feed-item-time">1m</span></div>
       </div>
-      <div class="feed-item" data-cat="tech" data-source="Apple" data-title="Apple Intelligence Adds On-Device Agent Mode in Latest iOS">
-        <div class="feed-item-title">Apple Intelligence Adds On-Device Agent Mode in Latest iOS</div>
-        <div class="feed-item-meta"><span class="feed-item-cat">Tech</span><span class="feed-item-time">7m</span></div>
+      <div class="feed-item" data-cat="robotics" data-source="Boston Dynamics" data-title="Atlas Robot Now Handles Full Warehouse Pick-and-Pack Autonomously">
+        <div class="feed-item-title">Atlas Robot Now Handles Full Warehouse Pick-and-Pack Autonomously</div>
+        <div class="feed-item-meta"><span class="feed-item-cat">Robotics</span><span class="feed-item-time">7m</span></div>
       </div>
-      <div class="feed-item" data-cat="tools" data-source="Cursor" data-title="Cursor 2.0 Ships: AI IDE Now Writes Entire Features From Spec">
+      <div class="feed-item" data-cat="ai" data-source="Cursor" data-title="Cursor 2.0 Ships: AI IDE Now Writes Entire Features From Spec">
         <div class="feed-item-title">Cursor 2.0 Ships: AI IDE Now Writes Entire Features From Spec</div>
         <div class="feed-item-meta"><span class="feed-item-cat">Tools</span><span class="feed-item-time">12m</span></div>
       </div>
-      <div class="feed-item" data-cat="world" data-source="DeepSeek" data-title="DeepSeek V4 Permanently Priced at $0.435/M — Opus-Class Quality">
-        <div class="feed-item-title">DeepSeek V4 Permanently Priced at $0.435/M — Opus-Class Quality</div>
-        <div class="feed-item-meta"><span class="feed-item-cat">World</span><span class="feed-item-time">23m</span></div>
+      <div class="feed-item" data-cat="robotics" data-source="Tesla" data-title="Optimus Gen 3 Begins Tesla Factory Trials — 1,000 Units Deployed">
+        <div class="feed-item-title">Optimus Gen 3 Begins Tesla Factory Trials — 1,000 Units Deployed</div>
+        <div class="feed-item-meta"><span class="feed-item-cat">Robotics</span><span class="feed-item-time">23m</span></div>
       </div>
       <div class="feed-item" data-cat="ai" data-source="MIT Tech Review" data-title="EU AI Act Goes Live: What Every Enterprise Team Needs to Know">
         <div class="feed-item-title">EU AI Act Goes Live: What Every Enterprise Team Needs to Know</div>
-        <div class="feed-item-meta"><span class="feed-item-cat">World</span><span class="feed-item-time">18m</span></div>
+        <div class="feed-item-meta"><span class="feed-item-cat">Policy</span><span class="feed-item-time">18m</span></div>
       </div>
       <div class="feed-item" data-cat="ai" data-source="Microsoft" data-title="Microsoft Copilot Completes 40% of Enterprise Tasks in Pilot">
         <div class="feed-item-title">Microsoft Copilot Completes 40% of Enterprise Tasks in Pilot</div>
@@ -1762,83 +1816,309 @@ a { color: inherit; text-decoration: none; }
     </div>
   </div>
 
-  <!-- TRENDING -->
-  <div class="section-title">Trending Now in AI</div>
-  <div class="small-grid">
-    <div class="card" data-cat="tools" data-source="VentureBeat" data-title="The 10 AI Agents Replacing Entire SaaS Categories in 2025" data-time="1h ago">
-      <div class="card-body">
-        <div class="tag">Tools</div>
-        <div class="card-title">The 10 AI Agents Replacing Entire SaaS Categories in 2025</div>
-        <div class="card-footer"><span class="card-source">VentureBeat</span><span class="card-time">1h ago</span></div>
-        <div class="card-actions">
-          <button class="card-btn summarize-btn" data-title="The 10 AI Agents Replacing Entire SaaS Categories in 2025">⚡ Summary</button>
-          <button class="card-btn bookmark-btn" data-title="The 10 AI Agents Replacing Entire SaaS Categories in 2025">🔖 Save</button>
+  <!-- TRENDING AI + ROBOTICS SIDE BY SIDE -->
+  <div class="dual-trending-grid" style="margin-top:48px;">
+
+    <!-- Trending Now in AI -->
+    <div>
+      <div class="section-title" style="margin-top:0;">Trending Now in AI</div>
+      <div class="single-col-grid">
+        <div class="card" data-cat="ai" data-source="VentureBeat" data-title="The 10 AI Agents Replacing Entire SaaS Categories in 2025" data-time="1h ago">
+          <div class="card-body">
+            <div class="tag">AI</div>
+            <div class="card-title">The 10 AI Agents Replacing Entire SaaS Categories in 2025</div>
+            <div class="card-footer"><span class="card-source">VentureBeat</span><span class="card-time">1h ago</span></div>
+            <div class="card-actions">
+              <button class="card-btn summarize-btn" data-title="The 10 AI Agents Replacing Entire SaaS Categories in 2025">⚡ Summary</button>
+              <button class="card-btn bookmark-btn" data-title="The 10 AI Agents Replacing Entire SaaS Categories in 2025">🔖 Save</button>
+            </div>
+          </div>
+        </div>
+        <div class="card" data-cat="ai" data-source="TechCrunch" data-title="Agentic AI Is Now Mainstream — Every Major Platform Ships Agent SDKs" data-time="3h ago">
+          <div class="card-body">
+            <div class="tag">AI</div>
+            <div class="card-title">Agentic AI Is Now Mainstream — Every Major Platform Ships Agent SDKs</div>
+            <div class="card-footer"><span class="card-source">TechCrunch</span><span class="card-time">3h ago</span></div>
+            <div class="card-actions">
+              <button class="card-btn summarize-btn" data-title="Agentic AI Is Now Mainstream — Every Major Platform Ships Agent SDKs">⚡ Summary</button>
+              <button class="card-btn bookmark-btn" data-title="Agentic AI Is Now Mainstream — Every Major Platform Ships Agent SDKs">🔖 Save</button>
+            </div>
+          </div>
+        </div>
+        <div class="card" data-cat="ai" data-source="Bloomberg" data-title="TSMC 2nm Volume Production Begins — NVIDIA and Apple First in Line" data-time="6h ago">
+          <div class="card-body">
+            <div class="tag">Hardware</div>
+            <div class="card-title">TSMC 2nm Volume Production Begins — NVIDIA and Apple First in Line</div>
+            <div class="card-footer"><span class="card-source">Bloomberg</span><span class="card-time">6h ago</span></div>
+            <div class="card-actions">
+              <button class="card-btn summarize-btn" data-title="TSMC 2nm Volume Production Begins — NVIDIA and Apple First in Line">⚡ Summary</button>
+              <button class="card-btn bookmark-btn" data-title="TSMC 2nm Volume Production Begins — NVIDIA and Apple First in Line">🔖 Save</button>
+            </div>
+          </div>
         </div>
       </div>
     </div>
-    <div class="card" data-cat="world" data-source="Reuters" data-title="India Launches National AI Mission with $1.2B Infrastructure Investment" data-time="2h ago">
-      <div class="card-body">
-        <div class="tag">World</div>
-        <div class="card-title">India Launches National AI Mission with $1.2B Infrastructure Investment</div>
-        <div class="card-footer"><span class="card-source">Reuters</span><span class="card-time">2h ago</span></div>
-        <div class="card-actions">
-          <button class="card-btn summarize-btn" data-title="India Launches National AI Mission with $1.2B Infrastructure Investment">⚡ Summary</button>
-          <button class="card-btn bookmark-btn" data-title="India Launches National AI Mission with $1.2B Infrastructure Investment">🔖 Save</button>
+
+    <!-- Trending Now in Robotics -->
+    <div>
+      <div class="section-title" style="margin-top:0;">Trending Now in Robotics</div>
+      <div class="single-col-grid">
+        <div class="card" data-cat="robotics" data-source="Ars Technica" data-title="Figure 02 Humanoid Robot Begins Shipping to BMW Manufacturing Facilities" data-time="4h ago">
+          <div class="card-body">
+            <div class="tag">Robotics</div>
+            <div class="card-title">Figure 02 Humanoid Robot Begins Shipping to BMW Manufacturing Facilities</div>
+            <div class="card-footer"><span class="card-source">Ars Technica</span><span class="card-time">4h ago</span></div>
+            <div class="card-actions">
+              <button class="card-btn summarize-btn" data-title="Figure 02 Humanoid Robot Begins Shipping to BMW Manufacturing Facilities">⚡ Summary</button>
+              <button class="card-btn bookmark-btn" data-title="Figure 02 Humanoid Robot Begins Shipping to BMW Manufacturing Facilities">🔖 Save</button>
+            </div>
+          </div>
+        </div>
+        <div class="card" data-cat="robotics" data-source="Wired" data-title="Boston Dynamics Atlas Learns to Cook — Full Kitchen Autonomy Demo" data-time="2h ago">
+          <div class="card-body">
+            <div class="tag">Robotics</div>
+            <div class="card-title">Boston Dynamics Atlas Learns to Cook — Full Kitchen Autonomy Demo</div>
+            <div class="card-footer"><span class="card-source">Wired</span><span class="card-time">2h ago</span></div>
+            <div class="card-actions">
+              <button class="card-btn summarize-btn" data-title="Boston Dynamics Atlas Learns to Cook — Full Kitchen Autonomy Demo">⚡ Summary</button>
+              <button class="card-btn bookmark-btn" data-title="Boston Dynamics Atlas Learns to Cook — Full Kitchen Autonomy Demo">🔖 Save</button>
+            </div>
+          </div>
+        </div>
+        <div class="card" data-cat="robotics" data-source="Reuters" data-title="China's Robotics Industry Surpasses $50B — 400 New Companies in 2025" data-time="5h ago">
+          <div class="card-body">
+            <div class="tag">Robotics</div>
+            <div class="card-title">China's Robotics Industry Surpasses $50B — 400 New Companies in 2025</div>
+            <div class="card-footer"><span class="card-source">Reuters</span><span class="card-time">5h ago</span></div>
+            <div class="card-actions">
+              <button class="card-btn summarize-btn" data-title="China's Robotics Industry Surpasses $50B — 400 New Companies in 2025">⚡ Summary</button>
+              <button class="card-btn bookmark-btn" data-title="China's Robotics Industry Surpasses $50B — 400 New Companies in 2025">🔖 Save</button>
+            </div>
+          </div>
         </div>
       </div>
     </div>
-    <div class="card" data-cat="hot" data-source="Wired" data-title="AI-Generated Film Wins Major Festival Award — Directors and Studios Respond" data-time="3h ago">
-      <div class="card-body">
-        <div class="tag">Hot</div>
-        <div class="card-title">AI-Generated Film Wins Major Festival Award — Directors and Studios Respond</div>
-        <div class="card-footer"><span class="card-source">Wired</span><span class="card-time">3h ago</span></div>
-        <div class="card-actions">
-          <button class="card-btn summarize-btn" data-title="AI-Generated Film Wins Major Festival Award — Directors and Studios Respond">⚡ Summary</button>
-          <button class="card-btn bookmark-btn" data-title="AI-Generated Film Wins Major Festival Award — Directors and Studios Respond">🔖 Save</button>
-        </div>
-      </div>
-    </div>
-  </div>
-  <div class="small-grid">
-    <div class="card" data-cat="ai" data-source="TechCrunch" data-title="Agentic AI Is Now Mainstream — Every Major Platform Ships Agent SDKs" data-time="3h ago">
-      <div class="card-body">
-        <div class="tag">AI</div>
-        <div class="card-title">Agentic AI Is Now Mainstream — Every Major Platform Ships Agent SDKs</div>
-        <div class="card-footer"><span class="card-source">TechCrunch</span><span class="card-time">3h ago</span></div>
-        <div class="card-actions">
-          <button class="card-btn summarize-btn" data-title="Agentic AI Is Now Mainstream — Every Major Platform Ships Agent SDKs">⚡ Summary</button>
-          <button class="card-btn bookmark-btn" data-title="Agentic AI Is Now Mainstream — Every Major Platform Ships Agent SDKs">🔖 Save</button>
-        </div>
-      </div>
-    </div>
-    <div class="card" data-cat="gadgets" data-source="Ars Technica" data-title="Figure 02 Humanoid Robot Begins Shipping to BMW Manufacturing Facilities" data-time="4h ago">
-      <div class="card-body">
-        <div class="tag">Gadgets</div>
-        <div class="card-title">Figure 02 Humanoid Robot Begins Shipping to BMW Manufacturing Facilities</div>
-        <div class="card-footer"><span class="card-source">Ars Technica</span><span class="card-time">4h ago</span></div>
-        <div class="card-actions">
-          <button class="card-btn summarize-btn" data-title="Figure 02 Humanoid Robot Begins Shipping to BMW Manufacturing Facilities">⚡ Summary</button>
-          <button class="card-btn bookmark-btn" data-title="Figure 02 Humanoid Robot Begins Shipping to BMW Manufacturing Facilities">🔖 Save</button>
-        </div>
-      </div>
-    </div>
-    <div class="card" data-cat="tech" data-source="Bloomberg" data-title="TSMC 2nm Volume Production Begins — NVIDIA and Apple First in Line" data-time="6h ago">
-      <div class="card-body">
-        <div class="tag">Tech</div>
-        <div class="card-title">TSMC 2nm Volume Production Begins — NVIDIA and Apple First in Line</div>
-        <div class="card-footer"><span class="card-source">Bloomberg</span><span class="card-time">6h ago</span></div>
-        <div class="card-actions">
-          <button class="card-btn summarize-btn" data-title="TSMC 2nm Volume Production Begins — NVIDIA and Apple First in Line">⚡ Summary</button>
-          <button class="card-btn bookmark-btn" data-title="TSMC 2nm Volume Production Begins — NVIDIA and Apple First in Line">🔖 Save</button>
-        </div>
-      </div>
-    </div>
+
   </div>
 
-  <!-- TRIO: COMPANIES TO WATCH · TOP PROMPTS · TRENDING TOOLS -->
-  <div class="trio-grid" style="margin-top:48px;">
+  <!-- TOP PROMPTS + TRENDING AI TOOLS SIDE BY SIDE (hidden, rendered via explore button below) -->
+  <!-- AI IN THE REAL WORLD -->
+  <div class="section-title" style="margin-top:48px;">AI in the Real World</div>
+  <div class="dual-trending-grid">
 
-    <!-- ① COMPANIES TO WATCH -->
+    <!-- In Production -->
+    <div class="panel-box">
+      <div class="panel-head">
+        <span class="panel-head-title tools">⚙️ In Production</span>
+        <span class="panel-head-badge">Deployed Now</span>
+      </div>
+      <div class="panel-scroll">
+        <div class="tool-item">
+          <div class="tool-icon">⚖️</div>
+          <div class="tool-body">
+            <div class="tool-name">Harvey — Enterprise Legal AI</div>
+            <div class="tool-desc">Harvey is deployed inside Allen & Overy, PwC, and 100+ law firms — drafting contracts, running due diligence, and surfacing case law at a fraction of associate hours. Billing rates haven't dropped. Volume has exploded.</div>
+            <div class="tool-footer"><span class="tool-cat">⊟ Legal</span><span class="tool-stars" style="color:var(--text-muted);font-size:11px;">Harvey AI · Live</span></div>
+          </div>
+        </div>
+        <div class="tool-item">
+          <div class="tool-icon">🏦</div>
+          <div class="tool-body">
+            <div class="tool-name">JPMorgan COiN — Contract Intelligence</div>
+            <div class="tool-desc">JPMorgan's COiN platform reviews 12,000 commercial credit agreements per year — work that previously took 360,000 hours of lawyer time annually. Error rate is lower than human review.</div>
+            <div class="tool-footer"><span class="tool-cat">⊟ Finance</span><span class="tool-stars" style="color:var(--text-muted);font-size:11px;">JPMorgan · Live</span></div>
+          </div>
+        </div>
+        <div class="tool-item">
+          <div class="tool-icon">🩺</div>
+          <div class="tool-body">
+            <div class="tool-name">Google DeepMind AlphaFold — Drug Discovery</div>
+            <div class="tool-desc">AlphaFold has predicted the structure of 200M+ proteins — essentially the entire known universe of biology. Dozens of pharmaceutical companies are now using it to accelerate drug discovery pipelines by years.</div>
+            <div class="tool-footer"><span class="tool-cat">⊟ Healthcare</span><span class="tool-stars" style="color:var(--text-muted);font-size:11px;">DeepMind · Live</span></div>
+          </div>
+        </div>
+        <div class="tool-item">
+          <div class="tool-icon">🛒</div>
+          <div class="tool-body">
+            <div class="tool-name">Amazon — AI-Powered Demand Forecasting</div>
+            <div class="tool-desc">Amazon's ML forecasting stack now handles real-time inventory decisions across 350M+ SKUs globally — predicting regional demand spikes before they happen and auto-repositioning stock across fulfillment centers.</div>
+            <div class="tool-footer"><span class="tool-cat">⊟ Retail</span><span class="tool-stars" style="color:var(--text-muted);font-size:11px;">Amazon · Live</span></div>
+          </div>
+        </div>
+        <div class="tool-item">
+          <div class="tool-icon">✈️</div>
+          <div class="tool-body">
+            <div class="tool-name">Airbus — Generative Design for Aircraft Parts</div>
+            <div class="tool-desc">Airbus uses generative AI to design aircraft partition brackets that are 45% lighter than human-designed counterparts. The A320 now flies with AI-optimized structural components across its entire fleet.</div>
+            <div class="tool-footer"><span class="tool-cat">⊟ Aerospace</span><span class="tool-stars" style="color:var(--text-muted);font-size:11px;">Airbus · Live</span></div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- On the Horizon -->
+    <div class="panel-box">
+      <div class="panel-head">
+        <span class="panel-head-title prompts">🔭 On the Horizon</span>
+        <span class="panel-head-badge">6–18 Months Out</span>
+      </div>
+      <div class="panel-scroll">
+        <div class="tool-item">
+          <div class="tool-icon">🧑‍💼</div>
+          <div class="tool-body">
+            <div class="tool-name">Agentic AI in the Enterprise</div>
+            <div class="tool-desc">Every major platform — Salesforce, ServiceNow, SAP, Workday — is shipping autonomous agent layers in 2025. The shift from AI as a tool to AI as a worker completing multi-step tasks is the defining enterprise transition of the decade.</div>
+            <div class="tool-footer"><span class="tool-cat">⊟ Enterprise</span><span class="tool-stars" style="color:var(--text-muted);font-size:11px;">Multiple · 2025–26</span></div>
+          </div>
+        </div>
+        <div class="tool-item">
+          <div class="tool-icon">🎓</div>
+          <div class="tool-body">
+            <div class="tool-name">AI Tutors at Scale</div>
+            <div class="tool-desc">Khan Academy's Khanmigo and emerging competitors are deploying personalized AI tutors to millions of students. Early data shows significant learning acceleration — particularly for underserved students without access to private tutoring.</div>
+            <div class="tool-footer"><span class="tool-cat">⊟ Education</span><span class="tool-stars" style="color:var(--text-muted);font-size:11px;">Khan Academy + · 2025</span></div>
+          </div>
+        </div>
+        <div class="tool-item">
+          <div class="tool-icon">🏗️</div>
+          <div class="tool-body">
+            <div class="tool-name">AI in Physical Infrastructure</div>
+            <div class="tool-desc">Utilities and grid operators are deploying AI to manage load balancing, predict equipment failure, and optimize renewable energy dispatch in real time. The US grid's transition to AI-managed infrastructure is already underway.</div>
+            <div class="tool-footer"><span class="tool-cat">⊟ Infrastructure</span><span class="tool-stars" style="color:var(--text-muted);font-size:11px;">Multiple · 2025–26</span></div>
+          </div>
+        </div>
+        <div class="tool-item">
+          <div class="tool-icon">🎬</div>
+          <div class="tool-body">
+            <div class="tool-name">AI-Generated Film & Advertising</div>
+            <div class="tool-desc">Major studios and ad agencies are piloting fully AI-generated video for B-roll, product ads, and localization. Sora, Runway, and Kling are already in agency workflows. Full AI feature films are 18–24 months from credibility.</div>
+            <div class="tool-footer"><span class="tool-cat">⊟ Media</span><span class="tool-stars" style="color:var(--text-muted);font-size:11px;">Multiple · 2025–26</span></div>
+          </div>
+        </div>
+        <div class="tool-item">
+          <div class="tool-icon">🧬</div>
+          <div class="tool-body">
+            <div class="tool-name">AI-Designed Clinical Trials</div>
+            <div class="tool-desc">Pharma companies are using AI to design smarter trials — identifying optimal patient cohorts, predicting dropout risk, and simulating outcomes before a single dose is administered. Trial timelines are compressing from years to months.</div>
+            <div class="tool-footer"><span class="tool-cat">⊟ Pharma</span><span class="tool-stars" style="color:var(--text-muted);font-size:11px;">Multiple · 2026</span></div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+  </div>
+
+  <!-- ROBOTICS IN THE REAL WORLD -->
+  <div class="section-title" style="margin-top:48px;">Robotics in the Real World</div>
+  <div class="dual-trending-grid">
+
+    <!-- In Production -->
+    <div class="panel-box">
+      <div class="panel-head">
+        <span class="panel-head-title tools">🏭 In Production</span>
+        <span class="panel-head-badge">Deployed Now</span>
+      </div>
+      <div class="panel-scroll">
+        <div class="tool-item">
+          <div class="tool-icon">🤖</div>
+          <div class="tool-body">
+            <div class="tool-name">Figure 02 — BMW Manufacturing</div>
+            <div class="tool-desc">Figure AI's humanoid is operating autonomously on BMW's Spartanburg production floor — handling parts, assembly support, and logistics tasks across full shifts without human intervention.</div>
+            <div class="tool-footer"><span class="tool-cat">⊟ Automotive</span><span class="tool-stars" style="color:var(--text-muted);font-size:11px;">Figure AI · Live</span></div>
+          </div>
+        </div>
+        <div class="tool-item">
+          <div class="tool-icon">📦</div>
+          <div class="tool-body">
+            <div class="tool-name">Agility Digit — Amazon Warehouses</div>
+            <div class="tool-desc">Digit robots are running 24/7 tote-handling operations across Amazon fulfillment centers. The pilot has cleared 1M+ cycles with error rates below 0.3% — expansion to 10 facilities confirmed.</div>
+            <div class="tool-footer"><span class="tool-cat">⊟ Logistics</span><span class="tool-stars" style="color:var(--text-muted);font-size:11px;">Agility Robotics · Live</span></div>
+          </div>
+        </div>
+        <div class="tool-item">
+          <div class="tool-icon">🏥</div>
+          <div class="tool-body">
+            <div class="tool-name">Moxi — Hospital Delivery Networks</div>
+            <div class="tool-desc">Diligent Robotics' Moxi is deployed in 50+ US hospitals autonomously delivering labs, meds, and supplies across floors — freeing nurses from an average of 30 minutes of fetch tasks per shift.</div>
+            <div class="tool-footer"><span class="tool-cat">⊟ Healthcare</span><span class="tool-stars" style="color:var(--text-muted);font-size:11px;">Diligent Robotics · Live</span></div>
+          </div>
+        </div>
+        <div class="tool-item">
+          <div class="tool-icon">🚜</div>
+          <div class="tool-body">
+            <div class="tool-name">John Deere Autonomous Tractors</div>
+            <div class="tool-desc">Over 500 fully autonomous 8R tractors are now operating on US farms — plowing, planting, and spraying without operators. GPS + computer vision handles field navigation end-to-end.</div>
+            <div class="tool-footer"><span class="tool-cat">⊟ Agriculture</span><span class="tool-stars" style="color:var(--text-muted);font-size:11px;">John Deere · Live</span></div>
+          </div>
+        </div>
+        <div class="tool-item">
+          <div class="tool-icon">🍕</div>
+          <div class="tool-body">
+            <div class="tool-name">Flippy 2 — Commercial Kitchens</div>
+            <div class="tool-desc">Miso Robotics' Flippy 2 is frying, grilling, and plating at scale inside White Castle and Jack in the Box locations. Each unit handles the equivalent of 2 full-time workers during peak hours.</div>
+            <div class="tool-footer"><span class="tool-cat">⊟ Food Service</span><span class="tool-stars" style="color:var(--text-muted);font-size:11px;">Miso Robotics · Live</span></div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- On the Horizon -->
+    <div class="panel-box">
+      <div class="panel-head">
+        <span class="panel-head-title prompts">🔭 On the Horizon</span>
+        <span class="panel-head-badge">6–18 Months Out</span>
+      </div>
+      <div class="panel-scroll">
+        <div class="tool-item">
+          <div class="tool-icon">⚡</div>
+          <div class="tool-body">
+            <div class="tool-name">Tesla Optimus — Consumer Launch</div>
+            <div class="tool-desc">Tesla has moved its consumer Optimus timeline to late 2026. Internal units are already handling parts sorting and battery assembly. Musk targets a $20K price point — cheaper than a used car.</div>
+            <div class="tool-footer"><span class="tool-cat">⊟ Consumer</span><span class="tool-stars" style="color:var(--text-muted);font-size:11px;">Tesla · Est. 2026</span></div>
+          </div>
+        </div>
+        <div class="tool-item">
+          <div class="tool-icon">🦾</div>
+          <div class="tool-body">
+            <div class="tool-name">Boston Dynamics Atlas — Enterprise Rollout</div>
+            <div class="tool-desc">The fully electric Atlas is shipping to select enterprise partners in Q3. It can lift 25kg, climb stairs, and recover from falls autonomously. Construction and heavy industry are the first targets.</div>
+            <div class="tool-footer"><span class="tool-cat">⊟ Industrial</span><span class="tool-stars" style="color:var(--text-muted);font-size:11px;">Boston Dynamics · Q3 2025</span></div>
+          </div>
+        </div>
+        <div class="tool-item">
+          <div class="tool-icon">🏠</div>
+          <div class="tool-body">
+            <div class="tool-name">1X NEO — Home Assistant</div>
+            <div class="tool-desc">1X Technologies, backed by OpenAI, is piloting NEO in real home environments. The bet: a soft, human-scale robot that handles chores, fetches items, and assists elderly users — without feeling industrial.</div>
+            <div class="tool-footer"><span class="tool-cat">⊟ Home</span><span class="tool-stars" style="color:var(--text-muted);font-size:11px;">1X Technologies · 2026</span></div>
+          </div>
+        </div>
+        <div class="tool-item">
+          <div class="tool-icon">🚀</div>
+          <div class="tool-body">
+            <div class="tool-name">Apptronik Apollo — NASA + Defense</div>
+            <div class="tool-desc">Apollo is in active NASA testing for extraterrestrial surface operations — think maintenance, construction, and EVA support on the Moon. Defense contracts are also in discussion for forward logistics.</div>
+            <div class="tool-footer"><span class="tool-cat">⊟ Aerospace</span><span class="tool-stars" style="color:var(--text-muted);font-size:11px;">Apptronik · 2026–27</span></div>
+          </div>
+        </div>
+        <div class="tool-item">
+          <div class="tool-icon">🌏</div>
+          <div class="tool-body">
+            <div class="tool-name">China's Humanoid Surge</div>
+            <div class="tool-desc">400+ robotics companies launched in China in 2025 alone. UBTECH, Fourier Intelligence, and Unitree are scaling fast with government backing. The race for global humanoid market share is accelerating.</div>
+            <div class="tool-footer"><span class="tool-cat">⊟ Geopolitical</span><span class="tool-stars" style="color:var(--text-muted);font-size:11px;">Multiple · Ongoing</span></div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+  </div>
+
+  <!-- COMPANIES TO WATCH: AI + ROBOTICS SIDE BY SIDE -->
+  <div class="section-title" style="margin-top:48px;">Companies to Watch</div>
+  <div class="dual-trending-grid">
+
+    <!-- AI Companies to Watch -->
     <div class="panel-box">
       <div class="panel-head">
         <span class="panel-head-title companies">📈 AI Companies to Watch</span>
@@ -1849,116 +2129,147 @@ a { color: inherit; text-decoration: none; }
         <input class="ph-search-input" id="search-companies" type="text" placeholder="Search companies…" oninput="filterPanelSearch('companies')" autocomplete="off">
       </div>
       <div class="panel-scroll" id="scroll-companies">
-      <div class="panel-no-results" id="nores-companies">No results</div>
-        <div class="watchlist-item">
-          <div class="watchlist-emoji">🤖</div>
-          <div class="watchlist-body">
-            <div class="watchlist-name">OpenAI <span class="watchlist-status status-hot">Hot</span></div>
-            <div class="watchlist-latest">GPT-5 launch driving record developer signups and enterprise inquiries</div>
-          </div>
-        </div>
-        <div class="watchlist-item">
-          <div class="watchlist-emoji">🧠</div>
-          <div class="watchlist-body">
-            <div class="watchlist-name">Anthropic <span class="watchlist-status status-active">Active</span></div>
-            <div class="watchlist-latest">Claude 4 benchmark leaks circulating; official announcement expected soon</div>
-          </div>
-        </div>
-        <div class="watchlist-item">
-          <div class="watchlist-emoji">💻</div>
-          <div class="watchlist-body">
-            <div class="watchlist-name">NVIDIA <span class="watchlist-status status-rising">Rising</span></div>
-            <div class="watchlist-latest">Blackwell Ultra demand outpacing supply; data center orders up 3x YoY</div>
-          </div>
-        </div>
-        <div class="watchlist-item">
-          <div class="watchlist-emoji">🍎</div>
-          <div class="watchlist-body">
-            <div class="watchlist-name">Apple <span class="watchlist-status status-active">Active</span></div>
-            <div class="watchlist-latest">On-device agent mode adds new dimension to Apple Intelligence roadmap</div>
-          </div>
-        </div>
-        <div class="watchlist-item">
-          <div class="watchlist-emoji">🌐</div>
-          <div class="watchlist-body">
-            <div class="watchlist-name">Microsoft <span class="watchlist-status status-active">Active</span></div>
-            <div class="watchlist-latest">Copilot enterprise pilot shows 40% task automation rate in early data</div>
-          </div>
-        </div>
-        <div class="watchlist-item">
-          <div class="watchlist-emoji">🔷</div>
-          <div class="watchlist-body">
-            <div class="watchlist-name">Google DeepMind <span class="watchlist-status status-quiet">Quiet</span></div>
-            <div class="watchlist-latest">Gemini Ultra 2 still in limited testing; no public launch date confirmed</div>
-          </div>
-        </div>
+        <div class="panel-no-results" id="nores-companies">No results</div>
+        <div class="watchlist-item"><div class="watchlist-emoji">🤖</div><div class="watchlist-body"><div class="watchlist-name">OpenAI <span class="watchlist-status status-hot">Hot</span></div><div class="watchlist-latest">GPT-5 launch driving record developer signups and enterprise inquiries</div></div></div>
+        <div class="watchlist-item"><div class="watchlist-emoji">🧠</div><div class="watchlist-body"><div class="watchlist-name">Anthropic <span class="watchlist-status status-active">Active</span></div><div class="watchlist-latest">Claude 4 benchmark leaks circulating; official announcement expected soon</div></div></div>
+        <div class="watchlist-item"><div class="watchlist-emoji">💻</div><div class="watchlist-body"><div class="watchlist-name">NVIDIA <span class="watchlist-status status-rising">Rising</span></div><div class="watchlist-latest">Blackwell Ultra demand outpacing supply; data center orders up 3x YoY</div></div></div>
+        <div class="watchlist-item"><div class="watchlist-emoji">🍎</div><div class="watchlist-body"><div class="watchlist-name">Apple <span class="watchlist-status status-active">Active</span></div><div class="watchlist-latest">On-device agent mode adds new dimension to Apple Intelligence roadmap</div></div></div>
+        <div class="watchlist-item"><div class="watchlist-emoji">🌐</div><div class="watchlist-body"><div class="watchlist-name">Microsoft <span class="watchlist-status status-active">Active</span></div><div class="watchlist-latest">Copilot enterprise pilot shows 40% task automation rate in early data</div></div></div>
+        <div class="watchlist-item"><div class="watchlist-emoji">🔷</div><div class="watchlist-body"><div class="watchlist-name">Google DeepMind <span class="watchlist-status status-quiet">Quiet</span></div><div class="watchlist-latest">Gemini Ultra 2 still in limited testing; no public launch date confirmed</div></div></div>
       </div>
     </div>
 
-    <!-- ② TOP PROMPTS -->
+    <!-- Robotics Companies to Watch -->
     <div class="panel-box">
       <div class="panel-head">
-        <span class="panel-head-title prompts">⚡ Top Prompts</span>
-        <button class="ph-search-btn" id="srch-btn-prompts" onclick="togglePhSearch('prompts')" title="Search"><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg></button>
-        <span class="panel-head-badge">Trending This Week</span>
+        <span class="panel-head-title companies">🦾 Robotics Companies to Watch</span>
+        <button class="ph-search-btn" id="srch-btn-rob-companies" onclick="togglePhSearch('rob-companies')" title="Search"><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg></button>
+        <span class="panel-head-badge">Live</span>
       </div>
-      <div class="ph-search-tray" id="srch-tray-prompts">
-        <input class="ph-search-input" id="search-prompts" type="text" placeholder="Search prompts…" oninput="filterPanelSearch('prompts')" autocomplete="off">
+      <div class="ph-search-tray" id="srch-tray-rob-companies">
+        <input class="ph-search-input" id="search-rob-companies" type="text" placeholder="Search companies…" oninput="filterPanelSearch('rob-companies')" autocomplete="off">
       </div>
-      <div class="panel-scroll" id="scroll-prompts">
-      <div class="panel-no-results" id="nores-prompts">No results</div>
-        <div class="prompt-item">
-          <div class="prompt-use-case">⊙ Strategic Analysis</div>
-          <div class="prompt-text">"Act as a McKinsey senior partner. Analyze [company/market] using a first-principles lens. Identify the three most underappreciated risks and the single highest-leverage opportunity. Be direct — skip the caveats."</div>
-          <div class="prompt-footer">
-            <button class="prompt-copy-btn" data-prompt="Act as a McKinsey senior partner. Analyze [company/market] using a first-principles lens. Identify the three most underappreciated risks and the single highest-leverage opportunity. Be direct — skip the caveats.">✤ Copy</button>
-            <span class="prompt-level">Advanced</span>
-          </div>
-        </div>
-        <div class="prompt-item">
-          <div class="prompt-use-case">⊟ Developer</div>
-          <div class="prompt-text">"Review this code as a senior engineer doing a production PR review. Flag any bugs, security issues, performance problems, and style violations. Suggest rewrites for anything below production standard."</div>
-          <div class="prompt-footer">
-            <button class="prompt-copy-btn" data-prompt="Review this code as a senior engineer doing a production PR review. Flag any bugs, security issues, performance problems, and style violations. Suggest rewrites for anything below production standard.">✤ Copy</button>
-            <span class="prompt-level">Developer</span>
-          </div>
-        </div>
-        <div class="prompt-item">
-          <div class="prompt-use-case">⊞ Research</div>
-          <div class="prompt-text">"Summarize the current state of [topic] in five bullet points: what is settled, what is contested, what is emerging, what is overhyped, and what most people are missing. Cite reasoning, not just conclusions."</div>
-          <div class="prompt-footer">
-            <button class="prompt-copy-btn" data-prompt="Summarize the current state of [topic] in five bullet points: what is settled, what is contested, what is emerging, what is overhyped, and what most people are missing. Cite reasoning, not just conclusions.">✤ Copy</button>
-            <span class="prompt-level">Intermediate</span>
-          </div>
-        </div>
-        <div class="prompt-item">
-          <div class="prompt-use-case">⊕ Writing</div>
-          <div class="prompt-text">"Rewrite this [email/post/document] for a C-suite audience. Make it 40% shorter. Lead with the recommendation, not the background. Use plain language — no jargon. End with one clear ask."</div>
-          <div class="prompt-footer">
-            <button class="prompt-copy-btn" data-prompt="Rewrite this [email/post/document] for a C-suite audience. Make it 40% shorter. Lead with the recommendation, not the background. Use plain language — no jargon. End with one clear ask.">✤ Copy</button>
-            <span class="prompt-level">Beginner</span>
-          </div>
-        </div>
-        <div class="prompt-item">
-          <div class="prompt-use-case">★ Productivity</div>
-          <div class="prompt-text">"I have [X hours] and these tasks: [list]. Prioritize them using the Eisenhower Matrix. Then build me a time-blocked schedule that protects deep work in the morning and batches shallow work in the afternoon."</div>
-          <div class="prompt-footer">
-            <button class="prompt-copy-btn" data-prompt="I have [X hours] and these tasks: [list]. Prioritize them using the Eisenhower Matrix. Then build me a time-blocked schedule that protects deep work in the morning and batches shallow work in the afternoon.">✤ Copy</button>
-            <span class="prompt-level">Beginner</span>
-          </div>
-        </div>
-        <div class="prompt-item">
-          <div class="prompt-use-case">⊚ Reasoning</div>
-          <div class="prompt-text">"Steel-man the opposing view on [topic]. Give the strongest possible version of the argument — not a strawman. Then identify the two points where a thoughtful critic would still disagree even with the best version."</div>
-          <div class="prompt-footer">
-            <button class="prompt-copy-btn" data-prompt="Steel-man the opposing view on [topic]. Give the strongest possible version of the argument — not a strawman. Then identify the two points where a thoughtful critic would still disagree even with the best version.">✤ Copy</button>
-            <span class="prompt-level">Advanced</span>
-          </div>
-        </div>
+      <div class="panel-scroll" id="scroll-rob-companies">
+        <div class="panel-no-results" id="nores-rob-companies">No results</div>
+        <div class="watchlist-item"><div class="watchlist-emoji">🤖</div><div class="watchlist-body"><div class="watchlist-name">Figure AI <span class="watchlist-status status-hot">Hot</span></div><div class="watchlist-latest">Figure 02 now in full production at BMW; Series C at $2.6B valuation</div></div></div>
+        <div class="watchlist-item"><div class="watchlist-emoji">⚡</div><div class="watchlist-body"><div class="watchlist-name">Tesla Optimus <span class="watchlist-status status-hot">Hot</span></div><div class="watchlist-latest">1,000 units deployed internally; consumer timeline moved to 2026</div></div></div>
+        <div class="watchlist-item"><div class="watchlist-emoji">🐕</div><div class="watchlist-body"><div class="watchlist-name">Boston Dynamics <span class="watchlist-status status-rising">Rising</span></div><div class="watchlist-latest">Atlas commercial version shipping to select enterprise partners Q3</div></div></div>
+        <div class="watchlist-item"><div class="watchlist-emoji">🦾</div><div class="watchlist-body"><div class="watchlist-name">Agility Robotics <span class="watchlist-status status-active">Active</span></div><div class="watchlist-latest">Digit robot running 24/7 warehouse operations for Amazon pilot</div></div></div>
+        <div class="watchlist-item"><div class="watchlist-emoji">🔬</div><div class="watchlist-body"><div class="watchlist-name">1X Technologies <span class="watchlist-status status-active">Active</span></div><div class="watchlist-latest">NEO robot demoed in home environment; OpenAI partnership deepening</div></div></div>
+        <div class="watchlist-item"><div class="watchlist-emoji">🏭</div><div class="watchlist-body"><div class="watchlist-name">Apptronik <span class="watchlist-status status-quiet">Watch</span></div><div class="watchlist-latest">Apollo humanoid in NASA testing; Series A closed at $350M</div></div></div>
       </div>
     </div>
 
-    <!-- ③ TRENDING TOOLS -->
+  </div>
+
+  <!-- BY THE NUMBERS -->
+  <div class="section-title" style="margin-top:48px;">By the Numbers</div>
+  <div style="
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 16px;
+    margin-bottom: 16px;
+  " id="numbers-grid">
+
+    <div style="background:var(--surface);border:1px solid var(--border);border-radius:var(--radius);padding:22px 24px;">
+      <div style="font-size:11px;font-weight:700;letter-spacing:0.07em;text-transform:uppercase;color:var(--text-muted);margin-bottom:10px;">Global AI Investment</div>
+      <div style="font-size:32px;font-weight:800;letter-spacing:-0.03em;color:var(--text);line-height:1;">$329B</div>
+      <div style="font-size:12px;color:var(--text-muted);margin-top:6px;">Deployed in AI ventures in 2024 — up 62% YoY. 2025 on pace to exceed $500B.</div>
+      <div style="margin-top:12px;font-size:11px;font-weight:600;color:#34c759;">↑ 62% year over year</div>
+    </div>
+
+    <div style="background:var(--surface);border:1px solid var(--border);border-radius:var(--radius);padding:22px 24px;">
+      <div style="font-size:11px;font-weight:700;letter-spacing:0.07em;text-transform:uppercase;color:var(--text-muted);margin-bottom:10px;">Humanoids Deployed</div>
+      <div style="font-size:32px;font-weight:800;letter-spacing:-0.03em;color:var(--text);line-height:1;">12,400+</div>
+      <div style="font-size:12px;color:var(--text-muted);margin-top:6px;">Humanoid robots in active commercial or industrial deployment globally as of Q2 2025.</div>
+      <div style="margin-top:12px;font-size:11px;font-weight:600;color:#34c759;">↑ 8x from 2023 baseline</div>
+    </div>
+
+    <div style="background:var(--surface);border:1px solid var(--border);border-radius:var(--radius);padding:22px 24px;">
+      <div style="font-size:11px;font-weight:700;letter-spacing:0.07em;text-transform:uppercase;color:var(--text-muted);margin-bottom:10px;">Models in Production</div>
+      <div style="font-size:32px;font-weight:800;letter-spacing:-0.03em;color:var(--text);line-height:1;">1,800+</div>
+      <div style="font-size:12px;color:var(--text-muted);margin-top:6px;">Foundation models publicly available on Hugging Face. Up from 600 in early 2023.</div>
+      <div style="margin-top:12px;font-size:11px;font-weight:600;color:#34c759;">↑ 3x in 24 months</div>
+    </div>
+
+    <div style="background:var(--surface);border:1px solid var(--border);border-radius:var(--radius);padding:22px 24px;">
+      <div style="font-size:11px;font-weight:700;letter-spacing:0.07em;text-transform:uppercase;color:var(--text-muted);margin-bottom:10px;">NVIDIA Market Cap</div>
+      <div style="font-size:32px;font-weight:800;letter-spacing:-0.03em;color:var(--text);line-height:1;">$3.1T</div>
+      <div style="font-size:12px;color:var(--text-muted);margin-top:6px;">NVIDIA briefly surpassed Apple as the world's most valuable company on GPU demand alone.</div>
+      <div style="margin-top:12px;font-size:11px;font-weight:600;color:#34c759;">↑ #1 globally by market cap</div>
+    </div>
+
+    <div style="background:var(--surface);border:1px solid var(--border);border-radius:var(--radius);padding:22px 24px;">
+      <div style="font-size:11px;font-weight:700;letter-spacing:0.07em;text-transform:uppercase;color:var(--text-muted);margin-bottom:10px;">Robotics Market Size</div>
+      <div style="font-size:32px;font-weight:800;letter-spacing:-0.03em;color:var(--text);line-height:1;">$218B</div>
+      <div style="font-size:12px;color:var(--text-muted);margin-top:6px;">Global robotics market valuation in 2025. Projected to reach $500B+ by 2030 on humanoid acceleration.</div>
+      <div style="margin-top:12px;font-size:11px;font-weight:600;color:#34c759;">↑ Projected 2x by 2030</div>
+    </div>
+
+    <div style="background:var(--surface);border:1px solid var(--border);border-radius:var(--radius);padding:22px 24px;">
+      <div style="font-size:11px;font-weight:700;letter-spacing:0.07em;text-transform:uppercase;color:var(--text-muted);margin-bottom:10px;">Jobs Touched by AI</div>
+      <div style="font-size:32px;font-weight:800;letter-spacing:-0.03em;color:var(--text);line-height:1;">300M</div>
+      <div style="font-size:12px;color:var(--text-muted);margin-top:6px;">Goldman Sachs estimate of roles globally exposed to AI automation — equivalent to 18% of all work.</div>
+      <div style="margin-top:12px;font-size:11px;font-weight:600;color:var(--blue);">→ 18% of global workforce</div>
+    </div>
+
+  </div>
+
+  <style>
+    @media (max-width: 700px) {
+      #numbers-grid { grid-template-columns: 1fr 1fr !important; }
+    }
+    @media (max-width: 480px) {
+      #numbers-grid { grid-template-columns: 1fr !important; }
+    }
+  </style>
+
+  <!-- EXPLORE TOOLS & PROMPTS CTA -->
+  <div style="
+    margin-top: 48px;
+    padding: 32px;
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: var(--radius);
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 24px;
+    flex-wrap: wrap;
+  ">
+    <div>
+      <div style="font-size:17px;font-weight:700;letter-spacing:-0.02em;color:var(--text);margin-bottom:6px;">Trending AI Tools &amp; Top Prompts</div>
+      <div style="font-size:14px;color:var(--text-muted);max-width:480px;">The best AI tools shipping right now and the prompts powering advanced users — updated daily.</div>
+    </div>
+    <button id="explore-toggle-btn" onclick="
+      var sec = document.getElementById('tools-prompts-section');
+      var btn = document.getElementById('explore-toggle-btn');
+      var isOpen = sec.style.display !== 'none';
+      sec.style.display = isOpen ? 'none' : 'grid';
+      btn.textContent = isOpen ? 'Explore Tools \u0026 Prompts \u2192' : '\u2190 Close';
+    " style="
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      padding: 12px 22px;
+      background: var(--text);
+      color: white;
+      border: none;
+      border-radius: 10px;
+      font-family: inherit;
+      font-size: 14px;
+      font-weight: 600;
+      cursor: pointer;
+      white-space: nowrap;
+      transition: opacity 0.15s;
+      flex-shrink: 0;
+    " onmouseover="this.style.opacity='0.85'" onmouseout="this.style.opacity='1'">Explore Tools &amp; Prompts →</button>
+  </div>
+
+  <!-- TOOLS & PROMPTS EXPANDABLE PANEL (renders directly below button) -->
+  <div class="dual-trending-grid" id="tools-prompts-section" style="display:none;margin-top:24px;">
+
+    <!-- Trending AI Tools -->
     <div class="panel-box">
       <div class="panel-head">
         <span class="panel-head-title tools">▭ Trending AI Tools</span>
@@ -1969,210 +2280,38 @@ a { color: inherit; text-decoration: none; }
         <input class="ph-search-input" id="search-tools" type="text" placeholder="Search tools…" oninput="filterPanelSearch('tools')" autocomplete="off">
       </div>
       <div class="panel-scroll" id="scroll-tools">
-      <div class="panel-no-results" id="nores-tools">No results</div>
-        <div class="tool-item">
-          <div class="tool-icon">🤖</div>
-          <div class="tool-body">
-            <div class="tool-name">Cursor <span class="tool-badge-hot">🔥 Hot</span></div>
-            <div class="tool-desc">AI-native code editor that writes, refactors, and debugs entire features from a spec. The IDE replacing VS Code for serious developers.</div>
-            <div class="tool-footer">
-              <span class="tool-cat">⊟ Developer</span>
-              <span class="tool-stars">★★★★★</span>
-              <a class="tool-try" href="https://cursor.com" target="_blank" rel="noopener">Try It →</a>
-            </div>
-          </div>
-        </div>
-        <div class="tool-item">
-          <div class="tool-icon">🔍</div>
-          <div class="tool-body">
-            <div class="tool-name">Perplexity Pro <span class="tool-badge-hot">🔥 Hot</span></div>
-            <div class="tool-desc">AI-powered search with real-time citations. Replaces hours of research with a single query. Pro adds document analysis and custom knowledge bases.</div>
-            <div class="tool-footer">
-              <span class="tool-cat">⊞ Research</span>
-              <span class="tool-stars">★★★★☆</span>
-              <a class="tool-try" href="https://perplexity.ai" target="_blank" rel="noopener">Try It →</a>
-            </div>
-          </div>
-        </div>
-        <div class="tool-item">
-          <div class="tool-icon">🌟</div>
-          <div class="tool-body">
-            <div class="tool-name">Midjourney v7 <span class="tool-badge-new">✨ New</span></div>
-            <div class="tool-desc">State-of-the-art image generation with unmatched photorealism and style control. v7 adds personalization profiles and improved text rendering.</div>
-            <div class="tool-footer">
-              <span class="tool-cat">🎨 Creative</span>
-              <span class="tool-stars">★★★★★</span>
-              <a class="tool-try" href="https://midjourney.com" target="_blank" rel="noopener">Try It →</a>
-            </div>
-          </div>
-        </div>
-        <div class="tool-item">
-          <div class="tool-icon">🚀</div>
-          <div class="tool-body">
-            <div class="tool-name">Replit Agent <span class="tool-badge-new">✨ New</span></div>
-            <div class="tool-desc">Describe an app in plain English and watch it get built, tested, and deployed autonomously. No prior coding required. Full-stack in minutes.</div>
-            <div class="tool-footer">
-              <span class="tool-cat">⊟ Developer</span>
-              <span class="tool-stars">★★★★☆</span>
-              <a class="tool-try" href="https://replit.com" target="_blank" rel="noopener">Try It →</a>
-            </div>
-          </div>
-        </div>
-        <div class="tool-item">
-          <div class="tool-icon">🎙️</div>
-          <div class="tool-body">
-            <div class="tool-name">ElevenLabs</div>
-            <div class="tool-desc">Ultra-realistic AI voice cloning and text-to-speech. Used for podcasts, audiobooks, dubbing, and voice agents. The clear leader in audio AI.</div>
-            <div class="tool-footer">
-              <span class="tool-cat">🎙 Audio</span>
-              <span class="tool-stars">★★★★☆</span>
-              <a class="tool-try" href="https://elevenlabs.io" target="_blank" rel="noopener">Try It →</a>
-            </div>
-          </div>
-        </div>
-        <div class="tool-item">
-          <div class="tool-icon">📄</div>
-          <div class="tool-body">
-            <div class="tool-name">NotebookLM <span class="tool-badge-new">✨ New</span></div>
-            <div class="tool-desc">Google's AI research assistant that ingests your documents and becomes an expert on them. Generates summaries, deep answers, and podcast-style audio overviews.</div>
-            <div class="tool-footer">
-              <span class="tool-cat">⊞ Research</span>
-              <span class="tool-stars">★★★★☆</span>
-              <a class="tool-try" href="https://notebooklm.google.com" target="_blank" rel="noopener">Try It →</a>
-            </div>
-          </div>
-        </div>
-        <div class="tool-item">
-          <div class="tool-icon">🎬</div>
-          <div class="tool-body">
-            <div class="tool-name">Sora <span class="tool-badge-hot">🔥 Hot</span></div>
-            <div class="tool-desc">OpenAI's text-to-video model, now public. Generate cinematic video clips from a text description. The quality gap over competitors is significant.</div>
-            <div class="tool-footer">
-              <span class="tool-cat">🎬 Video</span>
-              <span class="tool-stars">★★★★★</span>
-              <a class="tool-try" href="https://sora.com" target="_blank" rel="noopener">Try It →</a>
-            </div>
-          </div>
-        </div>
+        <div class="panel-no-results" id="nores-tools">No results</div>
+        <div class="tool-item"><div class="tool-icon">🤖</div><div class="tool-body"><div class="tool-name">Cursor <span class="tool-badge-hot">🔥 Hot</span></div><div class="tool-desc">AI-native code editor that writes, refactors, and debugs entire features from a spec. The IDE replacing VS Code for serious developers.</div><div class="tool-footer"><span class="tool-cat">⊟ Developer</span><span class="tool-stars">★★★★★</span><a class="tool-try" href="https://cursor.com" target="_blank" rel="noopener">Try It →</a></div></div></div>
+        <div class="tool-item"><div class="tool-icon">🔍</div><div class="tool-body"><div class="tool-name">Perplexity Pro <span class="tool-badge-hot">🔥 Hot</span></div><div class="tool-desc">AI-powered search with real-time citations. Replaces hours of research with a single query. Pro adds document analysis and custom knowledge bases.</div><div class="tool-footer"><span class="tool-cat">⊞ Research</span><span class="tool-stars">★★★★☆</span><a class="tool-try" href="https://perplexity.ai" target="_blank" rel="noopener">Try It →</a></div></div></div>
+        <div class="tool-item"><div class="tool-icon">🌟</div><div class="tool-body"><div class="tool-name">Midjourney v7 <span class="tool-badge-new">✨ New</span></div><div class="tool-desc">State-of-the-art image generation with unmatched photorealism and style control. v7 adds personalization profiles and improved text rendering.</div><div class="tool-footer"><span class="tool-cat">🎨 Creative</span><span class="tool-stars">★★★★★</span><a class="tool-try" href="https://midjourney.com" target="_blank" rel="noopener">Try It →</a></div></div></div>
+        <div class="tool-item"><div class="tool-icon">🚀</div><div class="tool-body"><div class="tool-name">Replit Agent <span class="tool-badge-new">✨ New</span></div><div class="tool-desc">Describe an app in plain English and watch it get built, tested, and deployed autonomously. No prior coding required. Full-stack in minutes.</div><div class="tool-footer"><span class="tool-cat">⊟ Developer</span><span class="tool-stars">★★★★☆</span><a class="tool-try" href="https://replit.com" target="_blank" rel="noopener">Try It →</a></div></div></div>
+        <div class="tool-item"><div class="tool-icon">🎙️</div><div class="tool-body"><div class="tool-name">ElevenLabs</div><div class="tool-desc">Ultra-realistic AI voice cloning and text-to-speech. Used for podcasts, audiobooks, dubbing, and voice agents. The clear leader in audio AI.</div><div class="tool-footer"><span class="tool-cat">🎙 Audio</span><span class="tool-stars">★★★★☆</span><a class="tool-try" href="https://elevenlabs.io" target="_blank" rel="noopener">Try It →</a></div></div></div>
+        <div class="tool-item"><div class="tool-icon">📄</div><div class="tool-body"><div class="tool-name">NotebookLM <span class="tool-badge-new">✨ New</span></div><div class="tool-desc">Google's AI research assistant that ingests your documents and becomes an expert on them. Generates summaries, deep answers, and podcast-style audio overviews.</div><div class="tool-footer"><span class="tool-cat">⊞ Research</span><span class="tool-stars">★★★★☆</span><a class="tool-try" href="https://notebooklm.google.com" target="_blank" rel="noopener">Try It →</a></div></div></div>
+        <div class="tool-item"><div class="tool-icon">🎬</div><div class="tool-body"><div class="tool-name">Sora <span class="tool-badge-hot">🔥 Hot</span></div><div class="tool-desc">OpenAI's text-to-video model, now public. Generate cinematic video clips from a text description. The quality gap over competitors is significant.</div><div class="tool-footer"><span class="tool-cat">🎬 Video</span><span class="tool-stars">★★★★★</span><a class="tool-try" href="https://sora.com" target="_blank" rel="noopener">Try It →</a></div></div></div>
       </div>
     </div>
 
-  </div>
+    <!-- Top Prompts -->
+    <div class="panel-box">
+      <div class="panel-head">
+        <span class="panel-head-title prompts">⚡ Top Prompts</span>
+        <button class="ph-search-btn" id="srch-btn-prompts" onclick="togglePhSearch('prompts')" title="Search"><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg></button>
+        <span class="panel-head-badge">Trending This Week</span>
+      </div>
+      <div class="ph-search-tray" id="srch-tray-prompts">
+        <input class="ph-search-input" id="search-prompts" type="text" placeholder="Search prompts…" oninput="filterPanelSearch('prompts')" autocomplete="off">
+      </div>
+      <div class="panel-scroll" id="scroll-prompts">
+        <div class="panel-no-results" id="nores-prompts">No results</div>
+        <div class="prompt-item"><div class="prompt-use-case">⊙ Strategic Analysis</div><div class="prompt-text">"Act as a McKinsey senior partner. Analyze [company/market] using a first-principles lens. Identify the three most underappreciated risks and the single highest-leverage opportunity. Be direct — skip the caveats."</div><div class="prompt-footer"><button class="prompt-copy-btn" data-prompt="Act as a McKinsey senior partner. Analyze [company/market] using a first-principles lens. Identify the three most underappreciated risks and the single highest-leverage opportunity. Be direct — skip the caveats.">✤ Copy</button><span class="prompt-level">Advanced</span></div></div>
+        <div class="prompt-item"><div class="prompt-use-case">⊟ Developer</div><div class="prompt-text">"Review this code as a senior engineer doing a production PR review. Flag any bugs, security issues, performance problems, and style violations. Suggest rewrites for anything below production standard."</div><div class="prompt-footer"><button class="prompt-copy-btn" data-prompt="Review this code as a senior engineer doing a production PR review. Flag any bugs, security issues, performance problems, and style violations. Suggest rewrites for anything below production standard.">✤ Copy</button><span class="prompt-level">Developer</span></div></div>
+        <div class="prompt-item"><div class="prompt-use-case">⊞ Research</div><div class="prompt-text">"Summarize the current state of [topic] in five bullet points: what is settled, what is contested, what is emerging, what is overhyped, and what most people are missing. Cite reasoning, not just conclusions."</div><div class="prompt-footer"><button class="prompt-copy-btn" data-prompt="Summarize the current state of [topic] in five bullet points: what is settled, what is contested, what is emerging, what is overhyped, and what most people are missing. Cite reasoning, not just conclusions.">✤ Copy</button><span class="prompt-level">Intermediate</span></div></div>
+        <div class="prompt-item"><div class="prompt-use-case">⊕ Writing</div><div class="prompt-text">"Rewrite this [email/post/document] for a C-suite audience. Make it 40% shorter. Lead with the recommendation, not the background. Use plain language — no jargon. End with one clear ask."</div><div class="prompt-footer"><button class="prompt-copy-btn" data-prompt="Rewrite this [email/post/document] for a C-suite audience. Make it 40% shorter. Lead with the recommendation, not the background. Use plain language — no jargon. End with one clear ask.">✤ Copy</button><span class="prompt-level">Beginner</span></div></div>
+        <div class="prompt-item"><div class="prompt-use-case">★ Productivity</div><div class="prompt-text">"I have [X hours] and these tasks: [list]. Prioritize them using the Eisenhower Matrix. Then build me a time-blocked schedule that protects deep work in the morning and batches shallow work in the afternoon."</div><div class="prompt-footer"><button class="prompt-copy-btn" data-prompt="I have [X hours] and these tasks: [list]. Prioritize them using the Eisenhower Matrix. Then build me a time-blocked schedule that protects deep work in the morning and batches shallow work in the afternoon.">✤ Copy</button><span class="prompt-level">Beginner</span></div></div>
+        <div class="prompt-item"><div class="prompt-use-case">⊚ Reasoning</div><div class="prompt-text">"Steel-man the opposing view on [topic]. Give the strongest possible version of the argument — not a strawman. Then identify the two points where a thoughtful critic would still disagree even with the best version."</div><div class="prompt-footer"><button class="prompt-copy-btn" data-prompt="Steel-man the opposing view on [topic]. Give the strongest possible version of the argument — not a strawman. Then identify the two points where a thoughtful critic would still disagree even with the best version.">✤ Copy</button><span class="prompt-level">Advanced</span></div></div>
+      </div>
+    </div>
 
-  <!-- DEEP READS -->
-  <div class="section-title">Deep Reads in AI</div>
-  <div class="wide-grid">
-    <div class="card" data-cat="tech" data-source="The Verge" data-title="NVIDIA Blackwell Ultra: The Chip Powering AI Agent Infrastructure" data-time="45m ago">
-      <div class="card-body">
-        <div class="tag">Tech</div>
-        <div class="card-title">NVIDIA Blackwell Ultra: The Chip Powering AI Agent Infrastructure</div>
-        <div class="card-excerpt">How NVIDIA's latest chip architecture quietly became the backbone of every major agentic AI deployment in 2025.</div>
-        <div class="card-footer"><span class="card-source">The Verge</span><span class="card-time">45m ago</span></div>
-        <div class="card-actions">
-          <button class="card-btn summarize-btn" data-title="NVIDIA Blackwell Ultra: The Chip Powering AI Agent Infrastructure">⚡ Summary</button>
-          <button class="card-btn bookmark-btn" data-title="NVIDIA Blackwell Ultra: The Chip Powering AI Agent Infrastructure">🔖 Save</button>
-        </div>
-      </div>
-    </div>
-    <div class="card" data-cat="gadgets" data-source="The Verge" data-title="Samsung Galaxy Ring Gen 2 Adds Real-Time AI Health Coaching" data-time="1h ago">
-      <div class="card-body">
-        <div class="tag">Gadgets</div>
-        <div class="card-title">Samsung Galaxy Ring Gen 2 Adds Real-Time AI Health Coaching</div>
-        <div class="card-excerpt">The second-generation Galaxy Ring uses on-device AI to monitor biometrics and deliver personalized coaching without a phone connection.</div>
-        <div class="card-footer"><span class="card-source">The Verge</span><span class="card-time">1h ago</span></div>
-        <div class="card-actions">
-          <button class="card-btn summarize-btn" data-title="Samsung Galaxy Ring Gen 2 Adds Real-Time AI Health Coaching">⚡ Summary</button>
-          <button class="card-btn bookmark-btn" data-title="Samsung Galaxy Ring Gen 2 Adds Real-Time AI Health Coaching">🔖 Save</button>
-        </div>
-      </div>
-    </div>
-    <div class="card" data-cat="tools" data-source="Hacker News" data-title="Mistral Codestral 2.0: Free Tier, 256K Context, Full IDE Plugin Support" data-time="5h ago">
-      <div class="card-body">
-        <div class="tag">Tools</div>
-        <div class="card-title">Mistral Codestral 2.0: Free Tier, 256K Context, Full IDE Plugin Support</div>
-        <div class="card-excerpt">Mistral's code-focused model gets a major upgrade with an extended context window and native support for VS Code, Cursor, and JetBrains.</div>
-        <div class="card-footer"><span class="card-source">Hacker News</span><span class="card-time">5h ago</span></div>
-        <div class="card-actions">
-          <button class="card-btn summarize-btn" data-title="Mistral Codestral 2.0: Free Tier, 256K Context, Full IDE Plugin Support">⚡ Summary</button>
-          <button class="card-btn bookmark-btn" data-title="Mistral Codestral 2.0: Free Tier, 256K Context, Full IDE Plugin Support">🔖 Save</button>
-        </div>
-      </div>
-    </div>
-    <div class="card" data-cat="hot" data-source="Wired" data-title="Sora Real-Time Video Goes Public — The Internet Reacts" data-time="38m ago">
-      <div class="card-body">
-        <div class="tag">Hot</div>
-        <div class="card-title">Sora Real-Time Video Goes Public — The Internet Reacts</div>
-        <div class="card-excerpt">OpenAI's Sora exits preview and opens to all users. Within hours, creators, journalists, and studios post wildly different takes on what this actually means.</div>
-        <div class="card-footer"><span class="card-source">Wired</span><span class="card-time">38m ago</span></div>
-        <div class="card-actions">
-          <button class="card-btn summarize-btn" data-title="Sora Real-Time Video Goes Public — The Internet Reacts">⚡ Summary</button>
-          <button class="card-btn bookmark-btn" data-title="Sora Real-Time Video Goes Public — The Internet Reacts">🔖 Save</button>
-        </div>
-      </div>
-    </div>
-  </div>
-
-  <!-- AI EDUCATION HUB -->
-  <div class="section-title">AI Education Hub</div>
-  <div class="edu-grid">
-    <div class="edu-panel">
-      <div class="edu-head">
-        <span class="edu-head-title">AI Glossary</span>
-        <button class="ph-search-btn" id="srch-btn-glossary" onclick="togglePhSearch('glossary')" title="Search"><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg></button>
-        <span class="edu-head-count">32 terms</span>
-      </div>
-      <div class="ph-search-tray" id="srch-tray-glossary">
-        <input class="ph-search-input" id="search-glossary" type="text" placeholder="Search terms…" oninput="filterEdu('glossary')" autocomplete="off">
-      </div>
-      <div id="edu-list-glossary">
-      <div class="edu-item">
-        <div class="edu-item-term">Agentic AI</div>
-        <div class="edu-item-def">AI systems that can autonomously plan and execute multi-step tasks without human guidance at each step.</div>
-      </div>
-      <div class="edu-item">
-        <div class="edu-item-term">RAG (Retrieval-Augmented Generation)</div>
-        <div class="edu-item-def">A technique that enhances AI outputs by retrieving relevant information from a knowledge base at inference time.</div>
-      </div>
-      <div class="edu-item">
-        <div class="edu-item-term">Context Window</div>
-        <div class="edu-item-def">The maximum amount of text an AI model can "see" and process at one time, measured in tokens.</div>
-      </div>
-      <div class="edu-item">
-        <div class="edu-item-term">Multimodal AI</div>
-        <div class="edu-item-def">Models capable of understanding and generating multiple types of data — text, images, audio, and video.</div>
-      </div>
-      </div><!-- /edu-list-glossary -->
-      <div class="panel-no-results" id="nores-glossary">No results</div>
-    </div>
-    <div class="edu-panel">
-      <div class="edu-head">
-        <span class="edu-head-title">Quick Takes</span>
-        <button class="ph-search-btn" id="srch-btn-quicktakes" onclick="togglePhSearch('quicktakes')" title="Search"><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg></button>
-        <span class="edu-head-count">This week</span>
-      </div>
-      <div class="ph-search-tray" id="srch-tray-quicktakes">
-        <input class="ph-search-input" id="search-quicktakes" type="text" placeholder="Search takes…" oninput="filterEdu('quicktakes')" autocomplete="off">
-      </div>
-      <div id="edu-list-quicktakes">
-      <div class="edu-item">
-        <div class="edu-item-term">Why AI agents matter for enterprise</div>
-        <div class="edu-item-def">Agents can complete entire workflows — not just suggest next steps — which changes the ROI calculus for software buyers.</div>
-      </div>
-      <div class="edu-item">
-        <div class="edu-item-term">The chip bottleneck explained</div>
-        <div class="edu-item-def">Demand for AI inference compute is growing faster than fab capacity can expand, keeping GPU prices elevated through 2026.</div>
-      </div>
-      <div class="edu-item">
-        <div class="edu-item-term">Open source vs. closed models</div>
-        <div class="edu-item-def">The gap between open and closed frontier models is narrowing fast, changing licensing and deployment decisions for businesses.</div>
-      </div>
-      <div class="edu-item">
-        <div class="edu-item-term">What the EU AI Act actually changes</div>
-        <div class="edu-item-def">High-risk AI applications now require documentation, human oversight, and auditability — with real penalties for non-compliance.</div>
-      </div>
-      </div><!-- /edu-list-quicktakes -->
-      <div class="panel-no-results" id="nores-quicktakes">No results</div>
-    </div>
   </div>
 
 </main>
@@ -2187,7 +2326,7 @@ a { color: inherit; text-decoration: none; }
         </div>
         <span class="footer-brand-name">Atomic Media Group</span>
       </a>
-      <p class="footer-tagline">The world's AI news, curated daily — signal without the noise.</p>
+      <p class="footer-tagline">AI and Robotics intelligence, curated daily — signal without the noise.</p>
       <nav class="footer-nav">
         <a href="javascript:void(0)" onclick="openAbout()">About</a>
         <a href="mailto:hello@atomicmediagroup.ai">Contact</a>
