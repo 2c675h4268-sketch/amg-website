@@ -23,16 +23,16 @@
 html { scroll-behavior: smooth; }
 
 :root {
-  --bg: #ffffff;
-  --surface: #f5f5f7;
-  --border: #d2d2d7;
-  --text: #1d1d1f;
-  --text-muted: #6e6e73;
-  --text-dim: #aeaeb2;
-  --blue: #0071e3;
-  --blue-light: #e8f0fb;
-  --radius: 12px;
-  --radius-sm: 8px;
+  --bg: #fafaf8;
+  --surface: #f2f1ee;
+  --border: #e0deda;
+  --text: #18181b;
+  --text-muted: #71717a;
+  --text-dim: #a1a1aa;
+  --blue: #4f46e5;
+  --blue-light: #eef2ff;
+  --radius: 10px;
+  --radius-sm: 7px;
 }
 
 body {
@@ -40,8 +40,9 @@ body {
   color: var(--text);
   font-family: 'Satoshi', -apple-system, BlinkMacSystemFont, sans-serif;
   font-size: 15px;
-  line-height: 1.5;
+  line-height: 1.55;
   -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
 }
 
 a { color: inherit; text-decoration: none; }
@@ -51,9 +52,9 @@ a { color: inherit; text-decoration: none; }
   position: sticky;
   top: 0;
   z-index: 200;
-  background: rgba(255,255,255,0.88);
-  backdrop-filter: saturate(180%) blur(20px);
-  -webkit-backdrop-filter: saturate(180%) blur(20px);
+  background: rgba(250,250,248,0.92);
+  backdrop-filter: saturate(160%) blur(24px);
+  -webkit-backdrop-filter: saturate(160%) blur(24px);
   border-bottom: 1px solid var(--border);
 }
 .header-inner {
@@ -195,7 +196,7 @@ a { color: inherit; text-decoration: none; }
   font-family: inherit;
 }
 .filter-chip:hover { border-color: var(--text-muted); color: var(--text); }
-.filter-chip.active { background: var(--text); color: white; border-color: var(--text); }
+.filter-chip.active { background: var(--text); color: white; border-color: var(--text); letter-spacing: 0.01em; }
 .filter-apply {
   width: 100%;
   padding: 10px;
@@ -275,29 +276,34 @@ a { color: inherit; text-decoration: none; }
 .site {
   max-width: 1080px;
   margin: 0 auto;
-  padding: 40px 24px 80px;
+  padding: 44px 24px 88px;
 }
 
 /* ── SECTION HEADERS ── */
 .section-title {
-  font-size: 21px;
+  font-size: 22px;
   font-weight: 700;
-  letter-spacing: -0.02em;
+  letter-spacing: -0.03em;
   color: var(--text);
-  margin-bottom: 20px;
-  margin-top: 48px;
+  margin-bottom: 18px;
+  margin-top: 52px;
+  padding-bottom: 12px;
+  border-bottom: 2px solid var(--text);
+  display: flex;
+  align-items: center;
+  gap: 10px;
 }
 .section-title:first-child { margin-top: 0; }
 
 /* ── CATEGORY TAG ── */
 .tag {
   display: inline-block;
-  font-size: 11px;
-  font-weight: 600;
-  letter-spacing: 0.04em;
+  font-size: 10px;
+  font-weight: 700;
+  letter-spacing: 0.07em;
   text-transform: uppercase;
   color: var(--blue);
-  margin-bottom: 6px;
+  margin-bottom: 8px;
 }
 
 /* ── CARDS ── */
@@ -310,17 +316,18 @@ a { color: inherit; text-decoration: none; }
   transition: box-shadow 0.2s, transform 0.2s;
 }
 .card:hover {
-  box-shadow: 0 8px 28px rgba(0,0,0,0.10), 0 2px 8px rgba(0,0,0,0.06);
-  transform: translateY(-3px);
-  border-color: #c7c7cc;
+  box-shadow: 0 6px 24px rgba(0,0,0,0.09), 0 2px 6px rgba(0,0,0,0.05);
+  transform: translateY(-2px);
+  border-color: #c4c2bc;
 }
 .card-body { padding: 18px; }
 .card-title {
   font-size: 15px;
   font-weight: 600;
-  line-height: 1.4;
+  line-height: 1.38;
+  letter-spacing: -0.01em;
   color: var(--text);
-  margin-bottom: 6px;
+  margin-bottom: 8px;
 }
 .card-excerpt {
   font-size: 13px;
@@ -333,7 +340,7 @@ a { color: inherit; text-decoration: none; }
   align-items: center;
   justify-content: space-between;
 }
-.card-source { font-size: 12px; color: var(--text-dim); font-weight: 500; }
+.card-source { font-size: 11px; color: var(--text-muted); font-weight: 600; letter-spacing: 0.02em; text-transform: uppercase; }
 .card-time { font-size: 12px; color: var(--text-dim); }
 .card-actions { display: flex; gap: 8px; margin-top: 12px; }
 .card-btn {
@@ -476,7 +483,7 @@ a { color: inherit; text-decoration: none; }
   gap: 16px;
 }
 .hero-left .card { flex: 1; }
-.hero-left .card:first-child .card-title { font-size: 20px; line-height: 1.3; }
+.hero-left .card:first-child .card-title { font-size: 22px; line-height: 1.28; letter-spacing: -0.02em; font-weight: 700; }
 .hero-left .card:last-child .card-title  { font-size: 15px; line-height: 1.4; }
 .card-live-feed {
   border: 1px solid var(--border);
@@ -493,6 +500,7 @@ a { color: inherit; text-decoration: none; }
   align-items: center;
   justify-content: space-between;
   background: var(--surface);
+  border-bottom: 1.5px solid var(--border);
 }
 .card-live-head-title { font-size: 13px; font-weight: 600; color: var(--text); }
 .card-live-head-live { display: flex; align-items: center; gap: 5px; font-size: 12px; color: #34c759; font-weight: 500; }
@@ -513,7 +521,7 @@ a { color: inherit; text-decoration: none; }
 .feed-item-content { flex: 1; min-width: 0; }
 .feed-item-title { font-size: 13px; font-weight: 500; line-height: 1.45; color: var(--text); margin-bottom: 5px; }
 .feed-item-meta { display: flex; justify-content: space-between; align-items: center; }
-.feed-item-cat { font-size: 11px; font-weight: 600; text-transform: uppercase; letter-spacing: 0.04em; color: var(--blue); }
+.feed-item-cat { font-size: 10px; font-weight: 700; text-transform: uppercase; letter-spacing: 0.07em; color: var(--blue); }
 .feed-item-time { font-size: 11px; color: var(--text-dim); }
 
 /* ── SMALL GRID ── */
@@ -655,6 +663,7 @@ a { color: inherit; text-decoration: none; }
   font-weight: 600;
 }
 .watchlist-item {
+  text-decoration: none;
   padding: 14px 18px;
   border-bottom: 1px solid var(--border);
   display: flex;
@@ -664,7 +673,8 @@ a { color: inherit; text-decoration: none; }
   transition: background 0.1s;
 }
 .watchlist-item:last-child { border-bottom: none; }
-.watchlist-item:hover { background: var(--surface); }
+.watchlist-item:hover { background: var(--surface); cursor: pointer; }
+.watchlist-item[href]:hover .watchlist-name { color: var(--blue); }
 .watchlist-emoji { font-size: 22px; width: 36px; height: 36px; text-align: center; flex-shrink: 0; display: flex; align-items: center; justify-content: center; }
 .watchlist-logo { width: 36px; height: 36px; border-radius: 8px; object-fit: contain; background: var(--surface); border: 1px solid var(--border); padding: 4px; flex-shrink: 0; }
 .letter-avatar { width: 36px; height: 36px; border-radius: 8px; flex-shrink: 0; display: flex; align-items: center; justify-content: center; font-size: 15px; font-weight: 700; color: white; letter-spacing: -0.02em; }
@@ -998,7 +1008,7 @@ a { color: inherit; text-decoration: none; }
 .footer-tagline {
   font-size: 13px;
   color: var(--text-muted);
-  line-height: 1.5;
+  line-height: 1.6;
   max-width: 280px;
   margin: 0 0 10px 0;
 }
@@ -1029,11 +1039,11 @@ a { color: inherit; text-decoration: none; }
   gap: 10px;
 }
 .footer-section-label {
-  font-size: 11px;
+  font-size: 10px;
   font-weight: 700;
-  color: var(--text-muted);
+  color: var(--text);
   text-transform: uppercase;
-  letter-spacing: 0.07em;
+  letter-spacing: 0.09em;
 }
 .footer-email-row {
   display: flex;
@@ -1060,7 +1070,8 @@ a { color: inherit; text-decoration: none; }
   border: none;
   border-radius: 8px;
   font-size: 13px;
-  font-weight: 600;
+  font-weight: 700;
+  letter-spacing: 0.01em;
   font-family: inherit;
   cursor: pointer;
   white-space: nowrap;
@@ -1458,7 +1469,7 @@ a { color: inherit; text-decoration: none; }
   width: 40px;
   height: 40px;
   border-radius: 8px;
-  background: linear-gradient(135deg, #0071e3, #5ac8fa);
+  background: linear-gradient(135deg, #4f46e5, #7c3aed);
   display: flex;
   align-items: center;
   justify-content: center;
@@ -1495,7 +1506,7 @@ a { color: inherit; text-decoration: none; }
   transition: background .15s, color .15s;
   align-self: flex-start;
 }
-.sponsor-cta:hover { background: var(--blue); color: #fff; }
+.sponsor-cta:hover { background: var(--text); color: #fff; }
 
 
 /* ── YOU MIGHT ALSO LIKE ── */
@@ -2136,12 +2147,6 @@ a { color: inherit; text-decoration: none; }
       </div>
       <div class="panel-scroll" id="scroll-companies">
         <div class="panel-no-results" id="nores-companies">No results</div>
-        <div class="watchlist-item"><div class="watchlist-emoji">🤖</div><div class="watchlist-body"><div class="watchlist-name">OpenAI <span class="watchlist-status status-hot">Hot</span></div><div class="watchlist-latest">GPT-5 launch driving record developer signups and enterprise inquiries</div></div></div>
-        <div class="watchlist-item"><div class="watchlist-emoji">🧠</div><div class="watchlist-body"><div class="watchlist-name">Anthropic <span class="watchlist-status status-active">Active</span></div><div class="watchlist-latest">Claude 4 benchmark leaks circulating; official announcement expected soon</div></div></div>
-        <div class="watchlist-item"><div class="watchlist-emoji">💻</div><div class="watchlist-body"><div class="watchlist-name">NVIDIA <span class="watchlist-status status-rising">Rising</span></div><div class="watchlist-latest">Blackwell Ultra demand outpacing supply; data center orders up 3x YoY</div></div></div>
-        <div class="watchlist-item"><div class="watchlist-emoji">🍎</div><div class="watchlist-body"><div class="watchlist-name">Apple <span class="watchlist-status status-active">Active</span></div><div class="watchlist-latest">On-device agent mode adds new dimension to Apple Intelligence roadmap</div></div></div>
-        <div class="watchlist-item"><div class="watchlist-emoji">🌐</div><div class="watchlist-body"><div class="watchlist-name">Microsoft <span class="watchlist-status status-active">Active</span></div><div class="watchlist-latest">Copilot enterprise pilot shows 40% task automation rate in early data</div></div></div>
-        <div class="watchlist-item"><div class="watchlist-emoji">🔷</div><div class="watchlist-body"><div class="watchlist-name">Google DeepMind <span class="watchlist-status status-quiet">Quiet</span></div><div class="watchlist-latest">Gemini Ultra 2 still in limited testing; no public launch date confirmed</div></div></div>
       </div>
     </div>
 
@@ -2157,12 +2162,6 @@ a { color: inherit; text-decoration: none; }
       </div>
       <div class="panel-scroll" id="scroll-rob-companies">
         <div class="panel-no-results" id="nores-rob-companies">No results</div>
-        <div class="watchlist-item"><div class="watchlist-emoji">🤖</div><div class="watchlist-body"><div class="watchlist-name">Figure AI <span class="watchlist-status status-hot">Hot</span></div><div class="watchlist-latest">Figure 02 now in full production at BMW; Series C at $2.6B valuation</div></div></div>
-        <div class="watchlist-item"><div class="watchlist-emoji">⚡</div><div class="watchlist-body"><div class="watchlist-name">Tesla Optimus <span class="watchlist-status status-hot">Hot</span></div><div class="watchlist-latest">1,000 units deployed internally; consumer timeline moved to 2026</div></div></div>
-        <div class="watchlist-item"><div class="watchlist-emoji">🐕</div><div class="watchlist-body"><div class="watchlist-name">Boston Dynamics <span class="watchlist-status status-rising">Rising</span></div><div class="watchlist-latest">Atlas commercial version shipping to select enterprise partners Q3</div></div></div>
-        <div class="watchlist-item"><div class="watchlist-emoji">🦾</div><div class="watchlist-body"><div class="watchlist-name">Agility Robotics <span class="watchlist-status status-active">Active</span></div><div class="watchlist-latest">Digit robot running 24/7 warehouse operations for Amazon pilot</div></div></div>
-        <div class="watchlist-item"><div class="watchlist-emoji">🔬</div><div class="watchlist-body"><div class="watchlist-name">1X Technologies <span class="watchlist-status status-active">Active</span></div><div class="watchlist-latest">NEO robot demoed in home environment; OpenAI partnership deepening</div></div></div>
-        <div class="watchlist-item"><div class="watchlist-emoji">🏭</div><div class="watchlist-body"><div class="watchlist-name">Apptronik <span class="watchlist-status status-quiet">Watch</span></div><div class="watchlist-latest">Apollo humanoid in NASA testing; Series A closed at $350M</div></div></div>
       </div>
     </div>
 
@@ -2181,42 +2180,42 @@ a { color: inherit; text-decoration: none; }
       <div style="font-size:11px;font-weight:700;letter-spacing:0.07em;text-transform:uppercase;color:var(--text-muted);margin-bottom:10px;">Global AI Investment</div>
       <div style="font-size:32px;font-weight:800;letter-spacing:-0.03em;color:var(--text);line-height:1;">$329B</div>
       <div style="font-size:12px;color:var(--text-muted);margin-top:6px;">Deployed in AI ventures in 2024 — up 62% YoY. 2025 on pace to exceed $500B.</div>
-      <div style="margin-top:12px;font-size:11px;font-weight:600;color:#34c759;">↑ 62% year over year</div>
+      <div style="margin-top:12px;font-size:11px;font-weight:600;color:var(--text-muted);">↑ 62% year over year</div>
     </div>
 
     <div style="background:var(--surface);border:1px solid var(--border);border-radius:var(--radius);padding:22px 24px;">
       <div style="font-size:11px;font-weight:700;letter-spacing:0.07em;text-transform:uppercase;color:var(--text-muted);margin-bottom:10px;">Humanoids Deployed</div>
       <div style="font-size:32px;font-weight:800;letter-spacing:-0.03em;color:var(--text);line-height:1;">12,400+</div>
       <div style="font-size:12px;color:var(--text-muted);margin-top:6px;">Humanoid robots in active commercial or industrial deployment globally as of Q2 2025.</div>
-      <div style="margin-top:12px;font-size:11px;font-weight:600;color:#34c759;">↑ 8x from 2023 baseline</div>
+      <div style="margin-top:12px;font-size:11px;font-weight:600;color:var(--text-muted);">↑ 8x from 2023 baseline</div>
     </div>
 
     <div style="background:var(--surface);border:1px solid var(--border);border-radius:var(--radius);padding:22px 24px;">
       <div style="font-size:11px;font-weight:700;letter-spacing:0.07em;text-transform:uppercase;color:var(--text-muted);margin-bottom:10px;">Models in Production</div>
       <div style="font-size:32px;font-weight:800;letter-spacing:-0.03em;color:var(--text);line-height:1;">1,800+</div>
       <div style="font-size:12px;color:var(--text-muted);margin-top:6px;">Foundation models publicly available on Hugging Face. Up from 600 in early 2023.</div>
-      <div style="margin-top:12px;font-size:11px;font-weight:600;color:#34c759;">↑ 3x in 24 months</div>
+      <div style="margin-top:12px;font-size:11px;font-weight:600;color:var(--text-muted);">↑ 3x in 24 months</div>
     </div>
 
     <div style="background:var(--surface);border:1px solid var(--border);border-radius:var(--radius);padding:22px 24px;">
       <div style="font-size:11px;font-weight:700;letter-spacing:0.07em;text-transform:uppercase;color:var(--text-muted);margin-bottom:10px;">NVIDIA Market Cap</div>
       <div style="font-size:32px;font-weight:800;letter-spacing:-0.03em;color:var(--text);line-height:1;">$3.1T</div>
       <div style="font-size:12px;color:var(--text-muted);margin-top:6px;">NVIDIA briefly surpassed Apple as the world's most valuable company on GPU demand alone.</div>
-      <div style="margin-top:12px;font-size:11px;font-weight:600;color:#34c759;">↑ #1 globally by market cap</div>
+      <div style="margin-top:12px;font-size:11px;font-weight:600;color:var(--text-muted);">↑ #1 globally by market cap</div>
     </div>
 
     <div style="background:var(--surface);border:1px solid var(--border);border-radius:var(--radius);padding:22px 24px;">
       <div style="font-size:11px;font-weight:700;letter-spacing:0.07em;text-transform:uppercase;color:var(--text-muted);margin-bottom:10px;">Robotics Market Size</div>
       <div style="font-size:32px;font-weight:800;letter-spacing:-0.03em;color:var(--text);line-height:1;">$218B</div>
       <div style="font-size:12px;color:var(--text-muted);margin-top:6px;">Global robotics market valuation in 2025. Projected to reach $500B+ by 2030 on humanoid acceleration.</div>
-      <div style="margin-top:12px;font-size:11px;font-weight:600;color:#34c759;">↑ Projected 2x by 2030</div>
+      <div style="margin-top:12px;font-size:11px;font-weight:600;color:var(--text-muted);">↑ Projected 2x by 2030</div>
     </div>
 
     <div style="background:var(--surface);border:1px solid var(--border);border-radius:var(--radius);padding:22px 24px;">
       <div style="font-size:11px;font-weight:700;letter-spacing:0.07em;text-transform:uppercase;color:var(--text-muted);margin-bottom:10px;">Jobs Touched by AI</div>
       <div style="font-size:32px;font-weight:800;letter-spacing:-0.03em;color:var(--text);line-height:1;">300M</div>
       <div style="font-size:12px;color:var(--text-muted);margin-top:6px;">Goldman Sachs estimate of roles globally exposed to AI automation — equivalent to 18% of all work.</div>
-      <div style="margin-top:12px;font-size:11px;font-weight:600;color:var(--blue);">→ 18% of global workforce</div>
+      <div style="margin-top:12px;font-size:11px;font-weight:600;color:var(--text-muted);">→ 18% of global workforce</div>
     </div>
 
   </div>
@@ -2565,12 +2564,15 @@ async function fetchCompanies() {
       var logoHtml = domain
         ? makeLogoImg(domain, c.name, 'letter', 'watchlist-logo')
         : makeLetterAvatar(c.name, '');
-      return '<div class="watchlist-item">' +
+      var url = c.url || '';
+      // If no URL stored, fall back to a Google search for the company
+      var href = url || ('https://www.google.com/search?q=' + encodeURIComponent((c.name || '') + ' AI company'));
+      return '<a class="watchlist-item" href="' + href + '" target="_blank" rel="noopener">' +
         logoHtml +
         '<div class="watchlist-body">' +
         '<div class="watchlist-name">' + (c.name || '') + ' <span class="watchlist-status ' + statusClass + '">' + (c.category || 'Active') + '</span></div>' +
         '<div class="watchlist-latest">' + (c.signal || c.description || '') + '</div>' +
-        '</div></div>';
+        '</div></a>';
     }
 
     var aiEl = document.getElementById('scroll-companies');
@@ -2787,7 +2789,7 @@ async function fetchStats() {
     if (!data || !data.length) return;
 
     function makeStatTile(s) {
-      var color = s.trend_color === 'blue' ? 'var(--blue)' : '#34c759';
+      var color = 'var(--text-muted)';
       return '<div style="background:var(--surface);border:1px solid var(--border);border-radius:var(--radius);padding:22px 24px;">' +
         '<div style="font-size:11px;font-weight:700;letter-spacing:0.07em;text-transform:uppercase;color:var(--text-muted);margin-bottom:10px;">' + (s.label || '') + '</div>' +
         '<div style="font-size:32px;font-weight:800;letter-spacing:-0.03em;color:var(--text);line-height:1;">' + (s.value || '') + '</div>' +
