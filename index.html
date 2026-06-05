@@ -2439,19 +2439,19 @@ function renderYMAL(currentTitle, currentCat){
   var ymalWrap = document.getElementById('r-ymal');
   var ymalList = document.getElementById('r-ymal-list');
   if(!ymalWrap || !ymalList) return;
-  // Pick up to 3 stories from same cat, excluding current
   var related = STORIES.filter(function(s){
     return s.title !== currentTitle && (s.cat === currentCat || Math.random() > 0.5);
   }).slice(0, 3);
   if(related.length === 0){ ymalWrap.style.display='none'; return; }
   ymalWrap.style.display = 'block';
   ymalList.innerHTML = related.map(function(s){
-    var safetitle = s.title.replace(/'/g, "\'");
-    return '<div class="ymal-item" onclick="openReadingPanel(\'' + safetitle + '\',\'' + s.cat + '\',\'' + (s.source||'') + '\',\'' + (s.time||'') + '\')">' +
-      '<div><div class="ymal-item-tag">' + (s.cat||'AI').toUpperCase() + '</div>' +
+    var imgHtml = s.image_url ? '<img src="' + s.image_url + '" style="width:100%;height:80px;object-fit:cover;border-radius:6px;margin-bottom:8px;display:block;" loading="lazy" onerror="this.style.display=\'none\'">' : '';
+    return '<div class="ymal-item" style="cursor:pointer;" onclick="openReading(\'' + s.title.replace(/'/g,"\\'").replace(/"/g,'&quot;') + '\')">' +
+      imgHtml +
+      '<div class="ymal-item-tag">' + (s.cat||'AI').toUpperCase() + '</div>' +
       '<div class="ymal-item-title">' + s.title + '</div>' +
       '<div class="ymal-item-meta">' + (s.source||'') + (s.time ? ' · ' + s.time : '') + '</div>' +
-      '</div></div>';
+      '</div>';
   }).join('');
 }
 
