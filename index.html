@@ -1532,22 +1532,16 @@ a { color: inherit; text-decoration: none; }
     <div class="filter-chips">
       <button class="filter-chip active" data-filter="cat" data-val="all">All</button>
       <button class="filter-chip" data-filter="cat" data-val="ai">AI</button>
-      <button class="filter-chip" data-filter="cat" data-val="tech">Tech</button>
+      <button class="filter-chip" data-filter="cat" data-val="robotics">Robotics</button>
       <button class="filter-chip" data-filter="cat" data-val="tools">Tools</button>
-      <button class="filter-chip" data-filter="cat" data-val="gadgets">Gadgets</button>
-      <button class="filter-chip" data-filter="cat" data-val="world">World</button>
+      <button class="filter-chip" data-filter="cat" data-val="policy">Policy</button>
       <button class="filter-chip" data-filter="cat" data-val="hot">Hot</button>
     </div>
   </div>
   <div class="filter-section">
     <div class="filter-label">Source</div>
-    <div class="filter-chips">
+    <div class="filter-chips" id="source-filter-chips">
       <button class="filter-chip active" data-filter="source" data-val="all">All Sources</button>
-      <button class="filter-chip" data-filter="source" data-val="TechCrunch">TechCrunch</button>
-      <button class="filter-chip" data-filter="source" data-val="The Verge">The Verge</button>
-      <button class="filter-chip" data-filter="source" data-val="Wired">Wired</button>
-      <button class="filter-chip" data-filter="source" data-val="Reuters">Reuters</button>
-      <button class="filter-chip" data-filter="source" data-val="Bloomberg">Bloomberg</button>
     </div>
   </div>
   <button class="filter-apply" id="filter-apply">Apply Filters</button>
@@ -2756,6 +2750,7 @@ function renderFeed() {
   }
 
   attachCardListeners();
+  buildSourceFilters();
   document.body.classList.add('feed-loaded');
 }
 
@@ -2915,14 +2910,33 @@ document.addEventListener('click', function(e){
   }
 });
 
-document.querySelectorAll('.filter-chip').forEach(chip => {
-  chip.addEventListener('click', function(){
-    const group = this.dataset.filter;
-    document.querySelectorAll(`.filter-chip[data-filter="${group}"]`).forEach(c=>c.classList.remove('active'));
-    this.classList.add('active');
-    activeFilters[group] = this.dataset.val;
+function wireFilterChips() {
+  document.querySelectorAll('.filter-chip').forEach(chip => {
+    chip.addEventListener('click', function(){
+      const group = this.dataset.filter;
+      document.querySelectorAll(`.filter-chip[data-filter="${group}"]`).forEach(c=>c.classList.remove('active'));
+      this.classList.add('active');
+      activeFilters[group] = this.dataset.val;
+    });
   });
-});
+}
+wireFilterChips();
+
+function buildSourceFilters() {
+  const sources = [...new Set(STORIES.map(s => s.source).filter(Boolean))].slice(0, 6);
+  const container = document.getElementById('source-filter-chips');
+  if (!container || !sources.length) return;
+  container.innerHTML = '<button class="filter-chip active" data-filter="source" data-val="all">All Sources</button>';
+  sources.forEach(function(src) {
+    const btn = document.createElement('button');
+    btn.className = 'filter-chip';
+    btn.setAttribute('data-filter', 'source');
+    btn.setAttribute('data-val', src);
+    btn.textContent = src;
+    container.appendChild(btn);
+  });
+  wireFilterChips();
+}
 
 document.getElementById('filter-apply').addEventListener('click', function(){
   applyFilters();
