@@ -2453,9 +2453,27 @@ function makeLetterAvatar(name, extraClass) {
   var color = getAvatarColor(name);
   return '<div class="letter-avatar ' + (extraClass||'') + '" style="background:' + color + ';">' + letter + '</div>';
 }
-function makeLogoImg(domain, name, fallbackHtml, extraClass) {
+function makeLogoImg(domain, name, fallbackType, extraClass) {
+  // fallbackType: 'letter' uses letter avatar, or pass a sector emoji string
   var cls = extraClass || 'watchlist-logo';
-  return '<img class="' + cls + '" src="https://www.google.com/s2/favicons?domain=' + domain + '&sz=64" alt="' + (name||'') + '" onerror="this.outerHTML=' + "'" + fallbackHtml.replace(/'/g,"\'") + "'" + '" loading="lazy">';
+  var safeName = (name||'').replace(/"/g,'&quot;');
+  return '<img class="' + cls + '" src="https://www.google.com/s2/favicons?domain=' + domain + '&sz=64" alt="' + safeName + '" data-name="' + safeName + '" data-fallback="' + (fallbackType||'letter') + '" onload="this.style.padding='4px'" onerror="handleLogoError(this)">';
+}
+
+function handleLogoError(img) {
+  var name = img.getAttribute('data-name') || '?';
+  var fallback = img.getAttribute('data-fallback') || 'letter';
+  var color = getAvatarColor(name);
+  var letter = name[0].toUpperCase();
+  // If fallback is an emoji, use sector icon; otherwise letter avatar
+  var inner = (fallback.length <= 2 || fallback.match(/\p{Emoji}/u))
+    ? '<span style="font-size:18px;">' + fallback + '</span>'
+    : '<span style="font-size:15px;font-weight:700;color:white;">' + letter + '</span>';
+  var div = document.createElement('div');
+  div.className = img.className;
+  div.style.cssText = 'width:36px;height:36px;border-radius:8px;flex-shrink:0;display:flex;align-items:center;justify-content:center;background:' + (fallback.length <= 4 ? 'var(--surface)' : color) + ';border:1px solid var(--border);';
+  div.innerHTML = inner;
+  img.parentNode.replaceChild(div, img);
 }
 
 // ── FETCH COMPANIES ──
@@ -2474,10 +2492,9 @@ async function fetchCompanies() {
       else if (sig.includes('quiet') || sig.includes('watch')) statusClass = 'status-quiet';
       var domain = '';
       try { if (c.url) domain = new URL(c.url).hostname.replace('www.', ''); } catch(e) {}
-      var fallback1 = makeLetterAvatar(c.name, '');
       var logoHtml = domain
-        ? makeLogoImg(domain, c.name, fallback1, 'watchlist-logo')
-        : fallback1;
+        ? makeLogoImg(domain, c.name, 'letter', 'watchlist-logo')
+        : makeLetterAvatar(c.name, '');
       return '<div class="watchlist-item">' +
         logoHtml +
         '<div class="watchlist-body">' +
@@ -2603,8 +2620,8 @@ async function fetchRealWorldAI() {
       for (var company in AI_COMPANY_DOMAINS) {
         if (nameLower.includes(company)) {
           var domain = AI_COMPANY_DOMAINS[company];
-          var fallback2 = '<div class="tool-icon">' + (AI_SECTOR_ICONS[(d.sector||'').toLowerCase()] || '🔬') + '</div>';
-          return makeLogoImg(domain, d.name, fallback2, 'watchlist-logo');
+          var sectorIcon2 = AI_SECTOR_ICONS[(d.sector||'').toLowerCase()] || '🔬';
+          return makeLogoImg(domain, d.name, sectorIcon2, 'watchlist-logo');
         }
       }
       // Fall back to sector icon
@@ -2661,8 +2678,8 @@ async function fetchRealWorldRobotics() {
       for (var company in ROB_COMPANY_DOMAINS) {
         if (nameLower.includes(company)) {
           var domain = ROB_COMPANY_DOMAINS[company];
-          var fallback3 = '<div class="tool-icon">' + (ROB_SECTOR_ICONS[(d.sector||'').toLowerCase()] || '🤖') + '</div>';
-          return makeLogoImg(domain, d.name, fallback3, 'watchlist-logo');
+          var sectorIcon3 = ROB_SECTOR_ICONS[(d.sector||'').toLowerCase()] || '🤖';
+          return makeLogoImg(domain, d.name, sectorIcon3, 'watchlist-logo');
         }
       }
       var icon = ROB_SECTOR_ICONS[(d.sector || '').toLowerCase()] || '🤖';
