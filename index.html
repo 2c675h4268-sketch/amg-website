@@ -1076,7 +1076,14 @@ a { color: inherit; text-decoration: none; }
   color: var(--text-muted);
 }
 @media (max-width: 700px) {
-  .footer-inner { grid-template-columns: 1fr; gap: 28px; }
+  .site-footer { padding: 40px 20px 28px; margin-top: 40px; }
+  .footer-inner { grid-template-columns: 1fr; gap: 32px; }
+  .footer-tagline { max-width: 100%; }
+  .footer-bottom { margin-top: 24px; padding-top: 16px; }
+  .footer-email-row { flex-direction: column; gap: 10px; }
+  .footer-subscribe-btn { width: 100%; padding: 12px 16px; font-size: 14px; }
+  .footer-email-input { padding: 12px 14px; font-size: 14px; }
+  .footer-nav { gap: 0 20px; }
 }
 
 
