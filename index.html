@@ -1615,6 +1615,118 @@ a { color: inherit; text-decoration: none; }
   .footer-inner { gap: 24px; }
   .hero-grid { gap: 16px; }
 }
+
+/* ── ATOMIC PREDICTIONS ── */
+.forecast-timeline {
+  display: flex;
+  flex-direction: column;
+  gap: 32px;
+  margin-top: 0;
+}
+.forecast-group {}
+.forecast-group-header {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  margin-bottom: 12px;
+}
+.forecast-group-line {
+  flex: 1;
+  height: 1px;
+  background: var(--border);
+}
+.forecast-group-label {
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  white-space: nowrap;
+  padding: 4px 12px;
+  border-radius: 20px;
+  border: 1.5px solid;
+}
+.forecast-group-label.tf-90 { color: #166534; border-color: #86efac; background: #f0fdf4; }
+.forecast-group-label.tf-6 { color: #1e40af; border-color: #93c5fd; background: #eff6ff; }
+.forecast-group-label.tf-12 { color: #92400e; border-color: #fcd34d; background: #fffbeb; }
+.forecast-group-label.tf-24 { color: #5b21b6; border-color: #c4b5fd; background: #f5f3ff; }
+.forecast-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 12px;
+}
+.forecast-card {
+  background: var(--bg);
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  padding: 16px 18px;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  border-left-width: 3px;
+  transition: box-shadow 0.2s, transform 0.2s;
+}
+.forecast-card:hover {
+  box-shadow: 0 6px 24px rgba(0,0,0,0.09), 0 2px 6px rgba(0,0,0,0.05);
+  transform: translateY(-2px);
+}
+.forecast-card.tf-90 { border-left-color: #86efac; }
+.forecast-card.tf-6 { border-left-color: #93c5fd; }
+.forecast-card.tf-12 { border-left-color: #fcd34d; }
+.forecast-card.tf-24 { border-left-color: #c4b5fd; }
+.forecast-prediction {
+  font-size: 14px;
+  font-weight: 600;
+  line-height: 1.4;
+  letter-spacing: -0.01em;
+  color: var(--text);
+}
+.forecast-meta {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px;
+  align-items: center;
+}
+.forecast-badge {
+  font-size: 10px;
+  font-weight: 700;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  padding: 3px 8px;
+  border-radius: 4px;
+  background: var(--surface);
+  color: var(--text-muted);
+  border: 1px solid var(--border);
+}
+.forecast-badge.confidence-high { background: #f0fdf4; color: #166534; border-color: #bbf7d0; }
+.forecast-badge.confidence-medium { background: #fffbeb; color: #92400e; border-color: #fde68a; }
+.forecast-badge.confidence-low { background: #fef2f2; color: #991b1b; border-color: #fecaca; }
+.forecast-badge.status-confirmed { background: #f0fdf4; color: #166534; border-color: #bbf7d0; }
+.forecast-badge.status-missed { background: #fef2f2; color: #991b1b; border-color: #fecaca; }
+.forecast-badge.cat-ai { background: #eef2ff; color: #3730a3; border-color: #c7d2fe; }
+.forecast-badge.cat-robotics { background: #f5f3ff; color: #5b21b6; border-color: #ddd6fe; }
+@media (max-width: 700px) { .forecast-grid { grid-template-columns: 1fr; } }
+
+.forecast-bar-wrap {
+  width: 100%;
+  background: var(--surface);
+  border-radius: 4px;
+  height: 5px;
+  overflow: hidden;
+}
+.forecast-bar {
+  height: 100%;
+  border-radius: 4px;
+  transition: width 0.6s ease;
+}
+.forecast-bar.bar-high { background: #22c55e; }
+.forecast-bar.bar-medium { background: #f59e0b; }
+.forecast-bar.bar-low { background: #ef4444; }
+.forecast-pct {
+  font-size: 11px;
+  font-weight: 700;
+  color: var(--text-muted);
+  margin-bottom: 4px;
+}
 </style>
 </head>
 <body>
@@ -2223,6 +2335,12 @@ a { color: inherit; text-decoration: none; }
     }
   </style>
 
+  <!-- FORECAST BOARD -->
+  <div class="section-title" style="margin-top:52px;">Atomic Predictions</div>
+  <div class="forecast-timeline" id="forecast-grid">
+    <div class="forecast-card"><div class="forecast-prediction" style="color:var(--text-muted);font-size:13px;">Loading forecasts...</div></div>
+  </div>
+
   <!-- EXPLORE TOOLS & PROMPTS CTA -->
   <div class="stat-tile" style="
     margin-top: 48px;
@@ -2480,6 +2598,56 @@ async function supabaseFetch(table, params) {
 
 // ── ALL STORIES (populated from Supabase) ──
 let STORIES = [];
+
+async function fetchForecasts() {
+  try {
+    const data = await supabaseFetch('forecasts', 'select=*&order=created_at.desc&limit=20');
+    const el = document.getElementById('forecast-grid');
+    if (!el || !data || data.length === 0) return;
+    var groups = [
+      { key: '90 days',  label: '90 Days',   cls: 'tf-90' },
+      { key: '6 months', label: '6 Months',  cls: 'tf-6'  },
+      { key: '12 months',label: '12 Months', cls: 'tf-12' },
+      { key: '24 months',label: '24 Months', cls: 'tf-24' }
+    ];
+    function getConf(conf) {
+      var c = (conf || '').toLowerCase();
+      if (c === 'high')   return { pct: 85, cls: 'bar-high',   label: 'High' };
+      if (c === 'medium') return { pct: 60, cls: 'bar-medium', label: 'Medium' };
+      return                     { pct: 35, cls: 'bar-low',    label: 'Low' };
+    }
+    var html = '';
+    groups.forEach(function(g) {
+      var items = data.filter(function(f) {
+        return (f.timeframe || '').toLowerCase() === g.key;
+      });
+      if (items.length === 0) return;
+      html += '<div class="forecast-group">' +
+        '<div class="forecast-group-header">' +
+        '<span class="forecast-group-label ' + g.cls + '">' + g.label + '</span>' +
+        '<div class="forecast-group-line"></div>' +
+        '</div>' +
+        '<div class="forecast-grid">' +
+        items.map(function(f) {
+          var conf = getConf(f.confidence);
+          var catClass = 'cat-' + (f.category || 'ai').toLowerCase();
+          var statusBadge = (f.status && f.status.toLowerCase() !== 'pending')
+            ? '<span class="forecast-badge status-' + f.status.toLowerCase() + '">' + f.status + '</span>'
+            : '';
+          return '<div class="forecast-card ' + g.cls + '">' +
+            '<div class="forecast-prediction">' + (f.prediction || '') + '</div>' +
+            '<div class="forecast-pct">' + conf.pct + '% confidence</div>' +
+            '<div class="forecast-bar-wrap"><div class="forecast-bar ' + conf.cls + '" style="width:' + conf.pct + '%"></div></div>' +
+            '<div class="forecast-meta">' +
+            '<span class="forecast-badge ' + catClass + '">' + (f.category || 'AI') + '</span>' +
+            statusBadge +
+            '</div></div>';
+        }).join('') +
+        '</div></div>';
+    });
+    el.innerHTML = html || '<p style="color:var(--text-muted);font-size:13px;">No forecasts yet.</p>';
+  } catch(e) { console.error('fetchForecasts error:', e); }
+}
 
 async function fetchBreakingNow() {
   try {
@@ -2956,6 +3124,7 @@ function attachCardListeners() {
 
 // Fetch all data on page load
 document.addEventListener('DOMContentLoaded', function() {
+  fetchForecasts();
   fetchBreakingNow();
   fetchStories();
   fetchCompanies();
