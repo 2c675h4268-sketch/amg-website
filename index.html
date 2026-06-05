@@ -760,6 +760,49 @@ a { color: inherit; text-decoration: none; }
   border: 1px solid var(--border);
   border-radius: 100px;
 }
+.panel-head-badge-live {
+  font-size: 10px;
+  font-weight: 600;
+  color: #16a34a;
+  background: #f0fdf4;
+  border: 1px solid #bbf7d0;
+  padding: 2px 8px;
+  border-radius: 100px;
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+}
+.panel-head-badge-live::before {
+  content: '';
+  width: 5px;
+  height: 5px;
+  border-radius: 50%;
+  background: #16a34a;
+  display: inline-block;
+  animation: pulse-green 1.5s infinite;
+}
+@keyframes pulse-green {
+  0%, 100% { opacity: 1; }
+  50% { opacity: 0.4; }
+}
+.panel-head-badge-deployed {
+  font-size: 10px;
+  font-weight: 600;
+  color: #15803d;
+  background: #dcfce7;
+  border: 1px solid #86efac;
+  padding: 2px 8px;
+  border-radius: 100px;
+}
+.panel-head-badge-horizon {
+  font-size: 10px;
+  font-weight: 600;
+  color: #92400e;
+  background: #fef3c7;
+  border: 1px solid #fcd34d;
+  padding: 2px 8px;
+  border-radius: 100px;
+}
 .panel-scroll {
   max-height: 380px;
   overflow-y: auto;
@@ -1849,7 +1892,7 @@ a { color: inherit; text-decoration: none; }
     <div class="panel-box">
       <div class="panel-head">
         <span class="panel-head-title tools">⚙️ In Production</span>
-        <span class="panel-head-badge">Deployed Now</span>
+        <span class="panel-head-badge-deployed">Deployed Now</span>
       </div>
       <div class="panel-scroll" id="scroll-ai-production">
         <div class="tool-item">
@@ -1899,7 +1942,7 @@ a { color: inherit; text-decoration: none; }
     <div class="panel-box">
       <div class="panel-head">
         <span class="panel-head-title prompts">🔭 On the Horizon</span>
-        <span class="panel-head-badge">6–18 Months Out</span>
+        <span class="panel-head-badge-horizon">6–18 Months Out</span>
       </div>
       <div class="panel-scroll" id="scroll-ai-horizon">
         <div class="tool-item">
@@ -1955,7 +1998,7 @@ a { color: inherit; text-decoration: none; }
     <div class="panel-box">
       <div class="panel-head">
         <span class="panel-head-title tools">🏭 In Production</span>
-        <span class="panel-head-badge">Deployed Now</span>
+        <span class="panel-head-badge-deployed">Deployed Now</span>
       </div>
       <div class="panel-scroll" id="scroll-rob-production">
         <div class="tool-item">
@@ -2005,7 +2048,7 @@ a { color: inherit; text-decoration: none; }
     <div class="panel-box">
       <div class="panel-head">
         <span class="panel-head-title prompts">🔭 On the Horizon</span>
-        <span class="panel-head-badge">6–18 Months Out</span>
+        <span class="panel-head-badge-horizon">6–18 Months Out</span>
       </div>
       <div class="panel-scroll" id="scroll-rob-horizon">
         <div class="tool-item">
@@ -2062,7 +2105,7 @@ a { color: inherit; text-decoration: none; }
       <div class="panel-head">
         <span class="panel-head-title companies">📈 AI Companies to Watch</span>
         <button class="ph-search-btn" id="srch-btn-companies" onclick="togglePhSearch('companies')" title="Search"><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg></button>
-        <span class="panel-head-badge">Live</span>
+        <span class="panel-head-badge-live">Live</span>
       </div>
       <div class="ph-search-tray" id="srch-tray-companies">
         <input class="ph-search-input" id="search-companies" type="text" placeholder="Search companies…" oninput="filterPanelSearch('companies')" autocomplete="off">
@@ -2083,7 +2126,7 @@ a { color: inherit; text-decoration: none; }
       <div class="panel-head">
         <span class="panel-head-title companies">🦾 Robotics Companies to Watch</span>
         <button class="ph-search-btn" id="srch-btn-rob-companies" onclick="togglePhSearch('rob-companies')" title="Search"><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg></button>
-        <span class="panel-head-badge">Live</span>
+        <span class="panel-head-badge-live">Live</span>
       </div>
       <div class="ph-search-tray" id="srch-tray-rob-companies">
         <input class="ph-search-input" id="search-rob-companies" type="text" placeholder="Search companies…" oninput="filterPanelSearch('rob-companies')" autocomplete="off">
