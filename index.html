@@ -958,8 +958,8 @@ a { color: inherit; text-decoration: none; }
   max-width: 1080px;
   margin: 0 auto;
   display: grid;
-  grid-template-columns: 1fr 1fr;
-  gap: 40px;
+  grid-template-columns: 1fr 1fr 1fr;
+  gap: 48px;
   align-items: start;
 }
 .footer-left {
@@ -1001,7 +1001,7 @@ a { color: inherit; text-decoration: none; }
 .footer-right {
   display: flex;
   flex-direction: column;
-  gap: 14px;
+  gap: 16px;
 }
 .footer-cta-label {
   font-size: 13px;
@@ -1406,67 +1406,63 @@ a { color: inherit; text-decoration: none; }
 
 
 /* ── SPONSOR SLOT ── */
-.sponsor-wrap {
-  max-width: 1080px;
-  margin: 0 auto;
-  padding: 0 24px;
-}
+.sponsor-wrap { width: 100%; box-sizing: border-box; }
 .sponsor-card {
   background: var(--surface);
   border: 1px solid var(--border);
   border-radius: var(--radius);
-  padding: 18px 22px;
+  padding: 16px 18px;
   display: flex;
-  align-items: center;
-  gap: 20px;
-  position: relative;
+  flex-direction: column;
+  gap: 12px;
 }
 .sponsor-label {
-  position: absolute;
-  top: -10px;
-  left: 16px;
   font-size: 10px;
   font-weight: 700;
-  letter-spacing: .09em;
+  letter-spacing: 0.08em;
   text-transform: uppercase;
   color: var(--text-muted);
-  background: var(--bg);
-  padding: 0 6px;
 }
 .sponsor-logo-box {
-  width: 48px;
-  height: 48px;
-  border-radius: 10px;
+  width: 40px;
+  height: 40px;
+  border-radius: 8px;
   background: linear-gradient(135deg, #0071e3, #5ac8fa);
   display: flex;
   align-items: center;
   justify-content: center;
-  font-size: 22px;
+  font-size: 18px;
   flex-shrink: 0;
 }
-.sponsor-content { flex: 1; }
+.sponsor-row {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+.sponsor-content { flex: 1; min-width: 0; }
 .sponsor-name {
-  font-size: 13px;
-  font-weight: 700;
+  font-size: 14px;
+  font-weight: 600;
   color: var(--text);
-  margin-bottom: 3px;
+  margin-bottom: 2px;
 }
 .sponsor-desc {
-  font-size: 13px;
+  font-size: 12px;
   color: var(--text-muted);
-  line-height: 1.4;
+  line-height: 1.45;
 }
 .sponsor-cta {
+  display: inline-block;
   font-size: 12px;
   font-weight: 600;
   color: var(--blue);
   border: 1px solid var(--blue);
-  border-radius: 7px;
-  padding: 7px 14px;
+  border-radius: 6px;
+  padding: 6px 14px;
   white-space: nowrap;
   text-decoration: none;
   transition: background .15s, color .15s;
-  flex-shrink: 0;
+  align-self: flex-start;
 }
 .sponsor-cta:hover { background: var(--blue); color: #fff; }
 
@@ -2323,23 +2319,26 @@ a { color: inherit; text-decoration: none; }
       <!-- SPONSOR SLOT -->
       <div class="sponsor-wrap">
         <div class="sponsor-card">
-          <span class="sponsor-label">Presented By</span>
-          <div style="width:48px;height:48px;border-radius:10px;background:#1a3a6b;display:flex;align-items:center;justify-content:center;flex-shrink:0;">
-              <span style="color:#fff;font-size:14px;font-weight:800;letter-spacing:0.02em;">PT</span>
+          <span class="sponsor-label">Sponsored by</span>
+          <div class="sponsor-row">
+            <div style="width:40px;height:40px;border-radius:8px;background:#1a3a6b;display:flex;align-items:center;justify-content:center;flex-shrink:0;">
+              <span style="color:#fff;font-size:13px;font-weight:800;letter-spacing:0.02em;">PT</span>
             </div>
-          <div class="sponsor-content">
-            <div class="sponsor-name">Penfield Talent</div>
-            <div class="sponsor-desc">Executive talent advisory connecting high-growth companies with exceptional leaders.</div>
+            <div class="sponsor-content">
+              <div class="sponsor-name">Penfield Talent</div>
+              <div class="sponsor-desc">Executive talent advisory connecting high-growth companies with exceptional leaders.</div>
+            </div>
           </div>
-          <a href="https://penfieldtalent.com" target="_blank" rel="noopener" class="sponsor-cta">Learn More &#8594;</a>
+          <a href="https://penfieldtalent.com" target="_blank" rel="noopener" class="sponsor-cta">Learn More →</a>
         </div>
       </div>
-      <div class="footer-cta-label" style="margin-top:24px;">Daily AI and Robotics Intelligence Brief</div>
+    </div>
+    <div style="display:flex;flex-direction:column;gap:14px;">
+      <div class="footer-cta-label">Daily AI and Robotics Intelligence Brief</div>
       <div class="footer-email-row">
         <input type="email" class="footer-email-input" placeholder="your@email.com" />
         <button class="footer-subscribe-btn" onclick="handleFooterSubscribe(this)">Subscribe Free</button>
       </div>
-
     </div>
   </div>
   <div class="footer-bottom">&copy; 2026 Atomic Media Group. All rights reserved.</div>
