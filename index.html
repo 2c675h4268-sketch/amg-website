@@ -1889,29 +1889,8 @@ a { color: inherit; text-decoration: none; }
         <span class="card-live-head-title">Breaking Now</span>
         <span class="card-live-head-live"><span class="live-dot" style="width:6px;height:6px;"></span> Live</span>
       </div>
-      <div class="feed-item" data-cat="ai" data-source="Anthropic" data-title="Anthropic Claude 4 Benchmarks Leaked — Tops All Reasoning Tasks">
-        <div class="feed-item-title">Anthropic Claude 4 Benchmarks Leaked — Tops All Reasoning Tasks</div>
-        <div class="feed-item-meta"><span class="feed-item-cat">AI</span><span class="feed-item-time">1m</span></div>
-      </div>
-      <div class="feed-item" data-cat="robotics" data-source="Boston Dynamics" data-title="Atlas Robot Now Handles Full Warehouse Pick-and-Pack Autonomously">
-        <div class="feed-item-title">Atlas Robot Now Handles Full Warehouse Pick-and-Pack Autonomously</div>
-        <div class="feed-item-meta"><span class="feed-item-cat">Robotics</span><span class="feed-item-time">7m</span></div>
-      </div>
-      <div class="feed-item" data-cat="ai" data-source="Cursor" data-title="Cursor 2.0 Ships: AI IDE Now Writes Entire Features From Spec">
-        <div class="feed-item-title">Cursor 2.0 Ships: AI IDE Now Writes Entire Features From Spec</div>
-        <div class="feed-item-meta"><span class="feed-item-cat">Tools</span><span class="feed-item-time">12m</span></div>
-      </div>
-      <div class="feed-item" data-cat="robotics" data-source="Tesla" data-title="Optimus Gen 3 Begins Tesla Factory Trials — 1,000 Units Deployed">
-        <div class="feed-item-title">Optimus Gen 3 Begins Tesla Factory Trials — 1,000 Units Deployed</div>
-        <div class="feed-item-meta"><span class="feed-item-cat">Robotics</span><span class="feed-item-time">23m</span></div>
-      </div>
-      <div class="feed-item" data-cat="ai" data-source="MIT Tech Review" data-title="EU AI Act Goes Live: What Every Enterprise Team Needs to Know">
-        <div class="feed-item-title">EU AI Act Goes Live: What Every Enterprise Team Needs to Know</div>
-        <div class="feed-item-meta"><span class="feed-item-cat">Policy</span><span class="feed-item-time">18m</span></div>
-      </div>
-      <div class="feed-item" data-cat="ai" data-source="Microsoft" data-title="Microsoft Copilot Completes 40% of Enterprise Tasks in Pilot">
-        <div class="feed-item-title">Microsoft Copilot Completes 40% of Enterprise Tasks in Pilot</div>
-        <div class="feed-item-meta"><span class="feed-item-cat">AI</span><span class="feed-item-time">52m</span></div>
+      <div id="breaking-now-feed">
+        <div class="feed-item"><div class="feed-item-title" style="color:var(--text-muted);font-size:12px;">Loading...</div></div>
       </div>
     </div>
   </div>
@@ -2502,6 +2481,35 @@ async function supabaseFetch(table, params) {
 // ── ALL STORIES (populated from Supabase) ──
 let STORIES = [];
 
+async function fetchBreakingNow() {
+  try {
+    const data = await supabaseFetch('stories', 'select=*&order=created_at.desc&limit=6');
+    const el = document.getElementById('breaking-now-feed');
+    if (!el) return;
+    if (!data || data.length === 0) {
+      el.innerHTML = '<div class="feed-item"><div class="feed-item-title" style="color:var(--text-muted);font-size:12px;">No stories yet</div></div>';
+      return;
+    }
+    function timeAgo(ts) {
+      var diff = Math.floor((Date.now() - new Date(ts)) / 60000);
+      if (diff < 1) return 'just now';
+      if (diff < 60) return diff + 'm';
+      var h = Math.floor(diff / 60);
+      if (h < 24) return h + 'h';
+      return Math.floor(h / 24) + 'd';
+    }
+    el.innerHTML = data.map(function(s) {
+      var cat = (s.category || 'AI').toUpperCase();
+      var ago = timeAgo(s.created_at);
+      var url = s.url || '#';
+      return '<a class="feed-item" href="' + url + '" target="_blank" rel="noopener" style="text-decoration:none;">' +
+        '<div class="feed-item-title">' + (s.title || '') + '</div>' +
+        '<div class="feed-item-meta"><span class="feed-item-cat">' + cat + '</span><span class="feed-item-time">' + ago + '</span></div>' +
+        '</a>';
+    }).join('');
+  } catch(e) { console.error('fetchBreakingNow error:', e); }
+}
+
 async function fetchStories() {
   try {
     const data = await supabaseFetch('stories', 'select=*&order=created_at.desc&limit=15');
@@ -2948,6 +2956,7 @@ function attachCardListeners() {
 
 // Fetch all data on page load
 document.addEventListener('DOMContentLoaded', function() {
+  fetchBreakingNow();
   fetchStories();
   fetchCompanies();
   fetchTools();
