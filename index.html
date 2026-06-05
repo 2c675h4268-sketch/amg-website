@@ -666,6 +666,7 @@ a { color: inherit; text-decoration: none; }
 .watchlist-item:hover { background: var(--surface); }
 .watchlist-emoji { font-size: 22px; width: 36px; height: 36px; text-align: center; flex-shrink: 0; display: flex; align-items: center; justify-content: center; }
 .watchlist-logo { width: 36px; height: 36px; border-radius: 8px; object-fit: contain; background: var(--surface); border: 1px solid var(--border); padding: 4px; flex-shrink: 0; }
+.letter-avatar { width: 36px; height: 36px; border-radius: 8px; flex-shrink: 0; display: flex; align-items: center; justify-content: center; font-size: 15px; font-weight: 700; color: white; letter-spacing: -0.02em; }
 .watchlist-body { flex: 1; min-width: 0; }
 .watchlist-name { font-size: 14px; font-weight: 600; color: var(--text); display: flex; align-items: center; gap: 8px; margin-bottom: 3px; }
 .watchlist-status {
@@ -2439,6 +2440,24 @@ async function fetchStories() {
   }
 }
 
+
+// ── LOGO HELPER ──
+var AVATAR_COLORS = ['#2563eb','#7c3aed','#db2777','#dc2626','#d97706','#059669','#0891b2','#4f46e5'];
+function getAvatarColor(name) {
+  var n = 0;
+  for (var i = 0; i < (name||'').length; i++) n += name.charCodeAt(i);
+  return AVATAR_COLORS[n % AVATAR_COLORS.length];
+}
+function makeLetterAvatar(name, extraClass) {
+  var letter = (name||'?')[0].toUpperCase();
+  var color = getAvatarColor(name);
+  return '<div class="letter-avatar ' + (extraClass||'') + '" style="background:' + color + ';">' + letter + '</div>';
+}
+function makeLogoImg(domain, name, fallbackHtml, extraClass) {
+  var cls = extraClass || 'watchlist-logo';
+  return '<img class="' + cls + '" src="https://www.google.com/s2/favicons?domain=' + domain + '&sz=64" alt="' + (name||'') + '" onerror="this.outerHTML=' + "'" + fallbackHtml.replace(/'/g,"\'") + "'" + '" loading="lazy">';
+}
+
 // ── FETCH COMPANIES ──
 async function fetchCompanies() {
   try {
@@ -2455,9 +2474,10 @@ async function fetchCompanies() {
       else if (sig.includes('quiet') || sig.includes('watch')) statusClass = 'status-quiet';
       var domain = '';
       try { if (c.url) domain = new URL(c.url).hostname.replace('www.', ''); } catch(e) {}
+      var fallback1 = makeLetterAvatar(c.name, '');
       var logoHtml = domain
-        ? '<img class="watchlist-logo" src="https://logo.clearbit.com/' + domain + '" alt="' + (c.name||'') + '" onerror="this.outerHTML=\'<div class=\"watchlist-emoji\">📈</div>\'" loading="lazy">'
-        : '<div class="watchlist-emoji">📈</div>';
+        ? makeLogoImg(domain, c.name, fallback1, 'watchlist-logo')
+        : fallback1;
       return '<div class="watchlist-item">' +
         logoHtml +
         '<div class="watchlist-body">' +
@@ -2583,7 +2603,8 @@ async function fetchRealWorldAI() {
       for (var company in AI_COMPANY_DOMAINS) {
         if (nameLower.includes(company)) {
           var domain = AI_COMPANY_DOMAINS[company];
-          return '<img class="watchlist-logo" src="https://logo.clearbit.com/' + domain + '" alt="' + (d.name||'') + '" onerror="this.outerHTML=\'<div class=\"tool-icon\">' + (AI_SECTOR_ICONS[(d.sector||'').toLowerCase()] || '🔬') + '</div>\'" loading="lazy">';
+          var fallback2 = '<div class="tool-icon">' + (AI_SECTOR_ICONS[(d.sector||'').toLowerCase()] || '🔬') + '</div>';
+          return makeLogoImg(domain, d.name, fallback2, 'watchlist-logo');
         }
       }
       // Fall back to sector icon
@@ -2640,7 +2661,8 @@ async function fetchRealWorldRobotics() {
       for (var company in ROB_COMPANY_DOMAINS) {
         if (nameLower.includes(company)) {
           var domain = ROB_COMPANY_DOMAINS[company];
-          return '<img class="watchlist-logo" src="https://logo.clearbit.com/' + domain + '" alt="' + (d.name||'') + '" onerror="this.outerHTML=\'<div class=\"tool-icon\">' + (ROB_SECTOR_ICONS[(d.sector||'').toLowerCase()] || '🤖') + '</div>\'" loading="lazy">';
+          var fallback3 = '<div class="tool-icon">' + (ROB_SECTOR_ICONS[(d.sector||'').toLowerCase()] || '🤖') + '</div>';
+          return makeLogoImg(domain, d.name, fallback3, 'watchlist-logo');
         }
       }
       var icon = ROB_SECTOR_ICONS[(d.sector || '').toLowerCase()] || '🤖';
