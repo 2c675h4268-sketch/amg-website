@@ -467,6 +467,7 @@ a { color: inherit; text-decoration: none; }
   grid-template-columns: 1fr 1fr;
   gap: 16px;
   margin-bottom: 16px;
+  align-items: stretch;
 }
 .hero-left {
   display: flex;
@@ -480,6 +481,9 @@ a { color: inherit; text-decoration: none; }
   border: 1px solid var(--border);
   border-radius: var(--radius);
   overflow: hidden;
+  display: flex;
+  flex-direction: column;
+  height: 100%;
 }
 .card-live-head {
   padding: 14px 18px;
@@ -499,6 +503,7 @@ a { color: inherit; text-decoration: none; }
   display: flex;
   gap: 12px;
   align-items: flex-start;
+  flex: 1;
 }
 .feed-item:last-child { border-bottom: none; }
 .feed-item:hover { background: var(--surface); }
@@ -659,7 +664,8 @@ a { color: inherit; text-decoration: none; }
 }
 .watchlist-item:last-child { border-bottom: none; }
 .watchlist-item:hover { background: var(--surface); }
-.watchlist-emoji { font-size: 22px; width: 36px; text-align: center; flex-shrink: 0; }
+.watchlist-emoji { font-size: 22px; width: 36px; height: 36px; text-align: center; flex-shrink: 0; display: flex; align-items: center; justify-content: center; }
+.watchlist-logo { width: 36px; height: 36px; border-radius: 8px; object-fit: contain; background: var(--surface); border: 1px solid var(--border); padding: 4px; flex-shrink: 0; }
 .watchlist-body { flex: 1; min-width: 0; }
 .watchlist-name { font-size: 14px; font-weight: 600; color: var(--text); display: flex; align-items: center; gap: 8px; margin-bottom: 3px; }
 .watchlist-status {
@@ -2447,8 +2453,13 @@ async function fetchCompanies() {
       if (sig.includes('hot') || sig.includes('surge') || sig.includes('launch')) statusClass = 'status-hot';
       else if (sig.includes('rising') || sig.includes('growing')) statusClass = 'status-rising';
       else if (sig.includes('quiet') || sig.includes('watch')) statusClass = 'status-quiet';
+      var domain = '';
+      try { if (c.url) domain = new URL(c.url).hostname.replace('www.', ''); } catch(e) {}
+      var logoHtml = domain
+        ? '<img class="watchlist-logo" src="https://logo.clearbit.com/' + domain + '" alt="' + (c.name||'') + '" onerror="this.outerHTML=\'<div class=\"watchlist-emoji\">📈</div>\'" loading="lazy">'
+        : '<div class="watchlist-emoji">📈</div>';
       return '<div class="watchlist-item">' +
-        '<div class="watchlist-emoji">📈</div>' +
+        logoHtml +
         '<div class="watchlist-body">' +
         '<div class="watchlist-name">' + (c.name || '') + ' <span class="watchlist-status ' + statusClass + '">' + (c.category || 'Active') + '</span></div>' +
         '<div class="watchlist-latest">' + (c.signal || c.description || '') + '</div>' +
@@ -2549,9 +2560,40 @@ async function fetchRealWorldAI() {
     const production = data.filter(function(d){ return d.status === 'In Production'; }).slice(0, 5);
     const horizon = data.filter(function(d){ return d.status === 'On the Horizon'; }).slice(0, 5);
 
+    var AI_SECTOR_ICONS = {
+      'legal': '⚖️', 'finance': '🏦', 'healthcare': '🏥', 'retail': '🛒',
+      'aerospace': '🚀', 'education': '🎓', 'media': '🎬', 'infrastructure': '🏗️',
+      'enterprise': '🏢', 'pharma': '🧬', 'energy': '⚡', 'government': '🏛️'
+    };
+
+    var AI_COMPANY_DOMAINS = {
+      'google': 'google.com', 'deepmind': 'deepmind.com', 'openai': 'openai.com',
+      'anthropic': 'anthropic.com', 'microsoft': 'microsoft.com', 'meta': 'meta.com',
+      'amazon': 'amazon.com', 'apple': 'apple.com', 'nvidia': 'nvidia.com',
+      'jpmorgan': 'jpmorgan.com', 'jp morgan': 'jpmorgan.com', 'harvey': 'harvey.ai',
+      'airbus': 'airbus.com', 'khan academy': 'khanacademy.org', 'ibm': 'ibm.com',
+      'salesforce': 'salesforce.com', 'servicenow': 'servicenow.com', 'sap': 'sap.com',
+      'workday': 'workday.com', 'oracle': 'oracle.com', 'adobe': 'adobe.com',
+      'runway': 'runwayml.com', 'perplexity': 'perplexity.ai', 'mistral': 'mistral.ai'
+    };
+
+    function getRealWorldIcon(d) {
+      var nameLower = (d.name || '').toLowerCase();
+      // Try Clearbit first — check if name contains a known company
+      for (var company in AI_COMPANY_DOMAINS) {
+        if (nameLower.includes(company)) {
+          var domain = AI_COMPANY_DOMAINS[company];
+          return '<img class="watchlist-logo" src="https://logo.clearbit.com/' + domain + '" alt="' + (d.name||'') + '" onerror="this.outerHTML=\'<div class=\"tool-icon\">' + (AI_SECTOR_ICONS[(d.sector||'').toLowerCase()] || '🔬') + '</div>\'" loading="lazy">';
+        }
+      }
+      // Fall back to sector icon
+      var icon = AI_SECTOR_ICONS[(d.sector || '').toLowerCase()] || '🔬';
+      return '<div class="tool-icon">' + icon + '</div>';
+    }
+
     function makeRealWorldItem(d) {
       return '<div class="tool-item">' +
-        '<div class="tool-icon">⚙️</div>' +
+        getRealWorldIcon(d) +
         '<div class="tool-body">' +
         '<div class="tool-name">' + (d.name || '') + '</div>' +
         '<div class="tool-desc">' + (d.description || '') + '</div>' +
@@ -2576,9 +2618,38 @@ async function fetchRealWorldRobotics() {
     const production = data.filter(function(d){ return d.status === 'In Production'; }).slice(0, 5);
     const horizon = data.filter(function(d){ return d.status === 'On the Horizon'; }).slice(0, 5);
 
+    var ROB_SECTOR_ICONS = {
+      'automotive': '🚗', 'logistics': '📦', 'healthcare': '🏥', 'agriculture': '🚜',
+      'food service': '🍳', 'aerospace': '🚀', 'defense': '🛡️', 'home': '🏠',
+      'industrial': '🏭', 'construction': '🏗️', 'retail': '🛒', 'hospitality': '🏨'
+    };
+
+    var ROB_COMPANY_DOMAINS = {
+      'figure': 'figure.ai', 'figure ai': 'figure.ai', 'tesla': 'tesla.com',
+      'boston dynamics': 'bostondynamics.com', 'agility': 'agilityrobotics.com',
+      'agility robotics': 'agilityrobotics.com', '1x': '1x.tech', 'apptronik': 'apptronik.com',
+      'unitree': 'unitree.com', 'ubtech': 'ubtrobot.com', 'john deere': 'deere.com',
+      'miso robotics': 'misorobotics.com', 'diligent': 'diligentrobots.com',
+      'sanctuary': 'sanctuary.ai', 'fourier': 'fftai.com', 'skild': 'skild.ai',
+      'physical intelligence': 'physicalintelligence.company', 'nvidia': 'nvidia.com',
+      'amazon': 'amazon.com', 'bmw': 'bmw.com', 'nasa': 'nasa.gov'
+    };
+
+    function getRoboticsIcon(d) {
+      var nameLower = (d.name || '').toLowerCase();
+      for (var company in ROB_COMPANY_DOMAINS) {
+        if (nameLower.includes(company)) {
+          var domain = ROB_COMPANY_DOMAINS[company];
+          return '<img class="watchlist-logo" src="https://logo.clearbit.com/' + domain + '" alt="' + (d.name||'') + '" onerror="this.outerHTML=\'<div class=\"tool-icon\">' + (ROB_SECTOR_ICONS[(d.sector||'').toLowerCase()] || '🤖') + '</div>\'" loading="lazy">';
+        }
+      }
+      var icon = ROB_SECTOR_ICONS[(d.sector || '').toLowerCase()] || '🤖';
+      return '<div class="tool-icon">' + icon + '</div>';
+    }
+
     function makeRoboticsItem(d) {
       return '<div class="tool-item">' +
-        '<div class="tool-icon">🤖</div>' +
+        getRoboticsIcon(d) +
         '<div class="tool-body">' +
         '<div class="tool-name">' + (d.name || '') + '</div>' +
         '<div class="tool-desc">' + (d.description || '') + '</div>' +
@@ -2685,7 +2756,7 @@ function renderFeed() {
   if (feedItems) {
     var feedHead = feedItems.querySelector('.card-live-head');
     var feedHtml = feedHead ? feedHead.outerHTML : '';
-    feedHtml += STORIES.slice(2, 8).map(makeFeedItem).join('');
+    feedHtml += '<div style="display:flex;flex-direction:column;flex:1;">' + STORIES.slice(2, 8).map(makeFeedItem).join('') + '</div>';
     feedItems.innerHTML = feedHtml;
   }
 
