@@ -2533,8 +2533,13 @@ async function fetchTools() {
       var stars = '';
       var r = parseFloat(t.rating) || 4.0;
       for (var i = 1; i <= 5; i++) stars += i <= Math.round(r) ? '★' : '☆';
+      var domain = '';
+      try { if (t.url) domain = new URL(t.url).hostname.replace('www.', ''); } catch(e) {}
+      var logoHtml = domain
+        ? makeLogoImg(domain, t.name, 'letter', 'watchlist-logo')
+        : makeLetterAvatar(t.name, '');
       return '<div class="tool-item">' +
-        '<div class="tool-icon">🔧</div>' +
+        logoHtml +
         '<div class="tool-body">' +
         '<div class="tool-name">' + (t.name || '') + ' ' + badgeHtml + '</div>' +
         '<div class="tool-desc">' + (t.description || '') + '</div>' +
