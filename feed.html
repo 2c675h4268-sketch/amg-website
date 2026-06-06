@@ -5121,25 +5121,81 @@ function renderFeed() {
   document.body.classList.add('feed-loaded');
 }
 
-// ── DELEGATED CARD LISTENERS (works for dynamically loaded cards) ──
+// ── UNIFIED DELEGATED CLICK HANDLER ──
 document.addEventListener('click', function(e) {
-  // Bookmark button
+  // 1. Bookmark button
   var bBtn = e.target.closest('.bookmark-btn');
   if (bBtn) {
-    e.stopPropagation();
     var title = bBtn.getAttribute('data-title');
     if (title) toggleSaved(title);
     return;
   }
-  // Summarize button
+  // 2. Summarize button
   var sBtn = e.target.closest('.summarize-btn');
   if (sBtn) {
-    e.stopPropagation();
     var t = sBtn.getAttribute('data-title');
     if (t) openReading(t);
     return;
   }
-  // Card click (open reading view)
+  // 3. Forecast card
+  var fCard = e.target.closest('.forecast-card');
+  if (fCard) {
+    var prediction = fCard.querySelector('.forecast-prediction');
+    var pct = fCard.querySelector('.forecast-pct');
+    var group = fCard.closest('.forecast-group');
+    var timeLabel = group ? group.querySelector('.forecast-group-label') : null;
+    openTileModal({
+      label: timeLabel ? timeLabel.textContent.trim() : "Atomic's Prediction",
+      title: prediction ? prediction.textContent : '',
+      body: pct ? pct.textContent : ''
+    });
+    return;
+  }
+  // 4. Stat tile
+  var sTile = e.target.closest('.stat-tile');
+  if (sTile) {
+    var kids = Array.from(sTile.children);
+    openTileModal({
+      label: kids[0] ? kids[0].textContent.trim() : 'Stat',
+      value: kids[1] ? kids[1].textContent.trim() : '',
+      body: kids[2] ? kids[2].textContent.trim() : '',
+      trend: kids[3] ? kids[3].textContent.trim() : ''
+    });
+    return;
+  }
+  // 5. Real World item (not in AI at Work section)
+  var rwItem = e.target.closest('.tool-item');
+  if (rwItem && !rwItem.closest('#section-work')) {
+    var name = rwItem.querySelector('.tool-name');
+    var desc = rwItem.querySelector('.tool-desc');
+    var tag = rwItem.querySelector('.tool-cat') || rwItem.querySelector('.tool-tag');
+    var status = rwItem.querySelector('.tool-stars');
+    openTileModal({
+      label: tag ? tag.textContent.replace('⊟ ', '').trim() : 'Real World',
+      title: name ? name.textContent : '',
+      body: desc ? desc.textContent : '',
+      trend: status ? status.textContent : ''
+    });
+    return;
+  }
+  // 6. Companies to Watch
+  var wItem = e.target.closest('.watchlist-item');
+  if (wItem) {
+    e.preventDefault();
+    var nameEl = wItem.querySelector('.watchlist-name');
+    var latest = wItem.querySelector('.watchlist-latest');
+    var wStatus = wItem.querySelector('.watchlist-status');
+    var href = wItem.getAttribute('href');
+    var nameText = nameEl ? (nameEl.childNodes[0] ? nameEl.childNodes[0].textContent.trim() : nameEl.textContent.trim()) : '';
+    openTileModal({
+      label: wStatus ? wStatus.textContent.trim() : 'Company',
+      title: nameText,
+      body: latest ? latest.textContent.trim() : '',
+      trend: href ? '↗ ' + href.replace('https://','').replace('www.','') : ''
+    });
+    return;
+  }
+  // 7. Story card click (open reading view)
   var card = e.target.closest('.card[data-title], .feed-item[data-title]');
   if (card && !e.target.closest('.card-btn, .bookmark-btn, .summarize-btn, .share-btn')) {
     openReading(card.dataset.title);
@@ -6107,73 +6163,13 @@ document.addEventListener('keydown', function(e) {
   }
 });
 
-// ── WIRE FORECAST CARDS ──
-document.addEventListener('click', function(e) {
-  var card = e.target.closest('.forecast-card');
-  if (!card) return;
-  var prediction = card.querySelector('.forecast-prediction');
-  var pct = card.querySelector('.forecast-pct');
-  var group = card.closest('.forecast-group');
-  var timeLabel = group ? group.querySelector('.forecast-group-label') : null;
-  var barWrap = card.querySelector('.forecast-bar-wrap');
-  openTileModal({
-    label: timeLabel ? timeLabel.textContent.trim() : "Atomic's Prediction",
-    title: prediction ? prediction.textContent : '',
-    body: pct ? pct.textContent : '',
-    trend: barWrap ? '' : ''
-  });
-});
 
-// ── WIRE STAT TILES ──
-document.addEventListener('click', function(e) {
-  var tile = e.target.closest('.stat-tile');
-  if (!tile) return;
-  // Get direct child divs in order
-  var kids = Array.from(tile.children);
-  openTileModal({
-    label: kids[0] ? kids[0].textContent.trim() : 'Stat',
-    value: kids[1] ? kids[1].textContent.trim() : '',
-    body: kids[2] ? kids[2].textContent.trim() : '',
-    trend: kids[3] ? kids[3].textContent.trim() : ''
-  });
-});
 
-// ── WIRE REAL WORLD ITEMS ──
-document.addEventListener('click', function(e) {
-  var item = e.target.closest('.tool-item');
-  if (!item) return;
-  // Don't fire if clicking inside the AI at Work toolkit tool cards (they have links)
-  if (item.closest('#section-work')) return;
-  var name = item.querySelector('.tool-name');
-  var desc = item.querySelector('.tool-desc');
-  var tag = item.querySelector('.tool-cat') || item.querySelector('.tool-tag');
-  var status = item.querySelector('.tool-stars');
-  openTileModal({
-    label: tag ? tag.textContent.replace('⊟ ', '') : 'Real World',
-    title: name ? name.textContent : '',
-    body: desc ? desc.textContent : '',
-    trend: status ? status.textContent : ''
-  });
-});
 
-// ── WIRE COMPANIES TO WATCH ──
-document.addEventListener('click', function(e) {
-  var item = e.target.closest('.watchlist-item');
-  if (!item) return;
-  e.preventDefault();
-  var nameEl = item.querySelector('.watchlist-name');
-  var latest = item.querySelector('.watchlist-latest');
-  var status = item.querySelector('.watchlist-status');
-  var href = item.getAttribute('href');
-  // Get company name without the status badge text
-  var nameText = nameEl ? nameEl.childNodes[0].textContent.trim() : '';
-  openTileModal({
-    label: status ? status.textContent.trim() : 'Company',
-    title: nameText,
-    body: latest ? latest.textContent.trim() : '',
-    trend: href ? '↗ ' + href.replace('https://','').replace('www.','') : ''
-  });
-});
+
+
+
+
 
 
 // ── FILTER TABS ──
