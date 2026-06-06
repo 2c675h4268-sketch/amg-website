@@ -530,29 +530,10 @@
 
 
 /* ── BACK TO TOP ── */
-#btt {
-  position: fixed !important;
-  bottom: 30px !important;
-  right: 30px !important;
-  width: 50px !important;
-  height: 50px !important;
-  border-radius: 50% !important;
-  background: #000000 !important;
-  color: #ffffff !important;
-  border: 3px solid #ffffff !important;
-  box-shadow: 0 2px 12px rgba(0,0,0,0.5) !important;
-  font-size: 22px !important;
-  font-weight: 900 !important;
-  cursor: pointer !important;
-  z-index: 99999 !important;
-  display: none;
-  align-items: center !important;
-  justify-content: center !important;
-  line-height: 1 !important;
-}
-#btt.show { display: flex !important; }
+
+
 </style>
-</head>
+<style>#btt2{position:fixed;bottom:30px;right:30px;width:50px;height:50px;border-radius:50%;background:#000;color:#fff;font-size:22px;font-weight:900;border:3px solid #fff;box-shadow:0 2px 16px rgba(0,0,0,0.6);cursor:pointer;z-index:2147483647;display:flex;align-items:center;justify-content:center;}</style></head>
 <body>
 
   <!-- HEADER -->
@@ -693,20 +674,12 @@
 
 
 
-(function(){
-  var b = document.getElementById('btt');
-  if(!b) return;
-  window.addEventListener('scroll', function(){
-    if(window.pageYOffset > 200){ b.classList.add('show'); }
-    else { b.classList.remove('show'); }
-  });
-  if(window.pageYOffset > 200) b.classList.add('show');
-})();
+
 </script>
 
 
 
 
-<button id="btt" onclick="window.scrollTo({top:0,behavior:'smooth'})">&#8593;</button>
-</body>
+
+<button id="btt2" onclick="window.scrollTo({top:0,behavior:'smooth'})">&#8593;</button><script>window.addEventListener("scroll",function(){document.getElementById("btt2").style.opacity=window.pageYOffset>200?"1":"0.3";});</script></body>
 </html>

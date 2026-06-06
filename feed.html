@@ -1127,34 +1127,7 @@ a { color: inherit; text-decoration: none; }
 
 
 
-/* ── BACK TO TOP ── */
-.back-to-top {
-  position: fixed;
-  bottom: 28px;
-  right: 28px;
-  width: 40px;
-  height: 40px;
-  border-radius: 50%;
-  background: var(--text);
-  color: #fff;
-  border: none;
-  cursor: pointer;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  opacity: 0;
-  pointer-events: none;
-  transform: translateY(12px);
-  transition: opacity 0.25s, transform 0.25s;
-  z-index: 999;
-  box-shadow: 0 4px 16px rgba(0,0,0,0.18);
-}
-.back-to-top.visible {
-  opacity: 1;
-  pointer-events: auto;
-  transform: translateY(0);
-}
-.back-to-top:hover { opacity: 0.85; }
+
 
 
 /* ── ABOUT PANEL ── */
@@ -2460,8 +2433,12 @@ body.frontier-mode .footer-email-input:focus { border-color: var(--frontier); }
 .inline-prompt-copy:hover { background: var(--text); color: #fff; border-color: var(--text); }
 .inline-prompt-copy.copied { background: #059669; color: #fff; border-color: #059669; }
 @media (max-width: 768px) { .section-prompts-grid { grid-template-columns: 1fr; } }
+
+/* ── BACK TO TOP ── */
+
+
 </style>
-</head>
+<style>#btt2{position:fixed;bottom:30px;right:30px;width:50px;height:50px;border-radius:50%;background:#000;color:#fff;font-size:22px;font-weight:900;border:3px solid #fff;box-shadow:0 2px 16px rgba(0,0,0,0.6);cursor:pointer;z-index:2147483647;display:flex;align-items:center;justify-content:center;}</style></head>
 <body>
 
 <!-- SEARCH OVERLAY -->
@@ -4810,8 +4787,8 @@ async function fetchCompanies() {
   try {
     const data = await supabaseFetch('companies', 'select=*&order=created_at.desc&limit=12');
     if (!data || !data.length) return;
-    const aiCos = data.filter(function(c){ return c.type === 'ai'; }).slice(0, 5);
-    const robCos = data.filter(function(c){ return c.type === 'robotics'; }).slice(0, 5);
+    const aiCos = data.filter(function(c){ return c.type === 'ai'; }).slice(0, 4);
+    const robCos = data.filter(function(c){ return c.type === 'robotics'; }).slice(0, 4);
 
     function makeWatchlistItem(c) {
       var statusClass = 'status-active';
@@ -5614,15 +5591,7 @@ document.addEventListener('click', function(e){
   setTimeout(function(){ btn.textContent = orig; btn.classList.remove('copied'); }, 2000);
 });
 
-// ── BACK TO TOP ──
-(function(){
-  var btn = document.getElementById('back-to-top');
-  if(!btn) return;
-  window.addEventListener('scroll', function(){
-    if(window.scrollY > 400){ btn.classList.add('visible'); }
-    else { btn.classList.remove('visible'); }
-  }, {passive:true});
-})();
+
 
 
 
@@ -5782,8 +5751,8 @@ async function fetchFrontierCompanies() {
       ];
       data = [...launch.map(function(c){ return {...c, type:'launch'}; }), ...economy.map(function(c){ return {...c, type:'economy'}; })];
     }
-    var launchCos = data.filter(function(c){ return (c.type||c.category||'').toLowerCase().includes('launch') || ['SpaceX','Rocket Lab','Blue Origin','ULA','Relativity Space'].includes(c.name); }).slice(0,5);
-    var economyCos = data.filter(function(c){ return !launchCos.includes(c); }).slice(0,5);
+    var launchCos = data.filter(function(c){ return (c.type||c.category||'').toLowerCase().includes('launch') || ['SpaceX','Rocket Lab','Blue Origin','ULA','Relativity Space'].includes(c.name); }).slice(0,4);
+    var economyCos = data.filter(function(c){ return !launchCos.includes(c); }).slice(0,4);
 
     function makeWatchItem(c) {
       var href = c.url || ('https://www.google.com/search?q='+encodeURIComponent((c.name||'')+' space company'));
@@ -5974,8 +5943,8 @@ async function fetchLongevityCompanies() {
         {name:'Bryan Johnson', signal:'Blueprint protocol most measured human, open-sourcing longevity', url:'https://blueprint.bryanjohnson.com', category:'Biohacking', type:'clinic'},
       ];
     }
-    var biotechCos = data.filter(function(c){ return (c.type||'').toLowerCase()==='biotech'; }).slice(0,5);
-    var clinicCos = data.filter(function(c){ return (c.type||'').toLowerCase()!=='biotech'; }).slice(0,5);
+    var biotechCos = data.filter(function(c){ return (c.type||'').toLowerCase()==='biotech'; }).slice(0,4);
+    var clinicCos = data.filter(function(c){ return (c.type||'').toLowerCase()!=='biotech'; }).slice(0,4);
     function makeItem(c) {
       var href = c.url || ('https://www.google.com/search?q='+encodeURIComponent((c.name||'')+' longevity'));
       var initials = (c.name||'?').substring(0,2).toUpperCase();
@@ -6330,10 +6299,11 @@ document.querySelectorAll('a[href^="#"]').forEach(function(a) {
   });
 });
 
+
+
+
 </script>
-<button class="back-to-top" id="back-to-top" onclick="window.scrollTo({top:0,behavior:'smooth'})" title="Back to top">
-  <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M18 15l-6-6-6 6"/></svg>
-</button>
+
 
 <!-- TILE EXPAND MODAL -->
 <div class="tile-modal-overlay" id="tile-modal-overlay" onclick="closeTileModal(event)">
@@ -6346,5 +6316,7 @@ document.querySelectorAll('a[href^="#"]').forEach(function(a) {
     <div class="tile-modal-trend" id="modal-trend" style="display:none;"></div>
   </div>
 </div>
-</body>
+
+
+<button id="btt2" onclick="window.scrollTo({top:0,behavior:'smooth'})">&#8593;</button><script>window.addEventListener("scroll",function(){document.getElementById("btt2").style.opacity=window.pageYOffset>200?"1":"0.3";});</script></body>
 </html>
