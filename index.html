@@ -499,15 +499,15 @@
       animation: fadeInScroll 1s 1.2s ease forwards;
     }
     .scroll-indicator span {
-      font-size: 11px;
+      font-size: 13px;
       font-weight: 600;
       letter-spacing: 0.08em;
       text-transform: uppercase;
       color: var(--text-dim);
     }
     .scroll-chevron {
-      width: 20px;
-      height: 20px;
+      width: 24px;
+      height: 24px;
       color: var(--text-dim);
       animation: bounceDown 1.8s ease-in-out infinite;
     }
@@ -526,6 +526,31 @@
       align-items: center;
       justify-content: center;
     }
+
+
+
+/* ── BACK TO TOP ── */
+#btt {
+  position: fixed !important;
+  bottom: 30px !important;
+  right: 30px !important;
+  width: 50px !important;
+  height: 50px !important;
+  border-radius: 50% !important;
+  background: #000000 !important;
+  color: #ffffff !important;
+  border: 3px solid #ffffff !important;
+  box-shadow: 0 2px 12px rgba(0,0,0,0.5) !important;
+  font-size: 22px !important;
+  font-weight: 900 !important;
+  cursor: pointer !important;
+  z-index: 99999 !important;
+  display: none;
+  align-items: center !important;
+  justify-content: center !important;
+  line-height: 1 !important;
+}
+#btt.show { display: flex !important; }
 </style>
 </head>
 <body>
@@ -631,7 +656,7 @@
   <section class="newsletter-section">
     <div class="newsletter-label">Daily Intelligence Brief</div>
     <h2 class="newsletter-headline">Stay ahead of what's coming.</h2>
-    <p class="newsletter-sub">Free. Daily. Five minutes. Signal without the noise.</p>
+    <p class="newsletter-sub">Free. Daily. Five minutes. The future, before it's obvious.</p>
     <div class="newsletter-form">
       <input type="email" class="newsletter-input" placeholder="your@email.com" />
       <button class="newsletter-btn" onclick="handleSubscribe(this)">Subscribe</button>
@@ -663,7 +688,25 @@
       btn.disabled = true;
       input.disabled = true;
     }
-  </script>
+  
 
+
+
+
+(function(){
+  var b = document.getElementById('btt');
+  if(!b) return;
+  window.addEventListener('scroll', function(){
+    if(window.pageYOffset > 200){ b.classList.add('show'); }
+    else { b.classList.remove('show'); }
+  });
+  if(window.pageYOffset > 200) b.classList.add('show');
+})();
+</script>
+
+
+
+
+<button id="btt" onclick="window.scrollTo({top:0,behavior:'smooth'})">&#8593;</button>
 </body>
 </html>
