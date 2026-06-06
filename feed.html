@@ -3,18 +3,18 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Atomic Media Group — AI Intelligence Feed</title>
+<title>Atomic Media Group AI Intelligence Feed</title>
 <meta name="description" content="The world's AI news, curated daily for executives, founders, and operators. Signal without the noise.">
 <meta name="robots" content="index, follow">
 <meta property="og:type" content="website">
 <meta property="og:url" content="https://atomicmediagroup.ai">
-<meta property="og:title" content="Atomic Media Group — AI Intelligence Feed">
+<meta property="og:title" content="Atomic Media Group AI Intelligence Feed">
 <meta property="og:description" content="The world's AI news, curated daily for executives, founders, and operators. Signal without the noise.">
 <meta property="og:image" content="https://atomicmediagroup.ai/og-preview.png">
 <meta property="og:site_name" content="Atomic Media Group">
 <meta name="twitter:card" content="summary_large_image">
 <meta name="twitter:site" content="@AtomicMediaGroup">
-<meta name="twitter:title" content="Atomic Media Group — AI Intelligence Feed">
+<meta name="twitter:title" content="Atomic Media Group AI Intelligence Feed">
 <meta name="twitter:description" content="The world's AI news, curated daily for executives, founders, and operators. Signal without the noise.">
 <meta name="twitter:image" content="https://atomicmediagroup.ai/og-preview.png">
 <link href="https://api.fontshare.com/v2/css?f[]=satoshi@300,400,500,700&display=swap" rel="stylesheet">
@@ -1372,7 +1372,7 @@ a { color: inherit; text-decoration: none; }
   text-align: center;
   display: none;
 }
-/* edu panels — title takes remaining space, icon sits between title and count */
+/* edu panels title takes remaining space, icon sits between title and count */
 .edu-head .edu-head-title { flex: 1; }
 
 
@@ -1442,7 +1442,7 @@ a { color: inherit; text-decoration: none; }
   text-align: center;
   display: none;
 }
-/* edu panels — title takes remaining space, icon sits between title and count */
+/* edu panels title takes remaining space, icon sits between title and count */
 .edu-head .edu-head-title { flex: 1; }
 
 
@@ -1907,6 +1907,110 @@ body.frontier-mode .footer-email-input:focus { border-color: var(--frontier); }
   .vertical-switcher { display: none; }
   .vertical-dropdown { display: block; }
 }
+
+/* ── TILE EXPAND MODAL ── */
+.tile-modal-overlay {
+  display: none;
+  position: fixed;
+  inset: 0;
+  background: rgba(0,0,0,0.5);
+  z-index: 1000;
+  align-items: center;
+  justify-content: center;
+  padding: 24px;
+  backdrop-filter: blur(4px);
+}
+.tile-modal-overlay.open {
+  display: flex;
+}
+.tile-modal {
+  background: var(--bg);
+  border: 1px solid var(--border);
+  border-radius: 14px;
+  padding: 32px;
+  max-width: 560px;
+  width: 100%;
+  max-height: 80vh;
+  overflow-y: auto;
+  position: relative;
+  box-shadow: 0 24px 64px rgba(0,0,0,0.18);
+  animation: modalIn 0.2s ease;
+}
+@keyframes modalIn {
+  from { opacity: 0; transform: scale(0.96) translateY(8px); }
+  to   { opacity: 1; transform: scale(1) translateY(0); }
+}
+.tile-modal-close {
+  position: absolute;
+  top: 16px;
+  right: 16px;
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: 6px;
+  width: 28px;
+  height: 28px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  font-size: 14px;
+  color: var(--text-muted);
+  transition: background 0.15s;
+}
+.tile-modal-close:hover { background: var(--border); color: var(--text); }
+.tile-modal-label {
+  font-size: 10px;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--text-muted);
+  margin-bottom: 10px;
+}
+.tile-modal-title {
+  font-size: 20px;
+  font-weight: 700;
+  letter-spacing: -0.02em;
+  color: var(--text);
+  margin-bottom: 14px;
+  line-height: 1.3;
+  padding-right: 24px;
+}
+.tile-modal-value {
+  font-size: 36px;
+  font-weight: 800;
+  letter-spacing: -0.03em;
+  color: var(--text);
+  line-height: 1;
+  margin-bottom: 14px;
+}
+.tile-modal-body {
+  font-size: 15px;
+  color: var(--text-muted);
+  line-height: 1.65;
+  margin-bottom: 16px;
+}
+.tile-modal-trend {
+  font-size: 13px;
+  font-weight: 600;
+  color: var(--text-muted);
+  padding-top: 16px;
+  border-top: 1px solid var(--border);
+}
+.tile-modal-sector {
+  display: inline-block;
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  padding: 4px 10px;
+  border-radius: 20px;
+  background: var(--surface);
+  color: var(--text-muted);
+  border: 1px solid var(--border);
+  margin-bottom: 12px;
+}
+/* Make clickable tiles show pointer */
+.stat-tile, .tool-item, .watchlist-item { cursor: pointer; }
 </style>
 </head>
 <body>
@@ -2004,7 +2108,7 @@ body.frontier-mode .footer-email-input:focus { border-color: var(--frontier); }
   <div class="about-body">
     <div class="about-mission">
       <div class="about-section-label">Our Mission</div>
-      <p class="about-text">Atomic Media Group covers AI and Robotics — the intelligence and machines reshaping the world. We track the developments that matter most for executives, founders, and operators building in this era.</p>
+      <p class="about-text">Atomic Media Group covers AI and Robotics the intelligence and machines reshaping the world. We track the developments that matter most for executives, founders, and operators building in this era.</p>
       <p class="about-text">Every day our automated intelligence pipeline scans hundreds of sources, curates the signal, and delivers it in a format built for decision-makers who don't have time to waste.</p>
     </div>
     <div class="about-stats-row">
@@ -2175,39 +2279,39 @@ body.frontier-mode .footer-email-input:focus { border-color: var(--frontier); }
         <div class="tool-item">
           <div class="tool-icon">⚖️</div>
           <div class="tool-body">
-            <div class="tool-name">Harvey — Enterprise Legal AI</div>
-            <div class="tool-desc">Harvey is deployed inside Allen & Overy, PwC, and 100+ law firms — drafting contracts, running due diligence, and surfacing case law at a fraction of associate hours. Billing rates haven't dropped. Volume has exploded.</div>
+            <div class="tool-name">Harvey Enterprise Legal AI</div>
+            <div class="tool-desc">Harvey is deployed inside Allen & Overy, PwC, and 100+ law firms drafting contracts, running due diligence, and surfacing case law at a fraction of associate hours. Billing rates haven't dropped. Volume has exploded.</div>
             <div class="tool-footer"><span class="tool-cat">⊟ Legal</span><span class="tool-stars" style="color:var(--text-muted);font-size:11px;">Harvey AI · Live</span></div>
           </div>
         </div>
         <div class="tool-item">
           <div class="tool-icon">🏦</div>
           <div class="tool-body">
-            <div class="tool-name">JPMorgan COiN — Contract Intelligence</div>
-            <div class="tool-desc">JPMorgan's COiN platform reviews 12,000 commercial credit agreements per year — work that previously took 360,000 hours of lawyer time annually. Error rate is lower than human review.</div>
+            <div class="tool-name">JPMorgan COiN Contract Intelligence</div>
+            <div class="tool-desc">JPMorgan's COiN platform reviews 12,000 commercial credit agreements per year work that previously took 360,000 hours of lawyer time annually. Error rate is lower than human review.</div>
             <div class="tool-footer"><span class="tool-cat">⊟ Finance</span><span class="tool-stars" style="color:var(--text-muted);font-size:11px;">JPMorgan · Live</span></div>
           </div>
         </div>
         <div class="tool-item">
           <div class="tool-icon">🩺</div>
           <div class="tool-body">
-            <div class="tool-name">Google DeepMind AlphaFold — Drug Discovery</div>
-            <div class="tool-desc">AlphaFold has predicted the structure of 200M+ proteins — essentially the entire known universe of biology. Dozens of pharmaceutical companies are now using it to accelerate drug discovery pipelines by years.</div>
+            <div class="tool-name">Google DeepMind AlphaFold Drug Discovery</div>
+            <div class="tool-desc">AlphaFold has predicted the structure of 200M+ proteins essentially the entire known universe of biology. Dozens of pharmaceutical companies are now using it to accelerate drug discovery pipelines by years.</div>
             <div class="tool-footer"><span class="tool-cat">⊟ Healthcare</span><span class="tool-stars" style="color:var(--text-muted);font-size:11px;">DeepMind · Live</span></div>
           </div>
         </div>
         <div class="tool-item">
           <div class="tool-icon">🛒</div>
           <div class="tool-body">
-            <div class="tool-name">Amazon — AI-Powered Demand Forecasting</div>
-            <div class="tool-desc">Amazon's ML forecasting stack now handles real-time inventory decisions across 350M+ SKUs globally — predicting regional demand spikes before they happen and auto-repositioning stock across fulfillment centers.</div>
+            <div class="tool-name">Amazon AI-Powered Demand Forecasting</div>
+            <div class="tool-desc">Amazon's ML forecasting stack now handles real-time inventory decisions across 350M+ SKUs globally predicting regional demand spikes before they happen and auto-repositioning stock across fulfillment centers.</div>
             <div class="tool-footer"><span class="tool-cat">⊟ Retail</span><span class="tool-stars" style="color:var(--text-muted);font-size:11px;">Amazon · Live</span></div>
           </div>
         </div>
         <div class="tool-item">
           <div class="tool-icon">✈️</div>
           <div class="tool-body">
-            <div class="tool-name">Airbus — Generative Design for Aircraft Parts</div>
+            <div class="tool-name">Airbus Generative Design for Aircraft Parts</div>
             <div class="tool-desc">Airbus uses generative AI to design aircraft partition brackets that are 45% lighter than human-designed counterparts. The A320 now flies with AI-optimized structural components across its entire fleet.</div>
             <div class="tool-footer"><span class="tool-cat">⊟ Aerospace</span><span class="tool-stars" style="color:var(--text-muted);font-size:11px;">Airbus · Live</span></div>
           </div>
@@ -2226,7 +2330,7 @@ body.frontier-mode .footer-email-input:focus { border-color: var(--frontier); }
           <div class="tool-icon">🧑‍💼</div>
           <div class="tool-body">
             <div class="tool-name">Agentic AI in the Enterprise</div>
-            <div class="tool-desc">Every major platform — Salesforce, ServiceNow, SAP, Workday — is shipping autonomous agent layers in 2025. The shift from AI as a tool to AI as a worker completing multi-step tasks is the defining enterprise transition of the decade.</div>
+            <div class="tool-desc">Every major platform Salesforce, ServiceNow, SAP, Workday is shipping autonomous agent layers in 2025. The shift from AI as a tool to AI as a worker completing multi-step tasks is the defining enterprise transition of the decade.</div>
             <div class="tool-footer"><span class="tool-cat">⊟ Enterprise</span><span class="tool-stars" style="color:var(--text-muted);font-size:11px;">Multiple · 2025–26</span></div>
           </div>
         </div>
@@ -2234,7 +2338,7 @@ body.frontier-mode .footer-email-input:focus { border-color: var(--frontier); }
           <div class="tool-icon">🎓</div>
           <div class="tool-body">
             <div class="tool-name">AI Tutors at Scale</div>
-            <div class="tool-desc">Khan Academy's Khanmigo and emerging competitors are deploying personalized AI tutors to millions of students. Early data shows significant learning acceleration — particularly for underserved students without access to private tutoring.</div>
+            <div class="tool-desc">Khan Academy's Khanmigo and emerging competitors are deploying personalized AI tutors to millions of students. Early data shows significant learning acceleration particularly for underserved students without access to private tutoring.</div>
             <div class="tool-footer"><span class="tool-cat">⊟ Education</span><span class="tool-stars" style="color:var(--text-muted);font-size:11px;">Khan Academy + · 2025</span></div>
           </div>
         </div>
@@ -2258,7 +2362,7 @@ body.frontier-mode .footer-email-input:focus { border-color: var(--frontier); }
           <div class="tool-icon">🧬</div>
           <div class="tool-body">
             <div class="tool-name">AI-Designed Clinical Trials</div>
-            <div class="tool-desc">Pharma companies are using AI to design smarter trials — identifying optimal patient cohorts, predicting dropout risk, and simulating outcomes before a single dose is administered. Trial timelines are compressing from years to months.</div>
+            <div class="tool-desc">Pharma companies are using AI to design smarter trials identifying optimal patient cohorts, predicting dropout risk, and simulating outcomes before a single dose is administered. Trial timelines are compressing from years to months.</div>
             <div class="tool-footer"><span class="tool-cat">⊟ Pharma</span><span class="tool-stars" style="color:var(--text-muted);font-size:11px;">Multiple · 2026</span></div>
           </div>
         </div>
@@ -2281,24 +2385,24 @@ body.frontier-mode .footer-email-input:focus { border-color: var(--frontier); }
         <div class="tool-item">
           <div class="tool-icon">🤖</div>
           <div class="tool-body">
-            <div class="tool-name">Figure 02 — BMW Manufacturing</div>
-            <div class="tool-desc">Figure AI's humanoid is operating autonomously on BMW's Spartanburg production floor — handling parts, assembly support, and logistics tasks across full shifts without human intervention.</div>
+            <div class="tool-name">Figure 02 BMW Manufacturing</div>
+            <div class="tool-desc">Figure AI's humanoid is operating autonomously on BMW's Spartanburg production floor handling parts, assembly support, and logistics tasks across full shifts without human intervention.</div>
             <div class="tool-footer"><span class="tool-cat">⊟ Automotive</span><span class="tool-stars" style="color:var(--text-muted);font-size:11px;">Figure AI · Live</span></div>
           </div>
         </div>
         <div class="tool-item">
           <div class="tool-icon">📦</div>
           <div class="tool-body">
-            <div class="tool-name">Agility Digit — Amazon Warehouses</div>
-            <div class="tool-desc">Digit robots are running 24/7 tote-handling operations across Amazon fulfillment centers. The pilot has cleared 1M+ cycles with error rates below 0.3% — expansion to 10 facilities confirmed.</div>
+            <div class="tool-name">Agility Digit Amazon Warehouses</div>
+            <div class="tool-desc">Digit robots are running 24/7 tote-handling operations across Amazon fulfillment centers. The pilot has cleared 1M+ cycles with error rates below 0.3% expansion to 10 facilities confirmed.</div>
             <div class="tool-footer"><span class="tool-cat">⊟ Logistics</span><span class="tool-stars" style="color:var(--text-muted);font-size:11px;">Agility Robotics · Live</span></div>
           </div>
         </div>
         <div class="tool-item">
           <div class="tool-icon">🏥</div>
           <div class="tool-body">
-            <div class="tool-name">Moxi — Hospital Delivery Networks</div>
-            <div class="tool-desc">Diligent Robotics' Moxi is deployed in 50+ US hospitals autonomously delivering labs, meds, and supplies across floors — freeing nurses from an average of 30 minutes of fetch tasks per shift.</div>
+            <div class="tool-name">Moxi Hospital Delivery Networks</div>
+            <div class="tool-desc">Diligent Robotics' Moxi is deployed in 50+ US hospitals autonomously delivering labs, meds, and supplies across floors freeing nurses from an average of 30 minutes of fetch tasks per shift.</div>
             <div class="tool-footer"><span class="tool-cat">⊟ Healthcare</span><span class="tool-stars" style="color:var(--text-muted);font-size:11px;">Diligent Robotics · Live</span></div>
           </div>
         </div>
@@ -2306,14 +2410,14 @@ body.frontier-mode .footer-email-input:focus { border-color: var(--frontier); }
           <div class="tool-icon">🚜</div>
           <div class="tool-body">
             <div class="tool-name">John Deere Autonomous Tractors</div>
-            <div class="tool-desc">Over 500 fully autonomous 8R tractors are now operating on US farms — plowing, planting, and spraying without operators. GPS + computer vision handles field navigation end-to-end.</div>
+            <div class="tool-desc">Over 500 fully autonomous 8R tractors are now operating on US farms plowing, planting, and spraying without operators. GPS + computer vision handles field navigation end-to-end.</div>
             <div class="tool-footer"><span class="tool-cat">⊟ Agriculture</span><span class="tool-stars" style="color:var(--text-muted);font-size:11px;">John Deere · Live</span></div>
           </div>
         </div>
         <div class="tool-item">
           <div class="tool-icon">🍕</div>
           <div class="tool-body">
-            <div class="tool-name">Flippy 2 — Commercial Kitchens</div>
+            <div class="tool-name">Flippy 2 Commercial Kitchens</div>
             <div class="tool-desc">Miso Robotics' Flippy 2 is frying, grilling, and plating at scale inside White Castle and Jack in the Box locations. Each unit handles the equivalent of 2 full-time workers during peak hours.</div>
             <div class="tool-footer"><span class="tool-cat">⊟ Food Service</span><span class="tool-stars" style="color:var(--text-muted);font-size:11px;">Miso Robotics · Live</span></div>
           </div>
@@ -2331,15 +2435,15 @@ body.frontier-mode .footer-email-input:focus { border-color: var(--frontier); }
         <div class="tool-item">
           <div class="tool-icon">⚡</div>
           <div class="tool-body">
-            <div class="tool-name">Tesla Optimus — Consumer Launch</div>
-            <div class="tool-desc">Tesla has moved its consumer Optimus timeline to late 2026. Internal units are already handling parts sorting and battery assembly. Musk targets a $20K price point — cheaper than a used car.</div>
+            <div class="tool-name">Tesla Optimus Consumer Launch</div>
+            <div class="tool-desc">Tesla has moved its consumer Optimus timeline to late 2026. Internal units are already handling parts sorting and battery assembly. Musk targets a $20K price point cheaper than a used car.</div>
             <div class="tool-footer"><span class="tool-cat">⊟ Consumer</span><span class="tool-stars" style="color:var(--text-muted);font-size:11px;">Tesla · Est. 2026</span></div>
           </div>
         </div>
         <div class="tool-item">
           <div class="tool-icon">🦾</div>
           <div class="tool-body">
-            <div class="tool-name">Boston Dynamics Atlas — Enterprise Rollout</div>
+            <div class="tool-name">Boston Dynamics Atlas Enterprise Rollout</div>
             <div class="tool-desc">The fully electric Atlas is shipping to select enterprise partners in Q3. It can lift 25kg, climb stairs, and recover from falls autonomously. Construction and heavy industry are the first targets.</div>
             <div class="tool-footer"><span class="tool-cat">⊟ Industrial</span><span class="tool-stars" style="color:var(--text-muted);font-size:11px;">Boston Dynamics · Q3 2025</span></div>
           </div>
@@ -2347,16 +2451,16 @@ body.frontier-mode .footer-email-input:focus { border-color: var(--frontier); }
         <div class="tool-item">
           <div class="tool-icon">🏠</div>
           <div class="tool-body">
-            <div class="tool-name">1X NEO — Home Assistant</div>
-            <div class="tool-desc">1X Technologies, backed by OpenAI, is piloting NEO in real home environments. The bet: a soft, human-scale robot that handles chores, fetches items, and assists elderly users — without feeling industrial.</div>
+            <div class="tool-name">1X NEO Home Assistant</div>
+            <div class="tool-desc">1X Technologies, backed by OpenAI, is piloting NEO in real home environments. The bet: a soft, human-scale robot that handles chores, fetches items, and assists elderly users without feeling industrial.</div>
             <div class="tool-footer"><span class="tool-cat">⊟ Home</span><span class="tool-stars" style="color:var(--text-muted);font-size:11px;">1X Technologies · 2026</span></div>
           </div>
         </div>
         <div class="tool-item">
           <div class="tool-icon">🚀</div>
           <div class="tool-body">
-            <div class="tool-name">Apptronik Apollo — NASA + Defense</div>
-            <div class="tool-desc">Apollo is in active NASA testing for extraterrestrial surface operations — think maintenance, construction, and EVA support on the Moon. Defense contracts are also in discussion for forward logistics.</div>
+            <div class="tool-name">Apptronik Apollo NASA + Defense</div>
+            <div class="tool-desc">Apollo is in active NASA testing for extraterrestrial surface operations think maintenance, construction, and EVA support on the Moon. Defense contracts are also in discussion for forward logistics.</div>
             <div class="tool-footer"><span class="tool-cat">⊟ Aerospace</span><span class="tool-stars" style="color:var(--text-muted);font-size:11px;">Apptronik · 2026–27</span></div>
           </div>
         </div>
@@ -2421,7 +2525,7 @@ body.frontier-mode .footer-email-input:focus { border-color: var(--frontier); }
     <div class="stat-tile" style="background:var(--bg);border:1px solid var(--border);border-radius:var(--radius);padding:22px 24px;">
       <div style="font-size:11px;font-weight:700;letter-spacing:0.07em;text-transform:uppercase;color:var(--text-muted);margin-bottom:10px;">Global AI Investment</div>
       <div style="font-size:32px;font-weight:800;letter-spacing:-0.03em;color:var(--text);line-height:1;">$329B</div>
-      <div style="font-size:12px;color:var(--text-muted);margin-top:6px;">Deployed in AI ventures in 2024 — up 62% YoY. 2025 on pace to exceed $500B.</div>
+      <div style="font-size:12px;color:var(--text-muted);margin-top:6px;">Deployed in AI ventures in 2024 up 62% YoY. 2025 on pace to exceed $500B.</div>
       <div style="margin-top:12px;font-size:11px;font-weight:600;color:var(--text-muted);">↑ 62% year over year</div>
     </div>
 
@@ -2456,7 +2560,7 @@ body.frontier-mode .footer-email-input:focus { border-color: var(--frontier); }
     <div class="stat-tile" style="background:var(--bg);border:1px solid var(--border);border-radius:var(--radius);padding:22px 24px;">
       <div style="font-size:11px;font-weight:700;letter-spacing:0.07em;text-transform:uppercase;color:var(--text-muted);margin-bottom:10px;">Jobs Touched by AI</div>
       <div style="font-size:32px;font-weight:800;letter-spacing:-0.03em;color:var(--text);line-height:1;">300M</div>
-      <div style="font-size:12px;color:var(--text-muted);margin-top:6px;">Goldman Sachs estimate of roles globally exposed to AI automation — equivalent to 18% of all work.</div>
+      <div style="font-size:12px;color:var(--text-muted);margin-top:6px;">Goldman Sachs estimate of roles globally exposed to AI automation equivalent to 18% of all work.</div>
       <div style="margin-top:12px;font-size:11px;font-weight:600;color:var(--text-muted);">→ 18% of global workforce</div>
     </div>
 
@@ -2492,7 +2596,7 @@ body.frontier-mode .footer-email-input:focus { border-color: var(--frontier); }
   ">
     <div>
       <div style="font-size:17px;font-weight:700;letter-spacing:-0.02em;color:var(--text);margin-bottom:6px;">Trending AI Tools &amp; Top Prompts</div>
-      <div style="font-size:14px;color:var(--text-muted);max-width:480px;">The best AI tools shipping right now and the prompts powering advanced users — updated daily.</div>
+      <div style="font-size:14px;color:var(--text-muted);max-width:480px;">The best AI tools shipping right now and the prompts powering advanced users updated daily.</div>
     </div>
     <button id="explore-toggle-btn" onclick="
       var sec = document.getElementById('tools-prompts-section');
@@ -2556,12 +2660,12 @@ body.frontier-mode .footer-email-input:focus { border-color: var(--frontier); }
       </div>
       <div class="panel-scroll" id="scroll-prompts">
         <div class="panel-no-results" id="nores-prompts">No results</div>
-        <div class="prompt-item"><div class="prompt-use-case">⊙ Strategic Analysis</div><div class="prompt-text">"Act as a McKinsey senior partner. Analyze [company/market] using a first-principles lens. Identify the three most underappreciated risks and the single highest-leverage opportunity. Be direct — skip the caveats."</div><div class="prompt-footer"><button class="prompt-copy-btn" data-prompt="Act as a McKinsey senior partner. Analyze [company/market] using a first-principles lens. Identify the three most underappreciated risks and the single highest-leverage opportunity. Be direct — skip the caveats.">✤ Copy</button><span class="prompt-level">Advanced</span></div></div>
+        <div class="prompt-item"><div class="prompt-use-case">⊙ Strategic Analysis</div><div class="prompt-text">"Act as a McKinsey senior partner. Analyze [company/market] using a first-principles lens. Identify the three most underappreciated risks and the single highest-leverage opportunity. Be direct skip the caveats."</div><div class="prompt-footer"><button class="prompt-copy-btn" data-prompt="Act as a McKinsey senior partner. Analyze [company/market] using a first-principles lens. Identify the three most underappreciated risks and the single highest-leverage opportunity. Be direct skip the caveats.">✤ Copy</button><span class="prompt-level">Advanced</span></div></div>
         <div class="prompt-item"><div class="prompt-use-case">⊟ Developer</div><div class="prompt-text">"Review this code as a senior engineer doing a production PR review. Flag any bugs, security issues, performance problems, and style violations. Suggest rewrites for anything below production standard."</div><div class="prompt-footer"><button class="prompt-copy-btn" data-prompt="Review this code as a senior engineer doing a production PR review. Flag any bugs, security issues, performance problems, and style violations. Suggest rewrites for anything below production standard.">✤ Copy</button><span class="prompt-level">Developer</span></div></div>
         <div class="prompt-item"><div class="prompt-use-case">⊞ Research</div><div class="prompt-text">"Summarize the current state of [topic] in five bullet points: what is settled, what is contested, what is emerging, what is overhyped, and what most people are missing. Cite reasoning, not just conclusions."</div><div class="prompt-footer"><button class="prompt-copy-btn" data-prompt="Summarize the current state of [topic] in five bullet points: what is settled, what is contested, what is emerging, what is overhyped, and what most people are missing. Cite reasoning, not just conclusions.">✤ Copy</button><span class="prompt-level">Intermediate</span></div></div>
-        <div class="prompt-item"><div class="prompt-use-case">⊕ Writing</div><div class="prompt-text">"Rewrite this [email/post/document] for a C-suite audience. Make it 40% shorter. Lead with the recommendation, not the background. Use plain language — no jargon. End with one clear ask."</div><div class="prompt-footer"><button class="prompt-copy-btn" data-prompt="Rewrite this [email/post/document] for a C-suite audience. Make it 40% shorter. Lead with the recommendation, not the background. Use plain language — no jargon. End with one clear ask.">✤ Copy</button><span class="prompt-level">Beginner</span></div></div>
+        <div class="prompt-item"><div class="prompt-use-case">⊕ Writing</div><div class="prompt-text">"Rewrite this [email/post/document] for a C-suite audience. Make it 40% shorter. Lead with the recommendation, not the background. Use plain language no jargon. End with one clear ask."</div><div class="prompt-footer"><button class="prompt-copy-btn" data-prompt="Rewrite this [email/post/document] for a C-suite audience. Make it 40% shorter. Lead with the recommendation, not the background. Use plain language no jargon. End with one clear ask.">✤ Copy</button><span class="prompt-level">Beginner</span></div></div>
         <div class="prompt-item"><div class="prompt-use-case">★ Productivity</div><div class="prompt-text">"I have [X hours] and these tasks: [list]. Prioritize them using the Eisenhower Matrix. Then build me a time-blocked schedule that protects deep work in the morning and batches shallow work in the afternoon."</div><div class="prompt-footer"><button class="prompt-copy-btn" data-prompt="I have [X hours] and these tasks: [list]. Prioritize them using the Eisenhower Matrix. Then build me a time-blocked schedule that protects deep work in the morning and batches shallow work in the afternoon.">✤ Copy</button><span class="prompt-level">Beginner</span></div></div>
-        <div class="prompt-item"><div class="prompt-use-case">⊚ Reasoning</div><div class="prompt-text">"Steel-man the opposing view on [topic]. Give the strongest possible version of the argument — not a strawman. Then identify the two points where a thoughtful critic would still disagree even with the best version."</div><div class="prompt-footer"><button class="prompt-copy-btn" data-prompt="Steel-man the opposing view on [topic]. Give the strongest possible version of the argument — not a strawman. Then identify the two points where a thoughtful critic would still disagree even with the best version.">✤ Copy</button><span class="prompt-level">Advanced</span></div></div>
+        <div class="prompt-item"><div class="prompt-use-case">⊚ Reasoning</div><div class="prompt-text">"Steel-man the opposing view on [topic]. Give the strongest possible version of the argument not a strawman. Then identify the two points where a thoughtful critic would still disagree even with the best version."</div><div class="prompt-footer"><button class="prompt-copy-btn" data-prompt="Steel-man the opposing view on [topic]. Give the strongest possible version of the argument not a strawman. Then identify the two points where a thoughtful critic would still disagree even with the best version.">✤ Copy</button><span class="prompt-level">Advanced</span></div></div>
       </div>
     </div>
 
@@ -2601,7 +2705,7 @@ body.frontier-mode .footer-email-input:focus { border-color: var(--frontier); }
       color: var(--text-muted);
       font-weight: 400;
       letter-spacing: -0.01em;
-    ">Commercial space — the companies, missions, and economy building humanity's next chapter.</span>
+    ">Commercial Space the companies, missions, and economy building humanity's next chapter.</span>
   </div>
 
   <!-- TOP STORIES -->
@@ -2677,13 +2781,13 @@ body.frontier-mode .footer-email-input:focus { border-color: var(--frontier); }
     <div class="stat-tile" style="background:var(--surface);border:1px solid var(--border);border-radius:var(--radius);padding:22px 24px;">
       <div style="font-size:11px;font-weight:700;letter-spacing:0.07em;text-transform:uppercase;color:var(--text-muted);margin-bottom:10px;">GLOBAL LAUNCH ATTEMPTS</div>
       <div style="font-size:32px;font-weight:800;letter-spacing:-0.03em;color:var(--text);line-height:1;">212</div>
-      <div style="font-size:12px;color:var(--text-muted);margin-top:6px;">In 2023, humanity achieved a record 212 orbital launch attempts — nearly doubling the pace of five years prior, driven by SpaceX, Rocket Lab, and China's growing launch cadence.</div>
+      <div style="font-size:12px;color:var(--text-muted);margin-top:6px;">In 2023, humanity achieved a record 212 orbital launch attempts nearly doubling the pace of five years prior, driven by SpaceX, Rocket Lab, and China's growing launch cadence.</div>
       <div style="margin-top:12px;font-size:11px;font-weight:600;color:var(--text-muted);">↑ Record high in 2023</div>
     </div>
     <div class="stat-tile" style="background:var(--surface);border:1px solid var(--border);border-radius:var(--radius);padding:22px 24px;">
       <div style="font-size:11px;font-weight:700;letter-spacing:0.07em;text-transform:uppercase;color:var(--text-muted);margin-bottom:10px;">COMMERCIAL SPACE ECONOMY</div>
       <div style="font-size:32px;font-weight:800;letter-spacing:-0.03em;color:var(--text);line-height:1;">$630B</div>
-      <div style="font-size:12px;color:var(--text-muted);margin-top:6px;">The global space economy surpassed $630B in 2023, with commercial activity now representing over 80% of total value — led by satellite services, launch, and emerging in-orbit manufacturing.</div>
+      <div style="font-size:12px;color:var(--text-muted);margin-top:6px;">The global space economy surpassed $630B in 2023, with commercial activity now representing over 80% of total value led by satellite services, launch, and emerging in-orbit manufacturing.</div>
       <div style="margin-top:12px;font-size:11px;font-weight:600;color:var(--text-muted);">↑ 8% year over year</div>
     </div>
     <div class="stat-tile" style="background:var(--surface);border:1px solid var(--border);border-radius:var(--radius);padding:22px 24px;">
@@ -2695,7 +2799,7 @@ body.frontier-mode .footer-email-input:focus { border-color: var(--frontier); }
     <div class="stat-tile" style="background:var(--surface);border:1px solid var(--border);border-radius:var(--radius);padding:22px 24px;">
       <div style="font-size:11px;font-weight:700;letter-spacing:0.07em;text-transform:uppercase;color:var(--text-muted);margin-bottom:10px;">CREWED MISSIONS LAUNCHED</div>
       <div style="font-size:32px;font-weight:800;letter-spacing:-0.03em;color:var(--text);line-height:1;">12</div>
-      <div style="font-size:12px;color:var(--text-muted);margin-top:6px;">Twelve crewed orbital missions launched in 2023-2024, the most in any comparable period since the Space Shuttle era — with commercial vehicles now carrying the majority.</div>
+      <div style="font-size:12px;color:var(--text-muted);margin-top:6px;">Twelve crewed orbital missions launched in 2023-2024, the most in any comparable period since the Space Shuttle era with commercial vehicles now carrying the majority.</div>
       <div style="margin-top:12px;font-size:11px;font-weight:600;color:var(--text-muted);">↑ Most since Shuttle era</div>
     </div>
     <div class="stat-tile" style="background:var(--surface);border:1px solid var(--border);border-radius:var(--radius);padding:22px 24px;">
@@ -2757,7 +2861,7 @@ body.frontier-mode .footer-email-input:focus { border-color: var(--frontier); }
       color: var(--text-muted);
       font-weight: 400;
       letter-spacing: -0.01em;
-    ">The science and business of extending human healthspan — curated daily.</span>
+    ">The science and business of extending human healthspan curated daily.</span>
   </div>
 
   <!-- TOP STORIES -->
@@ -2848,7 +2952,7 @@ body.frontier-mode .footer-email-input:focus { border-color: var(--frontier); }
     <div class="stat-tile" style="background:var(--surface);border:1px solid var(--border);border-radius:var(--radius);padding:22px 24px;">
       <div style="font-size:11px;font-weight:700;letter-spacing:0.07em;text-transform:uppercase;color:var(--text-muted);margin-bottom:10px;">HUMAN LIFESPAN EXTENSION TARGET</div>
       <div style="font-size:32px;font-weight:800;letter-spacing:-0.03em;color:var(--text);line-height:1;">25 yrs</div>
-      <div style="font-size:12px;color:var(--text-muted);margin-top:6px;">Leading longevity scientists project interventions currently in development could extend healthy human lifespan by 25 or more years within the next two decades — moving from disease treatment to biological aging reversal.</div>
+      <div style="font-size:12px;color:var(--text-muted);margin-top:6px;">Leading longevity scientists project interventions currently in development could extend healthy human lifespan by 25 or more years within the next two decades moving from disease treatment to biological aging reversal.</div>
       <div style="margin-top:12px;font-size:11px;font-weight:600;color:var(--text-muted);">↑ Escape velocity within reach</div>
     </div>
     <div class="stat-tile" style="background:var(--surface);border:1px solid var(--border);border-radius:var(--radius);padding:22px 24px;">
@@ -2860,7 +2964,7 @@ body.frontier-mode .footer-email-input:focus { border-color: var(--frontier); }
     <div class="stat-tile" style="background:var(--surface);border:1px solid var(--border);border-radius:var(--radius);padding:22px 24px;">
       <div style="font-size:11px;font-weight:700;letter-spacing:0.07em;text-transform:uppercase;color:var(--text-muted);margin-bottom:10px;">CENTENARIAN POPULATION</div>
       <div style="font-size:32px;font-weight:800;letter-spacing:-0.03em;color:var(--text);line-height:1;">722K</div>
-      <div style="font-size:12px;color:var(--text-muted);margin-top:6px;">The global centenarian population exceeded 722,000 in 2024 and is projected to reach 3.7 million by 2050 — driven by improvements in healthcare, nutrition, and the early effects of longevity-focused interventions.</div>
+      <div style="font-size:12px;color:var(--text-muted);margin-top:6px;">The global centenarian population exceeded 722,000 in 2024 and is projected to reach 3.7 million by 2050 driven by improvements in healthcare, nutrition, and the early effects of longevity-focused interventions.</div>
       <div style="margin-top:12px;font-size:11px;font-weight:600;color:var(--text-muted);">↑ 5x growth projected by 2050</div>
     </div>
   </div>
@@ -3197,7 +3301,7 @@ async function fetchCompanies() {
 
     function makeWatchlistItem(c) {
       var statusClass = 'status-active';
-      var sig = (c.signal || '').toLowerCase();
+      var sig = (c.update || '').toLowerCase();
       if (sig.includes('hot') || sig.includes('surge') || sig.includes('launch')) statusClass = 'status-hot';
       else if (sig.includes('rising') || sig.includes('growing')) statusClass = 'status-rising';
       else if (sig.includes('quiet') || sig.includes('watch')) statusClass = 'status-quiet';
@@ -3213,7 +3317,7 @@ async function fetchCompanies() {
         logoHtml +
         '<div class="watchlist-body">' +
         '<div class="watchlist-name">' + (c.name || '') + ' <span class="watchlist-status ' + statusClass + '">' + (c.category || 'Active') + '</span></div>' +
-        '<div class="watchlist-latest">' + (c.signal || c.description || '') + '</div>' +
+        '<div class="watchlist-latest">' + (c.update || c.description || '') + '</div>' +
         '</div></a>';
     }
 
@@ -3335,7 +3439,7 @@ async function fetchRealWorldAI() {
 
     function getRealWorldIcon(d) {
       var nameLower = (d.name || '').toLowerCase();
-      // Try Clearbit first — check if name contains a known company
+      // Try Clearbit first check if name contains a known company
       for (var company in AI_COMPANY_DOMAINS) {
         if (nameLower.includes(company)) {
           var domain = AI_COMPANY_DOMAINS[company];
@@ -3827,7 +3931,7 @@ document.addEventListener('click', function(e){
 
 // Share to X
 document.getElementById('share-twitter').addEventListener('click', function(){
-  const text = encodeURIComponent(currentShareTitle + ' — via Atomic Media Group');
+  const text = encodeURIComponent(currentShareTitle + ' via Atomic Media Group');
   const url = encodeURIComponent('https://atomicmediagroup.ai');
   window.open('https://twitter.com/intent/tweet?text='+text+'&url='+url, '_blank', 'noopener');
 });
@@ -3841,7 +3945,7 @@ document.getElementById('share-linkedin').addEventListener('click', function(){
 
 // Share via Email
 document.getElementById('share-email').addEventListener('click', function(){
-  const subject = encodeURIComponent(currentShareTitle + ' — Atomic Media Group');
+  const subject = encodeURIComponent(currentShareTitle + ' Atomic Media Group');
   const body = encodeURIComponent('Thought you might find this interesting:\n\n' + currentShareTitle + '\n\nRead more at: https://atomicmediagroup.ai');
   window.location.href = 'mailto:?subject='+subject+'&body='+body;
 });
@@ -4051,16 +4155,16 @@ async function fetchFrontierCompanies() {
     if (!data || data.length === 0) {
       // Seed with static companies if DB empty
       var launch = [
-        {name:'SpaceX', signal:'Starship orbital test flight — reusability milestone achieved', url:'https://spacex.com', category:'Launch'},
-        {name:'Rocket Lab', signal:'Electron launches accelerating — Neutron development on track', url:'https://rocketlabusa.com', category:'Launch'},
-        {name:'Blue Origin', signal:'New Glenn operational — lunar lander contract awarded', url:'https://blueorigin.com', category:'Launch'},
-        {name:'ULA', signal:'Vulcan Centaur certified — national security launches secured', url:'https://ulalaunch.com', category:'Launch'},
+        {name:'SpaceX', signal:'Starship orbital test flight reusability milestone achieved', url:'https://spacex.com', category:'Launch'},
+        {name:'Rocket Lab', signal:'Electron launches accelerating Neutron development on track', url:'https://rocketlabusa.com', category:'Launch'},
+        {name:'Blue Origin', signal:'New Glenn operational lunar lander contract awarded', url:'https://blueorigin.com', category:'Launch'},
+        {name:'ULA', signal:'Vulcan Centaur certified national security launches secured', url:'https://ulalaunch.com', category:'Launch'},
       ];
       var economy = [
-        {name:'Axiom Space', signal:'Commercial station modules being built — ISS transition plan active', url:'https://axiomspace.com', category:'Stations'},
+        {name:'Axiom Space', signal:'Commercial station modules being built ISS transition plan active', url:'https://axiomspace.com', category:'Stations'},
         {name:'Sierra Space', signal:'Dream Chaser spaceplane nearing first flight', url:'https://sierraspace.com', category:'Transport'},
-        {name:'Starlab', signal:'Voyager Space orbital station — 2028 target', url:'https://voyagerspace.com', category:'Stations'},
-        {name:'SpaceX Starlink', signal:'6,000+ satellites — global broadband coverage achieved', url:'https://starlink.com', category:'Connectivity'},
+        {name:'Starlab', signal:'Voyager Space orbital station 2028 target', url:'https://voyagerspace.com', category:'Stations'},
+        {name:'SpaceX Starlink', signal:'6,000+ satellites global broadband coverage achieved', url:'https://starlink.com', category:'Connectivity'},
       ];
       data = [...launch.map(function(c){ return {...c, type:'launch'}; }), ...economy.map(function(c){ return {...c, type:'economy'}; })];
     }
@@ -4074,7 +4178,7 @@ async function fetchFrontierCompanies() {
         '<div class="watchlist-logo" style="width:36px;height:36px;border-radius:8px;background:linear-gradient(135deg,var(--frontier),#f97316);display:flex;align-items:center;justify-content:center;flex-shrink:0;font-size:12px;font-weight:800;color:#fff;">'+initials+'</div>' +
         '<div class="watchlist-body">' +
         '<div class="watchlist-name">'+(c.name||'')+'<span class="watchlist-status status-active" style="background:#fff7ed;color:var(--frontier);border-color:#fed7aa;">'+(c.category||'Space')+'</span></div>' +
-        '<div class="watchlist-latest">'+(c.signal||c.description||'')+'</div>' +
+        '<div class="watchlist-latest">'+(c.update||c.description||'')+'</div>' +
         '</div></a>';
     }
 
@@ -4122,7 +4226,7 @@ async function fetchFrontierForecasts() {
         {prediction:'NASA selects Axiom Space to build the first commercial ISS successor module', category:'Stations', timeframe:'6 months', confidence:'High', status:'Pending'},
         {prediction:'Rocket Lab achieves first Neutron test fire', category:'Launch', timeframe:'6 months', confidence:'Medium', status:'Pending'},
         {prediction:'SpaceX launches first crewed Mars precursor mission', category:'Exploration', timeframe:'12 months', confidence:'Low', status:'Pending'},
-        {prediction:'Commercial space tourism reaches 100 cumulative passengers', category:'Tourism', timeframe:'12 months', confidence:'High', status:'Pending'},
+        {prediction:'Commercial Space tourism reaches 100 cumulative passengers', category:'Tourism', timeframe:'12 months', confidence:'High', status:'Pending'},
         {prediction:'In-orbit manufacturing produces first commercially viable product', category:'Economy', timeframe:'24 months', confidence:'Medium', status:'Pending'},
         {prediction:'A private company lands humans on the Moon before a government program', category:'Exploration', timeframe:'24 months', confidence:'Low', status:'Pending'},
       ];
@@ -4178,14 +4282,14 @@ async function fetchFrontierForecasts() {
     } else {
       html = buildFrontierPanel('Launch','🚀') + buildFrontierPanel('Exploration','🌌');
     }
-    var footer = '<div class="forecast-footer" style="grid-column:1/-1;">⚡ Atomic\'s Predictions are generated by AI analysis of launch manifests, mission schedules, funding signals, and commercial space market momentum. Confidence levels reflect probability assessments based on current trajectory.</div>';
+    var footer = '<div class="forecast-footer" style="grid-column:1/-1;">⚡ Atomic\'s Predictions are generated by AI analysis of launch manifests, mission schedules, funding signals, and Commercial Space market momentum. Confidence levels reflect probability assessments based on current trajectory.</div>';
     el.innerHTML = html + footer;
   } catch(e) { console.error('fetchFrontierForecasts:', e); }
 }
 
 
 // ── LONGEVITY SWITCHER ──
-// (handled by switchVertical — adding longevity case)
+// (handled by switchVertical adding longevity case)
 
 // ── LONGEVITY DATA FETCHERS ──
 async function fetchLongevityStories() {
@@ -4246,14 +4350,14 @@ async function fetchLongevityCompanies() {
     var data = await supabaseFetch('longevity_companies', 'select=*&order=created_at.desc&limit=20');
     if (!data || data.length === 0) {
       data = [
-        {name:'Altos Labs', signal:'$3B raised — cellular reprogramming research accelerating', url:'https://altoslabs.com', category:'Biotech', type:'biotech'},
-        {name:'Retro Biosciences', signal:'$180M from Sam Altman — targeting 10 healthy years of added life', url:'https://retro.bio', category:'Biotech', type:'biotech'},
-        {name:'NewLimit', signal:'Epigenetic reprogramming — Coinbase founder backed', url:'https://newlimit.com', category:'Biotech', type:'biotech'},
-        {name:'Calico', signal:'Google-backed — aging biology and drug discovery', url:'https://calicolabs.com', category:'Biotech', type:'biotech'},
+        {name:'Altos Labs', signal:'$3B raised cellular reprogramming research accelerating', url:'https://altoslabs.com', category:'Biotech', type:'biotech'},
+        {name:'Retro Biosciences', signal:'$180M from Sam Altman targeting 10 healthy years of added life', url:'https://retro.bio', category:'Biotech', type:'biotech'},
+        {name:'NewLimit', signal:'Epigenetic reprogramming Coinbase founder backed', url:'https://newlimit.com', category:'Biotech', type:'biotech'},
+        {name:'Calico', signal:'Google-backed aging biology and drug discovery', url:'https://calicolabs.com', category:'Biotech', type:'biotech'},
         {name:'Hims & Hers', signal:'GLP-1 and longevity therapeutics going mainstream', url:'https://forhims.com', category:'Therapeutics', type:'clinic'},
-        {name:'Function Health', signal:'100+ biomarker testing — longevity diagnostics at scale', url:'https://functionhealth.com', category:'Diagnostics', type:'clinic'},
-        {name:'Insilico Medicine', signal:'AI drug discovery — first AI-designed drug in Phase II trials', url:'https://insilico.com', category:'AI Drug Discovery', type:'clinic'},
-        {name:'Bryan Johnson', signal:'Blueprint protocol — most measured human, open-sourcing longevity', url:'https://blueprint.bryanjohnson.com', category:'Biohacking', type:'clinic'},
+        {name:'Function Health', signal:'100+ biomarker testing longevity diagnostics at scale', url:'https://functionhealth.com', category:'Diagnostics', type:'clinic'},
+        {name:'Insilico Medicine', signal:'AI drug discovery first AI-designed drug in Phase II trials', url:'https://insilico.com', category:'AI Drug Discovery', type:'clinic'},
+        {name:'Bryan Johnson', signal:'Blueprint protocol most measured human, open-sourcing longevity', url:'https://blueprint.bryanjohnson.com', category:'Biohacking', type:'clinic'},
       ];
     }
     var biotechCos = data.filter(function(c){ return (c.type||'').toLowerCase()==='biotech'; });
@@ -4265,7 +4369,7 @@ async function fetchLongevityCompanies() {
         '<div style="width:36px;height:36px;border-radius:8px;background:linear-gradient(135deg,var(--longevity),#34d399);display:flex;align-items:center;justify-content:center;flex-shrink:0;font-size:12px;font-weight:800;color:#fff;">'+initials+'</div>' +
         '<div class="watchlist-body">' +
         '<div class="watchlist-name">'+(c.name||'')+'<span class="watchlist-status status-active" style="background:#ecfdf5;color:var(--longevity);border-color:#a7f3d0;">'+(c.category||'Longevity')+'</span></div>' +
-        '<div class="watchlist-latest">'+(c.signal||c.description||'')+'</div>' +
+        '<div class="watchlist-latest">'+(c.update||c.description||'')+'</div>' +
         '</div></a>';
     }
     var biotechEl = document.getElementById('longevity-biotech-scroll');
@@ -4365,9 +4469,107 @@ document.addEventListener('click', function(e) {
   if (!e.target.closest('#vertical-dropdown')) closeVerticalDropdown();
 });
 
+
+// ── TILE EXPAND MODAL ──
+function openTileModal(data) {
+  document.getElementById('modal-label').textContent = data.label || '';
+  document.getElementById('modal-title').textContent = data.title || '';
+  document.getElementById('modal-body').textContent = data.body || '';
+  var valueEl = document.getElementById('modal-value');
+  if (data.value) {
+    valueEl.textContent = data.value;
+    valueEl.style.display = 'block';
+  } else {
+    valueEl.style.display = 'none';
+  }
+  var trendEl = document.getElementById('modal-trend');
+  if (data.trend) {
+    trendEl.textContent = data.trend;
+    trendEl.style.display = 'block';
+  } else {
+    trendEl.style.display = 'none';
+  }
+  document.getElementById('tile-modal-overlay').classList.add('open');
+  document.body.style.overflow = 'hidden';
+}
+function closeTileModal(e) {
+  if (e && e.target !== document.getElementById('tile-modal-overlay')) return;
+  document.getElementById('tile-modal-overlay').classList.remove('open');
+  document.body.style.overflow = '';
+}
+// Close on Escape
+document.addEventListener('keydown', function(e) {
+  if (e.key === 'Escape') {
+    document.getElementById('tile-modal-overlay').classList.remove('open');
+    document.body.style.overflow = '';
+  }
+});
+
+// ── WIRE STAT TILES ──
+document.addEventListener('click', function(e) {
+  var tile = e.target.closest('.stat-tile');
+  if (!tile) return;
+  var label = tile.querySelector('[style*="letter-spacing:0.07em"]');
+  var value = tile.querySelector('[style*="font-size:32px"]');
+  var body = tile.querySelector('[style*="font-size:12px"][style*="margin-top:6px"]');
+  var trend = tile.querySelector('[style*="font-size:11px"][style*="margin-top:12px"]');
+  openTileModal({
+    label: label ? label.textContent : '',
+    value: value ? value.textContent : '',
+    body: body ? body.textContent : '',
+    trend: trend ? trend.textContent : ''
+  });
+});
+
+// ── WIRE REAL WORLD ITEMS ──
+document.addEventListener('click', function(e) {
+  var item = e.target.closest('.tool-item');
+  if (!item) return;
+  var name = item.querySelector('.tool-name');
+  var desc = item.querySelector('.tool-desc');
+  var tag = item.querySelector('.tool-tag');
+  openTileModal({
+    label: tag ? tag.textContent : 'Real World',
+    title: name ? name.textContent : '',
+    body: desc ? desc.textContent : ''
+  });
+});
+
+// ── WIRE COMPANIES TO WATCH ──
+// Companies already have href links - add modal on click instead
+document.addEventListener('click', function(e) {
+  var item = e.target.closest('.watchlist-item');
+  if (!item) return;
+  // Don't intercept if clicking the link itself to open externally
+  // Instead open modal first
+  e.preventDefault();
+  var name = item.querySelector('.watchlist-name');
+  var latest = item.querySelector('.watchlist-latest');
+  var status = item.querySelector('.watchlist-status');
+  var href = item.getAttribute('href');
+  openTileModal({
+    label: status ? status.textContent : 'Company',
+    title: name ? name.firstChild.textContent.trim() : '',
+    body: latest ? latest.textContent : '',
+    trend: href ? '↗ Visit ' + href.replace('https://','').replace('www.','') : ''
+  });
+});
+
 </script>
 <button class="back-to-top" id="back-to-top" onclick="window.scrollTo({top:0,behavior:'smooth'})" title="Back to top">
   <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M18 15l-6-6-6 6"/></svg>
 </button>
+
+<!-- TILE EXPAND MODAL -->
+<div class="tile-modal-overlay" id="tile-modal-overlay" onclick="closeTileModal(event)">
+  <div class="tile-modal" id="tile-modal">
+    <button class="tile-modal-close" onclick="closeTileModal()">✕</button>
+    <div class="tile-modal-label" id="modal-label"></div>
+    <div class="tile-modal-value" id="modal-value" style="display:none;"></div>
+    <div class="tile-modal-title" id="modal-title"></div>
+    <div class="tile-modal-body" id="modal-body"></div>
+    <div class="tile-modal-trend" id="modal-trend" style="display:none;"></div>
+  </div>
+</div>
 </body>
 </html>
