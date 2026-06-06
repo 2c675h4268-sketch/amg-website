@@ -5161,6 +5161,13 @@ document.addEventListener('DOMContentLoaded', function() {
   fetchRealWorldAI();
   fetchRealWorldRobotics();
   fetchStats();
+
+  // Auto-switch vertical based on URL parameter
+  var urlParams = new URLSearchParams(window.location.search);
+  var vertical = urlParams.get('v');
+  if (vertical === 'frontier') switchVertical('frontier');
+  else if (vertical === 'longevity') switchVertical('longevity');
+  else if (vertical === 'work') switchVertical('work');
 });
 // ── SAVED (localStorage) ──
 function getSaved(){ try{return JSON.parse(localStorage.getItem('amg-saved')||'[]');}catch(e){return[];} }
