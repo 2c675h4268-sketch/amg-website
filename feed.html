@@ -6118,15 +6118,15 @@ document.addEventListener('click', function(e) {
 document.addEventListener('click', function(e) {
   var tile = e.target.closest('.stat-tile');
   if (!tile) return;
-  var label = tile.querySelector('[style*="letter-spacing:0.07em"]');
-  var value = tile.querySelector('[style*="font-size:32px"]');
-  var body = tile.querySelector('[style*="font-size:12px"][style*="margin-top:6px"]');
-  var trend = tile.querySelector('[style*="font-size:11px"][style*="margin-top:12px"]');
+  // Get all text nodes in order
+  var spans = tile.querySelectorAll('span, div');
+  var texts = [];
+  spans.forEach(function(s) { if (s.children.length === 0 && s.textContent.trim()) texts.push(s.textContent.trim()); });
   openTileModal({
-    label: label ? label.textContent : '',
-    value: value ? value.textContent : '',
-    body: body ? body.textContent : '',
-    trend: trend ? trend.textContent : ''
+    label: texts[0] || 'Stat',
+    value: texts[1] || '',
+    body: texts[2] || '',
+    trend: texts[3] || ''
   });
 });
 
@@ -6134,33 +6134,36 @@ document.addEventListener('click', function(e) {
 document.addEventListener('click', function(e) {
   var item = e.target.closest('.tool-item');
   if (!item) return;
+  // Don't fire if clicking inside the AI at Work toolkit tool cards (they have links)
+  if (item.closest('#section-work')) return;
   var name = item.querySelector('.tool-name');
   var desc = item.querySelector('.tool-desc');
-  var tag = item.querySelector('.tool-tag');
+  var tag = item.querySelector('.tool-cat') || item.querySelector('.tool-tag');
+  var status = item.querySelector('.tool-stars');
   openTileModal({
-    label: tag ? tag.textContent : 'Real World',
+    label: tag ? tag.textContent.replace('⊟ ', '') : 'Real World',
     title: name ? name.textContent : '',
-    body: desc ? desc.textContent : ''
+    body: desc ? desc.textContent : '',
+    trend: status ? status.textContent : ''
   });
 });
 
 // ── WIRE COMPANIES TO WATCH ──
-// Companies already have href links - add modal on click instead
 document.addEventListener('click', function(e) {
   var item = e.target.closest('.watchlist-item');
   if (!item) return;
-  // Don't intercept if clicking the link itself to open externally
-  // Instead open modal first
   e.preventDefault();
-  var name = item.querySelector('.watchlist-name');
+  var nameEl = item.querySelector('.watchlist-name');
   var latest = item.querySelector('.watchlist-latest');
   var status = item.querySelector('.watchlist-status');
   var href = item.getAttribute('href');
+  // Get company name without the status badge text
+  var nameText = nameEl ? nameEl.childNodes[0].textContent.trim() : '';
   openTileModal({
-    label: status ? status.textContent : 'Company',
-    title: name ? name.firstChild.textContent.trim() : '',
-    body: latest ? latest.textContent : '',
-    trend: href ? '↗ Visit ' + href.replace('https://','').replace('www.','') : ''
+    label: status ? status.textContent.trim() : 'Company',
+    title: nameText,
+    body: latest ? latest.textContent.trim() : '',
+    trend: href ? '↗ ' + href.replace('https://','').replace('www.','') : ''
   });
 });
 
