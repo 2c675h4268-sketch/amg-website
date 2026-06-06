@@ -5,7 +5,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Atomic Media Group Intelligence for the Future</title>
   <meta name="color-scheme" content="light only" />
-  <meta name="description" content="Atomic Media Group delivers daily AI-curated intelligence across the three forces reshaping humanity AI & Robotics, The Frontier, and Longevity." />
+  <meta name="description" content="Atomic Media Group delivers daily AI-curated intelligence across AI & Robotics, The Frontier, Longevity, and practical AI tools for work." />
   <link rel="preconnect" href="https://api.fontshare.com" />
   <link href="https://api.fontshare.com/v2/css?f[]=satoshi@400,500,600,700,800&display=swap" rel="stylesheet" />
   <style>
@@ -122,7 +122,7 @@
       display: inline-flex;
       align-items: center;
       gap: 8px;
-      font-size: 11px;
+      font-size: 13px;
       font-weight: 700;
       letter-spacing: 0.1em;
       text-transform: uppercase;
@@ -232,7 +232,7 @@
     }
     .verticals-grid {
       display: grid;
-      grid-template-columns: repeat(3, 1fr);
+      grid-template-columns: repeat(4, 1fr);
       gap: 20px;
     }
     .vertical-card {
@@ -454,8 +454,11 @@
     .hero-actions  { animation: fadeUp 0.5s 0.3s ease both; }
 
     /* ── MOBILE ── */
+    @media (max-width: 1000px) {
+      .verticals-grid { grid-template-columns: 1fr 1fr; gap: 14px; }
+    }
     @media (max-width: 900px) {
-      .verticals-grid { grid-template-columns: 1fr; max-width: 560px; margin: 0 auto; gap: 14px; }
+      .verticals-grid { grid-template-columns: 1fr 1fr; max-width: 600px; margin: 0 auto; gap: 14px; }
       .vertical-card { padding: 28px 24px; }
     }
     @media (max-width: 700px) {
@@ -552,7 +555,7 @@
       The future, <em>curated</em><br />by the technology that's building it.
     </h1>
     <p class="hero-sub">
-      Atomic Media Group delivers daily intelligence across the three forces reshaping humanity powered entirely by AI.
+      Atomic Media Group delivers daily intelligence across the forces reshaping humanity powered entirely by AI.
     </p>
     <div class="hero-actions">
       <a href="/feed.html" class="btn-primary">Read Today's Brief →</a>
@@ -571,11 +574,11 @@
 
   <!-- VERTICALS -->
   <section class="verticals" id="verticals">
-    <div class="verticals-label">Three Verticals. One Signal.</div>
+    <div class="verticals-label">Four Ways In. One Platform.</div>
     <div class="verticals-grid">
 
       <a href="/feed.html" class="vertical-card ai">
-        <div class="vertical-icon">⚡</div>
+        <div class="vertical-icon">🦾</div>
         <div class="vertical-name">AI &amp; Robotics</div>
         <p class="vertical-desc">
           The intelligence layer reshaping every industry. Model releases, enterprise deployments, humanoid robots, funding rounds, and the policy battles defining who controls the future.
@@ -599,6 +602,15 @@
           The science and business of extending human healthspan. GLP-1s, cellular reprogramming, AI drug discovery, and the biotech companies racing to add decades to the human lifespan.
         </p>
         <span class="vertical-link">Explore →</span>
+      </a>
+
+      <a href="/toolkit.html" class="vertical-card">
+        <div class="vertical-icon">🛠️</div>
+        <div class="vertical-name">AI at Work</div>
+        <p class="vertical-desc">
+          Practical tools, prompts, and guides organized by role. Sales, marketing, finance, HR, operations everything you need to use AI in your work starting today.
+        </p>
+        <span class="vertical-link">Explore the Toolkit →</span>
       </a>
 
     </div>
