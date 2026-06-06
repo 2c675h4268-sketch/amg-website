@@ -5117,36 +5117,45 @@ function renderFeed() {
 
 
   attachCardListeners();
-
-  attachCardListeners();
   buildSourceFilters();
   document.body.classList.add('feed-loaded');
 }
 
+// ── DELEGATED CARD LISTENERS (works for dynamically loaded cards) ──
+document.addEventListener('click', function(e) {
+  // Bookmark button
+  var bBtn = e.target.closest('.bookmark-btn');
+  if (bBtn) {
+    e.stopPropagation();
+    var title = bBtn.getAttribute('data-title');
+    if (title) toggleSaved(title);
+    return;
+  }
+  // Summarize button
+  var sBtn = e.target.closest('.summarize-btn');
+  if (sBtn) {
+    e.stopPropagation();
+    var t = sBtn.getAttribute('data-title');
+    if (t) openReading(t);
+    return;
+  }
+  // Card click (open reading view)
+  var card = e.target.closest('.card[data-title], .feed-item[data-title]');
+  if (card && !e.target.closest('.card-btn, .bookmark-btn, .summarize-btn, .share-btn')) {
+    openReading(card.dataset.title);
+  }
+});
+
 function attachCardListeners() {
-  document.querySelectorAll('.card[data-title], .feed-item[data-title]').forEach(function(el) {
-    el.addEventListener('click', function(e) {
-      if (e.target.closest('.card-btn, .bookmark-btn, .summarize-btn, .share-btn')) return;
-      openReading(this.dataset.title);
-    });
-  });
-  document.querySelectorAll('.summarize-btn').forEach(function(btn) {
-    btn.addEventListener('click', function(e) {
-      e.stopPropagation();
-      openReading(this.getAttribute('data-title'));
-    });
-  });
-  document.querySelectorAll('.bookmark-btn').forEach(function(btn) {
-    btn.addEventListener('click', function(e) {
-      e.stopPropagation();
-      toggleSaved(this.getAttribute('data-title'));
-    });
-  });
+  // Update saved state on visible bookmark buttons
   var saved = getSaved();
   document.querySelectorAll('.bookmark-btn').forEach(function(btn) {
     if (saved.includes(btn.dataset.title)) {
       btn.classList.add('saved');
       btn.textContent = '\u2713 Saved';
+    } else {
+      btn.classList.remove('saved');
+      btn.textContent = '\uD83D\uDD16 Save';
     }
   });
 }
