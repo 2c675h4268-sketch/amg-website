@@ -6073,6 +6073,7 @@ document.addEventListener('click', function(e) {
 
 // ── TILE EXPAND MODAL ──
 function openTileModal(data) {
+  console.log('[AMG] openTileModal called:', data.label, data.title);
   document.getElementById('modal-label').textContent = data.label || '';
   document.getElementById('modal-title').textContent = data.title || '';
   document.getElementById('modal-body').textContent = data.body || '';
@@ -6127,15 +6128,13 @@ document.addEventListener('click', function(e) {
 document.addEventListener('click', function(e) {
   var tile = e.target.closest('.stat-tile');
   if (!tile) return;
-  // Get all text nodes in order
-  var spans = tile.querySelectorAll('span, div');
-  var texts = [];
-  spans.forEach(function(s) { if (s.children.length === 0 && s.textContent.trim()) texts.push(s.textContent.trim()); });
+  // Get direct child divs in order
+  var kids = Array.from(tile.children);
   openTileModal({
-    label: texts[0] || 'Stat',
-    value: texts[1] || '',
-    body: texts[2] || '',
-    trend: texts[3] || ''
+    label: kids[0] ? kids[0].textContent.trim() : 'Stat',
+    value: kids[1] ? kids[1].textContent.trim() : '',
+    body: kids[2] ? kids[2].textContent.trim() : '',
+    trend: kids[3] ? kids[3].textContent.trim() : ''
   });
 });
 
