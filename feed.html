@@ -978,8 +978,6 @@ a { color: inherit; text-decoration: none; }
   .logo-icon { width: 28px; height: 28px; }
   /* Hide Saved, shrink Filter to icon only */
   #saved-btn { display: none !important; }
-  .btn-filter .filter-label { display: none; }
-  .btn-filter { padding: 6px 10px; min-width: 0; }
   /* Shrink dropdown button */
   .vertical-dropdown-btn { padding: 6px 10px; font-size: 12px; }
 }
@@ -2015,6 +2013,21 @@ body.frontier-mode .footer-email-input:focus { border-color: var(--frontier); }
 }
 /* Make clickable tiles show pointer */
 .stat-tile, .tool-item, .watchlist-item, .forecast-card { cursor: pointer; }
+
+.nav-pill-link {
+  padding: 6px 14px;
+  font-size: 13px;
+  font-weight: 600;
+  color: var(--text-muted);
+  text-decoration: none;
+  border: 1px solid var(--border);
+  border-radius: 8px;
+  white-space: nowrap;
+  transition: background 0.15s, color 0.15s;
+  font-family: inherit;
+}
+.nav-pill-link:hover { background: var(--surface); color: var(--text); }
+@media (max-width: 768px) { .nav-pill-link { display: none; } }
 </style>
 </head>
 <body>
@@ -2213,10 +2226,7 @@ body.frontier-mode .footer-email-input:focus { border-color: var(--frontier); }
           <button class="vertical-dropdown-item longevity" onclick="switchVertical('longevity');closeVerticalDropdown();">🧬 Longevity</button>
         </div>
       </div>
-      <button class="btn-filter" id="filter-btn">
-        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="4" y1="6" x2="20" y2="6"/><line x1="8" y1="12" x2="16" y2="12"/><line x1="11" y1="18" x2="13" y2="18"/></svg>
-        <span class="filter-label">Filter</span>
-      </button>
+      <a href="/toolkit.html" class="nav-pill-link">AI at Work</a>
       <button class="btn-filter" id="saved-btn">
         🔖 Saved<span id="saved-count-badge" style="display:none;margin-left:5px;background:var(--blue);color:white;font-size:10px;padding:1px 6px;border-radius:100px;" id="saved-count">0</span>
       </button>
