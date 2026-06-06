@@ -2158,22 +2158,7 @@ body.frontier-mode .footer-email-input:focus { border-color: var(--frontier); }
     <div class="card" style="opacity:1;"><div class="card-body"><div class="tag">AI</div><div class="card-title">Loading top stories...</div></div></div>
   </div>
 
-  <!-- TRENDING AI + ROBOTICS SIDE BY SIDE -->
-  <div class="dual-trending-grid" style="margin-top:48px;">
 
-    <!-- Trending Now in AI -->
-    <div>
-      <div class="section-title" style="margin-top:0;">Trending Now in AI</div>
-      <div class="single-col-grid" id="trending-ai-grid"></div>
-    </div>
-
-    <!-- Trending Now in Robotics -->
-    <div>
-      <div class="section-title" style="margin-top:0;">Trending Now in Robotics</div>
-      <div class="single-col-grid" id="trending-robotics-grid"></div>
-    </div>
-
-  </div>
 
   <!-- TOP PROMPTS + TRENDING AI TOOLS SIDE BY SIDE (hidden, rendered via explore button below) -->
   <!-- AI IN THE REAL WORLD -->
@@ -2625,11 +2610,7 @@ body.frontier-mode .footer-email-input:focus { border-color: var(--frontier); }
     <div class="card" style="opacity:1;"><div class="card-body"><div class="tag" style="color:var(--frontier);">Space</div><div class="card-title">Loading top stories...</div></div></div>
   </div>
 
-  <!-- TRENDING NOW (FRONTIER) -->
-  <div class="section-title" style="margin-top:52px;border-bottom-color:var(--frontier);">Trending Now</div>
-  <div class="small-grid" id="frontier-trending-grid">
-    <div class="card" style="opacity:1;"><div class="card-body"><div class="tag" style="color:var(--frontier);">Space</div><div class="card-title">Loading...</div></div></div>
-  </div>
+
 
   <!-- FRONTIER IN THE REAL WORLD -->
   <div class="section-title" style="margin-top:52px;border-bottom-color:var(--frontier);">The Frontier in the Real World</div>
@@ -2785,11 +2766,7 @@ body.frontier-mode .footer-email-input:focus { border-color: var(--frontier); }
     <div class="card" style="opacity:1;"><div class="card-body"><div class="tag" style="color:var(--longevity);">Longevity</div><div class="card-title">Loading top stories...</div></div></div>
   </div>
 
-  <!-- TRENDING NOW -->
-  <div class="section-title" style="margin-top:52px;border-bottom-color:var(--longevity);">Trending Now</div>
-  <div class="small-grid" id="longevity-trending-grid">
-    <div class="card" style="opacity:1;"><div class="card-body"><div class="tag" style="color:var(--longevity);">Longevity</div><div class="card-title">Loading...</div></div></div>
-  </div>
+
 
   <!-- LONGEVITY IN THE REAL WORLD -->
   <div class="section-title" style="margin-top:52px;border-bottom-color:var(--longevity);">Longevity in the Real World</div>
@@ -3531,22 +3508,10 @@ function renderFeed() {
 
   var heroLeft = document.getElementById('top-stories-grid');
   if (heroLeft) {
-    heroLeft.innerHTML = STORIES.slice(0, 3).map(makeCard).join('');
+    heroLeft.innerHTML = STORIES.slice(0, 6).map(makeCard).join('');
   }
 
-  var trendingAI = document.getElementById('trending-ai-grid');
-  if (trendingAI) {
-    var aiStories = STORIES.filter(function(s){ return s.cat === 'ai' || s.cat === 'tools' || s.cat === 'hot'; }).slice(0, 3);
-    if (!aiStories.length) aiStories = STORIES.slice(0, 3);
-    trendingAI.innerHTML = aiStories.map(makeTrendCard).join('');
-  }
 
-  var trendingRobotics = document.getElementById('trending-robotics-grid');
-  if (trendingRobotics) {
-    var robStories = STORIES.filter(function(s){ return s.cat === 'robotics'; }).slice(0, 3);
-    if (!robStories.length) robStories = STORIES.slice(3, 6);
-    trendingRobotics.innerHTML = robStories.map(makeTrendCard).join('');
-  }
 
   attachCardListeners();
 
@@ -3999,7 +3964,6 @@ function switchVertical(mode) {
     document.body.classList.add('frontier-mode');
       if (!frontierSection.dataset.loaded) {
       fetchFrontierStories();
-      fetchFrontierTrending();
       fetchFrontierRealWorld();
       fetchFrontierCompanies();
       fetchFrontierForecasts();
@@ -4017,7 +3981,6 @@ function switchVertical(mode) {
       var longevitySection = document.getElementById('section-longevity');
     if (!longevitySection.dataset.loaded) {
       fetchLongevityStories();
-      fetchLongevityTrending();
       fetchLongevityRealWorld();
       fetchLongevityCompanies();
       fetchLongevityForecasts();
@@ -4045,7 +4008,7 @@ async function fetchFrontierStories() {
 
     var heroEl = document.getElementById('frontier-top-stories-grid');
     if (heroEl && data.length > 0) {
-      heroEl.innerHTML = data.slice(0, 3).map(function(s) {
+      heroEl.innerHTML = data.slice(0, 6).map(function(s) {
         var imgHtml = s.image_url ? '<img src="'+s.image_url+'" alt="" style="width:100%;height:160px;object-fit:cover;border-radius:8px 8px 0 0;display:block;" loading="lazy" onerror="this.style.display=\'none\'" />' : '';
         return '<div class="card" style="opacity:1;">' +
           imgHtml +
@@ -4231,7 +4194,7 @@ async function fetchLongevityStories() {
     if (!data || data.length === 0) return;
     var heroEl = document.getElementById('longevity-top-stories-grid');
     if (heroEl) {
-      heroEl.innerHTML = data.slice(0,3).map(function(s) {
+      heroEl.innerHTML = data.slice(0,6).map(function(s) {
         var imgHtml = s.image_url ? '<img src="'+s.image_url+'" alt="" style="width:100%;height:160px;object-fit:cover;border-radius:8px 8px 0 0;display:block;" loading="lazy" onerror="this.style.display=\'none\'" />' : '';
         return '<div class="card" style="opacity:1;">' + imgHtml +
           '<div class="card-body">' +
