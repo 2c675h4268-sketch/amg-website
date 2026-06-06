@@ -5696,6 +5696,7 @@ document.addEventListener('keydown', function(e){ if(e.key === 'Escape') closeAb
 // ── VERTICAL SWITCHER ──
 function switchVertical(mode) {
   window.scrollTo(0, 0);
+  updateDropdownLabel(mode);
   var aiSection = document.getElementById('section-ai-robotics');
   var frontierSection = document.getElementById('section-frontier');
   var btnAI = document.getElementById('btn-ai-robotics');
