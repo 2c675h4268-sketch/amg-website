@@ -834,6 +834,10 @@ a { color: inherit; text-decoration: none; }
 }
 .panel-scroll::-webkit-scrollbar { width: 3px; }
 .panel-scroll::-webkit-scrollbar-thumb { background: var(--border); border-radius: 2px; }
+.panel-flat {
+  max-height: none !important;
+  overflow: visible !important;
+}
 
 /* ── PROMPT ITEMS ── */
 .prompt-item {
@@ -2010,7 +2014,7 @@ body.frontier-mode .footer-email-input:focus { border-color: var(--frontier); }
   margin-bottom: 12px;
 }
 /* Make clickable tiles show pointer */
-.stat-tile, .tool-item, .watchlist-item { cursor: pointer; }
+.stat-tile, .tool-item, .watchlist-item, .forecast-card { cursor: pointer; }
 </style>
 </head>
 <body>
@@ -2275,7 +2279,7 @@ body.frontier-mode .footer-email-input:focus { border-color: var(--frontier); }
         <span class="panel-head-title tools">⚙️ In Production</span>
         <span class="panel-head-badge-deployed">Deployed Now</span>
       </div>
-      <div class="panel-scroll" id="scroll-ai-production">
+      <div class="panel-flat" id="scroll-ai-production">
         <div class="tool-item">
           <div class="tool-icon">⚖️</div>
           <div class="tool-body">
@@ -2325,7 +2329,7 @@ body.frontier-mode .footer-email-input:focus { border-color: var(--frontier); }
         <span class="panel-head-title prompts">🔭 On the Horizon</span>
         <span class="panel-head-badge-horizon">6–18 Months Out</span>
       </div>
-      <div class="panel-scroll" id="scroll-ai-horizon">
+      <div class="panel-flat" id="scroll-ai-horizon">
         <div class="tool-item">
           <div class="tool-icon">🧑‍💼</div>
           <div class="tool-body">
@@ -2381,7 +2385,7 @@ body.frontier-mode .footer-email-input:focus { border-color: var(--frontier); }
         <span class="panel-head-title tools">🏭 In Production</span>
         <span class="panel-head-badge-deployed">Deployed Now</span>
       </div>
-      <div class="panel-scroll" id="scroll-rob-production">
+      <div class="panel-flat" id="scroll-rob-production">
         <div class="tool-item">
           <div class="tool-icon">🤖</div>
           <div class="tool-body">
@@ -2431,7 +2435,7 @@ body.frontier-mode .footer-email-input:focus { border-color: var(--frontier); }
         <span class="panel-head-title prompts">🔭 On the Horizon</span>
         <span class="panel-head-badge-horizon">6–18 Months Out</span>
       </div>
-      <div class="panel-scroll" id="scroll-rob-horizon">
+      <div class="panel-flat" id="scroll-rob-horizon">
         <div class="tool-item">
           <div class="tool-icon">⚡</div>
           <div class="tool-body">
@@ -2491,7 +2495,7 @@ body.frontier-mode .footer-email-input:focus { border-color: var(--frontier); }
       <div class="ph-search-tray" id="srch-tray-companies">
         <input class="ph-search-input" id="search-companies" type="text" placeholder="Search companies…" oninput="filterPanelSearch('companies')" autocomplete="off">
       </div>
-      <div class="panel-scroll" id="scroll-companies">
+      <div class="panel-flat" id="scroll-companies">
         <div class="panel-no-results" id="nores-companies">No results</div>
       </div>
     </div>
@@ -2506,7 +2510,7 @@ body.frontier-mode .footer-email-input:focus { border-color: var(--frontier); }
       <div class="ph-search-tray" id="srch-tray-rob-companies">
         <input class="ph-search-input" id="search-rob-companies" type="text" placeholder="Search companies…" oninput="filterPanelSearch('rob-companies')" autocomplete="off">
       </div>
-      <div class="panel-scroll" id="scroll-rob-companies">
+      <div class="panel-flat" id="scroll-rob-companies">
         <div class="panel-no-results" id="nores-rob-companies">No results</div>
       </div>
     </div>
@@ -2729,7 +2733,7 @@ body.frontier-mode .footer-email-input:focus { border-color: var(--frontier); }
         </div>
       </div>
       <div class="ph-search-wrap" id="frontier-prod-search" style="display:none;padding:8px 12px;border-bottom:1px solid var(--border);"><input class="ph-search-input" placeholder="Search missions…" oninput="filterPanel(this,'frontier-prod-scroll')" /></div>
-      <div class="panel-scroll" id="frontier-prod-scroll">
+      <div class="panel-flat" id="frontier-prod-scroll">
         <div class="panel-no-results" id="nores-frontier-prod" style="display:none">No results</div>
       </div>
     </div>
@@ -2740,7 +2744,7 @@ body.frontier-mode .footer-email-input:focus { border-color: var(--frontier); }
         <button class="ph-search-btn" onclick="togglePanelSearch('frontier-horizon-search')"><svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="8"/><path d="m21 21-4.35-4.35"/></svg></button>
       </div>
       <div class="ph-search-wrap" id="frontier-horizon-search" style="display:none;padding:8px 12px;border-bottom:1px solid var(--border);"><input class="ph-search-input" placeholder="Search missions…" oninput="filterPanel(this,'frontier-horizon-scroll')" /></div>
-      <div class="panel-scroll" id="frontier-horizon-scroll">
+      <div class="panel-flat" id="frontier-horizon-scroll">
         <div class="panel-no-results" id="nores-frontier-horizon" style="display:none">No results</div>
       </div>
     </div>
@@ -2758,7 +2762,7 @@ body.frontier-mode .footer-email-input:focus { border-color: var(--frontier); }
         </div>
       </div>
       <div class="ph-search-wrap" id="frontier-launch-search" style="display:none;padding:8px 12px;border-bottom:1px solid var(--border);"><input class="ph-search-input" placeholder="Search companies…" oninput="filterPanel(this,'frontier-launch-scroll')" /></div>
-      <div class="panel-scroll" id="frontier-launch-scroll">
+      <div class="panel-flat" id="frontier-launch-scroll">
         <div class="panel-no-results" id="nores-frontier-launch" style="display:none">No results</div>
       </div>
     </div>
@@ -2768,7 +2772,7 @@ body.frontier-mode .footer-email-input:focus { border-color: var(--frontier); }
         <button class="ph-search-btn" onclick="togglePanelSearch('frontier-economy-search')"><svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="8"/><path d="m21 21-4.35-4.35"/></svg></button>
       </div>
       <div class="ph-search-wrap" id="frontier-economy-search" style="display:none;padding:8px 12px;border-bottom:1px solid var(--border);"><input class="ph-search-input" placeholder="Search companies…" oninput="filterPanel(this,'frontier-economy-scroll')" /></div>
-      <div class="panel-scroll" id="frontier-economy-scroll">
+      <div class="panel-flat" id="frontier-economy-scroll">
         <div class="panel-no-results" id="nores-frontier-economy" style="display:none">No results</div>
       </div>
     </div>
@@ -2884,7 +2888,7 @@ body.frontier-mode .footer-email-input:focus { border-color: var(--frontier); }
         </div>
       </div>
       <div class="ph-search-wrap" id="longevity-prod-search" style="display:none;padding:8px 12px;border-bottom:1px solid var(--border);"><input class="ph-search-input" placeholder="Search treatments…" oninput="filterPanel(this,'longevity-prod-scroll')" /></div>
-      <div class="panel-scroll" id="longevity-prod-scroll">
+      <div class="panel-flat" id="longevity-prod-scroll">
         <div class="panel-no-results" id="nores-longevity-prod" style="display:none">No results</div>
       </div>
     </div>
@@ -2894,7 +2898,7 @@ body.frontier-mode .footer-email-input:focus { border-color: var(--frontier); }
         <button class="ph-search-btn" onclick="togglePanelSearch('longevity-horizon-search')"><svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="8"/><path d="m21 21-4.35-4.35"/><\/svg></button>
       </div>
       <div class="ph-search-wrap" id="longevity-horizon-search" style="display:none;padding:8px 12px;border-bottom:1px solid var(--border);"><input class="ph-search-input" placeholder="Search treatments…" oninput="filterPanel(this,'longevity-horizon-scroll')" /></div>
-      <div class="panel-scroll" id="longevity-horizon-scroll">
+      <div class="panel-flat" id="longevity-horizon-scroll">
         <div class="panel-no-results" id="nores-longevity-horizon" style="display:none">No results</div>
       </div>
     </div>
@@ -2912,7 +2916,7 @@ body.frontier-mode .footer-email-input:focus { border-color: var(--frontier); }
         </div>
       </div>
       <div class="ph-search-wrap" id="longevity-biotech-search" style="display:none;padding:8px 12px;border-bottom:1px solid var(--border);"><input class="ph-search-input" placeholder="Search companies…" oninput="filterPanel(this,'longevity-biotech-scroll')" /></div>
-      <div class="panel-scroll" id="longevity-biotech-scroll">
+      <div class="panel-flat" id="longevity-biotech-scroll">
         <div class="panel-no-results" id="nores-longevity-biotech" style="display:none">No results</div>
       </div>
     </div>
@@ -2922,7 +2926,7 @@ body.frontier-mode .footer-email-input:focus { border-color: var(--frontier); }
         <button class="ph-search-btn" onclick="togglePanelSearch('longevity-clinics-search')"><svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="8"/><path d="m21 21-4.35-4.35"/><\/svg></button>
       </div>
       <div class="ph-search-wrap" id="longevity-clinics-search" style="display:none;padding:8px 12px;border-bottom:1px solid var(--border);"><input class="ph-search-input" placeholder="Search companies…" oninput="filterPanel(this,'longevity-clinics-scroll')" /></div>
-      <div class="panel-scroll" id="longevity-clinics-scroll">
+      <div class="panel-flat" id="longevity-clinics-scroll">
         <div class="panel-no-results" id="nores-longevity-clinics" style="display:none">No results</div>
       </div>
     </div>
@@ -3296,8 +3300,8 @@ async function fetchCompanies() {
   try {
     const data = await supabaseFetch('companies', 'select=*&order=created_at.desc&limit=12');
     if (!data || !data.length) return;
-    const aiCos = data.filter(function(c){ return c.type === 'ai'; }).slice(0, 6);
-    const robCos = data.filter(function(c){ return c.type === 'robotics'; }).slice(0, 6);
+    const aiCos = data.filter(function(c){ return c.type === 'ai'; }).slice(0, 5);
+    const robCos = data.filter(function(c){ return c.type === 'robotics'; }).slice(0, 5);
 
     function makeWatchlistItem(c) {
       var statusClass = 'status-active';
@@ -4131,8 +4135,8 @@ async function fetchFrontierRealWorld() {
   try {
     var data = await supabaseFetch('frontier_real_world', 'select=*&order=created_at.desc&limit=20');
     if (!data || data.length === 0) return;
-    var prod = data.filter(function(d){ return (d.status||'').toLowerCase().includes('production'); });
-    var horizon = data.filter(function(d){ return (d.status||'').toLowerCase().includes('horizon'); });
+    var prod = data.filter(function(d){ return (d.status||'').toLowerCase().includes('production'); }).slice(0,5);
+    var horizon = data.filter(function(d){ return (d.status||'').toLowerCase().includes('horizon'); }).slice(0,5);
 
     function makeItem(d) {
       return '<div class="tool-item">' +
@@ -4168,8 +4172,8 @@ async function fetchFrontierCompanies() {
       ];
       data = [...launch.map(function(c){ return {...c, type:'launch'}; }), ...economy.map(function(c){ return {...c, type:'economy'}; })];
     }
-    var launchCos = data.filter(function(c){ return (c.type||c.category||'').toLowerCase().includes('launch') || ['SpaceX','Rocket Lab','Blue Origin','ULA','Relativity Space'].includes(c.name); });
-    var economyCos = data.filter(function(c){ return !launchCos.includes(c); });
+    var launchCos = data.filter(function(c){ return (c.type||c.category||'').toLowerCase().includes('launch') || ['SpaceX','Rocket Lab','Blue Origin','ULA','Relativity Space'].includes(c.name); }).slice(0,5);
+    var economyCos = data.filter(function(c){ return !launchCos.includes(c); }).slice(0,5);
 
     function makeWatchItem(c) {
       var href = c.url || ('https://www.google.com/search?q='+encodeURIComponent((c.name||'')+' space company'));
@@ -4333,8 +4337,8 @@ async function fetchLongevityRealWorld() {
   try {
     var data = await supabaseFetch('longevity_real_world', 'select=*&order=created_at.desc&limit=20');
     if (!data || data.length === 0) return;
-    var prod = data.filter(function(d){ return (d.status||'').toLowerCase().includes('production') || (d.status||'').toLowerCase().includes('clinical use'); });
-    var horizon = data.filter(function(d){ return (d.status||'').toLowerCase().includes('horizon'); });
+    var prod = data.filter(function(d){ return (d.status||'').toLowerCase().includes('production') || (d.status||'').toLowerCase().includes('clinical use'); }).slice(0,5);
+    var horizon = data.filter(function(d){ return (d.status||'').toLowerCase().includes('horizon'); }).slice(0,5);
     function makeItem(d) {
       return '<div class="tool-item"><div class="tool-name">'+(d.name||'')+'</div><div class="tool-desc">'+(d.description||'')+'</div><div class="tool-tag">'+(d.sector||'Longevity')+'</div></div>';
     }
@@ -4360,8 +4364,8 @@ async function fetchLongevityCompanies() {
         {name:'Bryan Johnson', signal:'Blueprint protocol most measured human, open-sourcing longevity', url:'https://blueprint.bryanjohnson.com', category:'Biohacking', type:'clinic'},
       ];
     }
-    var biotechCos = data.filter(function(c){ return (c.type||'').toLowerCase()==='biotech'; });
-    var clinicCos = data.filter(function(c){ return (c.type||'').toLowerCase()!=='biotech'; });
+    var biotechCos = data.filter(function(c){ return (c.type||'').toLowerCase()==='biotech'; }).slice(0,5);
+    var clinicCos = data.filter(function(c){ return (c.type||'').toLowerCase()!=='biotech'; }).slice(0,5);
     function makeItem(c) {
       var href = c.url || ('https://www.google.com/search?q='+encodeURIComponent((c.name||'')+' longevity'));
       var initials = (c.name||'?').substring(0,2).toUpperCase();
@@ -4503,6 +4507,23 @@ document.addEventListener('keydown', function(e) {
     document.getElementById('tile-modal-overlay').classList.remove('open');
     document.body.style.overflow = '';
   }
+});
+
+// ── WIRE FORECAST CARDS ──
+document.addEventListener('click', function(e) {
+  var card = e.target.closest('.forecast-card');
+  if (!card) return;
+  var prediction = card.querySelector('.forecast-prediction');
+  var pct = card.querySelector('.forecast-pct');
+  var group = card.closest('.forecast-group');
+  var timeLabel = group ? group.querySelector('.forecast-group-label') : null;
+  var barWrap = card.querySelector('.forecast-bar-wrap');
+  openTileModal({
+    label: timeLabel ? timeLabel.textContent.trim() : "Atomic's Prediction",
+    title: prediction ? prediction.textContent : '',
+    body: pct ? pct.textContent : '',
+    trend: barWrap ? '' : ''
+  });
 });
 
 // ── WIRE STAT TILES ──
