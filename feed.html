@@ -2028,6 +2028,438 @@ body.frontier-mode .footer-email-input:focus { border-color: var(--frontier); }
 }
 .nav-pill-link:hover { background: var(--surface); color: var(--text); }
 @media (max-width: 768px) { .nav-pill-link { display: none; } }
+/* ── SEARCH BAR ── */
+.search-section {
+  max-width: 1080px;
+  margin: 0 auto;
+  padding: 24px 24px 0;
+}
+.search-wrap {
+  position: relative;
+  max-width: 480px;
+}
+.search-icon {
+  position: absolute;
+  left: 14px;
+  top: 50%;
+  transform: translateY(-50%);
+  color: var(--text-dim);
+  pointer-events: none;
+}
+.search-input {
+  width: 100%;
+  padding: 11px 16px 11px 40px;
+  border: 1.5px solid var(--border);
+  border-radius: 10px;
+  font-size: 14px;
+  font-family: inherit;
+  background: var(--bg);
+  color: var(--text);
+  outline: none;
+  transition: border-color 0.15s;
+}
+.search-input:focus { border-color: var(--text); }
+.search-input::placeholder { color: var(--text-dim); }
+.search-results-count {
+  font-size: 12px;
+  color: var(--text-muted);
+  margin-top: 10px;
+  height: 18px;
+}
+.tool-card.hidden { display: none; }
+
+
+/* ── PER-SECTION SEARCH ── */
+.section-search-wrap {
+  position: relative;
+  margin-left: auto;
+}
+.section-search-btn {
+  background: none;
+  border: none;
+  cursor: pointer;
+  padding: 4px 6px;
+  color: var(--text-muted);
+  display: flex;
+  align-items: center;
+  border-radius: 6px;
+  transition: background 0.15s, color 0.15s;
+}
+.section-search-btn:hover { background: var(--surface); color: var(--text); }
+.section-search-input-wrap {
+  display: none;
+  position: absolute;
+  right: 0;
+  top: calc(100% + 6px);
+  z-index: 50;
+  background: var(--bg);
+  border: 1.5px solid var(--border);
+  border-radius: 8px;
+  box-shadow: 0 4px 16px rgba(0,0,0,0.08);
+  overflow: hidden;
+  width: 240px;
+}
+.section-search-input-wrap.open { display: block; }
+.section-search-input {
+  width: 100%;
+  padding: 10px 14px;
+  border: none;
+  font-size: 13px;
+  font-family: inherit;
+  background: transparent;
+  color: var(--text);
+  outline: none;
+}
+.section-search-input::placeholder { color: var(--text-dim); }
+
+/* ── TOOL CARDS ── */
+    .tools-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 14px;
+    }
+    .tool-card {
+      background: var(--bg);
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      padding: 20px;
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+      transition: box-shadow 0.2s, transform 0.2s, border-color 0.2s;
+      text-decoration: none;
+      color: inherit;
+      cursor: pointer;
+    }
+    .tool-card:hover {
+      box-shadow: 0 6px 24px rgba(0,0,0,0.08);
+      transform: translateY(-2px);
+      border-color: #c4c2bc;
+    }
+    .tool-card-header {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+    }
+    .tool-icon {
+      width: 40px; height: 40px;
+      border-radius: 10px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 20px;
+      flex-shrink: 0;
+      background: var(--surface);
+    }
+    .tool-card-name {
+      font-size: 15px;
+      font-weight: 700;
+      letter-spacing: -0.01em;
+      color: var(--text);
+    }
+    .tool-card-category {
+      font-size: 10px;
+      font-weight: 700;
+      letter-spacing: 0.07em;
+      text-transform: uppercase;
+      color: var(--work);
+    }
+    .tool-card-desc {
+      font-size: 13px;
+      color: var(--text-muted);
+      line-height: 1.55;
+    }
+    .tool-card-tags {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 5px;
+      margin-top: 4px;
+    }
+    .tool-tag {
+      font-size: 11px;
+      font-weight: 600;
+      padding: 3px 8px;
+      border-radius: 4px;
+      background: var(--surface);
+      color: var(--text-muted);
+      border: 1px solid var(--border);
+    }
+    .tool-card-link {
+      font-size: 12px;
+      font-weight: 600;
+      color: var(--work);
+      margin-top: auto;
+    }
+
+    
+/* ── PROMPT CARDS ── */
+    .prompts-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 14px;
+    }
+    .prompt-card {
+      background: var(--bg);
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      padding: 20px;
+      display: flex;
+      flex-direction: column;
+      gap: 12px;
+      transition: box-shadow 0.2s, transform 0.2s;
+      cursor: pointer;
+    }
+    .prompt-card:hover {
+      box-shadow: 0 6px 24px rgba(0,0,0,0.08);
+      transform: translateY(-2px);
+    }
+    .prompt-card-role {
+      font-size: 10px;
+      font-weight: 700;
+      letter-spacing: 0.07em;
+      text-transform: uppercase;
+      color: var(--work);
+    }
+    .prompt-card-title {
+      font-size: 14px;
+      font-weight: 700;
+      color: var(--text);
+      letter-spacing: -0.01em;
+      line-height: 1.35;
+    }
+    .prompt-card-text {
+      font-size: 13px;
+      color: var(--text-muted);
+      line-height: 1.6;
+      background: var(--surface);
+      border-radius: 6px;
+      padding: 12px 14px;
+      font-style: italic;
+      border-left: 3px solid var(--border);
+      flex: 1;
+    }
+    .prompt-copy-btn {
+      align-self: flex-start;
+      font-size: 12px;
+      font-weight: 600;
+      padding: 6px 14px;
+      border-radius: 6px;
+      border: 1.5px solid var(--border);
+      background: none;
+      color: var(--text-muted);
+      font-family: inherit;
+      cursor: pointer;
+      transition: all 0.15s;
+    }
+    .prompt-copy-btn:hover { background: var(--text); color: #fff; border-color: var(--text); }
+    .prompt-copy-btn.copied { background: #059669; color: #fff; border-color: #059669; }
+
+    
+/* ── ROLE CARDS ── */
+    .roles-grid {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 14px;
+    }
+    .role-card {
+      background: var(--bg);
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      padding: 20px 18px;
+      display: flex;
+      flex-direction: column;
+      gap: 8px;
+      cursor: pointer;
+      transition: box-shadow 0.2s, transform 0.2s, border-color 0.2s;
+      text-decoration: none;
+      color: inherit;
+    }
+    .role-card:hover {
+      box-shadow: 0 6px 24px rgba(0,0,0,0.08);
+      transform: translateY(-2px);
+      border-color: #c4c2bc;
+    }
+    .role-icon { font-size: 24px; }
+    .role-name {
+      font-size: 14px;
+      font-weight: 700;
+      letter-spacing: -0.01em;
+      color: var(--text);
+    }
+    .role-desc {
+      font-size: 12px;
+      color: var(--text-muted);
+      line-height: 1.5;
+    }
+
+    
+/* ── FILTER TABS ── */
+    .filter-section {
+      position: sticky;
+      top: 56px;
+      z-index: 50;
+      background: rgba(250,250,248,0.95);
+      backdrop-filter: blur(12px);
+      border-bottom: 1px solid var(--border);
+    }
+    .filter-inner {
+      max-width: 1080px;
+      margin: 0 auto;
+      padding: 0 24px;
+      display: flex;
+      align-items: center;
+      gap: 6px;
+      height: 52px;
+      overflow-x: auto;
+      scrollbar-width: none;
+    }
+    .filter-inner::-webkit-scrollbar { display: none; }
+    .filter-tab {
+      padding: 6px 16px;
+      font-size: 13px;
+      font-weight: 600;
+      border-radius: 20px;
+      border: 1.5px solid var(--border);
+      background: none;
+      color: var(--text-muted);
+      font-family: inherit;
+      cursor: pointer;
+      white-space: nowrap;
+      transition: all 0.15s;
+    }
+    .filter-tab:hover { border-color: var(--text-muted); color: var(--text); }
+    .filter-tab.active {
+      background: var(--text);
+      color: #fff;
+      border-color: var(--text);
+    }
+
+    
+/* ── HIDDEN SECTIONS ── */
+    .toolkit-section[data-cat] { display: none; }
+    .toolkit-section[data-cat].visible { display: block; }
+    .toolkit-section:not([data-cat]) { display: block; }
+
+    
+/* ── SECTION ── */
+    .toolkit-section {
+      margin-bottom: 64px;
+    }
+    .toolkit-section-header {
+      display: flex;
+      align-items: baseline;
+      gap: 12px;
+      margin-bottom: 24px;
+      padding-bottom: 14px;
+      border-bottom: 2px solid var(--text);
+    }
+    .toolkit-section-icon { font-size: 20px; }
+    .toolkit-section-title {
+      font-size: 20px;
+      font-weight: 700;
+      letter-spacing: -0.02em;
+      color: var(--text);
+    }
+    .toolkit-section-count {
+      font-size: 12px;
+      color: var(--text-dim);
+      font-weight: 500;
+    }
+
+    
+/* ── TOOLKIT WORK COLOR ── */
+.vertical-btn.work { color: var(--text); }
+.vertical-btn.active.work { color: var(--text); background: var(--surface); }
+
+/* ── INLINE SECTION PROMPTS ── */
+.section-prompts {
+  margin-top: 28px;
+  border-top: 1px solid var(--border);
+  padding-top: 20px;
+}
+.section-prompts-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 14px;
+}
+.section-prompts-title {
+  font-size: 13px;
+  font-weight: 700;
+  letter-spacing: -0.01em;
+  color: var(--text);
+}
+.section-prompts-search-wrap {
+  position: relative;
+}
+.section-prompts-search {
+  padding: 6px 12px 6px 30px;
+  border: 1px solid var(--border);
+  border-radius: 20px;
+  font-size: 12px;
+  font-family: inherit;
+  background: var(--bg);
+  color: var(--text);
+  outline: none;
+  width: 180px;
+  transition: border-color 0.15s, width 0.2s;
+}
+.section-prompts-search:focus { border-color: var(--text); width: 220px; }
+.section-prompts-search-icon {
+  position: absolute;
+  left: 9px;
+  top: 50%;
+  transform: translateY(-50%);
+  color: var(--text-dim);
+  pointer-events: none;
+}
+.section-prompts-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr;
+  gap: 12px;
+}
+.inline-prompt-card {
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: 8px;
+  padding: 14px 16px;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  transition: box-shadow 0.15s;
+}
+.inline-prompt-card:hover { box-shadow: 0 3px 12px rgba(0,0,0,0.07); }
+.inline-prompt-card.hidden { display: none; }
+.inline-prompt-title {
+  font-size: 12px;
+  font-weight: 700;
+  color: var(--text);
+  letter-spacing: -0.01em;
+}
+.inline-prompt-text {
+  font-size: 12px;
+  color: var(--text-muted);
+  line-height: 1.55;
+  font-style: italic;
+  flex: 1;
+}
+.inline-prompt-copy {
+  align-self: flex-start;
+  font-size: 11px;
+  font-weight: 600;
+  padding: 4px 10px;
+  border-radius: 5px;
+  border: 1px solid var(--border);
+  background: none;
+  color: var(--text-muted);
+  font-family: inherit;
+  cursor: pointer;
+  transition: all 0.15s;
+  margin-top: 2px;
+}
+.inline-prompt-copy:hover { background: var(--text); color: #fff; border-color: var(--text); }
+.inline-prompt-copy.copied { background: #059669; color: #fff; border-color: #059669; }
+@media (max-width: 768px) { .section-prompts-grid { grid-template-columns: 1fr; } }
 </style>
 </head>
 <body>
@@ -2211,6 +2643,7 @@ body.frontier-mode .footer-email-input:focus { border-color: var(--frontier); }
         <button class="vertical-btn active" id="btn-ai-robotics" onclick="switchVertical('ai')">🦾 AI &amp; Robotics</button>
         <button class="vertical-btn frontier" id="btn-frontier" onclick="switchVertical('frontier')">🚀 The Frontier</button>
         <button class="vertical-btn longevity" id="btn-longevity" onclick="switchVertical('longevity')">🧬 Longevity</button>
+        <button class="vertical-btn work" id="btn-work" onclick="switchVertical('work')">🛠️ AI at Work</button>
       </div>
       <!-- Mobile dropdown -->
       <div class="vertical-dropdown" id="vertical-dropdown">
@@ -2224,9 +2657,10 @@ body.frontier-mode .footer-email-input:focus { border-color: var(--frontier); }
           <button class="vertical-dropdown-item frontier" onclick="switchVertical('frontier');closeVerticalDropdown();">🚀 The Frontier</button>
           <div class="vertical-dropdown-divider"></div>
           <button class="vertical-dropdown-item longevity" onclick="switchVertical('longevity');closeVerticalDropdown();">🧬 Longevity</button>
+          <div class="vertical-dropdown-divider"></div>
+          <button class="vertical-dropdown-item" onclick="switchVertical('work');closeVerticalDropdown();">🛠️ AI at Work</button>
         </div>
       </div>
-      <a href="/toolkit.html" class="nav-pill-link">AI at Work</a>
       <button class="btn-filter" id="saved-btn">
         🔖 Saved<span id="saved-count-badge" style="display:none;margin-left:5px;background:var(--blue);color:white;font-size:10px;padding:1px 6px;border-radius:100px;" id="saved-count">0</span>
       </button>
@@ -2595,95 +3029,7 @@ body.frontier-mode .footer-email-input:focus { border-color: var(--frontier); }
     <div class="forecast-panel"><div class="forecast-panel-head"><span class="forecast-panel-icon">⚡</span><span class="forecast-panel-head-title">Loading...</span></div></div>
   </div>
 
-  <!-- EXPLORE TOOLS & PROMPTS CTA -->
-  <div class="stat-tile" style="
-    margin-top: 48px;
-    padding: 32px;
-    background: var(--bg);
-    border: 1px solid var(--border);
-    border-radius: var(--radius);
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    gap: 24px;
-    flex-wrap: wrap;
-  ">
-    <div>
-      <div style="font-size:17px;font-weight:700;letter-spacing:-0.02em;color:var(--text);margin-bottom:6px;">Trending AI Tools &amp; Top Prompts</div>
-      <div style="font-size:14px;color:var(--text-muted);max-width:480px;">The best AI tools shipping right now and the prompts powering advanced users updated daily.</div>
-    </div>
-    <button id="explore-toggle-btn" onclick="
-      var sec = document.getElementById('tools-prompts-section');
-      var btn = document.getElementById('explore-toggle-btn');
-      var isOpen = sec.style.display !== 'none';
-      sec.style.display = isOpen ? 'none' : 'grid';
-      btn.textContent = isOpen ? 'Explore Tools \u0026 Prompts \u2192' : '\u2190 Close';
-    " style="
-      display: inline-flex;
-      align-items: center;
-      gap: 8px;
-      padding: 12px 22px;
-      background: var(--text);
-      color: white;
-      border: none;
-      border-radius: 10px;
-      font-family: inherit;
-      font-size: 14px;
-      font-weight: 600;
-      cursor: pointer;
-      white-space: nowrap;
-      transition: opacity 0.15s;
-      flex-shrink: 0;
-    " onmouseover="this.style.opacity='0.85'" onmouseout="this.style.opacity='1'">Explore Tools &amp; Prompts →</button>
-  </div>
 
-  <!-- TOOLS & PROMPTS EXPANDABLE PANEL (renders directly below button) -->
-  <div class="dual-trending-grid" id="tools-prompts-section" style="display:none;margin-top:24px;">
-
-    <!-- Trending AI Tools -->
-    <div class="panel-box">
-      <div class="panel-head">
-        <span class="panel-head-title tools">▭ Trending AI Tools</span>
-        <button class="ph-search-btn" id="srch-btn-tools" onclick="togglePhSearch('tools')" title="Search"><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg></button>
-        <span class="panel-head-badge">Updated Daily</span>
-      </div>
-      <div class="ph-search-tray" id="srch-tray-tools">
-        <input class="ph-search-input" id="search-tools" type="text" placeholder="Search tools…" oninput="filterPanelSearch('tools')" autocomplete="off">
-      </div>
-      <div class="panel-scroll" id="scroll-tools">
-        <div class="panel-no-results" id="nores-tools">No results</div>
-        <div class="tool-item"><div class="tool-icon">🤖</div><div class="tool-body"><div class="tool-name">Cursor <span class="tool-badge-hot">🔥 Hot</span></div><div class="tool-desc">AI-native code editor that writes, refactors, and debugs entire features from a spec. The IDE replacing VS Code for serious developers.</div><div class="tool-footer"><span class="tool-cat">⊟ Developer</span><span class="tool-stars">★★★★★</span><a class="tool-try" href="https://cursor.com" target="_blank" rel="noopener">Try It →</a></div></div></div>
-        <div class="tool-item"><div class="tool-icon">🔍</div><div class="tool-body"><div class="tool-name">Perplexity Pro <span class="tool-badge-hot">🔥 Hot</span></div><div class="tool-desc">AI-powered search with real-time citations. Replaces hours of research with a single query. Pro adds document analysis and custom knowledge bases.</div><div class="tool-footer"><span class="tool-cat">⊞ Research</span><span class="tool-stars">★★★★☆</span><a class="tool-try" href="https://perplexity.ai" target="_blank" rel="noopener">Try It →</a></div></div></div>
-        <div class="tool-item"><div class="tool-icon">🌟</div><div class="tool-body"><div class="tool-name">Midjourney v7 <span class="tool-badge-new">✨ New</span></div><div class="tool-desc">State-of-the-art image generation with unmatched photorealism and style control. v7 adds personalization profiles and improved text rendering.</div><div class="tool-footer"><span class="tool-cat">🎨 Creative</span><span class="tool-stars">★★★★★</span><a class="tool-try" href="https://midjourney.com" target="_blank" rel="noopener">Try It →</a></div></div></div>
-        <div class="tool-item"><div class="tool-icon">🚀</div><div class="tool-body"><div class="tool-name">Replit Agent <span class="tool-badge-new">✨ New</span></div><div class="tool-desc">Describe an app in plain English and watch it get built, tested, and deployed autonomously. No prior coding required. Full-stack in minutes.</div><div class="tool-footer"><span class="tool-cat">⊟ Developer</span><span class="tool-stars">★★★★☆</span><a class="tool-try" href="https://replit.com" target="_blank" rel="noopener">Try It →</a></div></div></div>
-        <div class="tool-item"><div class="tool-icon">🎙️</div><div class="tool-body"><div class="tool-name">ElevenLabs</div><div class="tool-desc">Ultra-realistic AI voice cloning and text-to-speech. Used for podcasts, audiobooks, dubbing, and voice agents. The clear leader in audio AI.</div><div class="tool-footer"><span class="tool-cat">🎙 Audio</span><span class="tool-stars">★★★★☆</span><a class="tool-try" href="https://elevenlabs.io" target="_blank" rel="noopener">Try It →</a></div></div></div>
-        <div class="tool-item"><div class="tool-icon">📄</div><div class="tool-body"><div class="tool-name">NotebookLM <span class="tool-badge-new">✨ New</span></div><div class="tool-desc">Google's AI research assistant that ingests your documents and becomes an expert on them. Generates summaries, deep answers, and podcast-style audio overviews.</div><div class="tool-footer"><span class="tool-cat">⊞ Research</span><span class="tool-stars">★★★★☆</span><a class="tool-try" href="https://notebooklm.google.com" target="_blank" rel="noopener">Try It →</a></div></div></div>
-        <div class="tool-item"><div class="tool-icon">🎬</div><div class="tool-body"><div class="tool-name">Sora <span class="tool-badge-hot">🔥 Hot</span></div><div class="tool-desc">OpenAI's text-to-video model, now public. Generate cinematic video clips from a text description. The quality gap over competitors is significant.</div><div class="tool-footer"><span class="tool-cat">🎬 Video</span><span class="tool-stars">★★★★★</span><a class="tool-try" href="https://sora.com" target="_blank" rel="noopener">Try It →</a></div></div></div>
-      </div>
-    </div>
-
-    <!-- Top Prompts -->
-    <div class="panel-box">
-      <div class="panel-head">
-        <span class="panel-head-title prompts">⚡ Top Prompts</span>
-        <button class="ph-search-btn" id="srch-btn-prompts" onclick="togglePhSearch('prompts')" title="Search"><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg></button>
-        <span class="panel-head-badge">Trending This Week</span>
-      </div>
-      <div class="ph-search-tray" id="srch-tray-prompts">
-        <input class="ph-search-input" id="search-prompts" type="text" placeholder="Search prompts…" oninput="filterPanelSearch('prompts')" autocomplete="off">
-      </div>
-      <div class="panel-scroll" id="scroll-prompts">
-        <div class="panel-no-results" id="nores-prompts">No results</div>
-        <div class="prompt-item"><div class="prompt-use-case">⊙ Strategic Analysis</div><div class="prompt-text">"Act as a McKinsey senior partner. Analyze [company/market] using a first-principles lens. Identify the three most underappreciated risks and the single highest-leverage opportunity. Be direct skip the caveats."</div><div class="prompt-footer"><button class="prompt-copy-btn" data-prompt="Act as a McKinsey senior partner. Analyze [company/market] using a first-principles lens. Identify the three most underappreciated risks and the single highest-leverage opportunity. Be direct skip the caveats.">✤ Copy</button><span class="prompt-level">Advanced</span></div></div>
-        <div class="prompt-item"><div class="prompt-use-case">⊟ Developer</div><div class="prompt-text">"Review this code as a senior engineer doing a production PR review. Flag any bugs, security issues, performance problems, and style violations. Suggest rewrites for anything below production standard."</div><div class="prompt-footer"><button class="prompt-copy-btn" data-prompt="Review this code as a senior engineer doing a production PR review. Flag any bugs, security issues, performance problems, and style violations. Suggest rewrites for anything below production standard.">✤ Copy</button><span class="prompt-level">Developer</span></div></div>
-        <div class="prompt-item"><div class="prompt-use-case">⊞ Research</div><div class="prompt-text">"Summarize the current state of [topic] in five bullet points: what is settled, what is contested, what is emerging, what is overhyped, and what most people are missing. Cite reasoning, not just conclusions."</div><div class="prompt-footer"><button class="prompt-copy-btn" data-prompt="Summarize the current state of [topic] in five bullet points: what is settled, what is contested, what is emerging, what is overhyped, and what most people are missing. Cite reasoning, not just conclusions.">✤ Copy</button><span class="prompt-level">Intermediate</span></div></div>
-        <div class="prompt-item"><div class="prompt-use-case">⊕ Writing</div><div class="prompt-text">"Rewrite this [email/post/document] for a C-suite audience. Make it 40% shorter. Lead with the recommendation, not the background. Use plain language no jargon. End with one clear ask."</div><div class="prompt-footer"><button class="prompt-copy-btn" data-prompt="Rewrite this [email/post/document] for a C-suite audience. Make it 40% shorter. Lead with the recommendation, not the background. Use plain language no jargon. End with one clear ask.">✤ Copy</button><span class="prompt-level">Beginner</span></div></div>
-        <div class="prompt-item"><div class="prompt-use-case">★ Productivity</div><div class="prompt-text">"I have [X hours] and these tasks: [list]. Prioritize them using the Eisenhower Matrix. Then build me a time-blocked schedule that protects deep work in the morning and batches shallow work in the afternoon."</div><div class="prompt-footer"><button class="prompt-copy-btn" data-prompt="I have [X hours] and these tasks: [list]. Prioritize them using the Eisenhower Matrix. Then build me a time-blocked schedule that protects deep work in the morning and batches shallow work in the afternoon.">✤ Copy</button><span class="prompt-level">Beginner</span></div></div>
-        <div class="prompt-item"><div class="prompt-use-case">⊚ Reasoning</div><div class="prompt-text">"Steel-man the opposing view on [topic]. Give the strongest possible version of the argument not a strawman. Then identify the two points where a thoughtful critic would still disagree even with the best version."</div><div class="prompt-footer"><button class="prompt-copy-btn" data-prompt="Steel-man the opposing view on [topic]. Give the strongest possible version of the argument not a strawman. Then identify the two points where a thoughtful critic would still disagree even with the best version.">✤ Copy</button><span class="prompt-level">Advanced</span></div></div>
-      </div>
-    </div>
-
-  </div>
 
 </div><!-- end section-ai-robotics -->
 
@@ -2994,6 +3340,1160 @@ body.frontier-mode .footer-email-input:focus { border-color: var(--frontier); }
   </div>
 
 </div><!-- end section-longevity -->
+
+<!-- AI AT WORK SECTION -->
+<div id="section-work" style="display:none;">
+
+  <!-- TAGLINE STRIP -->
+  <div style="display:flex;align-items:center;gap:10px;padding-bottom:28px;border-bottom:1px solid var(--border);margin-bottom:24px;">
+    <span style="font-size:22px;font-weight:700;letter-spacing:-0.025em;color:var(--text);line-height:1.2;">🛠️ AI at Work</span>
+    <span style="width:4px;height:4px;border-radius:50%;background:var(--text-dim);flex-shrink:0;margin-top:2px;"></span>
+    <span style="font-size:17px;color:var(--text-muted);font-weight:400;letter-spacing:-0.01em;">Tools, prompts, and guides for every role. Start using AI in your work today.</span>
+  </div>
+
+  <!-- FILTER TABS -->
+  <div style="display:flex;align-items:center;gap:6px;flex-wrap:wrap;margin-bottom:20px;overflow-x:auto;scrollbar-width:none;">
+    <button class="filter-tab active" onclick="filterToolSection('all', this)">All</button>
+    <button class="filter-tab" onclick="filterToolSection('writing', this)">Writing</button>
+    <button class="filter-tab" onclick="filterToolSection('research', this)">Research</button>
+    <button class="filter-tab" onclick="filterToolSection('sales', this)">Sales</button>
+    <button class="filter-tab" onclick="filterToolSection('marketing', this)">Marketing</button>
+    <button class="filter-tab" onclick="filterToolSection('finance', this)">Finance</button>
+    <button class="filter-tab" onclick="filterToolSection('hr', this)">HR</button>
+    <button class="filter-tab" onclick="filterToolSection('operations', this)">Operations</button>
+  </div>
+
+  <!-- GLOBAL SEARCH -->
+  <div style="margin-bottom:28px;">
+    <div class="search-wrap">
+      <svg class="search-icon" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="8"/><path d="m21 21-4.35-4.35"/></svg>
+      <input type="text" class="search-input" id="work-tool-search" placeholder="Search tools by name, category, or use case..." oninput="searchWorkTools(this.value)" />
+    </div>
+    <div class="search-results-count" id="work-search-count"></div>
+  </div>
+
+  <!-- TOOLKIT CONTENT -->
+  <div id="work-toolkit-content">
+
+
+    <!-- BY ROLE -->
+    <section class="toolkit-section">
+      <div class="toolkit-section-header">
+        <span class="toolkit-section-icon">👤</span>
+        <span class="toolkit-section-title">Start Here — By Role</span>
+        <span class="toolkit-section-count">8 roles</span>
+      </div>
+      <div class="roles-grid">
+        <a href="#sales" class="role-card" onclick="filterToolSection('sales', null)">
+          <div class="role-icon">💼</div>
+          <div class="role-name">Sales</div>
+          <div class="role-desc">Outreach, follow-ups, deal strategy, and CRM automation</div>
+        </a>
+        <a href="#marketing" class="role-card" onclick="filterToolSection('marketing', null)">
+          <div class="role-icon">📣</div>
+          <div class="role-name">Marketing</div>
+          <div class="role-desc">Content, campaigns, SEO, social, and brand voice</div>
+        </a>
+        <a href="#finance" class="role-card" onclick="filterToolSection('finance', null)">
+          <div class="role-icon">📊</div>
+          <div class="role-name">Finance</div>
+          <div class="role-desc">Analysis, modeling, reporting, and forecasting</div>
+        </a>
+        <a href="#hr" class="role-card" onclick="filterToolSection('hr', null)">
+          <div class="role-icon">🤝</div>
+          <div class="role-name">HR</div>
+          <div class="role-desc">Recruiting, onboarding, performance, and culture</div>
+        </a>
+        <a href="#operations" class="role-card" onclick="filterToolSection('operations', null)">
+          <div class="role-icon">⚙️</div>
+          <div class="role-name">Operations</div>
+          <div class="role-desc">Workflows, automation, process design, and efficiency</div>
+        </a>
+        <a href="#writing" class="role-card" onclick="filterToolSection('writing', null)">
+          <div class="role-icon">✍️</div>
+          <div class="role-name">Writing</div>
+          <div class="role-desc">Emails, docs, proposals, and executive communication</div>
+        </a>
+        <a href="#research" class="role-card" onclick="filterToolSection('research', null)">
+          <div class="role-icon">🔍</div>
+          <div class="role-name">Research</div>
+          <div class="role-desc">Market intelligence, competitive analysis, and synthesis</div>
+        </a>
+
+      </div>
+    </section>
+
+    <!-- WRITING TOOLS -->
+    <section class="toolkit-section" data-cat="writing" id="writing">
+      <div class="toolkit-section-header">
+        <span class="toolkit-section-icon">✍️</span>
+        <span class="toolkit-section-title">Writing</span>
+        <div class="section-search-wrap">
+          <button class="section-search-btn" onclick="toggleSectionSearch(this)" title="Search Writing">
+            <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="8"/><path d="m21 21-4.35-4.35"/><\/svg>
+          </button>
+          <div class="section-search-input-wrap">
+            <input class="section-search-input" placeholder="Search writing..." oninput="filterSectionCards(this, 'writing')" />
+          </div>
+        </div>
+        <span class="toolkit-section-count">8 tools</span>
+      </div>
+      <div class="tools-grid">
+        <a href="https://claude.ai" target="_blank" rel="noopener" class="tool-card">
+          <div class="tool-card-header">
+            <div class="tool-icon">🧠</div>
+            <div>
+              <div class="tool-card-name">Claude</div>
+              <div class="tool-card-category">Writing / Thinking</div>
+            </div>
+          </div>
+          <div class="tool-card-desc">Best-in-class for long-form writing, nuanced editing, strategic memos, and executive communication. Handles complex context better than any other model.</div>
+          <div class="tool-card-tags"><span class="tool-tag">Emails</span><span class="tool-tag">Memos</span><span class="tool-tag">Editing</span></div>
+          <div class="tool-card-link">Try Claude →</div>
+        </a>
+        <a href="https://chatgpt.com" target="_blank" rel="noopener" class="tool-card">
+          <div class="tool-card-header">
+            <div class="tool-icon">💬</div>
+            <div>
+              <div class="tool-card-name">ChatGPT</div>
+              <div class="tool-card-category">Writing / General</div>
+            </div>
+          </div>
+          <div class="tool-card-desc">The most widely used AI writing assistant. Strong for drafting, brainstorming, and first-pass content across any format or tone.</div>
+          <div class="tool-card-tags"><span class="tool-tag">Drafting</span><span class="tool-tag">Brainstorm</span><span class="tool-tag">Content</span></div>
+          <div class="tool-card-link">Try ChatGPT →</div>
+        </a>
+        <a href="https://notion.so/product/ai" target="_blank" rel="noopener" class="tool-card">
+          <div class="tool-card-header">
+            <div class="tool-icon">📝</div>
+            <div>
+              <div class="tool-card-name">Notion AI</div>
+              <div class="tool-card-category">Writing / Docs</div>
+            </div>
+          </div>
+          <div class="tool-card-desc">AI writing built directly into your workspace. Summarize meeting notes, draft documents, and rewrite content without switching tools.</div>
+          <div class="tool-card-tags"><span class="tool-tag">Docs</span><span class="tool-tag">Summaries</span><span class="tool-tag">Notes</span></div>
+          <div class="tool-card-link">Try Notion AI →</div>
+        </a>
+        <a href="https://grammarly.com" target="_blank" rel="noopener" class="tool-card">
+          <div class="tool-card-header">
+            <div class="tool-icon">✅</div>
+            <div>
+              <div class="tool-card-name">Grammarly</div>
+              <div class="tool-card-category">Writing / Editing</div>
+            </div>
+          </div>
+          <div class="tool-card-desc">Real-time writing suggestions across tone, clarity, and correctness. Works everywhere you write — email, docs, Slack, browser.</div>
+          <div class="tool-card-tags"><span class="tool-tag">Editing</span><span class="tool-tag">Tone</span><span class="tool-tag">Clarity</span></div>
+          <div class="tool-card-link">Try Grammarly →</div>
+        </a>
+        <a href="https://jasper.ai" target="_blank" rel="noopener" class="tool-card">
+          <div class="tool-card-header">
+            <div class="tool-icon">🚀</div>
+            <div>
+              <div class="tool-card-name">Jasper</div>
+              <div class="tool-card-category">Writing / Marketing</div>
+            </div>
+          </div>
+          <div class="tool-card-desc">AI writing platform built for marketing teams. Templates for ads, blogs, landing pages, and social. Trained on high-converting copy.</div>
+          <div class="tool-card-tags"><span class="tool-tag">Marketing</span><span class="tool-tag">Ads</span><span class="tool-tag">Copy</span></div>
+          <div class="tool-card-link">Try Jasper →</div>
+        </a>
+        <a href="https://gamma.app" target="_blank" rel="noopener" class="tool-card">
+          <div class="tool-card-header">
+            <div class="tool-icon">🎨</div>
+            <div>
+              <div class="tool-card-name">Gamma</div>
+              <div class="tool-card-category">Writing / Presentations</div>
+            </div>
+          </div>
+          <div class="tool-card-desc">AI-generated presentations, documents, and websites from a prompt. No design skills needed. Output looks polished in minutes.</div>
+          <div class="tool-card-tags"><span class="tool-tag">Decks</span><span class="tool-tag">Docs</span><span class="tool-tag">Design</span></div>
+          <div class="tool-card-link">Try Gamma →</div>
+        </a>
+        <a href="https://www.hemingwayapp.com" target="_blank" rel="noopener" class="tool-card">
+          <div class="tool-card-header">
+            <div class="tool-icon">✒️</div>
+            <div>
+              <div class="tool-card-name">Hemingway</div>
+              <div class="tool-card-category">Writing / Clarity</div>
+            </div>
+          </div>
+          <div class="tool-card-desc">Paste any text and it highlights sentences that are too complex, passive voice, and weak adverbs. Forces cleaner, more direct writing instantly.</div>
+          <div class="tool-card-tags"><span class="tool-tag">Clarity</span><span class="tool-tag">Editing</span><span class="tool-tag">Simplicity</span></div>
+          <div class="tool-card-link">Try Hemingway →</div>
+        </a>
+        <a href="https://lex.page" target="_blank" rel="noopener" class="tool-card">
+          <div class="tool-card-header">
+            <div class="tool-icon">📄</div>
+            <div>
+              <div class="tool-card-name">Lex</div>
+              <div class="tool-card-category">Writing / Long-form</div>
+            </div>
+          </div>
+          <div class="tool-card-desc">AI writing tool built for long-form content. Ask for suggestions mid-draft without losing your train of thought. Designed for writers who think in paragraphs.</div>
+          <div class="tool-card-tags"><span class="tool-tag">Long-form</span><span class="tool-tag">Drafting</span><span class="tool-tag">Essays</span></div>
+          <div class="tool-card-link">Try Lex →</div>
+        </a>
+        <a href="https://www.wordtune.com" target="_blank" rel="noopener" class="tool-card">
+          <div class="tool-card-header"><div class="tool-icon">🎵</div><div>
+            <div class="tool-card-name">Wordtune</div>
+            <div class="tool-card-category">Writing / Rewriting</div>
+          </div></div>
+          <div class="tool-card-desc">AI writing companion that rewrites sentences while preserving your voice and intent. Offers multiple tone options: casual, formal, shorter, longer — all in one click.</div>
+          <div class="tool-card-tags"><span class="tool-tag">Rewriting</span><span class="tool-tag">Tone</span><span class="tool-tag">Voice</span></div>
+          <div class="tool-card-link">Try Wordtune →</div>
+        </a>
+
+      </div>
+    
+      <div class="section-prompts">
+        <div class="section-prompts-header">
+          <span class="section-prompts-title">⚡ Prompts for Writing</span>
+          <div class="section-prompts-search-wrap">
+            <svg class="section-prompts-search-icon" width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="8"/><path d="m21 21-4.35-4.35"/></svg>
+            <input class="section-prompts-search" placeholder="Search prompts..." oninput="searchSectionPrompts(this, 'writing')" />
+          </div>
+        </div>
+        <div class="section-prompts-grid" id="prompts-writing">
+        <div class="inline-prompt-card" data-prompt-text="Rewrite this text to be clearer, shorter, and more direct. Remove hedging, passive voice, and filler. Keep it under 75 words. Here is the original: [paste text]">
+          <div class="inline-prompt-title">Rewrite for Clarity</div>
+          <div class="inline-prompt-text">"Rewrite this text to be clearer, shorter, and more direct. Remove hedging, passive voice, and filler. Keep it under 75 words. Here is the original: [paste text]"</div>
+          <button class="inline-prompt-copy" onclick="copyInlinePrompt(this)">Copy</button>
+        </div>
+        <div class="inline-prompt-card" data-prompt-text="Write a professional email to [Name/Title] about [topic]. Be concise, lead with what I need, and keep it under 100 words. Tone: [formal/conversational].">
+          <div class="inline-prompt-title">Executive Email</div>
+          <div class="inline-prompt-text">"Write a professional email to [Name/Title] about [topic]. Be concise, lead with what I need, and keep it under 100 words. Tone: [formal/conversational]."</div>
+          <button class="inline-prompt-copy" onclick="copyInlinePrompt(this)">Copy</button>
+        </div>
+        <div class="inline-prompt-card" data-prompt-text="Turn these rough notes into a polished, well-structured document with clear sections and professional language: [paste notes]">
+          <div class="inline-prompt-title">Turn Notes into Doc</div>
+          <div class="inline-prompt-text">"Turn these rough notes into a polished, well-structured document with clear sections and professional language: [paste notes]"</div>
+          <button class="inline-prompt-copy" onclick="copyInlinePrompt(this)">Copy</button>
+        </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- RESEARCH TOOLS -->
+    <section class="toolkit-section" data-cat="research" id="research">
+      <div class="toolkit-section-header">
+        <span class="toolkit-section-icon">🔍</span>
+        <span class="toolkit-section-title">Research</span>
+        <div class="section-search-wrap">
+          <button class="section-search-btn" onclick="toggleSectionSearch(this)" title="Search Research">
+            <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="8"/><path d="m21 21-4.35-4.35"/><\/svg>
+          </button>
+          <div class="section-search-input-wrap">
+            <input class="section-search-input" placeholder="Search research..." oninput="filterSectionCards(this, 'research')" />
+          </div>
+        </div>
+        <span class="toolkit-section-count">8 tools</span>
+      </div>
+      <div class="tools-grid">
+        <a href="https://perplexity.ai" target="_blank" rel="noopener" class="tool-card">
+          <div class="tool-card-header">
+            <div class="tool-icon">🔎</div>
+            <div>
+              <div class="tool-card-name">Perplexity</div>
+              <div class="tool-card-category">Research / Search</div>
+            </div>
+          </div>
+          <div class="tool-card-desc">AI-powered search that returns answers with cited sources. Best for real-time research, market intelligence, and competitive analysis.</div>
+          <div class="tool-card-tags"><span class="tool-tag">Search</span><span class="tool-tag">Citations</span><span class="tool-tag">Real-time</span></div>
+          <div class="tool-card-link">Try Perplexity →</div>
+        </a>
+        <a href="https://elicit.com" target="_blank" rel="noopener" class="tool-card">
+          <div class="tool-card-header">
+            <div class="tool-icon">📚</div>
+            <div>
+              <div class="tool-card-name">Elicit</div>
+              <div class="tool-card-category">Research / Analysis</div>
+            </div>
+          </div>
+          <div class="tool-card-desc">AI research assistant that finds, summarizes, and synthesizes academic papers and reports. Ideal for deep due diligence and evidence-based decisions.</div>
+          <div class="tool-card-tags"><span class="tool-tag">Papers</span><span class="tool-tag">Synthesis</span><span class="tool-tag">Analysis</span></div>
+          <div class="tool-card-link">Try Elicit →</div>
+        </a>
+        <a href="https://consensus.app" target="_blank" rel="noopener" class="tool-card">
+          <div class="tool-card-header">
+            <div class="tool-icon">🧬</div>
+            <div>
+              <div class="tool-card-name">Consensus</div>
+              <div class="tool-card-category">Research / Science</div>
+            </div>
+          </div>
+          <div class="tool-card-desc">Search the scientific literature using natural language. Ask questions, get answers backed by peer-reviewed research with direct citations.</div>
+          <div class="tool-card-tags"><span class="tool-tag">Science</span><span class="tool-tag">Evidence</span><span class="tool-tag">Citations</span></div>
+          <div class="tool-card-link">Try Consensus →</div>
+        </a>
+        <a href="https://you.com" target="_blank" rel="noopener" class="tool-card">
+          <div class="tool-card-header">
+            <div class="tool-icon">🌐</div>
+            <div>
+              <div class="tool-card-name">You.com</div>
+              <div class="tool-card-category">Research / Search</div>
+            </div>
+          </div>
+          <div class="tool-card-desc">AI search engine with real-time web access and source attribution. Good for current events, product research, and fast fact-checking.</div>
+          <div class="tool-card-tags"><span class="tool-tag">Web</span><span class="tool-tag">Real-time</span><span class="tool-tag">Search</span></div>
+          <div class="tool-card-link">Try You.com →</div>
+        </a>
+        <a href="https://notebooklm.google.com" target="_blank" rel="noopener" class="tool-card">
+          <div class="tool-card-header">
+            <div class="tool-icon">📓</div>
+            <div>
+              <div class="tool-card-name">NotebookLM</div>
+              <div class="tool-card-category">Research / Synthesis</div>
+            </div>
+          </div>
+          <div class="tool-card-desc">Google's AI notebook. Upload your own documents and have a conversation with them. Summarizes, cross-references, and answers questions from your sources.</div>
+          <div class="tool-card-tags"><span class="tool-tag">Documents</span><span class="tool-tag">Synthesis</span><span class="tool-tag">Q&A</span></div>
+          <div class="tool-card-link">Try NotebookLM →</div>
+        </a>
+        <a href="https://gemini.google.com" target="_blank" rel="noopener" class="tool-card">
+          <div class="tool-card-header">
+            <div class="tool-icon">💎</div>
+            <div>
+              <div class="tool-card-name">Gemini Deep Research</div>
+              <div class="tool-card-category">Research / Deep Dive</div>
+            </div>
+          </div>
+          <div class="tool-card-desc">Google Gemini's Deep Research mode autonomously browses the web, synthesizes findings, and produces structured research reports on any topic in minutes.</div>
+          <div class="tool-card-tags"><span class="tool-tag">Deep Research</span><span class="tool-tag">Web</span><span class="tool-tag">Reports</span></div>
+          <div class="tool-card-link">Try Gemini →</div>
+        </a>
+        <a href="https://www.tavily.com" target="_blank" rel="noopener" class="tool-card">
+          <div class="tool-card-header">
+            <div class="tool-icon">🔭</div>
+            <div>
+              <div class="tool-card-name">Tavily</div>
+              <div class="tool-card-category">Research / API</div>
+            </div>
+          </div>
+          <div class="tool-card-desc">AI-optimized search API built for research workflows. Returns clean, structured results that AI agents and researchers can immediately use without extra scraping.</div>
+          <div class="tool-card-tags"><span class="tool-tag">Search API</span><span class="tool-tag">Structured</span><span class="tool-tag">Agents</span></div>
+          <div class="tool-card-link">Try Tavily →</div>
+        </a>
+        <a href="https://www.microsoft.com/en-us/bing/chat" target="_blank" rel="noopener" class="tool-card">
+          <div class="tool-card-header">
+            <div class="tool-icon">🔵</div>
+            <div>
+              <div class="tool-card-name">Copilot Search</div>
+              <div class="tool-card-category">Research / Integrated</div>
+            </div>
+          </div>
+          <div class="tool-card-desc">Microsoft Copilot with Bing integration. Real-time web search combined with GPT-4 reasoning. Great for quick research, summarizing web pages, and fact-checking.</div>
+          <div class="tool-card-tags"><span class="tool-tag">Search</span><span class="tool-tag">Real-time</span><span class="tool-tag">Microsoft</span></div>
+          <div class="tool-card-link">Try Copilot →</div>
+        </a>
+        <a href="https://www.scopus.com" target="_blank" rel="noopener" class="tool-card">
+          <div class="tool-card-header"><div class="tool-icon">🏛️</div><div>
+            <div class="tool-card-name">Scopus AI</div>
+            <div class="tool-card-category">Research / Academic</div>
+          </div></div>
+          <div class="tool-card-desc">AI-enhanced academic database with 90M+ research records. Identify research trends, compare sources, and surface the most relevant literature for any professional question.</div>
+          <div class="tool-card-tags"><span class="tool-tag">Academic</span><span class="tool-tag">Literature</span><span class="tool-tag">Trends</span></div>
+          <div class="tool-card-link">Try Scopus →</div>
+        </a>
+
+      </div>
+    
+      <div class="section-prompts">
+        <div class="section-prompts-header">
+          <span class="section-prompts-title">⚡ Prompts for Research</span>
+          <div class="section-prompts-search-wrap">
+            <svg class="section-prompts-search-icon" width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="8"/><path d="m21 21-4.35-4.35"/></svg>
+            <input class="section-prompts-search" placeholder="Search prompts..." oninput="searchSectionPrompts(this, 'research')" />
+          </div>
+        </div>
+        <div class="section-prompts-grid" id="prompts-research">
+        <div class="inline-prompt-card" data-prompt-text="Analyze [Company] vs [Company]. Compare their product, pricing, positioning, and target customer. What are the top three differentiators and who wins in an enterprise deal?">
+          <div class="inline-prompt-title">Competitive Analysis</div>
+          <div class="inline-prompt-text">"Analyze [Company] vs [Company]. Compare their product, pricing, positioning, and target customer. What are the top three differentiators and who wins in an enterprise deal?"</div>
+          <button class="inline-prompt-copy" onclick="copyInlinePrompt(this)">Copy</button>
+        </div>
+        <div class="inline-prompt-card" data-prompt-text="Summarize this research into three bullet points an executive can act on. Focus on implications, not just facts. Here is the source: [paste content]">
+          <div class="inline-prompt-title">Summarize for Exec</div>
+          <div class="inline-prompt-text">"Summarize this research into three bullet points an executive can act on. Focus on implications, not just facts. Here is the source: [paste content]"</div>
+          <button class="inline-prompt-copy" onclick="copyInlinePrompt(this)">Copy</button>
+        </div>
+        <div class="inline-prompt-card" data-prompt-text="Give me a concise market overview of [industry/topic]. Include market size, key players, major trends, and the biggest open question in the space right now.">
+          <div class="inline-prompt-title">Market Overview</div>
+          <div class="inline-prompt-text">"Give me a concise market overview of [industry/topic]. Include market size, key players, major trends, and the biggest open question in the space right now."</div>
+          <button class="inline-prompt-copy" onclick="copyInlinePrompt(this)">Copy</button>
+        </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- SALES TOOLS -->
+    <section class="toolkit-section" data-cat="sales" id="sales">
+      <div class="toolkit-section-header">
+        <span class="toolkit-section-icon">💼</span>
+        <span class="toolkit-section-title">Sales</span>
+        <div class="section-search-wrap">
+          <button class="section-search-btn" onclick="toggleSectionSearch(this)" title="Search Sales">
+            <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="8"/><path d="m21 21-4.35-4.35"/><\/svg>
+          </button>
+          <div class="section-search-input-wrap">
+            <input class="section-search-input" placeholder="Search sales..." oninput="filterSectionCards(this, 'sales')" />
+          </div>
+        </div>
+        <span class="toolkit-section-count">8 tools</span>
+      </div>
+      <div class="tools-grid">
+        <a href="https://www.salesloft.com" target="_blank" rel="noopener" class="tool-card">
+          <div class="tool-card-header">
+            <div class="tool-icon">📞</div>
+            <div>
+              <div class="tool-card-name">Salesloft</div>
+              <div class="tool-card-category">Sales / Engagement</div>
+            </div>
+          </div>
+          <div class="tool-card-desc">AI-powered sales engagement platform. Automates sequences, surfaces buying signals, and helps reps prioritize the right accounts at the right time.</div>
+          <div class="tool-card-tags"><span class="tool-tag">Outreach</span><span class="tool-tag">Sequences</span><span class="tool-tag">Pipeline</span></div>
+          <div class="tool-card-link">Try Salesloft →</div>
+        </a>
+        <a href="https://www.gong.io" target="_blank" rel="noopener" class="tool-card">
+          <div class="tool-card-header">
+            <div class="tool-icon">🎯</div>
+            <div>
+              <div class="tool-card-name">Gong</div>
+              <div class="tool-card-category">Sales / Intelligence</div>
+            </div>
+          </div>
+          <div class="tool-card-desc">Captures and analyzes every sales call and email. Surfaces deal risks, coaching moments, and competitive intelligence automatically.</div>
+          <div class="tool-card-tags"><span class="tool-tag">Call Analysis</span><span class="tool-tag">Coaching</span><span class="tool-tag">Deals</span></div>
+          <div class="tool-card-link">Try Gong →</div>
+        </a>
+        <a href="https://apollo.io" target="_blank" rel="noopener" class="tool-card">
+          <div class="tool-card-header">
+            <div class="tool-icon">🚀</div>
+            <div>
+              <div class="tool-card-name">Apollo</div>
+              <div class="tool-card-category">Sales / Prospecting</div>
+            </div>
+          </div>
+          <div class="tool-card-desc">AI-powered prospecting and outreach. 275M+ contacts, intent data, and automated sequences. Find, reach, and convert more prospects faster.</div>
+          <div class="tool-card-tags"><span class="tool-tag">Prospecting</span><span class="tool-tag">Data</span><span class="tool-tag">Outreach</span></div>
+          <div class="tool-card-link">Try Apollo →</div>
+        </a>
+        <a href="https://www.clay.com" target="_blank" rel="noopener" class="tool-card">
+          <div class="tool-card-header">
+            <div class="tool-icon">🏺</div>
+            <div>
+              <div class="tool-card-name">Clay</div>
+              <div class="tool-card-category">Sales / Enrichment</div>
+            </div>
+          </div>
+          <div class="tool-card-desc">AI-powered data enrichment and outreach personalization. Pulls from 50+ data sources to build hyper-personalized outreach at scale.</div>
+          <div class="tool-card-tags"><span class="tool-tag">Enrichment</span><span class="tool-tag">Personalization</span><span class="tool-tag">Automation</span></div>
+          <div class="tool-card-link">Try Clay →</div>
+        </a>
+        <a href="https://www.otter.ai" target="_blank" rel="noopener" class="tool-card">
+          <div class="tool-card-header">
+            <div class="tool-icon">🦦</div>
+            <div>
+              <div class="tool-card-name">Otter.ai</div>
+              <div class="tool-card-category">Sales / Meetings</div>
+            </div>
+          </div>
+          <div class="tool-card-desc">AI meeting assistant that records, transcribes, and summarizes sales calls. Auto-generates follow-up action items and next steps.</div>
+          <div class="tool-card-tags"><span class="tool-tag">Transcription</span><span class="tool-tag">Meetings</span><span class="tool-tag">Follow-up</span></div>
+          <div class="tool-card-link">Try Otter →</div>
+        </a>
+        <a href="https://www.outreach.io" target="_blank" rel="noopener" class="tool-card">
+          <div class="tool-card-header">
+            <div class="tool-icon">📬</div>
+            <div>
+              <div class="tool-card-name">Outreach</div>
+              <div class="tool-card-category">Sales / Sequences</div>
+            </div>
+          </div>
+          <div class="tool-card-desc">Enterprise sales execution platform. AI writes personalized sequences, surfaces deal risks, and recommends next best actions across every rep's pipeline.</div>
+          <div class="tool-card-tags"><span class="tool-tag">Sequences</span><span class="tool-tag">Pipeline</span><span class="tool-tag">Enterprise</span></div>
+          <div class="tool-card-link">Try Outreach →</div>
+        </a>
+        <a href="https://www.chorus.ai" target="_blank" rel="noopener" class="tool-card">
+          <div class="tool-card-header">
+            <div class="tool-icon">🎵</div>
+            <div>
+              <div class="tool-card-name">Chorus</div>
+              <div class="tool-card-category">Sales / Conversation</div>
+            </div>
+          </div>
+          <div class="tool-card-desc">Conversation intelligence for sales teams. Records and analyzes every call, identifies winning patterns, and automatically coaches reps based on top performers.</div>
+          <div class="tool-card-tags"><span class="tool-tag">Coaching</span><span class="tool-tag">Calls</span><span class="tool-tag">Patterns</span></div>
+          <div class="tool-card-link">Try Chorus →</div>
+        </a>
+        <a href="https://www.seamless.ai" target="_blank" rel="noopener" class="tool-card">
+          <div class="tool-card-header">
+            <div class="tool-icon">🔗</div>
+            <div>
+              <div class="tool-card-name">Seamless.AI</div>
+              <div class="tool-card-category">Sales / Data</div>
+            </div>
+          </div>
+          <div class="tool-card-desc">Real-time B2B contact and company data powered by AI. Finds verified emails, direct dials, and LinkedIn profiles for any prospect in seconds.</div>
+          <div class="tool-card-tags"><span class="tool-tag">Contacts</span><span class="tool-tag">Prospecting</span><span class="tool-tag">Data</span></div>
+          <div class="tool-card-link">Try Seamless →</div>
+        </a>
+        <a href="https://www.salesloft.com/drift" target="_blank" rel="noopener" class="tool-card">
+          <div class="tool-card-header"><div class="tool-icon">💬</div><div>
+            <div class="tool-card-name">Drift</div>
+            <div class="tool-card-category">Sales / Conversational</div>
+          </div></div>
+          <div class="tool-card-desc">Conversational marketing and sales AI. Engages website visitors in real time, qualifies leads automatically, and books meetings directly into rep calendars.</div>
+          <div class="tool-card-tags"><span class="tool-tag">Chat</span><span class="tool-tag">Lead Qual</span><span class="tool-tag">Meetings</span></div>
+          <div class="tool-card-link">Try Drift →</div>
+        </a>
+
+      </div>
+    
+      <div class="section-prompts">
+        <div class="section-prompts-header">
+          <span class="section-prompts-title">⚡ Prompts for Sales</span>
+          <div class="section-prompts-search-wrap">
+            <svg class="section-prompts-search-icon" width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="8"/><path d="m21 21-4.35-4.35"/></svg>
+            <input class="section-prompts-search" placeholder="Search prompts..." oninput="searchSectionPrompts(this, 'sales')" />
+          </div>
+        </div>
+        <div class="section-prompts-grid" id="prompts-sales">
+        <div class="inline-prompt-card" data-prompt-text="Write a personalized cold outreach email to [Name], [Title] at [Company]. They recently [trigger]. We help [ICP] achieve [outcome]. Under 100 words. End with a low-friction ask.">
+          <div class="inline-prompt-title">Cold Outreach Email</div>
+          <div class="inline-prompt-text">"Write a personalized cold outreach email to [Name], [Title] at [Company]. They recently [trigger]. We help [ICP] achieve [outcome]. Under 100 words. End with a low-friction ask."</div>
+          <button class="inline-prompt-copy" onclick="copyInlinePrompt(this)">Copy</button>
+        </div>
+        <div class="inline-prompt-card" data-prompt-text="I have a deal with [Company]. Budget: [X]. Decision maker: [Title]. Competition: [Competitors]. Stage: [Stage]. Key risk: [Risk]. What are the three most important things I should do this week?">
+          <div class="inline-prompt-title">Deal Strategy</div>
+          <div class="inline-prompt-text">"I have a deal with [Company]. Budget: [X]. Decision maker: [Title]. Competition: [Competitors]. Stage: [Stage]. Key risk: [Risk]. What are the three most important things I should do this week?"</div>
+          <button class="inline-prompt-copy" onclick="copyInlinePrompt(this)">Copy</button>
+        </div>
+        <div class="inline-prompt-card" data-prompt-text="Write a follow-up email after a sales meeting with [Company]. Key points discussed: [notes]. Next step agreed: [next step]. Keep it brief, warm, and action-oriented.">
+          <div class="inline-prompt-title">Follow-Up After Meeting</div>
+          <div class="inline-prompt-text">"Write a follow-up email after a sales meeting with [Company]. Key points discussed: [notes]. Next step agreed: [next step]. Keep it brief, warm, and action-oriented."</div>
+          <button class="inline-prompt-copy" onclick="copyInlinePrompt(this)">Copy</button>
+        </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- MARKETING TOOLS -->
+    <section class="toolkit-section" data-cat="marketing" id="marketing">
+      <div class="toolkit-section-header">
+        <span class="toolkit-section-icon">📣</span>
+        <span class="toolkit-section-title">Marketing</span>
+        <div class="section-search-wrap">
+          <button class="section-search-btn" onclick="toggleSectionSearch(this)" title="Search Marketing">
+            <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="8"/><path d="m21 21-4.35-4.35"/><\/svg>
+          </button>
+          <div class="section-search-input-wrap">
+            <input class="section-search-input" placeholder="Search marketing..." oninput="filterSectionCards(this, 'marketing')" />
+          </div>
+        </div>
+        <span class="toolkit-section-count">8 tools</span>
+      </div>
+      <div class="tools-grid">
+        <a href="https://www.hubspot.com/products/marketing" target="_blank" rel="noopener" class="tool-card">
+          <div class="tool-card-header">
+            <div class="tool-icon">🧲</div>
+            <div>
+              <div class="tool-card-name">HubSpot AI</div>
+              <div class="tool-card-category">Marketing / Platform</div>
+            </div>
+          </div>
+          <div class="tool-card-desc">AI-powered marketing, CRM, and automation in one platform. Generates content, scores leads, and optimizes campaigns with built-in intelligence.</div>
+          <div class="tool-card-tags"><span class="tool-tag">CRM</span><span class="tool-tag">Email</span><span class="tool-tag">Automation</span></div>
+          <div class="tool-card-link">Try HubSpot →</div>
+        </a>
+        <a href="https://www.copy.ai" target="_blank" rel="noopener" class="tool-card">
+          <div class="tool-card-header">
+            <div class="tool-icon">📋</div>
+            <div>
+              <div class="tool-card-name">Copy.ai</div>
+              <div class="tool-card-category">Marketing / Copy</div>
+            </div>
+          </div>
+          <div class="tool-card-desc">AI platform for marketing copy at scale. Automates first drafts for ads, emails, social, and product descriptions across every channel.</div>
+          <div class="tool-card-tags"><span class="tool-tag">Ads</span><span class="tool-tag">Social</span><span class="tool-tag">Email</span></div>
+          <div class="tool-card-link">Try Copy.ai →</div>
+        </a>
+        <a href="https://buffer.com" target="_blank" rel="noopener" class="tool-card">
+          <div class="tool-card-header">
+            <div class="tool-icon">📱</div>
+            <div>
+              <div class="tool-card-name">Buffer AI</div>
+              <div class="tool-card-category">Marketing / Social</div>
+            </div>
+          </div>
+          <div class="tool-card-desc">AI-assisted social media scheduling and content creation. Repurposes long-form content into platform-specific posts automatically.</div>
+          <div class="tool-card-tags"><span class="tool-tag">Social</span><span class="tool-tag">Scheduling</span><span class="tool-tag">Repurposing</span></div>
+          <div class="tool-card-link">Try Buffer →</div>
+        </a>
+        <a href="https://www.canva.com/ai-image-generator/" target="_blank" rel="noopener" class="tool-card">
+          <div class="tool-card-header">
+            <div class="tool-icon">🎨</div>
+            <div>
+              <div class="tool-card-name">Canva AI</div>
+              <div class="tool-card-category">Marketing / Design</div>
+            </div>
+          </div>
+          <div class="tool-card-desc">AI-powered design for non-designers. Generate images, resize assets, write copy, and create branded content at scale without a design team.</div>
+          <div class="tool-card-tags"><span class="tool-tag">Design</span><span class="tool-tag">Images</span><span class="tool-tag">Brand</span></div>
+          <div class="tool-card-link">Try Canva →</div>
+        </a>
+        <a href="https://surfer.seo" target="_blank" rel="noopener" class="tool-card">
+          <div class="tool-card-header">
+            <div class="tool-icon">🏄</div>
+            <div>
+              <div class="tool-card-name">Surfer SEO</div>
+              <div class="tool-card-category">Marketing / SEO</div>
+            </div>
+          </div>
+          <div class="tool-card-desc">AI-powered SEO content optimization. Analyzes top-ranking pages and tells you exactly what to write to rank. Integrates with Google Docs and WordPress.</div>
+          <div class="tool-card-tags"><span class="tool-tag">SEO</span><span class="tool-tag">Content</span><span class="tool-tag">Ranking</span></div>
+          <div class="tool-card-link">Try Surfer →</div>
+        </a>
+        <a href="https://www.semrush.com" target="_blank" rel="noopener" class="tool-card">
+          <div class="tool-card-header">
+            <div class="tool-icon">📡</div>
+            <div>
+              <div class="tool-card-name">Semrush</div>
+              <div class="tool-card-category">Marketing / SEO</div>
+            </div>
+          </div>
+          <div class="tool-card-desc">All-in-one SEO and content marketing platform. Keyword research, competitor analysis, site audits, and AI writing tools in one place.</div>
+          <div class="tool-card-tags"><span class="tool-tag">SEO</span><span class="tool-tag">Keywords</span><span class="tool-tag">Competitors</span></div>
+          <div class="tool-card-link">Try Semrush →</div>
+        </a>
+        <a href="https://www.beehiiv.com" target="_blank" rel="noopener" class="tool-card">
+          <div class="tool-card-header">
+            <div class="tool-icon">🐝</div>
+            <div>
+              <div class="tool-card-name">Beehiiv</div>
+              <div class="tool-card-category">Marketing / Newsletter</div>
+            </div>
+          </div>
+          <div class="tool-card-desc">Newsletter platform built for growth. AI writing assistant, automated segmentation, referral programs, and monetization tools built in from day one.</div>
+          <div class="tool-card-tags"><span class="tool-tag">Newsletter</span><span class="tool-tag">Email</span><span class="tool-tag">Growth</span></div>
+          <div class="tool-card-link">Try Beehiiv →</div>
+        </a>
+        <a href="https://www.make.com" target="_blank" rel="noopener" class="tool-card">
+          <div class="tool-card-header">
+            <div class="tool-icon">🔁</div>
+            <div>
+              <div class="tool-card-name">Make Automations</div>
+              <div class="tool-card-category">Marketing / Automation</div>
+            </div>
+          </div>
+          <div class="tool-card-desc">Visual automation platform for marketing workflows. Connect your CRM, email, social, and ad platforms. Automate lead nurture, content distribution, and reporting.</div>
+          <div class="tool-card-tags"><span class="tool-tag">Automation</span><span class="tool-tag">Workflows</span><span class="tool-tag">Integration</span></div>
+          <div class="tool-card-link">Try Make →</div>
+        </a>
+        <a href="https://www.typeface.ai" target="_blank" rel="noopener" class="tool-card">
+          <div class="tool-card-header"><div class="tool-icon">🖋️</div><div>
+            <div class="tool-card-name">Typeface</div>
+            <div class="tool-card-category">Marketing / Brand</div>
+          </div></div>
+          <div class="tool-card-desc">Enterprise AI content platform trained on your brand. Generates on-brand copy, images, and campaigns at scale while maintaining brand voice and visual guidelines.</div>
+          <div class="tool-card-tags"><span class="tool-tag">Brand</span><span class="tool-tag">Content</span><span class="tool-tag">Enterprise</span></div>
+          <div class="tool-card-link">Try Typeface →</div>
+        </a>
+
+      </div>
+    
+      <div class="section-prompts">
+        <div class="section-prompts-header">
+          <span class="section-prompts-title">⚡ Prompts for Marketing</span>
+          <div class="section-prompts-search-wrap">
+            <svg class="section-prompts-search-icon" width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="8"/><path d="m21 21-4.35-4.35"/></svg>
+            <input class="section-prompts-search" placeholder="Search prompts..." oninput="searchSectionPrompts(this, 'marketing')" />
+          </div>
+        </div>
+        <div class="section-prompts-grid" id="prompts-marketing">
+        <div class="inline-prompt-card" data-prompt-text="Turn this insight into a compelling LinkedIn post: [insight]. Punchy, short paragraphs, no hashtag spam, no generic motivation. Audience: executives and operators. End with a question.">
+          <div class="inline-prompt-title">LinkedIn Post</div>
+          <div class="inline-prompt-text">"Turn this insight into a compelling LinkedIn post: [insight]. Punchy, short paragraphs, no hashtag spam, no generic motivation. Audience: executives and operators. End with a question."</div>
+          <button class="inline-prompt-copy" onclick="copyInlinePrompt(this)">Copy</button>
+        </div>
+        <div class="inline-prompt-card" data-prompt-text="Write a one-page campaign brief for [campaign name]. Include: objective, target audience, key message, channels, success metrics, and timeline. Keep it tight enough to share with a team.">
+          <div class="inline-prompt-title">Campaign Brief</div>
+          <div class="inline-prompt-text">"Write a one-page campaign brief for [campaign name]. Include: objective, target audience, key message, channels, success metrics, and timeline. Keep it tight enough to share with a team."</div>
+          <button class="inline-prompt-copy" onclick="copyInlinePrompt(this)">Copy</button>
+        </div>
+        <div class="inline-prompt-card" data-prompt-text="Take this long-form content and repurpose it into: one LinkedIn post, one tweet thread opener, and one email subject line. Keep the core insight but adapt the format. Content: [paste]">
+          <div class="inline-prompt-title">Content Repurposing</div>
+          <div class="inline-prompt-text">"Take this long-form content and repurpose it into: one LinkedIn post, one tweet thread opener, and one email subject line. Keep the core insight but adapt the format. Content: [paste]"</div>
+          <button class="inline-prompt-copy" onclick="copyInlinePrompt(this)">Copy</button>
+        </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- FINANCE TOOLS -->
+    <section class="toolkit-section" data-cat="finance" id="finance">
+      <div class="toolkit-section-header">
+        <span class="toolkit-section-icon">📊</span>
+        <span class="toolkit-section-title">Finance</span>
+        <div class="section-search-wrap">
+          <button class="section-search-btn" onclick="toggleSectionSearch(this)" title="Search Finance">
+            <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="8"/><path d="m21 21-4.35-4.35"/><\/svg>
+          </button>
+          <div class="section-search-input-wrap">
+            <input class="section-search-input" placeholder="Search finance..." oninput="filterSectionCards(this, 'finance')" />
+          </div>
+        </div>
+        <span class="toolkit-section-count">8 tools</span>
+      </div>
+      <div class="tools-grid">
+        <a href="https://www.microsoft.com/en-us/microsoft-365/excel" target="_blank" rel="noopener" class="tool-card">
+          <div class="tool-card-header">
+            <div class="tool-icon">📈</div>
+            <div>
+              <div class="tool-card-name">Excel Copilot</div>
+              <div class="tool-card-category">Finance / Analysis</div>
+            </div>
+          </div>
+          <div class="tool-card-desc">Microsoft Copilot in Excel. Write formulas, analyze datasets, generate charts, and summarize financial data using natural language. No formula expertise needed.</div>
+          <div class="tool-card-tags"><span class="tool-tag">Formulas</span><span class="tool-tag">Analysis</span><span class="tool-tag">Charts</span></div>
+          <div class="tool-card-link">Try Copilot →</div>
+        </a>
+        <a href="https://www.alphasense.com" target="_blank" rel="noopener" class="tool-card">
+          <div class="tool-card-header">
+            <div class="tool-icon">🧭</div>
+            <div>
+              <div class="tool-card-name">AlphaSense</div>
+              <div class="tool-card-category">Finance / Intelligence</div>
+            </div>
+          </div>
+          <div class="tool-card-desc">AI-powered market intelligence for financial professionals. Searches earnings calls, SEC filings, broker research, and news in seconds.</div>
+          <div class="tool-card-tags"><span class="tool-tag">Research</span><span class="tool-tag">Filings</span><span class="tool-tag">Earnings</span></div>
+          <div class="tool-card-link">Try AlphaSense →</div>
+        </a>
+        <a href="https://www.planful.com" target="_blank" rel="noopener" class="tool-card">
+          <div class="tool-card-header">
+            <div class="tool-icon">📉</div>
+            <div>
+              <div class="tool-card-name">Planful</div>
+              <div class="tool-card-category">Finance / Planning</div>
+            </div>
+          </div>
+          <div class="tool-card-desc">AI-powered financial planning and analysis platform. Automates budgeting, forecasting, and financial reporting with continuous planning capabilities.</div>
+          <div class="tool-card-tags"><span class="tool-tag">Budgeting</span><span class="tool-tag">Forecasting</span><span class="tool-tag">Reporting</span></div>
+          <div class="tool-card-link">Try Planful →</div>
+        </a>
+        <a href="https://www.ramp.com" target="_blank" rel="noopener" class="tool-card">
+          <div class="tool-card-header">
+            <div class="tool-icon">💳</div>
+            <div>
+              <div class="tool-card-name">Ramp</div>
+              <div class="tool-card-category">Finance / Spend</div>
+            </div>
+          </div>
+          <div class="tool-card-desc">AI-powered spend management. Automatically categorizes expenses, flags anomalies, and surfaces savings opportunities across your entire company spend.</div>
+          <div class="tool-card-tags"><span class="tool-tag">Expenses</span><span class="tool-tag">Spend</span><span class="tool-tag">Savings</span></div>
+          <div class="tool-card-link">Try Ramp →</div>
+        </a>
+        <a href="https://www.datarails.com" target="_blank" rel="noopener" class="tool-card">
+          <div class="tool-card-header">
+            <div class="tool-icon">🛤️</div>
+            <div>
+              <div class="tool-card-name">Datarails</div>
+              <div class="tool-card-category">Finance / FP&A</div>
+            </div>
+          </div>
+          <div class="tool-card-desc">AI-powered FP&A platform that works inside Excel. Automates consolidation, scenario modeling, and financial reporting without changing how your team works.</div>
+          <div class="tool-card-tags"><span class="tool-tag">FP&A</span><span class="tool-tag">Excel</span><span class="tool-tag">Consolidation</span></div>
+          <div class="tool-card-link">Try Datarails →</div>
+        </a>
+        <a href="https://www.mosaic.tech" target="_blank" rel="noopener" class="tool-card">
+          <div class="tool-card-header">
+            <div class="tool-icon">🔷</div>
+            <div>
+              <div class="tool-card-name">Mosaic</div>
+              <div class="tool-card-category">Finance / Strategy</div>
+            </div>
+          </div>
+          <div class="tool-card-desc">Strategic finance platform for high-growth companies. Real-time financial metrics, headcount planning, and AI-powered scenario analysis for CFOs and finance teams.</div>
+          <div class="tool-card-tags"><span class="tool-tag">Strategy</span><span class="tool-tag">Metrics</span><span class="tool-tag">Planning</span></div>
+          <div class="tool-card-link">Try Mosaic →</div>
+        </a>
+        <a href="https://www.brex.com" target="_blank" rel="noopener" class="tool-card">
+          <div class="tool-card-header">
+            <div class="tool-icon">💰</div>
+            <div>
+              <div class="tool-card-name">Brex</div>
+              <div class="tool-card-category">Finance / Spend</div>
+            </div>
+          </div>
+          <div class="tool-card-desc">Corporate card and spend management with AI. Auto-closes books, enforces policies in real time, and gives finance teams instant visibility into every dollar.</div>
+          <div class="tool-card-tags"><span class="tool-tag">Corporate Card</span><span class="tool-tag">Spend</span><span class="tool-tag">Compliance</span></div>
+          <div class="tool-card-link">Try Brex →</div>
+        </a>
+        <a href="https://www.tipalti.com" target="_blank" rel="noopener" class="tool-card">
+          <div class="tool-card-header">
+            <div class="tool-icon">💸</div>
+            <div>
+              <div class="tool-card-name">Tipalti</div>
+              <div class="tool-card-category">Finance / AP</div>
+            </div>
+          </div>
+          <div class="tool-card-desc">AI-powered accounts payable automation. Eliminates 80% of AP workload by automating invoice processing, approvals, and global payments across 196 countries.</div>
+          <div class="tool-card-tags"><span class="tool-tag">AP</span><span class="tool-tag">Invoices</span><span class="tool-tag">Payments</span></div>
+          <div class="tool-card-link">Try Tipalti →</div>
+        </a>
+        <a href="https://www.workiva.com" target="_blank" rel="noopener" class="tool-card">
+          <div class="tool-card-header"><div class="tool-icon">📑</div><div>
+            <div class="tool-card-name">Workiva</div>
+            <div class="tool-card-category">Finance / Reporting</div>
+          </div></div>
+          <div class="tool-card-desc">AI-powered financial reporting and ESG disclosure platform. Automates SEC filings, board reports, and audit-ready documents with real-time data connections.</div>
+          <div class="tool-card-tags"><span class="tool-tag">Reporting</span><span class="tool-tag">SEC</span><span class="tool-tag">Compliance</span></div>
+          <div class="tool-card-link">Try Workiva →</div>
+        </a>
+
+      </div>
+    
+      <div class="section-prompts">
+        <div class="section-prompts-header">
+          <span class="section-prompts-title">⚡ Prompts for Finance</span>
+          <div class="section-prompts-search-wrap">
+            <svg class="section-prompts-search-icon" width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="8"/><path d="m21 21-4.35-4.35"/></svg>
+            <input class="section-prompts-search" placeholder="Search prompts..." oninput="searchSectionPrompts(this, 'finance')" />
+          </div>
+        </div>
+        <div class="section-prompts-grid" id="prompts-finance">
+        <div class="inline-prompt-card" data-prompt-text="Summarize this financial data for an executive audience. Highlight three key trends, one concern, and one action recommendation. Under 150 words. Data: [paste data]">
+          <div class="inline-prompt-title">Financial Summary</div>
+          <div class="inline-prompt-text">"Summarize this financial data for an executive audience. Highlight three key trends, one concern, and one action recommendation. Under 150 words. Data: [paste data]"</div>
+          <button class="inline-prompt-copy" onclick="copyInlinePrompt(this)">Copy</button>
+        </div>
+        <div class="inline-prompt-card" data-prompt-text="Write a business case to justify [budget request] for [project/tool]. Include: problem it solves, expected ROI, risks of not doing it, and a recommended timeline.">
+          <div class="inline-prompt-title">Budget Justification</div>
+          <div class="inline-prompt-text">"Write a business case to justify [budget request] for [project/tool]. Include: problem it solves, expected ROI, risks of not doing it, and a recommended timeline."</div>
+          <button class="inline-prompt-copy" onclick="copyInlinePrompt(this)">Copy</button>
+        </div>
+        <div class="inline-prompt-card" data-prompt-text="We are [over/under] budget by [amount] in [category]. Write a clear explanation for leadership that includes the root cause, impact, and proposed corrective action.">
+          <div class="inline-prompt-title">Variance Explanation</div>
+          <div class="inline-prompt-text">"We are [over/under] budget by [amount] in [category]. Write a clear explanation for leadership that includes the root cause, impact, and proposed corrective action."</div>
+          <button class="inline-prompt-copy" onclick="copyInlinePrompt(this)">Copy</button>
+        </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- HR TOOLS -->
+    <section class="toolkit-section" data-cat="hr" id="hr">
+      <div class="toolkit-section-header">
+        <span class="toolkit-section-icon">🤝</span>
+        <span class="toolkit-section-title">HR</span>
+        <div class="section-search-wrap">
+          <button class="section-search-btn" onclick="toggleSectionSearch(this)" title="Search HR">
+            <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="8"/><path d="m21 21-4.35-4.35"/><\/svg>
+          </button>
+          <div class="section-search-input-wrap">
+            <input class="section-search-input" placeholder="Search hr..." oninput="filterSectionCards(this, 'hr')" />
+          </div>
+        </div>
+        <span class="toolkit-section-count">8 tools</span>
+      </div>
+      <div class="tools-grid">
+        <a href="https://www.ashbyhq.com" target="_blank" rel="noopener" class="tool-card">
+          <div class="tool-card-header">
+            <div class="tool-icon">🎯</div>
+            <div>
+              <div class="tool-card-name">Ashby</div>
+              <div class="tool-card-category">HR / Recruiting</div>
+            </div>
+          </div>
+          <div class="tool-card-desc">AI-powered recruiting platform. Automates candidate sourcing, scheduling, and pipeline management. Used by the fastest-growing tech companies.</div>
+          <div class="tool-card-tags"><span class="tool-tag">Recruiting</span><span class="tool-tag">Pipeline</span><span class="tool-tag">Scheduling</span></div>
+          <div class="tool-card-link">Try Ashby →</div>
+        </a>
+        <a href="https://www.leapsome.com" target="_blank" rel="noopener" class="tool-card">
+          <div class="tool-card-header">
+            <div class="tool-icon">📋</div>
+            <div>
+              <div class="tool-card-name">Leapsome</div>
+              <div class="tool-card-category">HR / Performance</div>
+            </div>
+          </div>
+          <div class="tool-card-desc">AI-powered performance management and engagement platform. Automates review cycles, generates feedback summaries, and surfaces people insights.</div>
+          <div class="tool-card-tags"><span class="tool-tag">Reviews</span><span class="tool-tag">Feedback</span><span class="tool-tag">Engagement</span></div>
+          <div class="tool-card-link">Try Leapsome →</div>
+        </a>
+        <a href="https://www.rippling.com" target="_blank" rel="noopener" class="tool-card">
+          <div class="tool-card-header">
+            <div class="tool-icon">🔄</div>
+            <div>
+              <div class="tool-card-name">Rippling</div>
+              <div class="tool-card-category">HR / Operations</div>
+            </div>
+          </div>
+          <div class="tool-card-desc">Unified HR, IT, and finance platform with AI automation. Onboards employees, manages payroll, and automates compliance workflows in one system.</div>
+          <div class="tool-card-tags"><span class="tool-tag">Payroll</span><span class="tool-tag">Onboarding</span><span class="tool-tag">Compliance</span></div>
+          <div class="tool-card-link">Try Rippling →</div>
+        </a>
+        <a href="https://www.paradox.ai" target="_blank" rel="noopener" class="tool-card">
+          <div class="tool-card-header">
+            <div class="tool-icon">🤖</div>
+            <div>
+              <div class="tool-card-name">Paradox</div>
+              <div class="tool-card-category">HR / Recruiting AI</div>
+            </div>
+          </div>
+          <div class="tool-card-desc">Conversational AI for recruiting. Olivia, the AI assistant, screens candidates, schedules interviews, and answers questions 24/7 without human intervention.</div>
+          <div class="tool-card-tags"><span class="tool-tag">Screening</span><span class="tool-tag">Chatbot</span><span class="tool-tag">Scheduling</span></div>
+          <div class="tool-card-link">Try Paradox →</div>
+        </a>
+        <a href="https://www.lattice.com" target="_blank" rel="noopener" class="tool-card">
+          <div class="tool-card-header">
+            <div class="tool-icon">🌐</div>
+            <div>
+              <div class="tool-card-name">Lattice</div>
+              <div class="tool-card-category">HR / Performance</div>
+            </div>
+          </div>
+          <div class="tool-card-desc">People management platform with AI. Runs performance reviews, tracks OKRs, and generates manager insights to help leaders develop their teams more effectively.</div>
+          <div class="tool-card-tags"><span class="tool-tag">OKRs</span><span class="tool-tag">Reviews</span><span class="tool-tag">Development</span></div>
+          <div class="tool-card-link">Try Lattice →</div>
+        </a>
+        <a href="https://www.workday.com" target="_blank" rel="noopener" class="tool-card">
+          <div class="tool-card-header">
+            <div class="tool-icon">☁️</div>
+            <div>
+              <div class="tool-card-name">Workday</div>
+              <div class="tool-card-category">HR / Enterprise</div>
+            </div>
+          </div>
+          <div class="tool-card-desc">Enterprise HR and finance platform with embedded AI. Skills intelligence, workforce planning, and predictive analytics for people decisions at scale.</div>
+          <div class="tool-card-tags"><span class="tool-tag">Enterprise</span><span class="tool-tag">Planning</span><span class="tool-tag">Analytics</span></div>
+          <div class="tool-card-link">Try Workday →</div>
+        </a>
+        <a href="https://www.deel.com" target="_blank" rel="noopener" class="tool-card">
+          <div class="tool-card-header">
+            <div class="tool-icon">🌍</div>
+            <div>
+              <div class="tool-card-name">Deel</div>
+              <div class="tool-card-category">HR / Global</div>
+            </div>
+          </div>
+          <div class="tool-card-desc">Global HR platform with AI compliance assistance. Hire, pay, and manage employees and contractors in 150+ countries with automated compliance built in.</div>
+          <div class="tool-card-tags"><span class="tool-tag">Global</span><span class="tool-tag">Payroll</span><span class="tool-tag">Compliance</span></div>
+          <div class="tool-card-link">Try Deel →</div>
+        </a>
+        <a href="https://www.15five.com" target="_blank" rel="noopener" class="tool-card">
+          <div class="tool-card-header">
+            <div class="tool-icon">📊</div>
+            <div>
+              <div class="tool-card-name">15Five</div>
+              <div class="tool-card-category">HR / Engagement</div>
+            </div>
+          </div>
+          <div class="tool-card-desc">AI-driven employee engagement and performance platform. Weekly check-ins, pulse surveys, and AI insights that help managers act before problems escalate.</div>
+          <div class="tool-card-tags"><span class="tool-tag">Engagement</span><span class="tool-tag">Check-ins</span><span class="tool-tag">Pulse</span></div>
+          <div class="tool-card-link">Try 15Five →</div>
+        </a>
+        <a href="https://www.hibob.com" target="_blank" rel="noopener" class="tool-card">
+          <div class="tool-card-header"><div class="tool-icon">🧑‍🤝‍🧑</div><div>
+            <div class="tool-card-name">HiBob</div>
+            <div class="tool-card-category">HR / Modern HCM</div>
+          </div></div>
+          <div class="tool-card-desc">Modern HRIS with AI people analytics. Tracks workforce trends, predicts attrition risk, and gives HR leaders actionable insights to retain top talent.</div>
+          <div class="tool-card-tags"><span class="tool-tag">HRIS</span><span class="tool-tag">Analytics</span><span class="tool-tag">Retention</span></div>
+          <div class="tool-card-link">Try HiBob →</div>
+        </a>
+
+      </div>
+    
+      <div class="section-prompts">
+        <div class="section-prompts-header">
+          <span class="section-prompts-title">⚡ Prompts for HR</span>
+          <div class="section-prompts-search-wrap">
+            <svg class="section-prompts-search-icon" width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="8"/><path d="m21 21-4.35-4.35"/></svg>
+            <input class="section-prompts-search" placeholder="Search prompts..." oninput="searchSectionPrompts(this, 'hr')" />
+          </div>
+        </div>
+        <div class="section-prompts-grid" id="prompts-hr">
+        <div class="inline-prompt-card" data-prompt-text="Write a compelling job description for a [role] at [company type]. Ideal candidate: [qualities]. Avoid clichés. Be direct about what the role involves day to day.">
+          <div class="inline-prompt-title">Job Description</div>
+          <div class="inline-prompt-text">"Write a compelling job description for a [role] at [company type]. Ideal candidate: [qualities]. Avoid clichés. Be direct about what the role involves day to day."</div>
+          <button class="inline-prompt-copy" onclick="copyInlinePrompt(this)">Copy</button>
+        </div>
+        <div class="inline-prompt-card" data-prompt-text="Write a balanced performance review for an employee who [achievements] but also [areas to improve]. Tone: constructive and forward-looking. Keep it under 200 words.">
+          <div class="inline-prompt-title">Performance Review</div>
+          <div class="inline-prompt-text">"Write a balanced performance review for an employee who [achievements] but also [areas to improve]. Tone: constructive and forward-looking. Keep it under 200 words."</div>
+          <button class="inline-prompt-copy" onclick="copyInlinePrompt(this)">Copy</button>
+        </div>
+        <div class="inline-prompt-card" data-prompt-text="Generate 8 behavioral interview questions for a [role] candidate. Include questions that assess [key competency 1], [key competency 2], and culture fit. Avoid generic questions.">
+          <div class="inline-prompt-title">Interview Questions</div>
+          <div class="inline-prompt-text">"Generate 8 behavioral interview questions for a [role] candidate. Include questions that assess [key competency 1], [key competency 2], and culture fit. Avoid generic questions."</div>
+          <button class="inline-prompt-copy" onclick="copyInlinePrompt(this)">Copy</button>
+        </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- OPERATIONS TOOLS -->
+    <section class="toolkit-section" data-cat="operations" id="operations">
+      <div class="toolkit-section-header">
+        <span class="toolkit-section-icon">⚙️</span>
+        <span class="toolkit-section-title">Operations</span>
+        <div class="section-search-wrap">
+          <button class="section-search-btn" onclick="toggleSectionSearch(this)" title="Search Operations">
+            <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="8"/><path d="m21 21-4.35-4.35"/><\/svg>
+          </button>
+          <div class="section-search-input-wrap">
+            <input class="section-search-input" placeholder="Search operations..." oninput="filterSectionCards(this, 'operations')" />
+          </div>
+        </div>
+        <span class="toolkit-section-count">8 tools</span>
+      </div>
+      <div class="tools-grid">
+        <a href="https://zapier.com" target="_blank" rel="noopener" class="tool-card">
+          <div class="tool-card-header">
+            <div class="tool-icon">⚡</div>
+            <div>
+              <div class="tool-card-name">Zapier</div>
+              <div class="tool-card-category">Operations / Automation</div>
+            </div>
+          </div>
+          <div class="tool-card-desc">No-code automation platform connecting 6,000+ apps. AI now builds Zaps from a description. Automate repetitive tasks across your entire tech stack.</div>
+          <div class="tool-card-tags"><span class="tool-tag">Automation</span><span class="tool-tag">Workflows</span><span class="tool-tag">No-code</span></div>
+          <div class="tool-card-link">Try Zapier →</div>
+        </a>
+        <a href="https://make.com" target="_blank" rel="noopener" class="tool-card">
+          <div class="tool-card-header">
+            <div class="tool-icon">🔧</div>
+            <div>
+              <div class="tool-card-name">Make</div>
+              <div class="tool-card-category">Operations / Automation</div>
+            </div>
+          </div>
+          <div class="tool-card-desc">Visual automation platform for complex, multi-step workflows. More powerful than Zapier for sophisticated automations. Used by operations and growth teams.</div>
+          <div class="tool-card-tags"><span class="tool-tag">Workflows</span><span class="tool-tag">Integration</span><span class="tool-tag">Advanced</span></div>
+          <div class="tool-card-link">Try Make →</div>
+        </a>
+        <a href="https://www.notion.so" target="_blank" rel="noopener" class="tool-card">
+          <div class="tool-card-header">
+            <div class="tool-icon">📓</div>
+            <div>
+              <div class="tool-card-name">Notion</div>
+              <div class="tool-card-category">Operations / Workspace</div>
+            </div>
+          </div>
+          <div class="tool-card-desc">All-in-one workspace with AI built in. Manages projects, docs, wikis, and databases. AI fills pages, summarizes content, and answers questions about your workspace.</div>
+          <div class="tool-card-tags"><span class="tool-tag">Projects</span><span class="tool-tag">Docs</span><span class="tool-tag">Wiki</span></div>
+          <div class="tool-card-link">Try Notion →</div>
+        </a>
+        <a href="https://www.linear.app" target="_blank" rel="noopener" class="tool-card">
+          <div class="tool-card-header">
+            <div class="tool-icon">📐</div>
+            <div>
+              <div class="tool-card-name">Linear</div>
+              <div class="tool-card-category">Operations / Projects</div>
+            </div>
+          </div>
+          <div class="tool-card-desc">Fast, opinionated project management with AI. Writes issue descriptions, summarizes projects, and helps teams ship faster. Built for modern ops teams.</div>
+          <div class="tool-card-tags"><span class="tool-tag">Projects</span><span class="tool-tag">Issues</span><span class="tool-tag">Shipping</span></div>
+          <div class="tool-card-link">Try Linear →</div>
+        </a>
+        <a href="https://www.airtable.com" target="_blank" rel="noopener" class="tool-card">
+          <div class="tool-card-header">
+            <div class="tool-icon">🗃️</div>
+            <div>
+              <div class="tool-card-name">Airtable AI</div>
+              <div class="tool-card-category">Operations / Data</div>
+            </div>
+          </div>
+          <div class="tool-card-desc">Spreadsheet-database hybrid with AI automation. Summarizes records, categorizes data, and automates data entry across any operational workflow.</div>
+          <div class="tool-card-tags"><span class="tool-tag">Database</span><span class="tool-tag">Automation</span><span class="tool-tag">Data</span></div>
+          <div class="tool-card-link">Try Airtable →</div>
+        </a>
+        <a href="https://www.clickup.com" target="_blank" rel="noopener" class="tool-card">
+          <div class="tool-card-header">
+            <div class="tool-icon">✅</div>
+            <div>
+              <div class="tool-card-name">ClickUp AI</div>
+              <div class="tool-card-category">Operations / Projects</div>
+            </div>
+          </div>
+          <div class="tool-card-desc">All-in-one project management with built-in AI. Writes task descriptions, summarizes threads, generates project plans, and automates status updates across teams.</div>
+          <div class="tool-card-tags"><span class="tool-tag">Tasks</span><span class="tool-tag">Projects</span><span class="tool-tag">Teams</span></div>
+          <div class="tool-card-link">Try ClickUp →</div>
+        </a>
+        <a href="https://www.monday.com" target="_blank" rel="noopener" class="tool-card">
+          <div class="tool-card-header">
+            <div class="tool-icon">📅</div>
+            <div>
+              <div class="tool-card-name">Monday AI</div>
+              <div class="tool-card-category">Operations / Workflow</div>
+            </div>
+          </div>
+          <div class="tool-card-desc">Work OS with AI automation. Predicts project risks, auto-assigns tasks, generates status updates, and surfaces bottlenecks before they become problems.</div>
+          <div class="tool-card-tags"><span class="tool-tag">Workflow</span><span class="tool-tag">Automation</span><span class="tool-tag">Risk</span></div>
+          <div class="tool-card-link">Try Monday →</div>
+        </a>
+        <a href="https://www.slite.com" target="_blank" rel="noopener" class="tool-card">
+          <div class="tool-card-header">
+            <div class="tool-icon">📋</div>
+            <div>
+              <div class="tool-card-name">Slite</div>
+              <div class="tool-card-category">Operations / Knowledge</div>
+            </div>
+          </div>
+          <div class="tool-card-desc">AI-powered knowledge base for ops teams. Ask questions in plain English and get answers from your company docs. Keeps institutional knowledge searchable and current.</div>
+          <div class="tool-card-tags"><span class="tool-tag">Knowledge Base</span><span class="tool-tag">Docs</span><span class="tool-tag">Search</span></div>
+          <div class="tool-card-link">Try Slite →</div>
+        </a>
+        <a href="https://www.process.st" target="_blank" rel="noopener" class="tool-card">
+          <div class="tool-card-header"><div class="tool-icon">📋</div><div>
+            <div class="tool-card-name">Process Street</div>
+            <div class="tool-card-category">Operations / SOPs</div>
+          </div></div>
+          <div class="tool-card-desc">AI-powered workflow and SOP management. Build, run, and track recurring processes across your team. AI writes your SOPs from a prompt and keeps them updated.</div>
+          <div class="tool-card-tags"><span class="tool-tag">SOPs</span><span class="tool-tag">Checklists</span><span class="tool-tag">Processes</span></div>
+          <div class="tool-card-link">Try Process St →</div>
+        </a>
+
+      </div>
+    
+      <div class="section-prompts">
+        <div class="section-prompts-header">
+          <span class="section-prompts-title">⚡ Prompts for Operations</span>
+          <div class="section-prompts-search-wrap">
+            <svg class="section-prompts-search-icon" width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="8"/><path d="m21 21-4.35-4.35"/></svg>
+            <input class="section-prompts-search" placeholder="Search prompts..." oninput="searchSectionPrompts(this, 'operations')" />
+          </div>
+        </div>
+        <div class="section-prompts-grid" id="prompts-operations">
+        <div class="inline-prompt-card" data-prompt-text="Here is our current process for [task]: [describe]. Identify the top three inefficiencies, suggest what could be automated with AI today, and estimate time saved per week.">
+          <div class="inline-prompt-title">Process Improvement</div>
+          <div class="inline-prompt-text">"Here is our current process for [task]: [describe]. Identify the top three inefficiencies, suggest what could be automated with AI today, and estimate time saved per week."</div>
+          <button class="inline-prompt-copy" onclick="copyInlinePrompt(this)">Copy</button>
+        </div>
+        <div class="inline-prompt-card" data-prompt-text="Write a clear, step-by-step SOP for [process/task]. Include: purpose, who is responsible, steps in order, decision points, and what to do when things go wrong.">
+          <div class="inline-prompt-title">SOP Draft</div>
+          <div class="inline-prompt-text">"Write a clear, step-by-step SOP for [process/task]. Include: purpose, who is responsible, steps in order, decision points, and what to do when things go wrong."</div>
+          <button class="inline-prompt-copy" onclick="copyInlinePrompt(this)">Copy</button>
+        </div>
+        <div class="inline-prompt-card" data-prompt-text="Create a structured agenda for a [type] meeting with [team/stakeholders]. Goal: [outcome]. Duration: [time]. Include time allocations and a clear decision or action for each item.">
+          <div class="inline-prompt-title">Meeting Agenda</div>
+          <div class="inline-prompt-text">"Create a structured agenda for a [type] meeting with [team/stakeholders]. Goal: [outcome]. Duration: [time]. Include time allocations and a clear decision or action for each item."</div>
+          <button class="inline-prompt-copy" onclick="copyInlinePrompt(this)">Copy</button>
+        </div>
+        </div>
+      </div>
+    </section>
+
+
+
+  
+  </div>
+
+</div><!-- end section-work -->
+
 
 </main>
 
@@ -4104,16 +5604,30 @@ function switchVertical(mode) {
       fetchLongevityForecasts();
       longevitySection.dataset.loaded = '1';
     }
+  } else if (mode === 'work') {
+    aiSection.style.display = 'none';
+    frontierSection.style.display = 'none';
+    document.getElementById('section-longevity').style.display = 'none';
+    document.getElementById('section-work').style.display = 'block';
+    btnAI.classList.remove('active');
+    btnFrontier.classList.remove('active');
+    document.getElementById('btn-longevity').classList.remove('active');
+    document.getElementById('btn-work').classList.add('active');
+    document.body.classList.remove('frontier-mode');
+    document.body.classList.remove('longevity-mode');
+    filterToolSection('all', document.querySelector('#section-work .filter-tab.active'));
   } else {
     aiSection.style.display = 'block';
     frontierSection.style.display = 'none';
     document.getElementById('section-longevity').style.display = 'none';
+    if (document.getElementById('section-work')) document.getElementById('section-work').style.display = 'none';
     btnFrontier.classList.remove('active');
     document.getElementById('btn-longevity').classList.remove('active');
+    document.getElementById('btn-work').classList.remove('active');
     btnAI.classList.add('active');
     document.body.classList.remove('frontier-mode');
     document.body.classList.remove('longevity-mode');
-    }
+  }
 }
 
 // ── FRONTIER DATA FETCHERS ──
@@ -4468,6 +5982,7 @@ function updateDropdownLabel(mode) {
   if (!label) return;
   if (mode === 'frontier') label.innerHTML = '🚀 The Frontier';
   else if (mode === 'longevity') label.innerHTML = '🧬 Longevity';
+  else if (mode === 'work') label.innerHTML = '🛠️ AI at Work';
   else label.innerHTML = '🦾 AI &amp; Robotics';
   // Update active state on items
   document.querySelectorAll('.vertical-dropdown-item').forEach(function(item) {
@@ -4583,6 +6098,149 @@ document.addEventListener('click', function(e) {
     title: name ? name.firstChild.textContent.trim() : '',
     body: latest ? latest.textContent : '',
     trend: href ? '↗ Visit ' + href.replace('https://','').replace('www.','') : ''
+  });
+});
+
+
+// ── FILTER TABS ──
+    function filterToolSection(cat, btn) {
+      // Scope to #section-work only
+      var workSection = document.getElementById('section-work');
+      if (!workSection) return;
+
+      // Update active tab — only within the work section
+      workSection.querySelectorAll('.filter-tab').forEach(function(t) {
+        t.classList.remove('active');
+      });
+      if (btn) {
+        btn.classList.add('active');
+      } else {
+        workSection.querySelectorAll('.filter-tab').forEach(function(t) {
+          if (t.textContent.toLowerCase().trim() === cat) {
+            t.classList.add('active');
+          }
+        });
+      }
+
+      // Show/hide sections
+      var sections = workSection.querySelectorAll('.toolkit-section[data-cat]');
+      if (cat === 'all') {
+        sections.forEach(function(s) { s.classList.add('visible'); });
+      } else {
+        sections.forEach(function(s) {
+          s.classList.toggle('visible', s.dataset.cat === cat);
+        });
+      }
+
+      // Scroll to target section with header offset
+      if (cat !== 'all') {
+        setTimeout(function() {
+          var target = document.getElementById(cat);
+          if (target) {
+            var headerHeight = 124;
+            var top = target.getBoundingClientRect().top + window.pageYOffset - headerHeight;
+            window.scrollTo({ top: top, behavior: 'smooth' });
+          }
+        }, 60);
+      }
+    }
+
+
+    // ── PER-SECTION SEARCH ──
+function toggleSectionSearch(btn) {
+  var wrap = btn.nextElementSibling;
+  var isOpen = wrap.classList.contains('open');
+  document.querySelectorAll('.section-search-input-wrap.open').forEach(function(w) {
+    w.classList.remove('open');
+  });
+  if (!isOpen) {
+    wrap.classList.add('open');
+    wrap.querySelector('input').focus();
+  }
+}
+function filterSectionCards(input, sectionId) {
+  var q = input.value.toLowerCase().trim();
+  var section = document.getElementById(sectionId);
+  if (!section) return;
+  var cards = section.querySelectorAll('.tool-card, .prompt-card');
+  cards.forEach(function(card) {
+    if (!q || card.textContent.toLowerCase().includes(q)) {
+      card.classList.remove('hidden');
+    } else {
+      card.classList.add('hidden');
+    }
+  });
+}
+document.addEventListener('click', function(e) {
+  if (!e.target.closest('.section-search-wrap')) {
+    document.querySelectorAll('.section-search-input-wrap.open').forEach(function(w) {
+      w.classList.remove('open');
+    });
+  }
+});
+
+    // ── COPY PROMPT ──
+    function copyToolPrompt(btn) {
+      var text = btn.previousElementSibling.textContent;
+      navigator.clipboard.writeText(text).catch(function() {
+        var ta = document.createElement('textarea');
+        ta.value = text;
+        document.body.appendChild(ta);
+        ta.select();
+        document.execCommand('copy');
+        document.body.removeChild(ta);
+      });
+      btn.textContent = 'Copied!';
+      btn.classList.add('copied');
+      setTimeout(function() {
+        btn.textContent = 'Copy Prompt';
+        btn.classList.remove('copied');
+      }, 2000);
+    }
+
+    // Show all sections
+
+// ── INLINE PROMPT COPY ──
+function copyInlinePrompt(btn) {
+  var text = btn.closest('.inline-prompt-card').dataset.promptText;
+  navigator.clipboard.writeText(text).catch(function() {
+    var ta = document.createElement('textarea');
+    ta.value = text;
+    document.body.appendChild(ta);
+    ta.select();
+    document.execCommand('copy');
+    document.body.removeChild(ta);
+  });
+  btn.textContent = 'Copied!';
+  btn.classList.add('copied');
+  setTimeout(function() {
+    btn.textContent = 'Copy';
+    btn.classList.remove('copied');
+  }, 2000);
+}
+function searchSectionPrompts(input, sectionId) {
+  var q = input.value.toLowerCase().trim();
+  var grid = document.getElementById('prompts-' + sectionId);
+  if (!grid) return;
+  grid.querySelectorAll('.inline-prompt-card').forEach(function(card) {
+    if (!q || card.textContent.toLowerCase().includes(q)) {
+      card.classList.remove('hidden');
+    } else {
+      card.classList.add('hidden');
+    }
+  });
+}
+
+
+// ── FIX SECTION SCROLL OFFSET ──
+document.querySelectorAll('a[href^="#"]').forEach(function(a) {
+  a.addEventListener('click', function(e) {
+    var target = document.querySelector(this.getAttribute('href'));
+    if (target && target.closest('#section-work')) {
+      e.preventDefault();
+      var offset = target.getBoundingClientRect().top + window.scrollY - 120;
+      window.scrollTo({ top: offset, behavior: 'smooth' });
+    }
   });
 });
 
