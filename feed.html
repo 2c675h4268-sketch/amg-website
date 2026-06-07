@@ -5799,26 +5799,32 @@ async function fetchFrontierStories() {
   try {
     var data = await supabaseFetch('frontier_stories', 'select=*&order=created_at.desc&limit=15&created_at=gte.'+sixMonthsAgo());
     if (!data || data.length === 0) return;
-
-    // Breaking feed (first 6)
-
+    data.slice(0,6).forEach(function(s) {
+      if (s.title && !STORIES.find(function(x){ return x.title === s.title; })) {
+        STORIES.push({ title: s.title, cat: 'frontier', source: s.source||'AMG', time: 'Today', excerpt: s.excerpt||'', url: s.url||'#', image_url: s.image_url||null });
+      }
+    });
     var heroEl = document.getElementById('frontier-top-stories-grid');
-    if (heroEl && data.length > 0) {
-      heroEl.innerHTML = data.slice(0, 6).map(function(s) {
-        var imgHtml = s.image_url ? '<img src="'+s.image_url+'" alt="" style="width:100%;height:160px;object-fit:cover;border-radius:8px 8px 0 0;display:block;" loading="lazy" onerror="this.style.display=\'none\'" />' : '';
-        return '<div class="card" style="opacity:1;">' +
-          imgHtml +
-          '<div class="card-body">' +
-          '<div class="tag" style="color:var(--frontier);">'+(s.category||'Space')+'</div>' +
-          '<div class="card-title">'+(s.title||'')+'</div>' +
-          '<div class="card-excerpt">'+(s.excerpt||'')+'</div>' +
-          '<div class="card-footer"><span class="card-source">'+(s.source||'')+'</span><span class="card-time">Today</span></div>' +
-          '</div></div>';
+    if (heroEl) {
+      heroEl.innerHTML = data.slice(0,6).map(function(s) {
+        var t = (s.title||'').replace(/"/g,'&quot;').replace(/'/g,'&#39;');
+        var imgHtml = s.image_url ? '<div class="card-image" style="width:100%;height:160px;background:url(''+s.image_url+'') center/cover no-repeat;border-radius:8px 8px 0 0;margin:-16px -16px 12px -16px;width:calc(100% + 32px);flex-shrink:0;"></div>' : '';
+        return '<div class="card" data-cat="frontier" data-source="'+(s.source||'')+'" data-title="'+t+'" data-url="'+(s.url||'')+'" data-excerpt="'+(s.excerpt||'').replace(/"/g,'&quot;').substring(0,200)+'" style="cursor:pointer;">'+
+          '<div class="card-body">'+imgHtml+
+          '<div class="tag" style="color:var(--frontier);">'+(s.category||'Space')+'</div>'+
+          '<div class="card-title">'+(s.title||'')+'</div>'+
+          '<div class="card-excerpt">'+(s.excerpt||'')+'</div>'+
+          '<div class="card-footer"><span class="card-source">'+(s.source||'')+'</span><span class="card-time">Today</span></div>'+
+          '<div class="card-actions">'+
+          '<button class="card-btn summarize-btn" data-title="'+t+'">&#9889; AI Summary</button>'+
+          '<button class="card-btn bookmark-btn" data-title="'+t+'">&#128278; Save</button>'+
+          '<button class="card-btn share-btn" data-title="'+t+'"><svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="18" cy="5" r="3"/><circle cx="6" cy="12" r="3"/><circle cx="18" cy="19" r="3"/><line x1="8.59" y1="13.51" x2="15.42" y2="17.49"/><line x1="15.41" y1="6.51" x2="8.59" y2="10.49"/></svg> Share</button>'+
+          '</div></div></div>';
       }).join('');
+      wireCards();
     }
   } catch(e) { console.error('fetchFrontierStories:', e); }
 }
-
 async function fetchFrontierRealWorld() {
   try {
     var data = await supabaseFetch('frontier_real_world', 'select=*&order=created_at.desc&limit=20&created_at=gte.'+sixMonthsAgo());
@@ -5909,22 +5915,28 @@ async function fetchFrontierTrending() {
     var data = await supabaseFetch('frontier_stories', 'select=*&order=created_at.desc&limit=6&created_at=gte.'+sixMonthsAgo());
     var el = document.getElementById('frontier-trending-grid');
     if (!el || !data || data.length === 0) return;
+    data.slice(0,6).forEach(function(s) {
+      if (s.title && !STORIES.find(function(x){ return x.title === s.title; })) {
+        STORIES.push({ title: s.title, cat: 'frontier', source: s.source||'AMG', time: 'Today', excerpt: s.excerpt||'', url: s.url||'#', image_url: s.image_url||null });
+      }
+    });
     el.innerHTML = data.slice(0,6).map(function(s) {
-      var imgHtml = s.image_url
-        ? '<img src="'+s.image_url+'" alt="" style="width:100%;height:120px;object-fit:cover;border-radius:8px 8px 0 0;display:block;" loading="lazy" onerror="this.style.display=\'none\'" />'
-        : '';
-      return '<div class="card" style="opacity:1;">' +
-        imgHtml +
-        '<div class="card-body">' +
-        '<div class="tag" style="color:var(--frontier);">'+(s.category||'Space')+'</div>' +
-        '<div class="card-title">'+(s.title||'')+'</div>' +
-        '<div class="card-footer"><span class="card-source">'+(s.source||'')+'</span><span class="card-time">Today</span></div>' +
-        '</div></div>';
+      var t = (s.title||'').replace(/"/g,'&quot;').replace(/'/g,'&#39;');
+      var imgHtml = s.image_url ? '<div class="card-image" style="width:100%;height:140px;background:url(''+s.image_url+'') center/cover no-repeat;border-radius:8px 8px 0 0;margin:-16px -16px 12px -16px;width:calc(100% + 32px);flex-shrink:0;"></div>' : '';
+      return '<div class="card" data-cat="frontier" data-source="'+(s.source||'')+'" data-title="'+t+'" data-url="'+(s.url||'')+'" data-excerpt="'+(s.excerpt||'').replace(/"/g,'&quot;').substring(0,200)+'" style="cursor:pointer;">'+
+        '<div class="card-body">'+imgHtml+
+        '<div class="tag" style="color:var(--frontier);">'+(s.category||'Space')+'</div>'+
+        '<div class="card-title">'+(s.title||'')+'</div>'+
+        '<div class="card-footer"><span class="card-source">'+(s.source||'')+'</span><span class="card-time">Today</span></div>'+
+        '<div class="card-actions">'+
+        '<button class="card-btn summarize-btn" data-title="'+t+'">&#9889; Summary</button>'+
+        '<button class="card-btn bookmark-btn" data-title="'+t+'">&#128278; Save</button>'+
+        '<button class="card-btn share-btn" data-title="'+t+'"><svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="18" cy="5" r="3"/><circle cx="6" cy="12" r="3"/><circle cx="18" cy="19" r="3"/><line x1="8.59" y1="13.51" x2="15.42" y2="17.49"/><line x1="15.41" y1="6.51" x2="8.59" y2="10.49"/></svg> Share</button>'+
+        '</div></div></div>';
     }).join('');
+    wireCards();
   } catch(e) { console.error('fetchFrontierTrending:', e); }
 }
-
-// ── FRONTIER ATOMIC PREDICTIONS ──
 async function fetchFrontierForecasts() {
   try {
     var data = await supabaseFetch('frontier_forecasts', 'select=*&order=created_at.desc&limit=20&created_at=gte.'+sixMonthsAgo());
@@ -6009,39 +6021,59 @@ async function fetchLongevityStories() {
   try {
     var data = await supabaseFetch('longevity_stories', 'select=*&order=created_at.desc&limit=15&created_at=gte.'+sixMonthsAgo());
     if (!data || data.length === 0) return;
+    data.slice(0,6).forEach(function(s) {
+      if (s.title && !STORIES.find(function(x){ return x.title === s.title; })) {
+        STORIES.push({ title: s.title, cat: 'longevity', source: s.source||'AMG', time: 'Today', excerpt: s.excerpt||'', url: s.url||'#', image_url: s.image_url||null });
+      }
+    });
     var heroEl = document.getElementById('longevity-top-stories-grid');
     if (heroEl) {
       heroEl.innerHTML = data.slice(0,6).map(function(s) {
-        var imgHtml = s.image_url ? '<img src="'+s.image_url+'" alt="" style="width:100%;height:160px;object-fit:cover;border-radius:8px 8px 0 0;display:block;" loading="lazy" onerror="this.style.display=\'none\'" />' : '';
-        return '<div class="card" style="opacity:1;">' + imgHtml +
-          '<div class="card-body">' +
-          '<div class="tag" style="color:var(--longevity);">'+(s.category||'Longevity')+'</div>' +
-          '<div class="card-title">'+(s.title||'')+'</div>' +
-          '<div class="card-excerpt">'+(s.excerpt||'')+'</div>' +
-          '<div class="card-footer"><span class="card-source">'+(s.source||'')+'</span><span class="card-time">Today</span></div>' +
-          '</div></div>';
+        var t = (s.title||'').replace(/"/g,'&quot;').replace(/'/g,'&#39;');
+        var imgHtml = s.image_url ? '<div class="card-image" style="width:100%;height:160px;background:url(''+s.image_url+'') center/cover no-repeat;border-radius:8px 8px 0 0;margin:-16px -16px 12px -16px;width:calc(100% + 32px);flex-shrink:0;"></div>' : '';
+        return '<div class="card" data-cat="longevity" data-source="'+(s.source||'')+'" data-title="'+t+'" data-url="'+(s.url||'')+'" data-excerpt="'+(s.excerpt||'').replace(/"/g,'&quot;').substring(0,200)+'" style="cursor:pointer;">'+
+          '<div class="card-body">'+imgHtml+
+          '<div class="tag" style="color:var(--longevity);">'+(s.category||'Longevity')+'</div>'+
+          '<div class="card-title">'+(s.title||'')+'</div>'+
+          '<div class="card-excerpt">'+(s.excerpt||'')+'</div>'+
+          '<div class="card-footer"><span class="card-source">'+(s.source||'')+'</span><span class="card-time">Today</span></div>'+
+          '<div class="card-actions">'+
+          '<button class="card-btn summarize-btn" data-title="'+t+'">&#9889; AI Summary</button>'+
+          '<button class="card-btn bookmark-btn" data-title="'+t+'">&#128278; Save</button>'+
+          '<button class="card-btn share-btn" data-title="'+t+'"><svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="18" cy="5" r="3"/><circle cx="6" cy="12" r="3"/><circle cx="18" cy="19" r="3"/><line x1="8.59" y1="13.51" x2="15.42" y2="17.49"/><line x1="15.41" y1="6.51" x2="8.59" y2="10.49"/></svg> Share</button>'+
+          '</div></div></div>';
       }).join('');
+      wireCards();
     }
   } catch(e) { console.error('fetchLongevityStories:', e); }
 }
-
 async function fetchLongevityTrending() {
   try {
     var data = await supabaseFetch('longevity_stories', 'select=*&order=created_at.desc&limit=6&created_at=gte.'+sixMonthsAgo());
     var el = document.getElementById('longevity-trending-grid');
     if (!el || !data || data.length === 0) return;
+    data.slice(0,6).forEach(function(s) {
+      if (s.title && !STORIES.find(function(x){ return x.title === s.title; })) {
+        STORIES.push({ title: s.title, cat: 'longevity', source: s.source||'AMG', time: 'Today', excerpt: s.excerpt||'', url: s.url||'#', image_url: s.image_url||null });
+      }
+    });
     el.innerHTML = data.slice(0,6).map(function(s) {
-      var imgHtml = s.image_url ? '<img src="'+s.image_url+'" alt="" style="width:100%;height:120px;object-fit:cover;border-radius:8px 8px 0 0;display:block;" loading="lazy" onerror="this.style.display=\'none\'" />' : '';
-      return '<div class="card" style="opacity:1;">' + imgHtml +
-        '<div class="card-body">' +
-        '<div class="tag" style="color:var(--longevity);">'+(s.category||'Longevity')+'</div>' +
-        '<div class="card-title">'+(s.title||'')+'</div>' +
-        '<div class="card-footer"><span class="card-source">'+(s.source||'')+'</span><span class="card-time">Today</span></div>' +
-        '</div></div>';
+      var t = (s.title||'').replace(/"/g,'&quot;').replace(/'/g,'&#39;');
+      var imgHtml = s.image_url ? '<div class="card-image" style="width:100%;height:140px;background:url(''+s.image_url+'') center/cover no-repeat;border-radius:8px 8px 0 0;margin:-16px -16px 12px -16px;width:calc(100% + 32px);flex-shrink:0;"></div>' : '';
+      return '<div class="card" data-cat="longevity" data-source="'+(s.source||'')+'" data-title="'+t+'" data-url="'+(s.url||'')+'" data-excerpt="'+(s.excerpt||'').replace(/"/g,'&quot;').substring(0,200)+'" style="cursor:pointer;">'+
+        '<div class="card-body">'+imgHtml+
+        '<div class="tag" style="color:var(--longevity);">'+(s.category||'Longevity')+'</div>'+
+        '<div class="card-title">'+(s.title||'')+'</div>'+
+        '<div class="card-footer"><span class="card-source">'+(s.source||'')+'</span><span class="card-time">Today</span></div>'+
+        '<div class="card-actions">'+
+        '<button class="card-btn summarize-btn" data-title="'+t+'">&#9889; Summary</button>'+
+        '<button class="card-btn bookmark-btn" data-title="'+t+'">&#128278; Save</button>'+
+        '<button class="card-btn share-btn" data-title="'+t+'"><svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="18" cy="5" r="3"/><circle cx="6" cy="12" r="3"/><circle cx="18" cy="19" r="3"/><line x1="8.59" y1="13.51" x2="15.42" y2="17.49"/><line x1="15.41" y1="6.51" x2="8.59" y2="10.49"/></svg> Share</button>'+
+        '</div></div></div>';
     }).join('');
+    wireCards();
   } catch(e) { console.error('fetchLongevityTrending:', e); }
 }
-
 async function fetchLongevityRealWorld() {
   try {
     var data = await supabaseFetch('longevity_real_world', 'select=*&order=created_at.desc&limit=20&created_at=gte.'+sixMonthsAgo());
