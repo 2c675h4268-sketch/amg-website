@@ -5707,7 +5707,7 @@ document.addEventListener('keydown', function(e){ if(e.key === 'Escape') closeAb
 
 // ── VERTICAL SWITCHER ──
 function switchVertical(mode) {
-  window.scrollTo(0, 0);
+  setTimeout(function(){ window.scrollTo(0, 0); }, 0);
   updateDropdownLabel(mode);
   try { localStorage.setItem('amg-vertical', mode); } catch(e) {}
   var aiSection = document.getElementById('section-ai-robotics');
