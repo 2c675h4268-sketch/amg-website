@@ -835,8 +835,12 @@ a { color: inherit; text-decoration: none; }
 .panel-scroll::-webkit-scrollbar { width: 3px; }
 .panel-scroll::-webkit-scrollbar-thumb { background: var(--border); border-radius: 2px; }
 .panel-flat {
-  max-height: none !important;
-  overflow: visible !important;
+  max-height: none;
+  overflow: visible;
+}
+.panel-flat-scroll {
+  max-height: 320px;
+  overflow-y: auto;
 }
 
 /* ── PROMPT ITEMS ── */
@@ -2626,7 +2630,7 @@ body.frontier-mode .footer-email-input:focus { border-color: var(--frontier); }
       <div class="vertical-dropdown" id="vertical-dropdown">
         <button class="vertical-dropdown-btn" id="dropdown-trigger" onclick="toggleVerticalDropdown()">
           <span id="dropdown-label">🦾 AI &amp; Robotics</span>
-          <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="m6 9 6 6 6-6"/><\/svg>
+          <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="m6 9 6 6 6-6"/></svg>
         </button>
         <div class="vertical-dropdown-menu" id="dropdown-menu">
           <button class="vertical-dropdown-item active" onclick="switchVertical('ai');closeVerticalDropdown();">🦾 AI &amp; Robotics</button>
@@ -2916,7 +2920,7 @@ body.frontier-mode .footer-email-input:focus { border-color: var(--frontier); }
       <div class="ph-search-tray" id="srch-tray-companies">
         <input class="ph-search-input" id="search-companies" type="text" placeholder="Search companies…" oninput="filterPanelSearch('companies')" autocomplete="off">
       </div>
-      <div class="panel-flat" id="scroll-companies">
+      <div class="panel-flat-scroll" id="scroll-companies">
         <div class="panel-no-results" id="nores-companies">No results</div>
       </div>
     </div>
@@ -2931,7 +2935,7 @@ body.frontier-mode .footer-email-input:focus { border-color: var(--frontier); }
       <div class="ph-search-tray" id="srch-tray-rob-companies">
         <input class="ph-search-input" id="search-rob-companies" type="text" placeholder="Search companies…" oninput="filterPanelSearch('rob-companies')" autocomplete="off">
       </div>
-      <div class="panel-flat" id="scroll-rob-companies">
+      <div class="panel-flat-scroll" id="scroll-rob-companies">
         <div class="panel-no-results" id="nores-rob-companies">No results</div>
       </div>
     </div>
@@ -3054,58 +3058,64 @@ body.frontier-mode .footer-email-input:focus { border-color: var(--frontier); }
 
 
   <!-- FRONTIER IN THE REAL WORLD -->
-  <div class="section-title" style="margin-top:52px;border-bottom-color:var(--frontier);">The Frontier in the Real World</div>
-  <div class="duo-panel-grid">
+  <div class="section-title" style="margin-top:48px;border-bottom-color:var(--frontier);">The Frontier in the Real World</div>
+  <div class="dual-trending-grid">
     <!-- Active Missions -->
     <div class="panel-box">
-      <div class="panel-head" style="background:var(--surface);border-bottom:1.5px solid var(--border);">
-        <span class="panel-head-title" style="color:var(--text);">🚀 In Production</span>
+      <div class="panel-head">
+        <span class="panel-head-title tools">🚀 In Production</span>
         <div style="display:flex;align-items:center;gap:8px;">
           <button class="ph-search-btn" onclick="togglePanelSearch('frontier-prod-search')"><svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="8"/><path d="m21 21-4.35-4.35"/></svg></button>
-          <div class="live-indicator" style="font-size:11px;"><div class="live-dot" style="background:var(--frontier);"></div>Live</div>
+          <span class="panel-head-badge-deployed">Deployed Now</span>
         </div>
       </div>
       <div class="ph-search-wrap" id="frontier-prod-search" style="display:none;padding:8px 12px;border-bottom:1px solid var(--border);"><input class="ph-search-input" placeholder="Search missions…" oninput="filterPanel(this,'frontier-prod-scroll')" /></div>
-      <div class="panel-flat" id="frontier-prod-scroll">
+      <div class="panel-flat-scroll" id="frontier-prod-scroll">
         <div class="panel-no-results" id="nores-frontier-prod" style="display:none">No results</div>
       </div>
     </div>
     <!-- On the Horizon -->
     <div class="panel-box">
-      <div class="panel-head" style="background:var(--surface);border-bottom:1.5px solid var(--border);">
-        <span class="panel-head-title" style="color:var(--text);">🔭 On the Horizon</span>
-        <button class="ph-search-btn" onclick="togglePanelSearch('frontier-horizon-search')"><svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="8"/><path d="m21 21-4.35-4.35"/></svg></button>
+      <div class="panel-head">
+        <span class="panel-head-title prompts">🔭 On the Horizon</span>
+        <div style="display:flex;align-items:center;gap:8px;">
+          <button class="ph-search-btn" onclick="togglePanelSearch('frontier-horizon-search')"><svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="8"/><path d="m21 21-4.35-4.35"/></svg></button>
+          <span class="panel-head-badge-horizon">6–18 Months Out</span>
+        </div>
       </div>
       <div class="ph-search-wrap" id="frontier-horizon-search" style="display:none;padding:8px 12px;border-bottom:1px solid var(--border);"><input class="ph-search-input" placeholder="Search missions…" oninput="filterPanel(this,'frontier-horizon-scroll')" /></div>
-      <div class="panel-flat" id="frontier-horizon-scroll">
+      <div class="panel-flat-scroll" id="frontier-horizon-scroll">
         <div class="panel-no-results" id="nores-frontier-horizon" style="display:none">No results</div>
       </div>
     </div>
   </div>
 
   <!-- SPACE COMPANIES TO WATCH -->
-  <div class="section-title" style="margin-top:52px;border-bottom-color:var(--frontier);">Companies to Watch</div>
-  <div class="duo-panel-grid" id="frontier-companies-section">
+  <div class="section-title" style="margin-top:48px;border-bottom-color:var(--frontier);">Companies to Watch</div>
+  <div class="dual-trending-grid" id="frontier-companies-section">
     <div class="panel-box">
-      <div class="panel-head" style="background:var(--surface);border-bottom:1.5px solid var(--border);">
-        <span class="panel-head-title">🚀 Launch & Access</span>
+      <div class="panel-head">
+        <span class="panel-head-title companies">🚀 Launch & Access</span>
         <div style="display:flex;align-items:center;gap:8px;">
           <button class="ph-search-btn" onclick="togglePanelSearch('frontier-launch-search')"><svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="8"/><path d="m21 21-4.35-4.35"/></svg></button>
-          <div class="live-indicator" style="font-size:11px;"><div class="live-dot" style="background:var(--frontier);"></div>Live</div>
+          <span class="panel-head-badge-live">Live</span>
         </div>
       </div>
       <div class="ph-search-wrap" id="frontier-launch-search" style="display:none;padding:8px 12px;border-bottom:1px solid var(--border);"><input class="ph-search-input" placeholder="Search companies…" oninput="filterPanel(this,'frontier-launch-scroll')" /></div>
-      <div class="panel-flat" id="frontier-launch-scroll">
+      <div class="panel-flat-scroll" id="frontier-launch-scroll">
         <div class="panel-no-results" id="nores-frontier-launch" style="display:none">No results</div>
       </div>
     </div>
     <div class="panel-box">
-      <div class="panel-head" style="background:var(--surface);border-bottom:1.5px solid var(--border);">
-        <span class="panel-head-title">🛰️ Space Economy</span>
-        <button class="ph-search-btn" onclick="togglePanelSearch('frontier-economy-search')"><svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="8"/><path d="m21 21-4.35-4.35"/></svg></button>
+      <div class="panel-head">
+        <span class="panel-head-title companies">🛰️ Space Economy</span>
+        <div style="display:flex;align-items:center;gap:8px;">
+          <button class="ph-search-btn" onclick="togglePanelSearch('frontier-economy-search')"><svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="8"/><path d="m21 21-4.35-4.35"/></svg></button>
+          <span class="panel-head-badge-live">Live</span>
+        </div>
       </div>
       <div class="ph-search-wrap" id="frontier-economy-search" style="display:none;padding:8px 12px;border-bottom:1px solid var(--border);"><input class="ph-search-input" placeholder="Search companies…" oninput="filterPanel(this,'frontier-economy-scroll')" /></div>
-      <div class="panel-flat" id="frontier-economy-scroll">
+      <div class="panel-flat-scroll" id="frontier-economy-scroll">
         <div class="panel-no-results" id="nores-frontier-economy" style="display:none">No results</div>
       </div>
     </div>
@@ -3113,7 +3123,7 @@ body.frontier-mode .footer-email-input:focus { border-color: var(--frontier); }
 
 
   <!-- BY THE NUMBERS (FRONTIER) -->
-  <div class="section-title" style="margin-top:52px;border-bottom-color:var(--frontier);">By the Numbers</div>
+  <div class="section-title" style="margin-top:48px;border-bottom-color:var(--frontier);">By the Numbers</div>
   <div style="display:grid;grid-template-columns:repeat(3,1fr);gap:14px;" id="frontier-numbers-grid">
     <div class="stat-tile" style="background:var(--surface);border:1px solid var(--border);border-radius:var(--radius);padding:22px 24px;">
       <div style="font-size:11px;font-weight:700;letter-spacing:0.07em;text-transform:uppercase;color:var(--text-muted);margin-bottom:10px;">GLOBAL LAUNCH ATTEMPTS</div>
@@ -3158,7 +3168,7 @@ body.frontier-mode .footer-email-input:focus { border-color: var(--frontier); }
   </style>
 
   <!-- ATOMIC PREDICTIONS (FRONTIER) -->
-  <div class="section-title" style="margin-top:52px;align-items:center;border-bottom-color:var(--frontier);">Atomic's Predictions <span style="font-size:13px;font-weight:400;color:var(--text-muted);letter-spacing:0;text-transform:none;border:none;padding:0;margin-left:10px;display:inline-flex;align-items:center;">Predictions are reviewed and updated as new signals emerge.</span></div>
+  <div class="section-title" style="margin-top:48px;align-items:center;border-bottom-color:var(--frontier);">Atomic's Predictions <span style="font-size:13px;font-weight:400;color:var(--text-muted);letter-spacing:0;text-transform:none;border:none;padding:0;margin-left:10px;display:inline-flex;align-items:center;">Predictions are reviewed and updated as new signals emerge.</span></div>
   <div class="forecast-panels" id="frontier-forecast-grid">
     <div class="forecast-panel"><div class="forecast-panel-head"><span class="forecast-panel-icon">🚀</span><span class="forecast-panel-head-title">Loading...</span></div></div>
   </div>
@@ -3210,63 +3220,69 @@ body.frontier-mode .footer-email-input:focus { border-color: var(--frontier); }
 
 
   <!-- LONGEVITY IN THE REAL WORLD -->
-  <div class="section-title" style="margin-top:52px;border-bottom-color:var(--longevity);">Longevity in the Real World</div>
-  <div class="duo-panel-grid">
+  <div class="section-title" style="margin-top:48px;border-bottom-color:var(--longevity);">Longevity in the Real World</div>
+  <div class="dual-trending-grid">
     <div class="panel-box">
-      <div class="panel-head" style="background:var(--surface);border-bottom:1.5px solid var(--border);">
-        <span class="panel-head-title">🔬 In Clinical Use</span>
+      <div class="panel-head">
+        <span class="panel-head-title tools">🔬 In Clinical Use</span>
         <div style="display:flex;align-items:center;gap:8px;">
-          <button class="ph-search-btn" onclick="togglePanelSearch('longevity-prod-search')"><svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="8"/><path d="m21 21-4.35-4.35"/><\/svg></button>
-          <div class="live-indicator" style="font-size:11px;"><div class="live-dot" style="background:var(--longevity);"></div>Live</div>
+          <button class="ph-search-btn" onclick="togglePanelSearch('longevity-prod-search')"><svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="8"/><path d="m21 21-4.35-4.35"/></svg></button>
+          <span class="panel-head-badge-deployed">Deployed Now</span>
         </div>
       </div>
       <div class="ph-search-wrap" id="longevity-prod-search" style="display:none;padding:8px 12px;border-bottom:1px solid var(--border);"><input class="ph-search-input" placeholder="Search treatments…" oninput="filterPanel(this,'longevity-prod-scroll')" /></div>
-      <div class="panel-flat" id="longevity-prod-scroll">
+      <div class="panel-flat-scroll" id="longevity-prod-scroll">
         <div class="panel-no-results" id="nores-longevity-prod" style="display:none">No results</div>
       </div>
     </div>
     <div class="panel-box">
-      <div class="panel-head" style="background:var(--surface);border-bottom:1.5px solid var(--border);">
-        <span class="panel-head-title">🧪 On the Horizon</span>
-        <button class="ph-search-btn" onclick="togglePanelSearch('longevity-horizon-search')"><svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="8"/><path d="m21 21-4.35-4.35"/><\/svg></button>
+      <div class="panel-head">
+        <span class="panel-head-title prompts">🧪 On the Horizon</span>
+        <div style="display:flex;align-items:center;gap:8px;">
+          <button class="ph-search-btn" onclick="togglePanelSearch('longevity-horizon-search')"><svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="8"/><path d="m21 21-4.35-4.35"/></svg></button>
+          <span class="panel-head-badge-horizon">6–18 Months Out</span>
+        </div>
       </div>
       <div class="ph-search-wrap" id="longevity-horizon-search" style="display:none;padding:8px 12px;border-bottom:1px solid var(--border);"><input class="ph-search-input" placeholder="Search treatments…" oninput="filterPanel(this,'longevity-horizon-scroll')" /></div>
-      <div class="panel-flat" id="longevity-horizon-scroll">
+      <div class="panel-flat-scroll" id="longevity-horizon-scroll">
         <div class="panel-no-results" id="nores-longevity-horizon" style="display:none">No results</div>
       </div>
     </div>
   </div>
 
   <!-- COMPANIES TO WATCH -->
-  <div class="section-title" style="margin-top:52px;border-bottom-color:var(--longevity);">Companies to Watch</div>
-  <div class="duo-panel-grid">
+  <div class="section-title" style="margin-top:48px;border-bottom-color:var(--longevity);">Companies to Watch</div>
+  <div class="dual-trending-grid">
     <div class="panel-box">
-      <div class="panel-head" style="background:var(--surface);border-bottom:1.5px solid var(--border);">
-        <span class="panel-head-title">🧬 Biotech & Research</span>
+      <div class="panel-head">
+        <span class="panel-head-title companies">🧬 Biotech & Research</span>
         <div style="display:flex;align-items:center;gap:8px;">
-          <button class="ph-search-btn" onclick="togglePanelSearch('longevity-biotech-search')"><svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="8"/><path d="m21 21-4.35-4.35"/><\/svg></button>
-          <div class="live-indicator" style="font-size:11px;"><div class="live-dot" style="background:var(--longevity);"></div>Live</div>
+          <button class="ph-search-btn" onclick="togglePanelSearch('longevity-biotech-search')"><svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="8"/><path d="m21 21-4.35-4.35"/></svg></button>
+          <span class="panel-head-badge-live">Live</span>
         </div>
       </div>
       <div class="ph-search-wrap" id="longevity-biotech-search" style="display:none;padding:8px 12px;border-bottom:1px solid var(--border);"><input class="ph-search-input" placeholder="Search companies…" oninput="filterPanel(this,'longevity-biotech-scroll')" /></div>
-      <div class="panel-flat" id="longevity-biotech-scroll">
+      <div class="panel-flat-scroll" id="longevity-biotech-scroll">
         <div class="panel-no-results" id="nores-longevity-biotech" style="display:none">No results</div>
       </div>
     </div>
     <div class="panel-box">
-      <div class="panel-head" style="background:var(--surface);border-bottom:1.5px solid var(--border);">
-        <span class="panel-head-title">💊 Therapeutics & Clinics</span>
-        <button class="ph-search-btn" onclick="togglePanelSearch('longevity-clinics-search')"><svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="8"/><path d="m21 21-4.35-4.35"/><\/svg></button>
+      <div class="panel-head">
+        <span class="panel-head-title companies">💊 Therapeutics & Clinics</span>
+        <div style="display:flex;align-items:center;gap:8px;">
+          <button class="ph-search-btn" onclick="togglePanelSearch('longevity-clinics-search')"><svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="8"/><path d="m21 21-4.35-4.35"/></svg></button>
+          <span class="panel-head-badge-live">Live</span>
+        </div>
       </div>
       <div class="ph-search-wrap" id="longevity-clinics-search" style="display:none;padding:8px 12px;border-bottom:1px solid var(--border);"><input class="ph-search-input" placeholder="Search companies…" oninput="filterPanel(this,'longevity-clinics-scroll')" /></div>
-      <div class="panel-flat" id="longevity-clinics-scroll">
+      <div class="panel-flat-scroll" id="longevity-clinics-scroll">
         <div class="panel-no-results" id="nores-longevity-clinics" style="display:none">No results</div>
       </div>
     </div>
   </div>
 
   <!-- BY THE NUMBERS -->
-  <div class="section-title" style="margin-top:52px;border-bottom-color:var(--longevity);">By the Numbers</div>
+  <div class="section-title" style="margin-top:48px;border-bottom-color:var(--longevity);">By the Numbers</div>
   <div style="display:grid;grid-template-columns:repeat(3,1fr);gap:14px;" id="longevity-numbers-grid">
     <div class="stat-tile" style="background:var(--surface);border:1px solid var(--border);border-radius:var(--radius);padding:22px 24px;">
       <div style="font-size:11px;font-weight:700;letter-spacing:0.07em;text-transform:uppercase;color:var(--text-muted);margin-bottom:10px;">GLOBAL LONGEVITY MARKET</div>
@@ -3311,7 +3327,7 @@ body.frontier-mode .footer-email-input:focus { border-color: var(--frontier); }
   </style>
 
   <!-- ATOMIC PREDICTIONS -->
-  <div class="section-title" style="margin-top:52px;align-items:center;border-bottom-color:var(--longevity);">Atomic's Predictions <span style="font-size:13px;font-weight:400;color:var(--text-muted);letter-spacing:0;text-transform:none;border:none;padding:0;margin-left:10px;display:inline-flex;align-items:center;">Predictions are reviewed and updated as new signals emerge.</span></div>
+  <div class="section-title" style="margin-top:48px;align-items:center;border-bottom-color:var(--longevity);">Atomic's Predictions <span style="font-size:13px;font-weight:400;color:var(--text-muted);letter-spacing:0;text-transform:none;border:none;padding:0;margin-left:10px;display:inline-flex;align-items:center;">Predictions are reviewed and updated as new signals emerge.</span></div>
   <div class="forecast-panels" id="longevity-forecast-grid">
     <div class="forecast-panel"><div class="forecast-panel-head"><span class="forecast-panel-icon">🧬</span><span class="forecast-panel-head-title">Loading...</span></div></div>
   </div>
@@ -3407,7 +3423,7 @@ body.frontier-mode .footer-email-input:focus { border-color: var(--frontier); }
         <span class="toolkit-section-title">Writing</span>
         <div class="section-search-wrap">
           <button class="section-search-btn" onclick="toggleSectionSearch(this)" title="Search Writing">
-            <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="8"/><path d="m21 21-4.35-4.35"/><\/svg>
+            <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="8"/><path d="m21 21-4.35-4.35"/></svg>
           </button>
           <div class="section-search-input-wrap">
             <input class="section-search-input" placeholder="Search writing..." oninput="filterSectionCards(this, 'writing')" />
@@ -3559,7 +3575,7 @@ body.frontier-mode .footer-email-input:focus { border-color: var(--frontier); }
         <span class="toolkit-section-title">Research</span>
         <div class="section-search-wrap">
           <button class="section-search-btn" onclick="toggleSectionSearch(this)" title="Search Research">
-            <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="8"/><path d="m21 21-4.35-4.35"/><\/svg>
+            <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="8"/><path d="m21 21-4.35-4.35"/></svg>
           </button>
           <div class="section-search-input-wrap">
             <input class="section-search-input" placeholder="Search research..." oninput="filterSectionCards(this, 'research')" />
@@ -3711,7 +3727,7 @@ body.frontier-mode .footer-email-input:focus { border-color: var(--frontier); }
         <span class="toolkit-section-title">Sales</span>
         <div class="section-search-wrap">
           <button class="section-search-btn" onclick="toggleSectionSearch(this)" title="Search Sales">
-            <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="8"/><path d="m21 21-4.35-4.35"/><\/svg>
+            <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="8"/><path d="m21 21-4.35-4.35"/></svg>
           </button>
           <div class="section-search-input-wrap">
             <input class="section-search-input" placeholder="Search sales..." oninput="filterSectionCards(this, 'sales')" />
@@ -3863,7 +3879,7 @@ body.frontier-mode .footer-email-input:focus { border-color: var(--frontier); }
         <span class="toolkit-section-title">Marketing</span>
         <div class="section-search-wrap">
           <button class="section-search-btn" onclick="toggleSectionSearch(this)" title="Search Marketing">
-            <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="8"/><path d="m21 21-4.35-4.35"/><\/svg>
+            <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="8"/><path d="m21 21-4.35-4.35"/></svg>
           </button>
           <div class="section-search-input-wrap">
             <input class="section-search-input" placeholder="Search marketing..." oninput="filterSectionCards(this, 'marketing')" />
@@ -4015,7 +4031,7 @@ body.frontier-mode .footer-email-input:focus { border-color: var(--frontier); }
         <span class="toolkit-section-title">Finance</span>
         <div class="section-search-wrap">
           <button class="section-search-btn" onclick="toggleSectionSearch(this)" title="Search Finance">
-            <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="8"/><path d="m21 21-4.35-4.35"/><\/svg>
+            <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="8"/><path d="m21 21-4.35-4.35"/></svg>
           </button>
           <div class="section-search-input-wrap">
             <input class="section-search-input" placeholder="Search finance..." oninput="filterSectionCards(this, 'finance')" />
@@ -4167,7 +4183,7 @@ body.frontier-mode .footer-email-input:focus { border-color: var(--frontier); }
         <span class="toolkit-section-title">HR</span>
         <div class="section-search-wrap">
           <button class="section-search-btn" onclick="toggleSectionSearch(this)" title="Search HR">
-            <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="8"/><path d="m21 21-4.35-4.35"/><\/svg>
+            <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="8"/><path d="m21 21-4.35-4.35"/></svg>
           </button>
           <div class="section-search-input-wrap">
             <input class="section-search-input" placeholder="Search hr..." oninput="filterSectionCards(this, 'hr')" />
@@ -4319,7 +4335,7 @@ body.frontier-mode .footer-email-input:focus { border-color: var(--frontier); }
         <span class="toolkit-section-title">Operations</span>
         <div class="section-search-wrap">
           <button class="section-search-btn" onclick="toggleSectionSearch(this)" title="Search Operations">
-            <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="8"/><path d="m21 21-4.35-4.35"/><\/svg>
+            <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="8"/><path d="m21 21-4.35-4.35"/></svg>
           </button>
           <div class="section-search-input-wrap">
             <input class="section-search-input" placeholder="Search operations..." oninput="filterSectionCards(this, 'operations')" />
@@ -4787,8 +4803,9 @@ async function fetchCompanies() {
   try {
     const data = await supabaseFetch('companies', 'select=*&order=created_at.desc&limit=12');
     if (!data || !data.length) return;
-    const aiCos = data.filter(function(c){ return c.type === 'ai'; }).slice(0, 4);
-    const robCos = data.filter(function(c){ return c.type === 'robotics'; }).slice(0, 4);
+    var mid = Math.ceil(data.length / 2);
+    const aiCos = data.slice(0, mid).slice(0, 4);
+    const robCos = data.slice(mid).slice(0, 4);
 
     function makeWatchlistItem(c) {
       var statusClass = 'status-active';
@@ -5076,7 +5093,7 @@ function renderFeed() {
       '<div class="card-actions">' +
       '<button class="card-btn summarize-btn" data-title="'+t+'">&#9889; AI Summary</button>' +
       '<button class="card-btn bookmark-btn" data-title="'+t+'">&#128278; Save</button>' +
-      '<button class="card-btn share-btn" data-title="'+t+'"><svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="18" cy="5" r="3"/><circle cx="6" cy="12" r="3"/><circle cx="18" cy="19" r="3"/><line x1="8.59" y1="13.51" x2="15.42" y2="17.49"/><line x1="15.41" y1="6.51" x2="8.59" y2="10.49"/><\/svg> Share</button>' +
+      '<button class="card-btn share-btn" data-title="'+t+'"><svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="18" cy="5" r="3"/><circle cx="6" cy="12" r="3"/><circle cx="18" cy="19" r="3"/><line x1="8.59" y1="13.51" x2="15.42" y2="17.49"/><line x1="15.41" y1="6.51" x2="8.59" y2="10.49"/></svg> Share</button>' +
       '</div></div></div>';
   }
 
@@ -5105,7 +5122,7 @@ function renderFeed() {
       '<div class="card-actions">' +
       '<button class="card-btn summarize-btn" data-title="'+t+'">&#9889; Summary</button>' +
       '<button class="card-btn bookmark-btn" data-title="'+t+'">&#128278; Save</button>' +
-      '<button class="card-btn share-btn" data-title="'+t+'"><svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="18" cy="5" r="3"/><circle cx="6" cy="12" r="3"/><circle cx="18" cy="19" r="3"/><line x1="8.59" y1="13.51" x2="15.42" y2="17.49"/><line x1="15.41" y1="6.51" x2="8.59" y2="10.49"/><\/svg> Share</button>' +
+      '<button class="card-btn share-btn" data-title="'+t+'"><svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="18" cy="5" r="3"/><circle cx="6" cy="12" r="3"/><circle cx="18" cy="19" r="3"/><line x1="8.59" y1="13.51" x2="15.42" y2="17.49"/><line x1="15.41" y1="6.51" x2="8.59" y2="10.49"/></svg> Share</button>' +
       '</div></div></div>';
   }
 
@@ -5550,7 +5567,7 @@ document.querySelectorAll('.card-actions').forEach(actions => {
   const btn = document.createElement('button');
   btn.className = 'card-btn share-btn';
   btn.dataset.title = card.dataset.title;
-  btn.innerHTML = '<svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="18" cy="5" r="3"/><circle cx="6" cy="12" r="3"/><circle cx="18" cy="19" r="3"/><line x1="8.59" y1="13.51" x2="15.42" y2="17.49"/><line x1="15.41" y1="6.51" x2="8.59" y2="10.49"/><\/svg> Share';
+  btn.innerHTML = '<svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="18" cy="5" r="3"/><circle cx="6" cy="12" r="3"/><circle cx="18" cy="19" r="3"/><line x1="8.59" y1="13.51" x2="15.42" y2="17.49"/><line x1="15.41" y1="6.51" x2="8.59" y2="10.49"/></svg> Share';
   actions.appendChild(btn);
 });
 
@@ -5706,10 +5723,15 @@ function switchVertical(mode) {
   if (mode === 'frontier') {
     aiSection.style.display = 'none';
     frontierSection.style.display = 'block';
+    document.getElementById('section-longevity').style.display = 'none';
+    if (document.getElementById('section-work')) document.getElementById('section-work').style.display = 'none';
     btnAI.classList.remove('active');
     btnFrontier.classList.add('active');
+    document.getElementById('btn-longevity').classList.remove('active');
+    document.getElementById('btn-work').classList.remove('active');
     document.body.classList.add('frontier-mode');
-      if (!frontierSection.dataset.loaded) {
+    document.body.classList.remove('longevity-mode');
+    if (!frontierSection.dataset.loaded) {
       fetchFrontierStories();
       fetchFrontierRealWorld();
       fetchFrontierCompanies();
@@ -5720,9 +5742,11 @@ function switchVertical(mode) {
     aiSection.style.display = 'none';
     frontierSection.style.display = 'none';
     document.getElementById('section-longevity').style.display = 'block';
+    if (document.getElementById('section-work')) document.getElementById('section-work').style.display = 'none';
     btnAI.classList.remove('active');
     btnFrontier.classList.remove('active');
     document.getElementById('btn-longevity').classList.add('active');
+    document.getElementById('btn-work').classList.remove('active');
     document.body.classList.remove('frontier-mode');
     document.body.classList.add('longevity-mode');
       var longevitySection = document.getElementById('section-longevity');
@@ -5790,6 +5814,12 @@ async function fetchFrontierRealWorld() {
     if (!data || data.length === 0) return;
     var prod = data.filter(function(d){ return (d.status||'').toLowerCase().includes('production'); }).slice(0,4);
     var horizon = data.filter(function(d){ return (d.status||'').toLowerCase().includes('horizon'); }).slice(0,4);
+    // Fallback: if status filtering returns too few, split by position
+    if (prod.length < 2 && horizon.length < 2) {
+      var mid = Math.ceil(data.length / 2);
+      prod = data.slice(0, mid).slice(0, 4);
+      horizon = data.slice(mid).slice(0, 4);
+    }
 
     function makeItem(d) {
       return '<div class="tool-item">' +
@@ -5825,14 +5855,17 @@ async function fetchFrontierCompanies() {
       ];
       data = [...launch.map(function(c){ return {...c, type:'launch'}; }), ...economy.map(function(c){ return {...c, type:'economy'}; })];
     }
-    var launchCos = data.filter(function(c){ return (c.type||c.category||'').toLowerCase().includes('launch') || ['SpaceX','Rocket Lab','Blue Origin','ULA','Relativity Space'].includes(c.name); }).slice(0,4);
-    var economyCos = data.filter(function(c){ return !launchCos.includes(c); }).slice(0,4);
+    var mid = Math.ceil(data.length / 2);
+    var launchCos = data.slice(0, mid).slice(0, 4);
+    var economyCos = data.slice(mid).slice(0, 4);
 
     function makeWatchItem(c) {
       var href = c.url || ('https://www.google.com/search?q='+encodeURIComponent((c.name||'')+' space company'));
-      var initials = (c.name||'?').substring(0,2).toUpperCase();
+      var domain = '';
+      try { if (c.url) domain = new URL(c.url).hostname.replace('www.',''); } catch(e) {}
+      var logoHtml = domain ? makeLogoImg(domain, c.name, 'letter', 'watchlist-logo') : makeLetterAvatar(c.name, '');
       return '<a class="watchlist-item" href="'+href+'" target="_blank" rel="noopener">' +
-        '<div class="watchlist-logo" style="width:36px;height:36px;border-radius:8px;background:linear-gradient(135deg,var(--frontier),#f97316);display:flex;align-items:center;justify-content:center;flex-shrink:0;font-size:12px;font-weight:800;color:#fff;">'+initials+'</div>' +
+        logoHtml +
         '<div class="watchlist-body">' +
         '<div class="watchlist-name">'+(c.name||'')+'<span class="watchlist-status status-active" style="background:#fff7ed;color:var(--frontier);border-color:#fed7aa;">'+(c.category||'Space')+'</span></div>' +
         '<div class="watchlist-latest">'+(c.update||c.description||'')+'</div>' +
@@ -5992,6 +6025,12 @@ async function fetchLongevityRealWorld() {
     if (!data || data.length === 0) return;
     var prod = data.filter(function(d){ return (d.status||'').toLowerCase().includes('production') || (d.status||'').toLowerCase().includes('clinical use'); }).slice(0,4);
     var horizon = data.filter(function(d){ return (d.status||'').toLowerCase().includes('horizon'); }).slice(0,4);
+    // Fallback: if status filtering returns too few, split by position
+    if (prod.length < 2 && horizon.length < 2) {
+      var mid = Math.ceil(data.length / 2);
+      prod = data.slice(0, mid).slice(0, 4);
+      horizon = data.slice(mid).slice(0, 4);
+    }
     function makeItem(d) {
       return '<div class="tool-item"><div class="tool-name">'+(d.name||'')+'</div><div class="tool-desc">'+(d.description||'')+'</div><div class="tool-tag">'+(d.sector||'Longevity')+'</div></div>';
     }
@@ -6017,13 +6056,15 @@ async function fetchLongevityCompanies() {
         {name:'Bryan Johnson', signal:'Blueprint protocol most measured human, open-sourcing longevity', url:'https://blueprint.bryanjohnson.com', category:'Biohacking', type:'clinic'},
       ];
     }
-    var biotechCos = data.filter(function(c){ return (c.type||'').toLowerCase()==='biotech'; }).slice(0,4);
-    var clinicCos = data.filter(function(c){ return (c.type||'').toLowerCase()!=='biotech'; }).slice(0,4);
+    var biotechCos = data.filter(function(c){ return (c.type||'').toLowerCase() === 'biotech'; }).slice(0,4);
+    var clinicCos = data.filter(function(c){ return (c.type||'').toLowerCase() === 'clinic'; }).slice(0,4);
     function makeItem(c) {
       var href = c.url || ('https://www.google.com/search?q='+encodeURIComponent((c.name||'')+' longevity'));
-      var initials = (c.name||'?').substring(0,2).toUpperCase();
+      var domain = '';
+      try { if (c.url) domain = new URL(c.url).hostname.replace('www.',''); } catch(e) {}
+      var logoHtml = domain ? makeLogoImg(domain, c.name, 'letter', 'watchlist-logo') : makeLetterAvatar(c.name, '');
       return '<a class="watchlist-item" href="'+href+'" target="_blank" rel="noopener">' +
-        '<div style="width:36px;height:36px;border-radius:8px;background:linear-gradient(135deg,var(--longevity),#34d399);display:flex;align-items:center;justify-content:center;flex-shrink:0;font-size:12px;font-weight:800;color:#fff;">'+initials+'</div>' +
+        logoHtml +
         '<div class="watchlist-body">' +
         '<div class="watchlist-name">'+(c.name||'')+'<span class="watchlist-status status-active" style="background:#ecfdf5;color:var(--longevity);border-color:#a7f3d0;">'+(c.category||'Longevity')+'</span></div>' +
         '<div class="watchlist-latest">'+(c.update||c.description||'')+'</div>' +
