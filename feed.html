@@ -4660,7 +4660,7 @@ async function fetchForecasts() {
 
 async function fetchBreakingNow() {
   try {
-    const data = await supabaseFetch('stories', 'select=*&order=created_at.desc&limit=6&created_at=gte.'+sixMonthsAgo());
+    const data = await supabaseFetch('stories', 'select=*&order=created_at.desc&limit=6');
     const el = document.getElementById('breaking-now-feed');
     if (!el) return;
     if (!data || data.length === 0) {
@@ -4689,7 +4689,7 @@ async function fetchBreakingNow() {
 
 async function fetchStories() {
   try {
-    const data = await supabaseFetch('stories', 'select=*&order=created_at.desc&limit=10&created_at=gte.'+sixMonthsAgo());
+    const data = await supabaseFetch('stories', 'select=*&order=created_at.desc&limit=10');
     if (data && data.length > 0) {
       STORIES = data.map(function(s) {
         return {
@@ -4748,7 +4748,7 @@ function handleLogoError(img) {
 // ── FETCH COMPANIES ──
 async function fetchCompanies() {
   try {
-    const data = await supabaseFetch('companies', 'select=*&order=created_at.desc&limit=12&created_at=gte.'+sixMonthsAgo());
+    const data = await supabaseFetch('companies', 'select=*&order=created_at.desc&limit=12');
     if (!data || !data.length) return;
     var mid = Math.ceil(data.length / 2);
     const aiCos = data.slice(0, mid).slice(0, 4);
@@ -4795,7 +4795,7 @@ async function fetchCompanies() {
 // ── FETCH TOOLS ──
 async function fetchTools() {
   try {
-    const data = await supabaseFetch('tools', 'select=*&order=created_at.desc&limit=8&created_at=gte.'+sixMonthsAgo());
+    const data = await supabaseFetch('tools', 'select=*&order=created_at.desc&limit=8');
     if (!data || !data.length) return;
 
     function makeToolItem(t) {
@@ -4834,7 +4834,7 @@ async function fetchTools() {
 // ── FETCH PROMPTS ──
 async function fetchPrompts() {
   try {
-    const data = await supabaseFetch('prompts', 'select=*&order=created_at.desc&limit=8&created_at=gte.'+sixMonthsAgo());
+    const data = await supabaseFetch('prompts', 'select=*&order=created_at.desc&limit=8');
     if (!data || !data.length) return;
 
     function makePromptItem(p) {
@@ -4871,8 +4871,8 @@ async function fetchPrompts() {
 async function fetchRealWorldAI() {
   try {
     const [prodData, horizData] = await Promise.all([
-      supabaseFetch('real_world_ai', 'select=*&status=ilike.*production*&order=created_at.desc&limit=4&created_at=gte.'+sixMonthsAgo()),
-      supabaseFetch('real_world_ai', 'select=*&status=ilike.*horizon*&order=created_at.desc&limit=4&created_at=gte.'+sixMonthsAgo())
+      supabaseFetch('real_world_ai', 'select=*&status=ilike.*production*&order=created_at.desc&limit=4'),
+      supabaseFetch('real_world_ai', 'select=*&status=ilike.*horizon*&order=created_at.desc&limit=4')
     ]);
     const data = [...(prodData||[]), ...(horizData||[])];
     if (!data || !data.length) return;
@@ -4934,8 +4934,8 @@ async function fetchRealWorldAI() {
 async function fetchRealWorldRobotics() {
   try {
     const [prodData, horizData] = await Promise.all([
-      supabaseFetch('real_world_robotics', 'select=*&status=ilike.*production*&order=created_at.desc&limit=4&created_at=gte.'+sixMonthsAgo()),
-      supabaseFetch('real_world_robotics', 'select=*&status=ilike.*horizon*&order=created_at.desc&limit=4&created_at=gte.'+sixMonthsAgo())
+      supabaseFetch('real_world_robotics', 'select=*&status=ilike.*production*&order=created_at.desc&limit=4'),
+      supabaseFetch('real_world_robotics', 'select=*&status=ilike.*horizon*&order=created_at.desc&limit=4')
     ]);
     const data = [...(prodData||[]), ...(horizData||[])];
     if (!data || !data.length) return;
@@ -4994,7 +4994,7 @@ async function fetchRealWorldRobotics() {
 // ── FETCH STATS (BY THE NUMBERS) ──
 async function fetchStats() {
   try {
-    const data = await supabaseFetch('stats', 'select=*&order=created_at.desc&limit=6&created_at=gte.'+sixMonthsAgo());
+    const data = await supabaseFetch('stats', 'select=*&order=created_at.desc&limit=6');
     if (!data || !data.length) return;
 
     function makeStatTile(s) {
@@ -5017,7 +5017,7 @@ async function fetchStats() {
 
 async function fetchFrontierStats() {
   try {
-    var data = await supabaseFetch('frontier_stats', 'select=*&order=created_at.desc&limit=6&created_at=gte.'+sixMonthsAgo());
+    var data = await supabaseFetch('frontier_stats', 'select=*&order=created_at.desc&limit=6');
     if (!data || !data.length) return;
     function makeStatTile(s) {
       var trendText = (s.trend||'').replace(/<[^>]*>/g,'').replace(/style="[^"]*"/g,'');
@@ -5035,7 +5035,7 @@ async function fetchFrontierStats() {
 
 async function fetchLongevityStats() {
   try {
-    var data = await supabaseFetch('longevity_stats', 'select=*&order=created_at.desc&limit=6&created_at=gte.'+sixMonthsAgo());
+    var data = await supabaseFetch('longevity_stats', 'select=*&order=created_at.desc&limit=6');
     if (!data || !data.length) return;
     function makeStatTile(s) {
       var trendText = (s.trend||'').replace(/<[^>]*>/g,'').replace(/style="[^"]*"/g,'');
@@ -5463,7 +5463,7 @@ async function runArchiveSearch(q) {
   searchResults.innerHTML = '<div style="padding:24px;text-align:center;color:var(--text-muted);font-size:14px;">Searching archive...</div>';
   try {
     // Search stories
-    var storyParams = 'select=id,title,excerpt,source,category,url,created_at&title=ilike.*' + encodeURIComponent(q) + '*&created_at=gte.' + sixMonthsAgo() + '&limit=20';
+    var storyParams = 'select=id,title,excerpt,source,category,url,created_at&title=ilike.*' + encodeURIComponent(q) + '*&limit=20';
     var storyParams2 = 'select=id,title,excerpt,source,category,url,created_at&excerpt=ilike.*' + encodeURIComponent(q) + '*&limit=10';
     
     var [stories1, stories2] = await Promise.all([
@@ -5801,7 +5801,7 @@ function switchVertical(mode) {
 // ── FRONTIER DATA FETCHERS ──
 async function fetchFrontierStories() {
   try {
-    var data = await supabaseFetch('frontier_stories', 'select=*&order=created_at.desc&limit=15&created_at=gte.'+sixMonthsAgo());
+    var data = await supabaseFetch('frontier_stories', 'select=*&order=created_at.desc&limit=15');
     if (!data || data.length === 0) return;
     data.slice(0,6).forEach(function(s) {
       if (s.title && !STORIES.find(function(x){ return x.title === s.title; })) {
@@ -5831,7 +5831,7 @@ async function fetchFrontierStories() {
 }
 async function fetchFrontierRealWorld() {
   try {
-    var data = await supabaseFetch('frontier_real_world', 'select=*&order=created_at.desc&limit=20&created_at=gte.'+sixMonthsAgo());
+    var data = await supabaseFetch('frontier_real_world', 'select=*&order=created_at.desc&limit=20');
     if (!data || data.length === 0) return;
     var prod = data.filter(function(d){ return (d.status||'').toLowerCase().includes('production'); }).slice(0,4);
     var horizon = data.filter(function(d){ return (d.status||'').toLowerCase().includes('horizon'); }).slice(0,4);
@@ -5872,7 +5872,7 @@ async function fetchFrontierRealWorld() {
 
 async function fetchFrontierCompanies() {
   try {
-    var data = await supabaseFetch('frontier_companies', 'select=*&order=created_at.desc&limit=20&created_at=gte.'+sixMonthsAgo());
+    var data = await supabaseFetch('frontier_companies', 'select=*&order=created_at.desc&limit=20');
     if (!data || data.length === 0) {
       // Seed with static companies if DB empty
       var launch = [
@@ -5916,7 +5916,7 @@ async function fetchFrontierCompanies() {
 // ── FRONTIER TRENDING NOW ──
 async function fetchFrontierTrending() {
   try {
-    var data = await supabaseFetch('frontier_stories', 'select=*&order=created_at.desc&limit=6&created_at=gte.'+sixMonthsAgo());
+    var data = await supabaseFetch('frontier_stories', 'select=*&order=created_at.desc&limit=6');
     var el = document.getElementById('frontier-trending-grid');
     if (!el || !data || data.length === 0) return;
     data.slice(0,6).forEach(function(s) {
@@ -5943,7 +5943,7 @@ async function fetchFrontierTrending() {
 }
 async function fetchFrontierForecasts() {
   try {
-    var data = await supabaseFetch('frontier_forecasts', 'select=*&order=created_at.desc&limit=20&created_at=gte.'+sixMonthsAgo());
+    var data = await supabaseFetch('frontier_forecasts', 'select=*&order=created_at.desc&limit=20');
     var el = document.getElementById('frontier-forecast-grid');
     if (!el) return;
 
@@ -6023,7 +6023,7 @@ async function fetchFrontierForecasts() {
 // ── LONGEVITY DATA FETCHERS ──
 async function fetchLongevityStories() {
   try {
-    var data = await supabaseFetch('longevity_stories', 'select=*&order=created_at.desc&limit=15&created_at=gte.'+sixMonthsAgo());
+    var data = await supabaseFetch('longevity_stories', 'select=*&order=created_at.desc&limit=15');
     if (!data || data.length === 0) return;
     data.slice(0,6).forEach(function(s) {
       if (s.title && !STORIES.find(function(x){ return x.title === s.title; })) {
@@ -6053,7 +6053,7 @@ async function fetchLongevityStories() {
 }
 async function fetchLongevityTrending() {
   try {
-    var data = await supabaseFetch('longevity_stories', 'select=*&order=created_at.desc&limit=6&created_at=gte.'+sixMonthsAgo());
+    var data = await supabaseFetch('longevity_stories', 'select=*&order=created_at.desc&limit=6');
     var el = document.getElementById('longevity-trending-grid');
     if (!el || !data || data.length === 0) return;
     data.slice(0,6).forEach(function(s) {
@@ -6080,7 +6080,7 @@ async function fetchLongevityTrending() {
 }
 async function fetchLongevityRealWorld() {
   try {
-    var data = await supabaseFetch('longevity_real_world', 'select=*&order=created_at.desc&limit=20&created_at=gte.'+sixMonthsAgo());
+    var data = await supabaseFetch('longevity_real_world', 'select=*&order=created_at.desc&limit=20');
     if (!data || data.length === 0) return;
     var prod = data.filter(function(d){ return (d.status||'').toLowerCase().includes('production') || (d.status||'').toLowerCase().includes('clinical use'); }).slice(0,4);
     var horizon = data.filter(function(d){ return (d.status||'').toLowerCase().includes('horizon'); }).slice(0,4);
@@ -6119,7 +6119,7 @@ async function fetchLongevityRealWorld() {
 
 async function fetchLongevityCompanies() {
   try {
-    var data = await supabaseFetch('longevity_companies', 'select=*&order=created_at.desc&limit=20&created_at=gte.'+sixMonthsAgo());
+    var data = await supabaseFetch('longevity_companies', 'select=*&order=created_at.desc&limit=20');
     if (!data || data.length === 0) {
       data = [
         {name:'Altos Labs', signal:'$3B raised cellular reprogramming research accelerating', url:'https://altoslabs.com', category:'Biotech', type:'biotech'},
@@ -6155,7 +6155,7 @@ async function fetchLongevityCompanies() {
 
 async function fetchLongevityForecasts() {
   try {
-    var data = await supabaseFetch('longevity_forecasts', 'select=*&order=created_at.desc&limit=20&created_at=gte.'+sixMonthsAgo());
+    var data = await supabaseFetch('longevity_forecasts', 'select=*&order=created_at.desc&limit=20');
     var el = document.getElementById('longevity-forecast-grid');
     if (!el) return;
     if (!data || data.length === 0) {
