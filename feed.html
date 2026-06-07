@@ -5317,6 +5317,16 @@ function closeReading(){
   document.getElementById('reading-overlay').classList.remove('open');
   document.body.style.overflow = '';
 }
+function openReadingDirect(s){
+  document.getElementById('r-tag').textContent = (s.cat||'AI').toUpperCase();
+  document.getElementById('r-title').textContent = s.title||'';
+  document.getElementById('r-meta').textContent = (s.source||'AMG') + ' · From archive';
+  document.getElementById('r-body').innerHTML = '<p>'+(s.excerpt||'')+'</p><p>This story is being actively monitored by the Atomic Media Group AI feed. Click the button below to read the full article from the original source.</p>';
+  document.getElementById('r-link').href = s.url || '#';
+  document.getElementById('reading-overlay').classList.add('open');
+  document.body.style.overflow = 'hidden';
+  renderYMAL(s.title, s.cat||'ai');
+}
 document.getElementById('reading-close').addEventListener('click', closeReading);
 document.getElementById('reading-overlay').addEventListener('click', function(e){ if(e.target===this) closeReading(); });
 
@@ -5514,7 +5524,7 @@ function renderSearchResults(results, q) {
   searchResults.innerHTML = '<div style="padding:8px 16px 4px;font-size:11px;font-weight:700;letter-spacing:0.06em;text-transform:uppercase;color:var(--text-muted);">' + results.length + ' result' + (results.length !== 1 ? 's' : '') + ' in archive</div>' +
     results.map(function(r) {
       var badge = r.type !== 'story' ? '<span style="font-size:10px;font-weight:700;padding:2px 6px;border-radius:4px;background:var(--surface);color:var(--text-muted);margin-left:6px;">' + typeLabels[r.type] + '</span>' : '';
-      return '<div class="search-result" data-title="' + (r.title||'').replace(/"/g,'&quot;') + '" data-url="' + (r.url||'') + '" data-type="' + (r.type||'story') + '" style="cursor:pointer;">' +
+      return '<div class="search-result" data-title="' + (r.title||'').replace(/"/g,'&quot;') + '" data-url="' + (r.url||'') + '" data-type="' + (r.type||'story') + '" data-excerpt="' + (r.excerpt||'').replace(/"/g,'&quot;').substring(0,200) + '" data-source="' + (r.source||'').replace(/"/g,'&quot;') + '" data-category="' + (r.category||'AI') + '" style="cursor:pointer;">' +
         '<div class="search-result-title">' + (r.title||'') + badge + '</div>' +
         '<div class="search-result-meta">' + (r.source||'') + (r.category ? ' · ' + r.category.toUpperCase() : '') + '</div>' +
         (r.excerpt ? '<div style="font-size:12px;color:var(--text-muted);margin-top:3px;line-height:1.5;overflow:hidden;display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;">' + r.excerpt + '</div>' : '') +
@@ -5524,9 +5534,20 @@ function renderSearchResults(results, q) {
     el.addEventListener('click', function() {
       var url = this.dataset.url;
       var type = this.dataset.type;
-      if (type === 'story' && this.dataset.title) {
+      if (type === 'story') {
         closeSearch();
-        openReading(this.dataset.title);
+        var local = STORIES.find(function(s){ return s.title === el.dataset.title; });
+        if (local) {
+          openReading(local.title);
+        } else {
+          openReadingDirect({
+            title: el.dataset.title,
+            url: el.dataset.url,
+            excerpt: el.dataset.excerpt || '',
+            source: el.dataset.source || '',
+            cat: el.dataset.category || 'AI'
+          });
+        }
       } else if (url) {
         window.open(url, '_blank', 'noopener');
         closeSearch();
