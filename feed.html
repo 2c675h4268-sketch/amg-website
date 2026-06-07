@@ -5844,12 +5844,25 @@ async function fetchFrontierRealWorld() {
       horizon = data.slice(mid).slice(0, 4);
     }
 
+    var FRONTIER_SECTOR_ICONS = {
+      'launch': '🚀', 'satellites': '🛰️', 'exploration': '🌌', 'stations': '🏗️',
+      'connectivity': '📡', 'defense': '🛡️', 'tourism': '🌍', 'economy': '💰',
+      'transport': '🚀', 'manufacturing': '🔧', 'mining': '⛏️', 'energy': '⚡'
+    };
     function makeItem(d) {
+      var domain = '';
+      try { if (d.url) domain = new URL(d.url).hostname.replace('www.',''); } catch(e) {}
+      var icon = domain
+        ? makeLogoImg(domain, d.name, FRONTIER_SECTOR_ICONS[(d.sector||'').toLowerCase()] || '🚀', 'watchlist-logo')
+        : '<div class="tool-icon">' + (FRONTIER_SECTOR_ICONS[(d.sector||'').toLowerCase()] || '🚀') + '</div>';
       return '<div class="tool-item">' +
+        icon +
+        '<div class="tool-body">' +
         '<div class="tool-name">'+(d.name||'')+'</div>' +
         '<div class="tool-desc">'+(d.description||'')+'</div>' +
-        '<div class="tool-tag">'+(d.sector||'Space')+'</div>' +
-        '</div>';
+        '<div class="tool-footer"><span class="tool-cat">⊟ '+(d.sector||'Space')+'</span>' +
+        '<span class="tool-stars" style="color:var(--text-muted);font-size:11px;">'+(d.status||'')+'</span>' +
+        '</div></div></div>';
     }
 
     var prodEl = document.getElementById('frontier-prod-scroll');
@@ -6053,8 +6066,25 @@ async function fetchLongevityRealWorld() {
       prod = data.slice(0, mid).slice(0, 4);
       horizon = data.slice(mid).slice(0, 4);
     }
+    var LONGEVITY_SECTOR_ICONS = {
+      'therapeutics': '💊', 'diagnostics': '🔬', 'biotech': '🧬', 'ai drug discovery': '🤖',
+      'biohacking': '⚡', 'genomics': '🧪', 'oncology': '🏥', 'neuroscience': '🧠',
+      'longevity': '♾️', 'clinical': '🏥', 'research': '🔬', 'vaccines': '💉'
+    };
     function makeItem(d) {
-      return '<div class="tool-item"><div class="tool-name">'+(d.name||'')+'</div><div class="tool-desc">'+(d.description||'')+'</div><div class="tool-tag">'+(d.sector||'Longevity')+'</div></div>';
+      var domain = '';
+      try { if (d.url) domain = new URL(d.url).hostname.replace('www.',''); } catch(e) {}
+      var icon = domain
+        ? makeLogoImg(domain, d.name, LONGEVITY_SECTOR_ICONS[(d.sector||'').toLowerCase()] || '🧬', 'watchlist-logo')
+        : '<div class="tool-icon">' + (LONGEVITY_SECTOR_ICONS[(d.sector||'').toLowerCase()] || '🧬') + '</div>';
+      return '<div class="tool-item">' +
+        icon +
+        '<div class="tool-body">' +
+        '<div class="tool-name">'+(d.name||'')+'</div>' +
+        '<div class="tool-desc">'+(d.description||'')+'</div>' +
+        '<div class="tool-footer"><span class="tool-cat">⊟ '+(d.sector||'Longevity')+'</span>' +
+        '<span class="tool-stars" style="color:var(--text-muted);font-size:11px;">'+(d.status||'')+'</span>' +
+        '</div></div></div>';
     }
     var prodEl = document.getElementById('longevity-prod-scroll');
     if (prodEl) prodEl.innerHTML = '<div class="panel-no-results" style="display:none">No results</div>' + prod.slice(0,4).map(makeItem).join('');
