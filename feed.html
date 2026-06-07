@@ -5244,12 +5244,18 @@ document.addEventListener('DOMContentLoaded', function() {
   fetchRealWorldRobotics();
   fetchStats();
 
-  // Auto-switch vertical based on URL parameter
+  // Auto-switch vertical based on URL parameter, then localStorage
   var urlParams = new URLSearchParams(window.location.search);
   var vertical = urlParams.get('v');
   if (vertical === 'frontier') switchVertical('frontier');
   else if (vertical === 'longevity') switchVertical('longevity');
   else if (vertical === 'work') switchVertical('work');
+  else {
+    try {
+      var saved = localStorage.getItem('amg-vertical');
+      if (saved && saved !== 'ai') switchVertical(saved);
+    } catch(e) {}
+  }
 });
 // ── SAVED (localStorage) ──
 function getSaved(){ try{return JSON.parse(localStorage.getItem('amg-saved')||'[]');}catch(e){return[];} }
@@ -5737,6 +5743,7 @@ document.addEventListener('keydown', function(e){ if(e.key === 'Escape') closeAb
 function switchVertical(mode) {
   window.scrollTo(0, 0);
   updateDropdownLabel(mode);
+  try { localStorage.setItem('amg-vertical', mode); } catch(e) {}
   var aiSection = document.getElementById('section-ai-robotics');
   var frontierSection = document.getElementById('section-frontier');
   var btnAI = document.getElementById('btn-ai-robotics');
