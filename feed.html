@@ -5876,9 +5876,8 @@ async function fetchFrontierCompanies() {
       ];
       data = [...launch.map(function(c){ return {...c, type:'launch'}; }), ...economy.map(function(c){ return {...c, type:'economy'}; })];
     }
-    var mid = Math.ceil(data.length / 2);
-    var launchCos = data.slice(0, mid).slice(0, 4);
-    var economyCos = data.slice(mid).slice(0, 4);
+    var launchCos = data.filter(function(c){ return (c.type||'').toLowerCase() === 'launch'; }).slice(0,4);
+    var economyCos = data.filter(function(c){ return (c.type||'').toLowerCase() === 'economy'; }).slice(0,4);
 
     function makeWatchItem(c) {
       var href = c.url || ('https://www.google.com/search?q='+encodeURIComponent((c.name||'')+' space company'));
