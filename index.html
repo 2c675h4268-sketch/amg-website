@@ -6,6 +6,17 @@
   <title>Atomic Media Group Intelligence for the Future</title>
   <meta name="color-scheme" content="light only" />
   <meta name="description" content="Atomic Media Group delivers daily AI-curated intelligence across AI & Robotics, The Frontier, Longevity, and practical AI tools for work." />
+  <meta property="og:type" content="website" />
+  <meta property="og:url" content="https://atomicmediagroup.ai" />
+  <meta property="og:title" content="Atomic Media Group — AI Intelligence Platform" />
+  <meta property="og:description" content="Daily AI-curated intelligence across AI & Robotics, Commercial Space, Longevity, and AI at Work. The future, before it's obvious." />
+  <meta property="og:image" content="https://atomicmediagroup.ai/og-preview.png" />
+  <meta property="og:site_name" content="Atomic Media Group" />
+  <meta name="twitter:card" content="summary_large_image" />
+  <meta name="twitter:site" content="@AtomicMediaGroup" />
+  <meta name="twitter:title" content="Atomic Media Group — AI Intelligence Platform" />
+  <meta name="twitter:description" content="Daily AI-curated intelligence across AI & Robotics, Commercial Space, Longevity, and AI at Work. The future, before it's obvious." />
+  <meta name="twitter:image" content="https://atomicmediagroup.ai/og-preview.png" />
   <link rel="preconnect" href="https://api.fontshare.com" />
   <link href="https://api.fontshare.com/v2/css?f[]=satoshi@400,500,600,700,800&display=swap" rel="stylesheet" />
   <style>
@@ -564,7 +575,7 @@
       Atomic Media Group delivers daily intelligence across the forces reshaping humanity powered entirely by AI.
     </p>
     <div class="hero-actions">
-      <a href="/feed.html" class="btn-primary">Read Today's Brief →</a>
+      <button class="btn-primary" onclick="openBrief()">Read Today's Brief →</button>
       <a href="#verticals" class="btn-secondary">Learn More</a>
     </div>
   </section>
@@ -681,5 +692,68 @@
 
 
 
+
+<!-- DAILY BRIEF MODAL -->
+<div id="brief-overlay" style="display:none;position:fixed;inset:0;background:rgba(0,0,0,0.55);z-index:9999;align-items:center;justify-content:center;padding:20px;">
+  <div style="background:#fff;border-radius:16px;max-width:620px;width:100%;max-height:85vh;overflow-y:auto;box-shadow:0 24px 80px rgba(0,0,0,0.18);">
+    <div style="padding:32px 36px 28px;">
+      <div style="display:flex;align-items:center;justify-content:space-between;margin-bottom:24px;">
+        <div>
+          <div style="font-size:11px;font-weight:700;letter-spacing:0.08em;text-transform:uppercase;color:#6b7280;margin-bottom:6px;" id="brief-date">Today's Intelligence Brief</div>
+          <div style="font-size:22px;font-weight:800;letter-spacing:-0.02em;color:#111;">Atomic Media Group</div>
+        </div>
+        <button onclick="closeBrief()" style="background:none;border:none;cursor:pointer;font-size:22px;color:#9ca3af;line-height:1;">✕</button>
+      </div>
+      <div id="brief-content" style="font-size:15px;line-height:1.75;color:#374151;">
+        <div style="color:#9ca3af;font-style:italic;">Loading today's brief...</div>
+      </div>
+      <div style="margin-top:28px;padding-top:20px;border-top:1px solid #f3f4f6;display:flex;gap:12px;">
+        <a href="/feed.html" style="flex:1;background:#111;color:#fff;text-align:center;padding:13px 20px;border-radius:8px;text-decoration:none;font-size:14px;font-weight:600;">Read Full Intelligence Feed →</a>
+      </div>
+    </div>
+  </div>
+</div>
+
+<script>
+const SUPABASE_URL = 'https://qybwjkyifdroktiriaqt.supabase.co';
+const SUPABASE_KEY = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6InF5Yndqa3lpZmRyb2t0aXJpYXF0Iiwicm9sZSI6ImFub24iLCJpYXQiOjE3ODA1MTUzNzYsImV4cCI6MjA5NjA5MTM3Nn0.JJFqoCugHoe6fsah3kEjk8ezZZ4kTVzcfu_AQ7x-lg8';
+
+function openBrief() {
+  var overlay = document.getElementById('brief-overlay');
+  overlay.style.display = 'flex';
+  document.body.style.overflow = 'hidden';
+  loadBrief();
+}
+
+function closeBrief() {
+  document.getElementById('brief-overlay').style.display = 'none';
+  document.body.style.overflow = '';
+}
+
+document.getElementById('brief-overlay').addEventListener('click', function(e) {
+  if (e.target === this) closeBrief();
+});
+
+async function loadBrief() {
+  var el = document.getElementById('brief-content');
+  var dateEl = document.getElementById('brief-date');
+  try {
+    var res = await fetch(SUPABASE_URL + '/rest/v1/daily_brief?select=*&order=created_at.desc&limit=1', {
+      headers: { 'apikey': SUPABASE_KEY, 'Authorization': 'Bearer ' + SUPABASE_KEY }
+    });
+    var data = await res.json();
+    if (!data || data.length === 0) {
+      el.innerHTML = '<p style="color:#9ca3af;font-style:italic;">Today's brief is being prepared. Check back shortly or explore the full feed.</p>';
+      return;
+    }
+    var brief = data[0];
+    var date = new Date(brief.created_at).toLocaleDateString('en-US', {weekday:'long',month:'long',day:'numeric',year:'numeric'});
+    dateEl.textContent = date + ' · Intelligence Brief';
+    el.innerHTML = brief.content || '<p style="color:#9ca3af;">No content available.</p>';
+  } catch(e) {
+    el.innerHTML = '<p style="color:#9ca3af;font-style:italic;">Unable to load today's brief. <a href="/feed.html" style="color:#111;">Visit the full feed →</a></p>';
+  }
+}
+</script>
 <button id="btt2" onclick="window.scrollTo({top:0,behavior:'smooth'})">&#8593;</button><script>window.addEventListener("scroll",function(){document.getElementById("btt2").style.opacity=window.pageYOffset>200?"1":"0.3";});</script></body>
 </html>
