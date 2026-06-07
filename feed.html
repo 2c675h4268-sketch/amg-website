@@ -355,7 +355,7 @@ a { color: inherit; text-decoration: none; }
 }
 .card-source { font-size: 11px; color: var(--text-muted); font-weight: 600; letter-spacing: 0.02em; text-transform: uppercase; }
 .card-time { font-size: 12px; color: var(--text-dim); }
-.card-actions { display: flex; gap: 8px; margin-top: 12px; flex-wrap: wrap; }
+.card-actions { display: flex; gap: 8px; margin-top: 12px; }
 .card-btn {
   display: inline-flex;
   align-items: center;
@@ -578,10 +578,6 @@ a { color: inherit; text-decoration: none; }
   animation: slide-in 0.3s cubic-bezier(0.16,1,0.3,1);
 }
 @keyframes slide-in { from{transform:translateX(100%);} to{transform:translateX(0);} }
-@media (max-width: 500px) {
-  .reading-panel { padding: 20px; width: 100vw; }
-  .reading-title { font-size: 20px; }
-}
 .reading-close {
   display: flex;
   align-items: center;
@@ -839,12 +835,8 @@ a { color: inherit; text-decoration: none; }
 .panel-scroll::-webkit-scrollbar { width: 3px; }
 .panel-scroll::-webkit-scrollbar-thumb { background: var(--border); border-radius: 2px; }
 .panel-flat {
-  max-height: none;
-  overflow: visible;
-}
-.panel-flat-scroll {
-  max-height: 320px;
-  overflow-y: auto;
+  max-height: none !important;
+  overflow: visible !important;
 }
 
 /* ── PROMPT ITEMS ── */
@@ -2634,7 +2626,7 @@ body.frontier-mode .footer-email-input:focus { border-color: var(--frontier); }
       <div class="vertical-dropdown" id="vertical-dropdown">
         <button class="vertical-dropdown-btn" id="dropdown-trigger" onclick="toggleVerticalDropdown()">
           <span id="dropdown-label">🦾 AI &amp; Robotics</span>
-          <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="m6 9 6 6 6-6"/></svg>
+          <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="m6 9 6 6 6-6"/><\/svg>
         </button>
         <div class="vertical-dropdown-menu" id="dropdown-menu">
           <button class="vertical-dropdown-item active" onclick="switchVertical('ai');closeVerticalDropdown();">🦾 AI &amp; Robotics</button>
@@ -2924,7 +2916,7 @@ body.frontier-mode .footer-email-input:focus { border-color: var(--frontier); }
       <div class="ph-search-tray" id="srch-tray-companies">
         <input class="ph-search-input" id="search-companies" type="text" placeholder="Search companies…" oninput="filterPanelSearch('companies')" autocomplete="off">
       </div>
-      <div class="panel-flat-scroll" id="scroll-companies">
+      <div class="panel-flat" id="scroll-companies">
         <div class="panel-no-results" id="nores-companies">No results</div>
       </div>
     </div>
@@ -2939,7 +2931,7 @@ body.frontier-mode .footer-email-input:focus { border-color: var(--frontier); }
       <div class="ph-search-tray" id="srch-tray-rob-companies">
         <input class="ph-search-input" id="search-rob-companies" type="text" placeholder="Search companies…" oninput="filterPanelSearch('rob-companies')" autocomplete="off">
       </div>
-      <div class="panel-flat-scroll" id="scroll-rob-companies">
+      <div class="panel-flat" id="scroll-rob-companies">
         <div class="panel-no-results" id="nores-rob-companies">No results</div>
       </div>
     </div>
@@ -3062,15 +3054,15 @@ body.frontier-mode .footer-email-input:focus { border-color: var(--frontier); }
 
 
   <!-- FRONTIER IN THE REAL WORLD -->
-  <div class="section-title" style="margin-top:48px;border-bottom-color:var(--frontier);">The Frontier in the Real World</div>
-  <div class="dual-trending-grid">
+  <div class="section-title" style="margin-top:52px;border-bottom-color:var(--frontier);">The Frontier in the Real World</div>
+  <div class="duo-panel-grid">
     <!-- Active Missions -->
     <div class="panel-box">
-      <div class="panel-head">
-        <span class="panel-head-title tools">🚀 In Production</span>
+      <div class="panel-head" style="background:var(--surface);border-bottom:1.5px solid var(--border);">
+        <span class="panel-head-title" style="color:var(--text);">🚀 In Production</span>
         <div style="display:flex;align-items:center;gap:8px;">
           <button class="ph-search-btn" onclick="togglePanelSearch('frontier-prod-search')"><svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="8"/><path d="m21 21-4.35-4.35"/></svg></button>
-          <span class="panel-head-badge-deployed">Deployed Now</span>
+          <div class="live-indicator" style="font-size:11px;"><div class="live-dot" style="background:var(--frontier);"></div>Live</div>
         </div>
       </div>
       <div class="ph-search-wrap" id="frontier-prod-search" style="display:none;padding:8px 12px;border-bottom:1px solid var(--border);"><input class="ph-search-input" placeholder="Search missions…" oninput="filterPanel(this,'frontier-prod-scroll')" /></div>
@@ -3080,12 +3072,9 @@ body.frontier-mode .footer-email-input:focus { border-color: var(--frontier); }
     </div>
     <!-- On the Horizon -->
     <div class="panel-box">
-      <div class="panel-head">
-        <span class="panel-head-title prompts">🔭 On the Horizon</span>
-        <div style="display:flex;align-items:center;gap:8px;">
-          <button class="ph-search-btn" onclick="togglePanelSearch('frontier-horizon-search')"><svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="8"/><path d="m21 21-4.35-4.35"/></svg></button>
-          <span class="panel-head-badge-horizon">6–18 Months Out</span>
-        </div>
+      <div class="panel-head" style="background:var(--surface);border-bottom:1.5px solid var(--border);">
+        <span class="panel-head-title" style="color:var(--text);">🔭 On the Horizon</span>
+        <button class="ph-search-btn" onclick="togglePanelSearch('frontier-horizon-search')"><svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="8"/><path d="m21 21-4.35-4.35"/></svg></button>
       </div>
       <div class="ph-search-wrap" id="frontier-horizon-search" style="display:none;padding:8px 12px;border-bottom:1px solid var(--border);"><input class="ph-search-input" placeholder="Search missions…" oninput="filterPanel(this,'frontier-horizon-scroll')" /></div>
       <div class="panel-flat" id="frontier-horizon-scroll">
@@ -3095,31 +3084,28 @@ body.frontier-mode .footer-email-input:focus { border-color: var(--frontier); }
   </div>
 
   <!-- SPACE COMPANIES TO WATCH -->
-  <div class="section-title" style="margin-top:48px;border-bottom-color:var(--frontier);">Companies to Watch</div>
-  <div class="dual-trending-grid" id="frontier-companies-section">
+  <div class="section-title" style="margin-top:52px;border-bottom-color:var(--frontier);">Companies to Watch</div>
+  <div class="duo-panel-grid" id="frontier-companies-section">
     <div class="panel-box">
-      <div class="panel-head">
-        <span class="panel-head-title companies">🚀 Launch & Access</span>
+      <div class="panel-head" style="background:var(--surface);border-bottom:1.5px solid var(--border);">
+        <span class="panel-head-title">🚀 Launch & Access</span>
         <div style="display:flex;align-items:center;gap:8px;">
           <button class="ph-search-btn" onclick="togglePanelSearch('frontier-launch-search')"><svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="8"/><path d="m21 21-4.35-4.35"/></svg></button>
-          <span class="panel-head-badge-live">Live</span>
+          <div class="live-indicator" style="font-size:11px;"><div class="live-dot" style="background:var(--frontier);"></div>Live</div>
         </div>
       </div>
       <div class="ph-search-wrap" id="frontier-launch-search" style="display:none;padding:8px 12px;border-bottom:1px solid var(--border);"><input class="ph-search-input" placeholder="Search companies…" oninput="filterPanel(this,'frontier-launch-scroll')" /></div>
-      <div class="panel-flat-scroll" id="frontier-launch-scroll">
+      <div class="panel-flat" id="frontier-launch-scroll">
         <div class="panel-no-results" id="nores-frontier-launch" style="display:none">No results</div>
       </div>
     </div>
     <div class="panel-box">
-      <div class="panel-head">
-        <span class="panel-head-title companies">🛰️ Space Economy</span>
-        <div style="display:flex;align-items:center;gap:8px;">
-          <button class="ph-search-btn" onclick="togglePanelSearch('frontier-economy-search')"><svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="8"/><path d="m21 21-4.35-4.35"/></svg></button>
-          <span class="panel-head-badge-live">Live</span>
-        </div>
+      <div class="panel-head" style="background:var(--surface);border-bottom:1.5px solid var(--border);">
+        <span class="panel-head-title">🛰️ Space Economy</span>
+        <button class="ph-search-btn" onclick="togglePanelSearch('frontier-economy-search')"><svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="8"/><path d="m21 21-4.35-4.35"/></svg></button>
       </div>
       <div class="ph-search-wrap" id="frontier-economy-search" style="display:none;padding:8px 12px;border-bottom:1px solid var(--border);"><input class="ph-search-input" placeholder="Search companies…" oninput="filterPanel(this,'frontier-economy-scroll')" /></div>
-      <div class="panel-flat-scroll" id="frontier-economy-scroll">
+      <div class="panel-flat" id="frontier-economy-scroll">
         <div class="panel-no-results" id="nores-frontier-economy" style="display:none">No results</div>
       </div>
     </div>
@@ -3127,11 +3113,43 @@ body.frontier-mode .footer-email-input:focus { border-color: var(--frontier); }
 
 
   <!-- BY THE NUMBERS (FRONTIER) -->
-  <div class="section-title" style="margin-top:48px;border-bottom-color:var(--frontier);">By the Numbers</div>
+  <div class="section-title" style="margin-top:52px;border-bottom-color:var(--frontier);">By the Numbers</div>
   <div style="display:grid;grid-template-columns:repeat(3,1fr);gap:14px;" id="frontier-numbers-grid">
     <div class="stat-tile" style="background:var(--surface);border:1px solid var(--border);border-radius:var(--radius);padding:22px 24px;">
-      <div style="font-size:11px;font-weight:700;letter-spacing:0.07em;text-transform:uppercase;color:var(--text-muted);margin-bottom:10px;">Loading...</div>
-      <div style="font-size:32px;font-weight:800;color:var(--text);line-height:1;">—</div>
+      <div style="font-size:11px;font-weight:700;letter-spacing:0.07em;text-transform:uppercase;color:var(--text-muted);margin-bottom:10px;">GLOBAL LAUNCH ATTEMPTS</div>
+      <div style="font-size:32px;font-weight:800;letter-spacing:-0.03em;color:var(--text);line-height:1;">212</div>
+      <div style="font-size:12px;color:var(--text-muted);margin-top:6px;">In 2023, humanity achieved a record 212 orbital launch attempts nearly doubling the pace of five years prior, driven by SpaceX, Rocket Lab, and China's growing launch cadence.</div>
+      <div style="margin-top:12px;font-size:11px;font-weight:600;color:var(--text-muted);">↑ Record high in 2023</div>
+    </div>
+    <div class="stat-tile" style="background:var(--surface);border:1px solid var(--border);border-radius:var(--radius);padding:22px 24px;">
+      <div style="font-size:11px;font-weight:700;letter-spacing:0.07em;text-transform:uppercase;color:var(--text-muted);margin-bottom:10px;">COMMERCIAL SPACE ECONOMY</div>
+      <div style="font-size:32px;font-weight:800;letter-spacing:-0.03em;color:var(--text);line-height:1;">$630B</div>
+      <div style="font-size:12px;color:var(--text-muted);margin-top:6px;">The global space economy surpassed $630B in 2023, with commercial activity now representing over 80% of total value led by satellite services, launch, and emerging in-orbit manufacturing.</div>
+      <div style="margin-top:12px;font-size:11px;font-weight:600;color:var(--text-muted);">↑ 8% year over year</div>
+    </div>
+    <div class="stat-tile" style="background:var(--surface);border:1px solid var(--border);border-radius:var(--radius);padding:22px 24px;">
+      <div style="font-size:11px;font-weight:700;letter-spacing:0.07em;text-transform:uppercase;color:var(--text-muted);margin-bottom:10px;">STARLINK SATELLITES</div>
+      <div style="font-size:32px;font-weight:800;letter-spacing:-0.03em;color:var(--text);line-height:1;">6,000+</div>
+      <div style="font-size:12px;color:var(--text-muted);margin-top:6px;">SpaceX's Starlink constellation surpassed 6,000 active satellites in 2024, delivering broadband internet to over 3 million subscribers across 100+ countries.</div>
+      <div style="margin-top:12px;font-size:11px;font-weight:600;color:var(--text-muted);">↑ Growing 40% annually</div>
+    </div>
+    <div class="stat-tile" style="background:var(--surface);border:1px solid var(--border);border-radius:var(--radius);padding:22px 24px;">
+      <div style="font-size:11px;font-weight:700;letter-spacing:0.07em;text-transform:uppercase;color:var(--text-muted);margin-bottom:10px;">CREWED MISSIONS LAUNCHED</div>
+      <div style="font-size:32px;font-weight:800;letter-spacing:-0.03em;color:var(--text);line-height:1;">12</div>
+      <div style="font-size:12px;color:var(--text-muted);margin-top:6px;">Twelve crewed orbital missions launched in 2023-2024, the most in any comparable period since the Space Shuttle era with commercial vehicles now carrying the majority.</div>
+      <div style="margin-top:12px;font-size:11px;font-weight:600;color:var(--text-muted);">↑ Most since Shuttle era</div>
+    </div>
+    <div class="stat-tile" style="background:var(--surface);border:1px solid var(--border);border-radius:var(--radius);padding:22px 24px;">
+      <div style="font-size:11px;font-weight:700;letter-spacing:0.07em;text-transform:uppercase;color:var(--text-muted);margin-bottom:10px;">SPACE VENTURE FUNDING</div>
+      <div style="font-size:32px;font-weight:800;letter-spacing:-0.03em;color:var(--text);line-height:1;">$8.7B</div>
+      <div style="font-size:12px;color:var(--text-muted);margin-top:6px;">Private space companies raised $8.7B in venture and private equity funding in 2023, with launch, in-space services, and satellite communications leading investment categories.</div>
+      <div style="margin-top:12px;font-size:11px;font-weight:600;color:var(--text-muted);">↑ 12% vs prior year</div>
+    </div>
+    <div class="stat-tile" style="background:var(--surface);border:1px solid var(--border);border-radius:var(--radius);padding:22px 24px;">
+      <div style="font-size:11px;font-weight:700;letter-spacing:0.07em;text-transform:uppercase;color:var(--text-muted);margin-bottom:10px;">REUSABLE ROCKET LANDINGS</div>
+      <div style="font-size:32px;font-weight:800;letter-spacing:-0.03em;color:var(--text);line-height:1;">250+</div>
+      <div style="font-size:12px;color:var(--text-muted);margin-top:6px;">SpaceX has successfully landed and reflown orbital-class booster rockets over 250 times, fundamentally changing the economics of space access with reuse factors exceeding 20x per vehicle.</div>
+      <div style="margin-top:12px;font-size:11px;font-weight:600;color:var(--text-muted);">↑ Redefining launch economics</div>
     </div>
   </div>
   <style>
@@ -3140,7 +3158,7 @@ body.frontier-mode .footer-email-input:focus { border-color: var(--frontier); }
   </style>
 
   <!-- ATOMIC PREDICTIONS (FRONTIER) -->
-  <div class="section-title" style="margin-top:48px;align-items:center;border-bottom-color:var(--frontier);">Atomic's Predictions <span style="font-size:13px;font-weight:400;color:var(--text-muted);letter-spacing:0;text-transform:none;border:none;padding:0;margin-left:10px;display:inline-flex;align-items:center;">Predictions are reviewed and updated as new signals emerge.</span></div>
+  <div class="section-title" style="margin-top:52px;align-items:center;border-bottom-color:var(--frontier);">Atomic's Predictions <span style="font-size:13px;font-weight:400;color:var(--text-muted);letter-spacing:0;text-transform:none;border:none;padding:0;margin-left:10px;display:inline-flex;align-items:center;">Predictions are reviewed and updated as new signals emerge.</span></div>
   <div class="forecast-panels" id="frontier-forecast-grid">
     <div class="forecast-panel"><div class="forecast-panel-head"><span class="forecast-panel-icon">🚀</span><span class="forecast-panel-head-title">Loading...</span></div></div>
   </div>
@@ -3192,14 +3210,14 @@ body.frontier-mode .footer-email-input:focus { border-color: var(--frontier); }
 
 
   <!-- LONGEVITY IN THE REAL WORLD -->
-  <div class="section-title" style="margin-top:48px;border-bottom-color:var(--longevity);">Longevity in the Real World</div>
-  <div class="dual-trending-grid">
+  <div class="section-title" style="margin-top:52px;border-bottom-color:var(--longevity);">Longevity in the Real World</div>
+  <div class="duo-panel-grid">
     <div class="panel-box">
-      <div class="panel-head">
-        <span class="panel-head-title tools">🔬 In Clinical Use</span>
+      <div class="panel-head" style="background:var(--surface);border-bottom:1.5px solid var(--border);">
+        <span class="panel-head-title">🔬 In Clinical Use</span>
         <div style="display:flex;align-items:center;gap:8px;">
-          <button class="ph-search-btn" onclick="togglePanelSearch('longevity-prod-search')"><svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="8"/><path d="m21 21-4.35-4.35"/></svg></button>
-          <span class="panel-head-badge-deployed">Deployed Now</span>
+          <button class="ph-search-btn" onclick="togglePanelSearch('longevity-prod-search')"><svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="8"/><path d="m21 21-4.35-4.35"/><\/svg></button>
+          <div class="live-indicator" style="font-size:11px;"><div class="live-dot" style="background:var(--longevity);"></div>Live</div>
         </div>
       </div>
       <div class="ph-search-wrap" id="longevity-prod-search" style="display:none;padding:8px 12px;border-bottom:1px solid var(--border);"><input class="ph-search-input" placeholder="Search treatments…" oninput="filterPanel(this,'longevity-prod-scroll')" /></div>
@@ -3208,12 +3226,9 @@ body.frontier-mode .footer-email-input:focus { border-color: var(--frontier); }
       </div>
     </div>
     <div class="panel-box">
-      <div class="panel-head">
-        <span class="panel-head-title prompts">🧪 On the Horizon</span>
-        <div style="display:flex;align-items:center;gap:8px;">
-          <button class="ph-search-btn" onclick="togglePanelSearch('longevity-horizon-search')"><svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="8"/><path d="m21 21-4.35-4.35"/></svg></button>
-          <span class="panel-head-badge-horizon">6–18 Months Out</span>
-        </div>
+      <div class="panel-head" style="background:var(--surface);border-bottom:1.5px solid var(--border);">
+        <span class="panel-head-title">🧪 On the Horizon</span>
+        <button class="ph-search-btn" onclick="togglePanelSearch('longevity-horizon-search')"><svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="8"/><path d="m21 21-4.35-4.35"/><\/svg></button>
       </div>
       <div class="ph-search-wrap" id="longevity-horizon-search" style="display:none;padding:8px 12px;border-bottom:1px solid var(--border);"><input class="ph-search-input" placeholder="Search treatments…" oninput="filterPanel(this,'longevity-horizon-scroll')" /></div>
       <div class="panel-flat" id="longevity-horizon-scroll">
@@ -3223,42 +3238,71 @@ body.frontier-mode .footer-email-input:focus { border-color: var(--frontier); }
   </div>
 
   <!-- COMPANIES TO WATCH -->
-  <div class="section-title" style="margin-top:48px;border-bottom-color:var(--longevity);">Companies to Watch</div>
-  <div class="dual-trending-grid">
+  <div class="section-title" style="margin-top:52px;border-bottom-color:var(--longevity);">Companies to Watch</div>
+  <div class="duo-panel-grid">
     <div class="panel-box">
-      <div class="panel-head">
-        <span class="panel-head-title companies">🧬 Biotech & Research</span>
+      <div class="panel-head" style="background:var(--surface);border-bottom:1.5px solid var(--border);">
+        <span class="panel-head-title">🧬 Biotech & Research</span>
         <div style="display:flex;align-items:center;gap:8px;">
-          <button class="ph-search-btn" onclick="togglePanelSearch('longevity-biotech-search')"><svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="8"/><path d="m21 21-4.35-4.35"/></svg></button>
-          <span class="panel-head-badge-live">Live</span>
+          <button class="ph-search-btn" onclick="togglePanelSearch('longevity-biotech-search')"><svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="8"/><path d="m21 21-4.35-4.35"/><\/svg></button>
+          <div class="live-indicator" style="font-size:11px;"><div class="live-dot" style="background:var(--longevity);"></div>Live</div>
         </div>
       </div>
       <div class="ph-search-wrap" id="longevity-biotech-search" style="display:none;padding:8px 12px;border-bottom:1px solid var(--border);"><input class="ph-search-input" placeholder="Search companies…" oninput="filterPanel(this,'longevity-biotech-scroll')" /></div>
-      <div class="panel-flat-scroll" id="longevity-biotech-scroll">
+      <div class="panel-flat" id="longevity-biotech-scroll">
         <div class="panel-no-results" id="nores-longevity-biotech" style="display:none">No results</div>
       </div>
     </div>
     <div class="panel-box">
-      <div class="panel-head">
-        <span class="panel-head-title companies">💊 Therapeutics & Clinics</span>
-        <div style="display:flex;align-items:center;gap:8px;">
-          <button class="ph-search-btn" onclick="togglePanelSearch('longevity-clinics-search')"><svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="8"/><path d="m21 21-4.35-4.35"/></svg></button>
-          <span class="panel-head-badge-live">Live</span>
-        </div>
+      <div class="panel-head" style="background:var(--surface);border-bottom:1.5px solid var(--border);">
+        <span class="panel-head-title">💊 Therapeutics & Clinics</span>
+        <button class="ph-search-btn" onclick="togglePanelSearch('longevity-clinics-search')"><svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="8"/><path d="m21 21-4.35-4.35"/><\/svg></button>
       </div>
       <div class="ph-search-wrap" id="longevity-clinics-search" style="display:none;padding:8px 12px;border-bottom:1px solid var(--border);"><input class="ph-search-input" placeholder="Search companies…" oninput="filterPanel(this,'longevity-clinics-scroll')" /></div>
-      <div class="panel-flat-scroll" id="longevity-clinics-scroll">
+      <div class="panel-flat" id="longevity-clinics-scroll">
         <div class="panel-no-results" id="nores-longevity-clinics" style="display:none">No results</div>
       </div>
     </div>
   </div>
 
   <!-- BY THE NUMBERS -->
-  <div class="section-title" style="margin-top:48px;border-bottom-color:var(--longevity);">By the Numbers</div>
+  <div class="section-title" style="margin-top:52px;border-bottom-color:var(--longevity);">By the Numbers</div>
   <div style="display:grid;grid-template-columns:repeat(3,1fr);gap:14px;" id="longevity-numbers-grid">
     <div class="stat-tile" style="background:var(--surface);border:1px solid var(--border);border-radius:var(--radius);padding:22px 24px;">
-      <div style="font-size:11px;font-weight:700;letter-spacing:0.07em;text-transform:uppercase;color:var(--text-muted);margin-bottom:10px;">Loading...</div>
-      <div style="font-size:32px;font-weight:800;color:var(--text);line-height:1;">—</div>
+      <div style="font-size:11px;font-weight:700;letter-spacing:0.07em;text-transform:uppercase;color:var(--text-muted);margin-bottom:10px;">GLOBAL LONGEVITY MARKET</div>
+      <div style="font-size:32px;font-weight:800;letter-spacing:-0.03em;color:var(--text);line-height:1;">$25B</div>
+      <div style="font-size:12px;color:var(--text-muted);margin-top:6px;">The longevity therapeutics and diagnostics market reached $25B in 2024, with projections to surpass $600B by 2025 as anti-aging interventions move from research into mainstream clinical use.</div>
+      <div style="margin-top:12px;font-size:11px;font-weight:600;color:var(--text-muted);">↑ Fastest growing health category</div>
+    </div>
+    <div class="stat-tile" style="background:var(--surface);border:1px solid var(--border);border-radius:var(--radius);padding:22px 24px;">
+      <div style="font-size:11px;font-weight:700;letter-spacing:0.07em;text-transform:uppercase;color:var(--text-muted);margin-bottom:10px;">GLP-1 PRESCRIPTIONS (US)</div>
+      <div style="font-size:32px;font-weight:800;letter-spacing:-0.03em;color:var(--text);line-height:1;">9M+</div>
+      <div style="font-size:12px;color:var(--text-muted);margin-top:6px;">Over 9 million Americans are now prescribed GLP-1 receptor agonists, with Ozempic and Wegovy reshaping metabolic health, obesity treatment, and now showing promise for cardiovascular and cognitive disease.</div>
+      <div style="margin-top:12px;font-size:11px;font-weight:600;color:var(--text-muted);">↑ 400% growth since 2021</div>
+    </div>
+    <div class="stat-tile" style="background:var(--surface);border:1px solid var(--border);border-radius:var(--radius);padding:22px 24px;">
+      <div style="font-size:11px;font-weight:700;letter-spacing:0.07em;text-transform:uppercase;color:var(--text-muted);margin-bottom:10px;">LONGEVITY VC INVESTMENT</div>
+      <div style="font-size:32px;font-weight:800;letter-spacing:-0.03em;color:var(--text);line-height:1;">$5.2B</div>
+      <div style="font-size:12px;color:var(--text-muted);margin-top:6px;">Venture capital invested $5.2B into longevity and aging-focused biotechs in 2023, with Altos Labs, Retro Biosciences, and NewLimit collectively raising over $1.5B from tech billionaires alone.</div>
+      <div style="margin-top:12px;font-size:11px;font-weight:600;color:var(--text-muted);">↑ 3x increase since 2020</div>
+    </div>
+    <div class="stat-tile" style="background:var(--surface);border:1px solid var(--border);border-radius:var(--radius);padding:22px 24px;">
+      <div style="font-size:11px;font-weight:700;letter-spacing:0.07em;text-transform:uppercase;color:var(--text-muted);margin-bottom:10px;">HUMAN LIFESPAN EXTENSION TARGET</div>
+      <div style="font-size:32px;font-weight:800;letter-spacing:-0.03em;color:var(--text);line-height:1;">25 yrs</div>
+      <div style="font-size:12px;color:var(--text-muted);margin-top:6px;">Leading longevity scientists project interventions currently in development could extend healthy human lifespan by 25 or more years within the next two decades moving from disease treatment to biological aging reversal.</div>
+      <div style="margin-top:12px;font-size:11px;font-weight:600;color:var(--text-muted);">↑ Escape velocity within reach</div>
+    </div>
+    <div class="stat-tile" style="background:var(--surface);border:1px solid var(--border);border-radius:var(--radius);padding:22px 24px;">
+      <div style="font-size:11px;font-weight:700;letter-spacing:0.07em;text-transform:uppercase;color:var(--text-muted);margin-bottom:10px;">AI DRUG DISCOVERY SPEED</div>
+      <div style="font-size:32px;font-weight:800;letter-spacing:-0.03em;color:var(--text);line-height:1;">10x</div>
+      <div style="font-size:12px;color:var(--text-muted);margin-top:6px;">AI-driven drug discovery platforms are identifying longevity candidates up to 10x faster than traditional methods, with companies like Insilico Medicine advancing molecules from target identification to clinical trials in under 18 months.</div>
+      <div style="margin-top:12px;font-size:11px;font-weight:600;color:var(--text-muted);">↑ Compressing decade-long timelines</div>
+    </div>
+    <div class="stat-tile" style="background:var(--surface);border:1px solid var(--border);border-radius:var(--radius);padding:22px 24px;">
+      <div style="font-size:11px;font-weight:700;letter-spacing:0.07em;text-transform:uppercase;color:var(--text-muted);margin-bottom:10px;">CENTENARIAN POPULATION</div>
+      <div style="font-size:32px;font-weight:800;letter-spacing:-0.03em;color:var(--text);line-height:1;">722K</div>
+      <div style="font-size:12px;color:var(--text-muted);margin-top:6px;">The global centenarian population exceeded 722,000 in 2024 and is projected to reach 3.7 million by 2050 driven by improvements in healthcare, nutrition, and the early effects of longevity-focused interventions.</div>
+      <div style="margin-top:12px;font-size:11px;font-weight:600;color:var(--text-muted);">↑ 5x growth projected by 2050</div>
     </div>
   </div>
   <style>
@@ -3267,7 +3311,7 @@ body.frontier-mode .footer-email-input:focus { border-color: var(--frontier); }
   </style>
 
   <!-- ATOMIC PREDICTIONS -->
-  <div class="section-title" style="margin-top:48px;align-items:center;border-bottom-color:var(--longevity);">Atomic's Predictions <span style="font-size:13px;font-weight:400;color:var(--text-muted);letter-spacing:0;text-transform:none;border:none;padding:0;margin-left:10px;display:inline-flex;align-items:center;">Predictions are reviewed and updated as new signals emerge.</span></div>
+  <div class="section-title" style="margin-top:52px;align-items:center;border-bottom-color:var(--longevity);">Atomic's Predictions <span style="font-size:13px;font-weight:400;color:var(--text-muted);letter-spacing:0;text-transform:none;border:none;padding:0;margin-left:10px;display:inline-flex;align-items:center;">Predictions are reviewed and updated as new signals emerge.</span></div>
   <div class="forecast-panels" id="longevity-forecast-grid">
     <div class="forecast-panel"><div class="forecast-panel-head"><span class="forecast-panel-icon">🧬</span><span class="forecast-panel-head-title">Loading...</span></div></div>
   </div>
@@ -3363,7 +3407,7 @@ body.frontier-mode .footer-email-input:focus { border-color: var(--frontier); }
         <span class="toolkit-section-title">Writing</span>
         <div class="section-search-wrap">
           <button class="section-search-btn" onclick="toggleSectionSearch(this)" title="Search Writing">
-            <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="8"/><path d="m21 21-4.35-4.35"/></svg>
+            <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="8"/><path d="m21 21-4.35-4.35"/><\/svg>
           </button>
           <div class="section-search-input-wrap">
             <input class="section-search-input" placeholder="Search writing..." oninput="filterSectionCards(this, 'writing')" />
@@ -3515,7 +3559,7 @@ body.frontier-mode .footer-email-input:focus { border-color: var(--frontier); }
         <span class="toolkit-section-title">Research</span>
         <div class="section-search-wrap">
           <button class="section-search-btn" onclick="toggleSectionSearch(this)" title="Search Research">
-            <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="8"/><path d="m21 21-4.35-4.35"/></svg>
+            <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="8"/><path d="m21 21-4.35-4.35"/><\/svg>
           </button>
           <div class="section-search-input-wrap">
             <input class="section-search-input" placeholder="Search research..." oninput="filterSectionCards(this, 'research')" />
@@ -3667,7 +3711,7 @@ body.frontier-mode .footer-email-input:focus { border-color: var(--frontier); }
         <span class="toolkit-section-title">Sales</span>
         <div class="section-search-wrap">
           <button class="section-search-btn" onclick="toggleSectionSearch(this)" title="Search Sales">
-            <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="8"/><path d="m21 21-4.35-4.35"/></svg>
+            <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="8"/><path d="m21 21-4.35-4.35"/><\/svg>
           </button>
           <div class="section-search-input-wrap">
             <input class="section-search-input" placeholder="Search sales..." oninput="filterSectionCards(this, 'sales')" />
@@ -3819,7 +3863,7 @@ body.frontier-mode .footer-email-input:focus { border-color: var(--frontier); }
         <span class="toolkit-section-title">Marketing</span>
         <div class="section-search-wrap">
           <button class="section-search-btn" onclick="toggleSectionSearch(this)" title="Search Marketing">
-            <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="8"/><path d="m21 21-4.35-4.35"/></svg>
+            <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="8"/><path d="m21 21-4.35-4.35"/><\/svg>
           </button>
           <div class="section-search-input-wrap">
             <input class="section-search-input" placeholder="Search marketing..." oninput="filterSectionCards(this, 'marketing')" />
@@ -3971,7 +4015,7 @@ body.frontier-mode .footer-email-input:focus { border-color: var(--frontier); }
         <span class="toolkit-section-title">Finance</span>
         <div class="section-search-wrap">
           <button class="section-search-btn" onclick="toggleSectionSearch(this)" title="Search Finance">
-            <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="8"/><path d="m21 21-4.35-4.35"/></svg>
+            <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="8"/><path d="m21 21-4.35-4.35"/><\/svg>
           </button>
           <div class="section-search-input-wrap">
             <input class="section-search-input" placeholder="Search finance..." oninput="filterSectionCards(this, 'finance')" />
@@ -4123,7 +4167,7 @@ body.frontier-mode .footer-email-input:focus { border-color: var(--frontier); }
         <span class="toolkit-section-title">HR</span>
         <div class="section-search-wrap">
           <button class="section-search-btn" onclick="toggleSectionSearch(this)" title="Search HR">
-            <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="8"/><path d="m21 21-4.35-4.35"/></svg>
+            <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="8"/><path d="m21 21-4.35-4.35"/><\/svg>
           </button>
           <div class="section-search-input-wrap">
             <input class="section-search-input" placeholder="Search hr..." oninput="filterSectionCards(this, 'hr')" />
@@ -4275,7 +4319,7 @@ body.frontier-mode .footer-email-input:focus { border-color: var(--frontier); }
         <span class="toolkit-section-title">Operations</span>
         <div class="section-search-wrap">
           <button class="section-search-btn" onclick="toggleSectionSearch(this)" title="Search Operations">
-            <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="8"/><path d="m21 21-4.35-4.35"/></svg>
+            <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="8"/><path d="m21 21-4.35-4.35"/><\/svg>
           </button>
           <div class="section-search-input-wrap">
             <input class="section-search-input" placeholder="Search operations..." oninput="filterSectionCards(this, 'operations')" />
@@ -4575,13 +4619,6 @@ function renderYMAL(currentTitle, currentCat){
 </script>
 
 <script>
-// ── DATE HELPERS ──
-function sixMonthsAgo() {
-  var d = new Date();
-  d.setMonth(d.getMonth() - 6);
-  return d.toISOString();
-}
-
 // ── SUPABASE CONFIG ──
 const SUPABASE_URL = 'https://qybwjkyifdroktiriaqt.supabase.co';
 const SUPABASE_KEY = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6InF5Yndqa3lpZmRyb2t0aXJpYXF0Iiwicm9sZSI6ImFub24iLCJpYXQiOjE3ODA1MTUzNzYsImV4cCI6MjA5NjA5MTM3Nn0.JJFqoCugHoe6fsah3kEjk8ezZZ4kTVzcfu_AQ7x-lg8';
@@ -4750,9 +4787,8 @@ async function fetchCompanies() {
   try {
     const data = await supabaseFetch('companies', 'select=*&order=created_at.desc&limit=12');
     if (!data || !data.length) return;
-    var mid = Math.ceil(data.length / 2);
-    const aiCos = data.slice(0, mid).slice(0, 4);
-    const robCos = data.slice(mid).slice(0, 4);
+    const aiCos = data.filter(function(c){ return c.type === 'ai'; }).slice(0, 4);
+    const robCos = data.filter(function(c){ return c.type === 'robotics'; }).slice(0, 4);
 
     function makeWatchlistItem(c) {
       var statusClass = 'status-active';
@@ -5015,42 +5051,6 @@ async function fetchStats() {
 
 
 
-async function fetchFrontierStats() {
-  try {
-    var data = await supabaseFetch('frontier_stats', 'select=*&order=created_at.desc&limit=6');
-    if (!data || !data.length) return;
-    function makeStatTile(s) {
-      var trendText = (s.trend||'').replace(/<[^>]*>/g,'').replace(/style="[^"]*"/g,'');
-      return '<div class="stat-tile" style="background:var(--bg);border:1px solid var(--border);border-radius:var(--radius);padding:22px 24px;">' +
-        '<div style="font-size:11px;font-weight:700;letter-spacing:0.07em;text-transform:uppercase;color:var(--text-muted);margin-bottom:10px;">'+(s.label||'')+'</div>' +
-        '<div style="font-size:32px;font-weight:800;letter-spacing:-0.03em;color:var(--text);line-height:1;">'+(s.value||'')+'</div>' +
-        '<div style="font-size:12px;color:var(--text-muted);margin-top:6px;">'+(s.context||s.body||'')+'</div>' +
-        '<div style="margin-top:12px;font-size:11px;font-weight:600;color:var(--text-muted);">'+trendText+'</div>' +
-        '</div>';
-    }
-    var el = document.getElementById('frontier-numbers-grid');
-    if (el) el.innerHTML = data.map(makeStatTile).join('');
-  } catch(e) { console.error('fetchFrontierStats:', e); }
-}
-
-async function fetchLongevityStats() {
-  try {
-    var data = await supabaseFetch('longevity_stats', 'select=*&order=created_at.desc&limit=6');
-    if (!data || !data.length) return;
-    function makeStatTile(s) {
-      var trendText = (s.trend||'').replace(/<[^>]*>/g,'').replace(/style="[^"]*"/g,'');
-      return '<div class="stat-tile" style="background:var(--bg);border:1px solid var(--border);border-radius:var(--radius);padding:22px 24px;">' +
-        '<div style="font-size:11px;font-weight:700;letter-spacing:0.07em;text-transform:uppercase;color:var(--text-muted);margin-bottom:10px;">'+(s.label||'')+'</div>' +
-        '<div style="font-size:32px;font-weight:800;letter-spacing:-0.03em;color:var(--text);line-height:1;">'+(s.value||'')+'</div>' +
-        '<div style="font-size:12px;color:var(--text-muted);margin-top:6px;">'+(s.context||s.body||'')+'</div>' +
-        '<div style="margin-top:12px;font-size:11px;font-weight:600;color:var(--text-muted);">'+trendText+'</div>' +
-        '</div>';
-    }
-    var el = document.getElementById('longevity-numbers-grid');
-    if (el) el.innerHTML = data.map(makeStatTile).join('');
-  } catch(e) { console.error('fetchLongevityStats:', e); }
-}
-
 function timeAgo(dateStr) {
   const now = new Date();
   const then = new Date(dateStr);
@@ -5076,7 +5076,7 @@ function renderFeed() {
       '<div class="card-actions">' +
       '<button class="card-btn summarize-btn" data-title="'+t+'">&#9889; AI Summary</button>' +
       '<button class="card-btn bookmark-btn" data-title="'+t+'">&#128278; Save</button>' +
-      '<button class="card-btn share-btn" data-title="'+t+'"><svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="18" cy="5" r="3"/><circle cx="6" cy="12" r="3"/><circle cx="18" cy="19" r="3"/><line x1="8.59" y1="13.51" x2="15.42" y2="17.49"/><line x1="15.41" y1="6.51" x2="8.59" y2="10.49"/></svg> Share</button>' +
+      '<button class="card-btn share-btn" data-title="'+t+'"><svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="18" cy="5" r="3"/><circle cx="6" cy="12" r="3"/><circle cx="18" cy="19" r="3"/><line x1="8.59" y1="13.51" x2="15.42" y2="17.49"/><line x1="15.41" y1="6.51" x2="8.59" y2="10.49"/><\/svg> Share</button>' +
       '</div></div></div>';
   }
 
@@ -5105,7 +5105,7 @@ function renderFeed() {
       '<div class="card-actions">' +
       '<button class="card-btn summarize-btn" data-title="'+t+'">&#9889; Summary</button>' +
       '<button class="card-btn bookmark-btn" data-title="'+t+'">&#128278; Save</button>' +
-      '<button class="card-btn share-btn" data-title="'+t+'"><svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="18" cy="5" r="3"/><circle cx="6" cy="12" r="3"/><circle cx="18" cy="19" r="3"/><line x1="8.59" y1="13.51" x2="15.42" y2="17.49"/><line x1="15.41" y1="6.51" x2="8.59" y2="10.49"/></svg> Share</button>' +
+      '<button class="card-btn share-btn" data-title="'+t+'"><svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="18" cy="5" r="3"/><circle cx="6" cy="12" r="3"/><circle cx="18" cy="19" r="3"/><line x1="8.59" y1="13.51" x2="15.42" y2="17.49"/><line x1="15.41" y1="6.51" x2="8.59" y2="10.49"/><\/svg> Share</button>' +
       '</div></div></div>';
   }
 
@@ -5227,18 +5227,12 @@ document.addEventListener('DOMContentLoaded', function() {
   fetchRealWorldRobotics();
   fetchStats();
 
-  // Auto-switch vertical based on URL parameter, then localStorage
+  // Auto-switch vertical based on URL parameter
   var urlParams = new URLSearchParams(window.location.search);
   var vertical = urlParams.get('v');
   if (vertical === 'frontier') switchVertical('frontier');
   else if (vertical === 'longevity') switchVertical('longevity');
   else if (vertical === 'work') switchVertical('work');
-  else {
-    try {
-      var saved = localStorage.getItem('amg-vertical');
-      if (saved && saved !== 'ai') switchVertical(saved);
-    } catch(e) {}
-  }
 });
 // ── SAVED (localStorage) ──
 function getSaved(){ try{return JSON.parse(localStorage.getItem('amg-saved')||'[]');}catch(e){return[];} }
@@ -5306,16 +5300,6 @@ function closeReading(){
   document.getElementById('reading-overlay').classList.remove('open');
   document.body.style.overflow = '';
 }
-function openReadingDirect(s){
-  document.getElementById('r-tag').textContent = (s.cat||'AI').toUpperCase();
-  document.getElementById('r-title').textContent = s.title||'';
-  document.getElementById('r-meta').textContent = (s.source||'AMG') + ' · From archive';
-  document.getElementById('r-body').innerHTML = '<p>'+(s.excerpt||'')+'</p><p>This story is being actively monitored by the Atomic Media Group AI feed. Click the button below to read the full article from the original source.</p>';
-  document.getElementById('r-link').href = s.url || '#';
-  document.getElementById('reading-overlay').classList.add('open');
-  document.body.style.overflow = 'hidden';
-  renderYMAL(s.title, s.cat||'ai');
-}
 document.getElementById('reading-close').addEventListener('click', closeReading);
 document.getElementById('reading-overlay').addEventListener('click', function(e){ if(e.target===this) closeReading(); });
 
@@ -5356,19 +5340,17 @@ let activeFilters = { cat: 'all', source: 'all' };
 const filterBtn = document.getElementById('filter-btn');
 const filterPanel = document.getElementById('filter-panel');
 
-if (filterBtn) {
-  filterBtn.addEventListener('click', function(e){
-    e.stopPropagation();
-    filterPanel.classList.toggle('open');
-    filterBtn.classList.toggle('active', filterPanel.classList.contains('open'));
-  });
-  document.addEventListener('click', function(e){
-    if(!filterPanel.contains(e.target) && e.target !== filterBtn){
-      filterPanel.classList.remove('open');
-      filterBtn.classList.remove('active');
-    }
-  });
-}
+filterBtn.addEventListener('click', function(e){
+  e.stopPropagation();
+  filterPanel.classList.toggle('open');
+  filterBtn.classList.toggle('active', filterPanel.classList.contains('open'));
+});
+document.addEventListener('click', function(e){
+  if(!filterPanel.contains(e.target) && e.target !== filterBtn){
+    filterPanel.classList.remove('open');
+    filterBtn.classList.remove('active');
+  }
+});
 
 function wireFilterChips() {
   document.querySelectorAll('.filter-chip').forEach(chip => {
@@ -5515,7 +5497,7 @@ function renderSearchResults(results, q) {
   searchResults.innerHTML = '<div style="padding:8px 16px 4px;font-size:11px;font-weight:700;letter-spacing:0.06em;text-transform:uppercase;color:var(--text-muted);">' + results.length + ' result' + (results.length !== 1 ? 's' : '') + ' in archive</div>' +
     results.map(function(r) {
       var badge = r.type !== 'story' ? '<span style="font-size:10px;font-weight:700;padding:2px 6px;border-radius:4px;background:var(--surface);color:var(--text-muted);margin-left:6px;">' + typeLabels[r.type] + '</span>' : '';
-      return '<div class="search-result" data-title="' + (r.title||'').replace(/"/g,'&quot;') + '" data-url="' + (r.url||'') + '" data-type="' + (r.type||'story') + '" data-excerpt="' + (r.excerpt||'').replace(/"/g,'&quot;').substring(0,200) + '" data-source="' + (r.source||'').replace(/"/g,'&quot;') + '" data-category="' + (r.category||'AI') + '" style="cursor:pointer;">' +
+      return '<div class="search-result" data-title="' + (r.title||'').replace(/"/g,'&quot;') + '" data-url="' + (r.url||'') + '" data-type="' + (r.type||'story') + '" style="cursor:pointer;">' +
         '<div class="search-result-title">' + (r.title||'') + badge + '</div>' +
         '<div class="search-result-meta">' + (r.source||'') + (r.category ? ' · ' + r.category.toUpperCase() : '') + '</div>' +
         (r.excerpt ? '<div style="font-size:12px;color:var(--text-muted);margin-top:3px;line-height:1.5;overflow:hidden;display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;">' + r.excerpt + '</div>' : '') +
@@ -5525,20 +5507,9 @@ function renderSearchResults(results, q) {
     el.addEventListener('click', function() {
       var url = this.dataset.url;
       var type = this.dataset.type;
-      if (type === 'story') {
+      if (type === 'story' && this.dataset.title) {
         closeSearch();
-        var local = STORIES.find(function(s){ return s.title === el.dataset.title; });
-        if (local) {
-          openReading(local.title);
-        } else {
-          openReadingDirect({
-            title: el.dataset.title,
-            url: el.dataset.url,
-            excerpt: el.dataset.excerpt || '',
-            source: el.dataset.source || '',
-            cat: el.dataset.category || 'AI'
-          });
-        }
+        openReading(this.dataset.title);
       } else if (url) {
         window.open(url, '_blank', 'noopener');
         closeSearch();
@@ -5579,7 +5550,7 @@ document.querySelectorAll('.card-actions').forEach(actions => {
   const btn = document.createElement('button');
   btn.className = 'card-btn share-btn';
   btn.dataset.title = card.dataset.title;
-  btn.innerHTML = '<svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="18" cy="5" r="3"/><circle cx="6" cy="12" r="3"/><circle cx="18" cy="19" r="3"/><line x1="8.59" y1="13.51" x2="15.42" y2="17.49"/><line x1="15.41" y1="6.51" x2="8.59" y2="10.49"/></svg> Share';
+  btn.innerHTML = '<svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="18" cy="5" r="3"/><circle cx="6" cy="12" r="3"/><circle cx="18" cy="19" r="3"/><line x1="8.59" y1="13.51" x2="15.42" y2="17.49"/><line x1="15.41" y1="6.51" x2="8.59" y2="10.49"/><\/svg> Share';
   actions.appendChild(btn);
 });
 
@@ -5726,7 +5697,6 @@ document.addEventListener('keydown', function(e){ if(e.key === 'Escape') closeAb
 function switchVertical(mode) {
   window.scrollTo(0, 0);
   updateDropdownLabel(mode);
-  try { localStorage.setItem('amg-vertical', mode); } catch(e) {}
   var aiSection = document.getElementById('section-ai-robotics');
   var frontierSection = document.getElementById('section-frontier');
   var btnAI = document.getElementById('btn-ai-robotics');
@@ -5736,31 +5706,23 @@ function switchVertical(mode) {
   if (mode === 'frontier') {
     aiSection.style.display = 'none';
     frontierSection.style.display = 'block';
-    document.getElementById('section-longevity').style.display = 'none';
-    if (document.getElementById('section-work')) document.getElementById('section-work').style.display = 'none';
     btnAI.classList.remove('active');
     btnFrontier.classList.add('active');
-    document.getElementById('btn-longevity').classList.remove('active');
-    document.getElementById('btn-work').classList.remove('active');
     document.body.classList.add('frontier-mode');
-    document.body.classList.remove('longevity-mode');
-    if (!frontierSection.dataset.loaded) {
+      if (!frontierSection.dataset.loaded) {
       fetchFrontierStories();
       fetchFrontierRealWorld();
       fetchFrontierCompanies();
       fetchFrontierForecasts();
-      fetchFrontierStats();
       frontierSection.dataset.loaded = '1';
     }
   } else if (mode === 'longevity') {
     aiSection.style.display = 'none';
     frontierSection.style.display = 'none';
     document.getElementById('section-longevity').style.display = 'block';
-    if (document.getElementById('section-work')) document.getElementById('section-work').style.display = 'none';
     btnAI.classList.remove('active');
     btnFrontier.classList.remove('active');
     document.getElementById('btn-longevity').classList.add('active');
-    document.getElementById('btn-work').classList.remove('active');
     document.body.classList.remove('frontier-mode');
     document.body.classList.add('longevity-mode');
       var longevitySection = document.getElementById('section-longevity');
@@ -5769,7 +5731,6 @@ function switchVertical(mode) {
       fetchLongevityRealWorld();
       fetchLongevityCompanies();
       fetchLongevityForecasts();
-      fetchLongevityStats();
       longevitySection.dataset.loaded = '1';
     }
   } else if (mode === 'work') {
@@ -5803,64 +5764,39 @@ async function fetchFrontierStories() {
   try {
     var data = await supabaseFetch('frontier_stories', 'select=*&order=created_at.desc&limit=15');
     if (!data || data.length === 0) return;
-    data.slice(0,6).forEach(function(s) {
-      if (s.title && !STORIES.find(function(x){ return x.title === s.title; })) {
-        STORIES.push({ title: s.title, cat: 'frontier', source: s.source||'AMG', time: 'Today', excerpt: s.excerpt||'', url: s.url||'#', image_url: s.image_url||null });
-      }
-    });
+
+    // Breaking feed (first 6)
+
     var heroEl = document.getElementById('frontier-top-stories-grid');
-    if (heroEl) {
-      heroEl.innerHTML = data.slice(0,6).map(function(s) {
-        var t = (s.title||'').replace(/"/g,'&quot;').replace(/'/g,'&#39;');
-        var imgHtml = s.image_url ? '<div class="card-image" style="width:100%;height:160px;background:url(''+s.image_url+'') center/cover no-repeat;border-radius:8px 8px 0 0;margin:-16px -16px 12px -16px;width:calc(100% + 32px);flex-shrink:0;"></div>' : '';
-        return '<div class="card" data-cat="frontier" data-source="'+(s.source||'')+'" data-title="'+t+'" data-url="'+(s.url||'')+'" data-excerpt="'+(s.excerpt||'').replace(/"/g,'&quot;').substring(0,200)+'" style="cursor:pointer;">'+
-          '<div class="card-body">'+imgHtml+
-          '<div class="tag" style="color:var(--frontier);">'+(s.category||'Space')+'</div>'+
-          '<div class="card-title">'+(s.title||'')+'</div>'+
-          '<div class="card-excerpt">'+(s.excerpt||'')+'</div>'+
-          '<div class="card-footer"><span class="card-source">'+(s.source||'')+'</span><span class="card-time">Today</span></div>'+
-          '<div class="card-actions">'+
-          '<button class="card-btn summarize-btn" data-title="'+t+'">&#9889; AI Summary</button>'+
-          '<button class="card-btn bookmark-btn" data-title="'+t+'">&#128278; Save</button>'+
-          '<button class="card-btn share-btn" data-title="'+t+'"><svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="18" cy="5" r="3"/><circle cx="6" cy="12" r="3"/><circle cx="18" cy="19" r="3"/><line x1="8.59" y1="13.51" x2="15.42" y2="17.49"/><line x1="15.41" y1="6.51" x2="8.59" y2="10.49"/></svg> Share</button>'+
-          '</div></div></div>';
+    if (heroEl && data.length > 0) {
+      heroEl.innerHTML = data.slice(0, 6).map(function(s) {
+        var imgHtml = s.image_url ? '<img src="'+s.image_url+'" alt="" style="width:100%;height:160px;object-fit:cover;border-radius:8px 8px 0 0;display:block;" loading="lazy" onerror="this.style.display=\'none\'" />' : '';
+        return '<div class="card" style="opacity:1;">' +
+          imgHtml +
+          '<div class="card-body">' +
+          '<div class="tag" style="color:var(--frontier);">'+(s.category||'Space')+'</div>' +
+          '<div class="card-title">'+(s.title||'')+'</div>' +
+          '<div class="card-excerpt">'+(s.excerpt||'')+'</div>' +
+          '<div class="card-footer"><span class="card-source">'+(s.source||'')+'</span><span class="card-time">Today</span></div>' +
+          '</div></div>';
       }).join('');
-      wireCards();
     }
   } catch(e) { console.error('fetchFrontierStories:', e); }
 }
+
 async function fetchFrontierRealWorld() {
   try {
     var data = await supabaseFetch('frontier_real_world', 'select=*&order=created_at.desc&limit=20');
     if (!data || data.length === 0) return;
     var prod = data.filter(function(d){ return (d.status||'').toLowerCase().includes('production'); }).slice(0,4);
     var horizon = data.filter(function(d){ return (d.status||'').toLowerCase().includes('horizon'); }).slice(0,4);
-    // Fallback: if status filtering returns too few, split by position
-    if (prod.length < 2 && horizon.length < 2) {
-      var mid = Math.ceil(data.length / 2);
-      prod = data.slice(0, mid).slice(0, 4);
-      horizon = data.slice(mid).slice(0, 4);
-    }
 
-    var FRONTIER_SECTOR_ICONS = {
-      'launch': '🚀', 'satellites': '🛰️', 'exploration': '🌌', 'stations': '🏗️',
-      'connectivity': '📡', 'defense': '🛡️', 'tourism': '🌍', 'economy': '💰',
-      'transport': '🚀', 'manufacturing': '🔧', 'mining': '⛏️', 'energy': '⚡'
-    };
     function makeItem(d) {
-      var domain = '';
-      try { if (d.url) domain = new URL(d.url).hostname.replace('www.',''); } catch(e) {}
-      var icon = domain
-        ? makeLogoImg(domain, d.name, FRONTIER_SECTOR_ICONS[(d.sector||'').toLowerCase()] || '🚀', 'watchlist-logo')
-        : '<div class="tool-icon">' + (FRONTIER_SECTOR_ICONS[(d.sector||'').toLowerCase()] || '🚀') + '</div>';
       return '<div class="tool-item">' +
-        icon +
-        '<div class="tool-body">' +
         '<div class="tool-name">'+(d.name||'')+'</div>' +
         '<div class="tool-desc">'+(d.description||'')+'</div>' +
-        '<div class="tool-footer"><span class="tool-cat">⊟ '+(d.sector||'Space')+'</span>' +
-        '<span class="tool-stars" style="color:var(--text-muted);font-size:11px;">'+(d.status||'')+'</span>' +
-        '</div></div></div>';
+        '<div class="tool-tag">'+(d.sector||'Space')+'</div>' +
+        '</div>';
     }
 
     var prodEl = document.getElementById('frontier-prod-scroll');
@@ -5889,16 +5825,14 @@ async function fetchFrontierCompanies() {
       ];
       data = [...launch.map(function(c){ return {...c, type:'launch'}; }), ...economy.map(function(c){ return {...c, type:'economy'}; })];
     }
-    var launchCos = data.filter(function(c){ return (c.type||'').toLowerCase() === 'launch'; }).slice(0,4);
-    var economyCos = data.filter(function(c){ return (c.type||'').toLowerCase() === 'economy'; }).slice(0,4);
+    var launchCos = data.filter(function(c){ return (c.type||c.category||'').toLowerCase().includes('launch') || ['SpaceX','Rocket Lab','Blue Origin','ULA','Relativity Space'].includes(c.name); }).slice(0,4);
+    var economyCos = data.filter(function(c){ return !launchCos.includes(c); }).slice(0,4);
 
     function makeWatchItem(c) {
       var href = c.url || ('https://www.google.com/search?q='+encodeURIComponent((c.name||'')+' space company'));
-      var domain = '';
-      try { if (c.url) domain = new URL(c.url).hostname.replace('www.',''); } catch(e) {}
-      var logoHtml = domain ? makeLogoImg(domain, c.name, 'letter', 'watchlist-logo') : makeLetterAvatar(c.name, '');
+      var initials = (c.name||'?').substring(0,2).toUpperCase();
       return '<a class="watchlist-item" href="'+href+'" target="_blank" rel="noopener">' +
-        logoHtml +
+        '<div class="watchlist-logo" style="width:36px;height:36px;border-radius:8px;background:linear-gradient(135deg,var(--frontier),#f97316);display:flex;align-items:center;justify-content:center;flex-shrink:0;font-size:12px;font-weight:800;color:#fff;">'+initials+'</div>' +
         '<div class="watchlist-body">' +
         '<div class="watchlist-name">'+(c.name||'')+'<span class="watchlist-status status-active" style="background:#fff7ed;color:var(--frontier);border-color:#fed7aa;">'+(c.category||'Space')+'</span></div>' +
         '<div class="watchlist-latest">'+(c.update||c.description||'')+'</div>' +
@@ -5919,28 +5853,22 @@ async function fetchFrontierTrending() {
     var data = await supabaseFetch('frontier_stories', 'select=*&order=created_at.desc&limit=6');
     var el = document.getElementById('frontier-trending-grid');
     if (!el || !data || data.length === 0) return;
-    data.slice(0,6).forEach(function(s) {
-      if (s.title && !STORIES.find(function(x){ return x.title === s.title; })) {
-        STORIES.push({ title: s.title, cat: 'frontier', source: s.source||'AMG', time: 'Today', excerpt: s.excerpt||'', url: s.url||'#', image_url: s.image_url||null });
-      }
-    });
     el.innerHTML = data.slice(0,6).map(function(s) {
-      var t = (s.title||'').replace(/"/g,'&quot;').replace(/'/g,'&#39;');
-      var imgHtml = s.image_url ? '<div class="card-image" style="width:100%;height:140px;background:url(''+s.image_url+'') center/cover no-repeat;border-radius:8px 8px 0 0;margin:-16px -16px 12px -16px;width:calc(100% + 32px);flex-shrink:0;"></div>' : '';
-      return '<div class="card" data-cat="frontier" data-source="'+(s.source||'')+'" data-title="'+t+'" data-url="'+(s.url||'')+'" data-excerpt="'+(s.excerpt||'').replace(/"/g,'&quot;').substring(0,200)+'" style="cursor:pointer;">'+
-        '<div class="card-body">'+imgHtml+
-        '<div class="tag" style="color:var(--frontier);">'+(s.category||'Space')+'</div>'+
-        '<div class="card-title">'+(s.title||'')+'</div>'+
-        '<div class="card-footer"><span class="card-source">'+(s.source||'')+'</span><span class="card-time">Today</span></div>'+
-        '<div class="card-actions">'+
-        '<button class="card-btn summarize-btn" data-title="'+t+'">&#9889; Summary</button>'+
-        '<button class="card-btn bookmark-btn" data-title="'+t+'">&#128278; Save</button>'+
-        '<button class="card-btn share-btn" data-title="'+t+'"><svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="18" cy="5" r="3"/><circle cx="6" cy="12" r="3"/><circle cx="18" cy="19" r="3"/><line x1="8.59" y1="13.51" x2="15.42" y2="17.49"/><line x1="15.41" y1="6.51" x2="8.59" y2="10.49"/></svg> Share</button>'+
-        '</div></div></div>';
+      var imgHtml = s.image_url
+        ? '<img src="'+s.image_url+'" alt="" style="width:100%;height:120px;object-fit:cover;border-radius:8px 8px 0 0;display:block;" loading="lazy" onerror="this.style.display=\'none\'" />'
+        : '';
+      return '<div class="card" style="opacity:1;">' +
+        imgHtml +
+        '<div class="card-body">' +
+        '<div class="tag" style="color:var(--frontier);">'+(s.category||'Space')+'</div>' +
+        '<div class="card-title">'+(s.title||'')+'</div>' +
+        '<div class="card-footer"><span class="card-source">'+(s.source||'')+'</span><span class="card-time">Today</span></div>' +
+        '</div></div>';
     }).join('');
-    wireCards();
   } catch(e) { console.error('fetchFrontierTrending:', e); }
 }
+
+// ── FRONTIER ATOMIC PREDICTIONS ──
 async function fetchFrontierForecasts() {
   try {
     var data = await supabaseFetch('frontier_forecasts', 'select=*&order=created_at.desc&limit=20');
@@ -6025,90 +5953,47 @@ async function fetchLongevityStories() {
   try {
     var data = await supabaseFetch('longevity_stories', 'select=*&order=created_at.desc&limit=15');
     if (!data || data.length === 0) return;
-    data.slice(0,6).forEach(function(s) {
-      if (s.title && !STORIES.find(function(x){ return x.title === s.title; })) {
-        STORIES.push({ title: s.title, cat: 'longevity', source: s.source||'AMG', time: 'Today', excerpt: s.excerpt||'', url: s.url||'#', image_url: s.image_url||null });
-      }
-    });
     var heroEl = document.getElementById('longevity-top-stories-grid');
     if (heroEl) {
       heroEl.innerHTML = data.slice(0,6).map(function(s) {
-        var t = (s.title||'').replace(/"/g,'&quot;').replace(/'/g,'&#39;');
-        var imgHtml = s.image_url ? '<div class="card-image" style="width:100%;height:160px;background:url(''+s.image_url+'') center/cover no-repeat;border-radius:8px 8px 0 0;margin:-16px -16px 12px -16px;width:calc(100% + 32px);flex-shrink:0;"></div>' : '';
-        return '<div class="card" data-cat="longevity" data-source="'+(s.source||'')+'" data-title="'+t+'" data-url="'+(s.url||'')+'" data-excerpt="'+(s.excerpt||'').replace(/"/g,'&quot;').substring(0,200)+'" style="cursor:pointer;">'+
-          '<div class="card-body">'+imgHtml+
-          '<div class="tag" style="color:var(--longevity);">'+(s.category||'Longevity')+'</div>'+
-          '<div class="card-title">'+(s.title||'')+'</div>'+
-          '<div class="card-excerpt">'+(s.excerpt||'')+'</div>'+
-          '<div class="card-footer"><span class="card-source">'+(s.source||'')+'</span><span class="card-time">Today</span></div>'+
-          '<div class="card-actions">'+
-          '<button class="card-btn summarize-btn" data-title="'+t+'">&#9889; AI Summary</button>'+
-          '<button class="card-btn bookmark-btn" data-title="'+t+'">&#128278; Save</button>'+
-          '<button class="card-btn share-btn" data-title="'+t+'"><svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="18" cy="5" r="3"/><circle cx="6" cy="12" r="3"/><circle cx="18" cy="19" r="3"/><line x1="8.59" y1="13.51" x2="15.42" y2="17.49"/><line x1="15.41" y1="6.51" x2="8.59" y2="10.49"/></svg> Share</button>'+
-          '</div></div></div>';
+        var imgHtml = s.image_url ? '<img src="'+s.image_url+'" alt="" style="width:100%;height:160px;object-fit:cover;border-radius:8px 8px 0 0;display:block;" loading="lazy" onerror="this.style.display=\'none\'" />' : '';
+        return '<div class="card" style="opacity:1;">' + imgHtml +
+          '<div class="card-body">' +
+          '<div class="tag" style="color:var(--longevity);">'+(s.category||'Longevity')+'</div>' +
+          '<div class="card-title">'+(s.title||'')+'</div>' +
+          '<div class="card-excerpt">'+(s.excerpt||'')+'</div>' +
+          '<div class="card-footer"><span class="card-source">'+(s.source||'')+'</span><span class="card-time">Today</span></div>' +
+          '</div></div>';
       }).join('');
-      wireCards();
     }
   } catch(e) { console.error('fetchLongevityStories:', e); }
 }
+
 async function fetchLongevityTrending() {
   try {
     var data = await supabaseFetch('longevity_stories', 'select=*&order=created_at.desc&limit=6');
     var el = document.getElementById('longevity-trending-grid');
     if (!el || !data || data.length === 0) return;
-    data.slice(0,6).forEach(function(s) {
-      if (s.title && !STORIES.find(function(x){ return x.title === s.title; })) {
-        STORIES.push({ title: s.title, cat: 'longevity', source: s.source||'AMG', time: 'Today', excerpt: s.excerpt||'', url: s.url||'#', image_url: s.image_url||null });
-      }
-    });
     el.innerHTML = data.slice(0,6).map(function(s) {
-      var t = (s.title||'').replace(/"/g,'&quot;').replace(/'/g,'&#39;');
-      var imgHtml = s.image_url ? '<div class="card-image" style="width:100%;height:140px;background:url(''+s.image_url+'') center/cover no-repeat;border-radius:8px 8px 0 0;margin:-16px -16px 12px -16px;width:calc(100% + 32px);flex-shrink:0;"></div>' : '';
-      return '<div class="card" data-cat="longevity" data-source="'+(s.source||'')+'" data-title="'+t+'" data-url="'+(s.url||'')+'" data-excerpt="'+(s.excerpt||'').replace(/"/g,'&quot;').substring(0,200)+'" style="cursor:pointer;">'+
-        '<div class="card-body">'+imgHtml+
-        '<div class="tag" style="color:var(--longevity);">'+(s.category||'Longevity')+'</div>'+
-        '<div class="card-title">'+(s.title||'')+'</div>'+
-        '<div class="card-footer"><span class="card-source">'+(s.source||'')+'</span><span class="card-time">Today</span></div>'+
-        '<div class="card-actions">'+
-        '<button class="card-btn summarize-btn" data-title="'+t+'">&#9889; Summary</button>'+
-        '<button class="card-btn bookmark-btn" data-title="'+t+'">&#128278; Save</button>'+
-        '<button class="card-btn share-btn" data-title="'+t+'"><svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="18" cy="5" r="3"/><circle cx="6" cy="12" r="3"/><circle cx="18" cy="19" r="3"/><line x1="8.59" y1="13.51" x2="15.42" y2="17.49"/><line x1="15.41" y1="6.51" x2="8.59" y2="10.49"/></svg> Share</button>'+
-        '</div></div></div>';
+      var imgHtml = s.image_url ? '<img src="'+s.image_url+'" alt="" style="width:100%;height:120px;object-fit:cover;border-radius:8px 8px 0 0;display:block;" loading="lazy" onerror="this.style.display=\'none\'" />' : '';
+      return '<div class="card" style="opacity:1;">' + imgHtml +
+        '<div class="card-body">' +
+        '<div class="tag" style="color:var(--longevity);">'+(s.category||'Longevity')+'</div>' +
+        '<div class="card-title">'+(s.title||'')+'</div>' +
+        '<div class="card-footer"><span class="card-source">'+(s.source||'')+'</span><span class="card-time">Today</span></div>' +
+        '</div></div>';
     }).join('');
-    wireCards();
   } catch(e) { console.error('fetchLongevityTrending:', e); }
 }
+
 async function fetchLongevityRealWorld() {
   try {
     var data = await supabaseFetch('longevity_real_world', 'select=*&order=created_at.desc&limit=20');
     if (!data || data.length === 0) return;
     var prod = data.filter(function(d){ return (d.status||'').toLowerCase().includes('production') || (d.status||'').toLowerCase().includes('clinical use'); }).slice(0,4);
     var horizon = data.filter(function(d){ return (d.status||'').toLowerCase().includes('horizon'); }).slice(0,4);
-    // Fallback: if status filtering returns too few, split by position
-    if (prod.length < 2 && horizon.length < 2) {
-      var mid = Math.ceil(data.length / 2);
-      prod = data.slice(0, mid).slice(0, 4);
-      horizon = data.slice(mid).slice(0, 4);
-    }
-    var LONGEVITY_SECTOR_ICONS = {
-      'therapeutics': '💊', 'diagnostics': '🔬', 'biotech': '🧬', 'ai drug discovery': '🤖',
-      'biohacking': '⚡', 'genomics': '🧪', 'oncology': '🏥', 'neuroscience': '🧠',
-      'longevity': '♾️', 'clinical': '🏥', 'research': '🔬', 'vaccines': '💉'
-    };
     function makeItem(d) {
-      var domain = '';
-      try { if (d.url) domain = new URL(d.url).hostname.replace('www.',''); } catch(e) {}
-      var icon = domain
-        ? makeLogoImg(domain, d.name, LONGEVITY_SECTOR_ICONS[(d.sector||'').toLowerCase()] || '🧬', 'watchlist-logo')
-        : '<div class="tool-icon">' + (LONGEVITY_SECTOR_ICONS[(d.sector||'').toLowerCase()] || '🧬') + '</div>';
-      return '<div class="tool-item">' +
-        icon +
-        '<div class="tool-body">' +
-        '<div class="tool-name">'+(d.name||'')+'</div>' +
-        '<div class="tool-desc">'+(d.description||'')+'</div>' +
-        '<div class="tool-footer"><span class="tool-cat">⊟ '+(d.sector||'Longevity')+'</span>' +
-        '<span class="tool-stars" style="color:var(--text-muted);font-size:11px;">'+(d.status||'')+'</span>' +
-        '</div></div></div>';
+      return '<div class="tool-item"><div class="tool-name">'+(d.name||'')+'</div><div class="tool-desc">'+(d.description||'')+'</div><div class="tool-tag">'+(d.sector||'Longevity')+'</div></div>';
     }
     var prodEl = document.getElementById('longevity-prod-scroll');
     if (prodEl) prodEl.innerHTML = '<div class="panel-no-results" style="display:none">No results</div>' + prod.slice(0,4).map(makeItem).join('');
@@ -6132,15 +6017,13 @@ async function fetchLongevityCompanies() {
         {name:'Bryan Johnson', signal:'Blueprint protocol most measured human, open-sourcing longevity', url:'https://blueprint.bryanjohnson.com', category:'Biohacking', type:'clinic'},
       ];
     }
-    var biotechCos = data.filter(function(c){ return (c.type||'').toLowerCase() === 'biotech'; }).slice(0,4);
-    var clinicCos = data.filter(function(c){ return (c.type||'').toLowerCase() === 'clinic'; }).slice(0,4);
+    var biotechCos = data.filter(function(c){ return (c.type||'').toLowerCase()==='biotech'; }).slice(0,4);
+    var clinicCos = data.filter(function(c){ return (c.type||'').toLowerCase()!=='biotech'; }).slice(0,4);
     function makeItem(c) {
       var href = c.url || ('https://www.google.com/search?q='+encodeURIComponent((c.name||'')+' longevity'));
-      var domain = '';
-      try { if (c.url) domain = new URL(c.url).hostname.replace('www.',''); } catch(e) {}
-      var logoHtml = domain ? makeLogoImg(domain, c.name, 'letter', 'watchlist-logo') : makeLetterAvatar(c.name, '');
+      var initials = (c.name||'?').substring(0,2).toUpperCase();
       return '<a class="watchlist-item" href="'+href+'" target="_blank" rel="noopener">' +
-        logoHtml +
+        '<div style="width:36px;height:36px;border-radius:8px;background:linear-gradient(135deg,var(--longevity),#34d399);display:flex;align-items:center;justify-content:center;flex-shrink:0;font-size:12px;font-weight:800;color:#fff;">'+initials+'</div>' +
         '<div class="watchlist-body">' +
         '<div class="watchlist-name">'+(c.name||'')+'<span class="watchlist-status status-active" style="background:#ecfdf5;color:var(--longevity);border-color:#a7f3d0;">'+(c.category||'Longevity')+'</span></div>' +
         '<div class="watchlist-latest">'+(c.update||c.description||'')+'</div>' +
