@@ -5528,7 +5528,7 @@ function renderFeed() {
       '<div class="card-excerpt">'+s.excerpt+'</div>' +
       '<div class="card-footer"><span class="card-source">'+s.source+'</span><span class="card-time">'+s.time+'</span></div>' +
       '<div class="card-actions">' +
-      '<button class="card-btn summarize-btn" data-title="'+t+'">&#9889; AI Summary</button>' +
+      
       '<button class="card-btn bookmark-btn" data-title="'+t+'">&#128278; Save</button>' +
       '<button class="card-btn share-btn" data-title="'+t+'"><svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="18" cy="5" r="3"/><circle cx="6" cy="12" r="3"/><circle cx="18" cy="19" r="3"/><line x1="8.59" y1="13.51" x2="15.42" y2="17.49"/><line x1="15.41" y1="6.51" x2="8.59" y2="10.49"/><\/svg> Share</button>' +
       '</div></div></div>';
@@ -5557,7 +5557,7 @@ function renderFeed() {
       '<div class="card-title">'+s.title+'</div>' +
       '<div class="card-footer"><span class="card-source">'+s.source+'</span><span class="card-time">'+s.time+'</span></div>' +
       '<div class="card-actions">' +
-      '<button class="card-btn summarize-btn" data-title="'+t+'">&#9889; Summary</button>' +
+      
       '<button class="card-btn bookmark-btn" data-title="'+t+'">&#128278; Save</button>' +
       '<button class="card-btn share-btn" data-title="'+t+'"><svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="18" cy="5" r="3"/><circle cx="6" cy="12" r="3"/><circle cx="18" cy="19" r="3"/><line x1="8.59" y1="13.51" x2="15.42" y2="17.49"/><line x1="15.41" y1="6.51" x2="8.59" y2="10.49"/><\/svg> Share</button>' +
       '</div></div></div>';
@@ -5700,6 +5700,7 @@ function toggleSaved(title){
     btn.classList.toggle('saved', saved.includes(title));
     btn.textContent = saved.includes(title) ? '✓ Saved' : '🔖 Save';
   });
+  updateSavedBadge();
   renderSavedPanel();
 }
 function updateSavedBadge(){
@@ -6225,17 +6226,25 @@ async function fetchFrontierStories() {
 
     var heroEl = document.getElementById('frontier-top-stories-grid');
     if (heroEl && data.length > 0) {
-      heroEl.innerHTML = data.slice(0, 6).map(function(s) {
+      var fTopData = data.slice(0,6);
+      fTopData.forEach(function(s){ STORIES.push({title:s.title||'',excerpt:s.excerpt||'',source:s.source||'',url:s.url||'',image_url:s.image_url||'',cat:(s.category||'space').toLowerCase(),time:s.created_at?timeAgo(s.created_at):'Today',created_at:s.created_at}); });
+      heroEl.innerHTML = fTopData.map(function(s) {
+        var t = (s.title||'').replace(/"/g,'&quot;').replace(/'/g,'&#39;');
         var imgHtml = s.image_url ? '<img src="'+s.image_url+'" alt="" style="width:100%;height:160px;object-fit:cover;border-radius:8px 8px 0 0;display:block;" loading="lazy" onerror="this.style.display=\'none\'" />' : '';
-        return '<div class="card" style="opacity:1;">' +
+        return '<div class="card" data-title="'+t+'" data-url="'+(s.url||'')+'" style="cursor:pointer;opacity:1;">' +
           imgHtml +
           '<div class="card-body">' +
-          '<div class="tag" style="color:var(--frontier);">'+(s.category||'Space')+'</div>' +
+          '<div class="tag" style="color:var(--frontier);">'+(s.category||'Space').toUpperCase()+'</div>' +
           '<div class="card-title">'+(s.title||'')+'</div>' +
           '<div class="card-excerpt">'+(s.excerpt||'')+'</div>' +
-          '<div class="card-footer"><span class="card-source">'+(s.source||'')+'</span><span class="card-time">Today</span></div>' +
+          '<div class="card-footer"><span class="card-source">'+(s.source||'')+'</span><span class="card-time">'+(s.created_at?timeAgo(s.created_at):'Today')+'</span></div>' +
+          '<div class="card-actions">' +
+          '<button class="card-btn bookmark-btn" data-title="'+t+'">&#128278; Save</button>' +
+          '<button class="card-btn share-btn" data-title="'+t+'"><svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="18" cy="5" r="3"/><circle cx="6" cy="12" r="3"/><circle cx="18" cy="19" r="3"/><line x1="8.59" y1="13.51" x2="15.42" y2="17.49"/><line x1="15.41" y1="6.51" x2="8.59" y2="10.49"/><\/svg> Share</button>' +
+          '</div>' +
           '</div></div>';
       }).join('');
+      wireCards(heroEl);
     }
   } catch(e) { console.error('fetchFrontierStories:', e); }
 }
@@ -6248,11 +6257,18 @@ async function fetchFrontierRealWorld() {
     var horizon = data.filter(function(d){ return (d.status||'').toLowerCase().includes('horizon'); }).slice(0,4);
 
     function makeItem(d) {
-      return '<div class="tool-item">' +
+      var initials = (d.name||'?').substring(0,2).toUpperCase();
+      var domain = d.url ? d.url.replace(/https?:\/\//,'').split('/')[0] : '';
+      var logoHtml = domain
+        ? makeLogoImg(domain, d.name, 'letter', 'watchlist-logo')
+        : '<div class="watchlist-logo" style="background:linear-gradient(135deg,var(--frontier),#f97316);display:flex;align-items:center;justify-content:center;font-size:12px;font-weight:800;color:#fff;">'+initials+'</div>';
+      return '<div class="tool-item" style="display:flex;align-items:flex-start;gap:10px;">' +
+        logoHtml +
+        '<div style="flex:1;min-width:0;">' +
         '<div class="tool-name">'+(d.name||'')+'</div>' +
         '<div class="tool-desc">'+(d.description||'')+'</div>' +
         '<div class="tool-tag">'+(d.sector||'Space')+'</div>' +
-        '</div>';
+        '</div></div>';
     }
 
     var prodEl = document.getElementById('frontier-prod-scroll');
@@ -6288,7 +6304,7 @@ async function fetchFrontierCompanies() {
       var href = c.url || ('https://www.google.com/search?q='+encodeURIComponent((c.name||'')+' space company'));
       var initials = (c.name||'?').substring(0,2).toUpperCase();
       return '<a class="watchlist-item" href="'+href+'" target="_blank" rel="noopener">' +
-        '<div class="watchlist-logo" style="width:36px;height:36px;border-radius:8px;background:linear-gradient(135deg,var(--frontier),#f97316);display:flex;align-items:center;justify-content:center;flex-shrink:0;font-size:12px;font-weight:800;color:#fff;">'+initials+'</div>' +
+        (href.startsWith('http') ? makeLogoImg(href.replace(/https?:\/\//,'').split('/')[0], c.name, 'letter', 'watchlist-logo') : '<div class="watchlist-logo" style="background:linear-gradient(135deg,var(--frontier),#f97316);display:flex;align-items:center;justify-content:center;font-size:12px;font-weight:800;color:#fff;">'+initials+'</div>') +
         '<div class="watchlist-body">' +
         '<div class="watchlist-name">'+(c.name||'')+'<span class="watchlist-status status-active" style="background:#fff7ed;color:var(--frontier);border-color:#fed7aa;">'+(c.category||'Space')+'</span></div>' +
         '<div class="watchlist-latest">'+(c.update||c.description||'')+'</div>' +
@@ -6309,18 +6325,26 @@ async function fetchFrontierTrending() {
     var data = await supabaseFetch('frontier_stories', 'select=*&order=created_at.desc&limit=6');
     var el = document.getElementById('frontier-trending-grid');
     if (!el || !data || data.length === 0) return;
-    el.innerHTML = data.slice(0,6).map(function(s) {
+    var fTrendData = data.slice(0,6);
+    fTrendData.forEach(function(s){ STORIES.push({title:s.title||'',source:s.source||'',url:s.url||'',image_url:s.image_url||'',cat:(s.category||'space').toLowerCase(),time:s.created_at?timeAgo(s.created_at):'Today',created_at:s.created_at}); });
+    el.innerHTML = fTrendData.map(function(s) {
+      var t = (s.title||'').replace(/"/g,'&quot;').replace(/'/g,'&#39;');
       var imgHtml = s.image_url
         ? '<img src="'+s.image_url+'" alt="" style="width:100%;height:120px;object-fit:cover;border-radius:8px 8px 0 0;display:block;" loading="lazy" onerror="this.style.display=\'none\'" />'
         : '';
-      return '<div class="card" style="opacity:1;">' +
+      return '<div class="card" data-title="'+t+'" data-url="'+(s.url||'')+'" style="cursor:pointer;opacity:1;">' +
         imgHtml +
         '<div class="card-body">' +
-        '<div class="tag" style="color:var(--frontier);">'+(s.category||'Space')+'</div>' +
+        '<div class="tag" style="color:var(--frontier);">'+(s.category||'Space').toUpperCase()+'</div>' +
         '<div class="card-title">'+(s.title||'')+'</div>' +
-        '<div class="card-footer"><span class="card-source">'+(s.source||'')+'</span><span class="card-time">Today</span></div>' +
+        '<div class="card-footer"><span class="card-source">'+(s.source||'')+'</span><span class="card-time">'+(s.created_at?timeAgo(s.created_at):'Today')+'</span></div>' +
+        '<div class="card-actions">' +
+        '<button class="card-btn bookmark-btn" data-title="'+t+'">&#128278; Save</button>' +
+        '<button class="card-btn share-btn" data-title="'+t+'"><svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="18" cy="5" r="3"/><circle cx="6" cy="12" r="3"/><circle cx="18" cy="19" r="3"/><line x1="8.59" y1="13.51" x2="15.42" y2="17.49"/><line x1="15.41" y1="6.51" x2="8.59" y2="10.49"/><\/svg> Share</button>' +
+        '</div>' +
         '</div></div>';
     }).join('');
+    wireCards(el);
   } catch(e) { console.error('fetchFrontierTrending:', e); }
 }
 
@@ -6411,16 +6435,24 @@ async function fetchLongevityStories() {
     if (!data || data.length === 0) return;
     var heroEl = document.getElementById('longevity-top-stories-grid');
     if (heroEl) {
-      heroEl.innerHTML = data.slice(0,6).map(function(s) {
+      var lTopData = data.slice(0,6);
+      lTopData.forEach(function(s){ STORIES.push({title:s.title||'',excerpt:s.excerpt||'',source:s.source||'',url:s.url||'',image_url:s.image_url||'',cat:(s.category||'longevity').toLowerCase(),time:s.created_at?timeAgo(s.created_at):'Today',created_at:s.created_at}); });
+      heroEl.innerHTML = lTopData.map(function(s) {
+        var t = (s.title||'').replace(/"/g,'&quot;').replace(/'/g,'&#39;');
         var imgHtml = s.image_url ? '<img src="'+s.image_url+'" alt="" style="width:100%;height:160px;object-fit:cover;border-radius:8px 8px 0 0;display:block;" loading="lazy" onerror="this.style.display=\'none\'" />' : '';
-        return '<div class="card" style="opacity:1;">' + imgHtml +
+        return '<div class="card" data-title="'+t+'" data-url="'+(s.url||'')+'" style="cursor:pointer;opacity:1;">' + imgHtml +
           '<div class="card-body">' +
-          '<div class="tag" style="color:var(--longevity);">'+(s.category||'Longevity')+'</div>' +
+          '<div class="tag" style="color:var(--longevity);">'+(s.category||'Longevity').toUpperCase()+'</div>' +
           '<div class="card-title">'+(s.title||'')+'</div>' +
           '<div class="card-excerpt">'+(s.excerpt||'')+'</div>' +
-          '<div class="card-footer"><span class="card-source">'+(s.source||'')+'</span><span class="card-time">Today</span></div>' +
+          '<div class="card-footer"><span class="card-source">'+(s.source||'')+'</span><span class="card-time">'+(s.created_at?timeAgo(s.created_at):'Today')+'</span></div>' +
+          '<div class="card-actions">' +
+          '<button class="card-btn bookmark-btn" data-title="'+t+'">&#128278; Save</button>' +
+          '<button class="card-btn share-btn" data-title="'+t+'"><svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="18" cy="5" r="3"/><circle cx="6" cy="12" r="3"/><circle cx="18" cy="19" r="3"/><line x1="8.59" y1="13.51" x2="15.42" y2="17.49"/><line x1="15.41" y1="6.51" x2="8.59" y2="10.49"/><\/svg> Share</button>' +
+          '</div>' +
           '</div></div>';
       }).join('');
+      wireCards(heroEl);
     }
   } catch(e) { console.error('fetchLongevityStories:', e); }
 }
@@ -6432,11 +6464,16 @@ async function fetchLongevityTrending() {
     if (!el || !data || data.length === 0) return;
     el.innerHTML = data.slice(0,6).map(function(s) {
       var imgHtml = s.image_url ? '<img src="'+s.image_url+'" alt="" style="width:100%;height:120px;object-fit:cover;border-radius:8px 8px 0 0;display:block;" loading="lazy" onerror="this.style.display=\'none\'" />' : '';
-      return '<div class="card" style="opacity:1;">' + imgHtml +
+      var t2 = (s.title||'').replace(/"/g,'&quot;').replace(/'/g,'&#39;');
+      return '<div class="card" data-title="'+t2+'" data-url="'+(s.url||'')+'" style="cursor:pointer;opacity:1;">' + imgHtml +
         '<div class="card-body">' +
-        '<div class="tag" style="color:var(--longevity);">'+(s.category||'Longevity')+'</div>' +
+        '<div class="tag" style="color:var(--longevity);">'+(s.category||'Longevity').toUpperCase()+'</div>' +
         '<div class="card-title">'+(s.title||'')+'</div>' +
-        '<div class="card-footer"><span class="card-source">'+(s.source||'')+'</span><span class="card-time">Today</span></div>' +
+        '<div class="card-footer"><span class="card-source">'+(s.source||'')+'</span><span class="card-time">'+(s.created_at?timeAgo(s.created_at):'Today')+'</span></div>' +
+        '<div class="card-actions">' +
+        '<button class="card-btn bookmark-btn" data-title="'+t2+'">&#128278; Save</button>' +
+        '<button class="card-btn share-btn" data-title="'+t2+'"><svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="18" cy="5" r="3"/><circle cx="6" cy="12" r="3"/><circle cx="18" cy="19" r="3"/><line x1="8.59" y1="13.51" x2="15.42" y2="17.49"/><line x1="15.41" y1="6.51" x2="8.59" y2="10.49"/><\/svg> Share</button>' +
+        '</div>' +
         '</div></div>';
     }).join('');
   } catch(e) { console.error('fetchLongevityTrending:', e); }
@@ -6449,7 +6486,18 @@ async function fetchLongevityRealWorld() {
     var prod = data.filter(function(d){ return (d.status||'').toLowerCase().includes('production') || (d.status||'').toLowerCase().includes('clinical use'); }).slice(0,4);
     var horizon = data.filter(function(d){ return (d.status||'').toLowerCase().includes('horizon'); }).slice(0,4);
     function makeItem(d) {
-      return '<div class="tool-item"><div class="tool-name">'+(d.name||'')+'</div><div class="tool-desc">'+(d.description||'')+'</div><div class="tool-tag">'+(d.sector||'Longevity')+'</div></div>';
+      var initials = (d.name||'?').substring(0,2).toUpperCase();
+      var domain = d.url ? d.url.replace(/https?:\/\//,'').split('/')[0] : '';
+      var logoHtml = domain
+        ? makeLogoImg(domain, d.name, 'letter', 'watchlist-logo')
+        : '<div class="watchlist-logo" style="background:linear-gradient(135deg,var(--longevity),#34d399);display:flex;align-items:center;justify-content:center;font-size:12px;font-weight:800;color:#fff;">'+initials+'</div>';
+      return '<div class="tool-item" style="display:flex;align-items:flex-start;gap:10px;">' +
+        logoHtml +
+        '<div style="flex:1;min-width:0;">' +
+        '<div class="tool-name">'+(d.name||'')+'</div>' +
+        '<div class="tool-desc">'+(d.description||'')+'</div>' +
+        '<div class="tool-tag">'+(d.sector||'Longevity')+'</div>' +
+        '</div></div>';
     }
     var prodEl = document.getElementById('longevity-prod-scroll');
     if (prodEl) prodEl.innerHTML = '<div class="panel-no-results" style="display:none">No results</div>' + prod.slice(0,4).map(makeItem).join('');
@@ -6479,7 +6527,7 @@ async function fetchLongevityCompanies() {
       var href = c.url || ('https://www.google.com/search?q='+encodeURIComponent((c.name||'')+' longevity'));
       var initials = (c.name||'?').substring(0,2).toUpperCase();
       return '<a class="watchlist-item" href="'+href+'" target="_blank" rel="noopener">' +
-        '<div style="width:36px;height:36px;border-radius:8px;background:linear-gradient(135deg,var(--longevity),#34d399);display:flex;align-items:center;justify-content:center;flex-shrink:0;font-size:12px;font-weight:800;color:#fff;">'+initials+'</div>' +
+        (href.startsWith('http') ? makeLogoImg(href.replace(/https?:\/\//,'').split('/')[0], c.name, 'letter', 'watchlist-logo') : '<div class="watchlist-logo" style="background:linear-gradient(135deg,var(--longevity),#34d399);display:flex;align-items:center;justify-content:center;font-size:12px;font-weight:800;color:#fff;">'+initials+'</div>') +
         '<div class="watchlist-body">' +
         '<div class="watchlist-name">'+(c.name||'')+'<span class="watchlist-status status-active" style="background:#ecfdf5;color:var(--longevity);border-color:#a7f3d0;">'+(c.category||'Longevity')+'</span></div>' +
         '<div class="watchlist-latest">'+(c.update||c.description||'')+'</div>' +
