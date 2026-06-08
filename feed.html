@@ -1589,6 +1589,12 @@ a { color: inherit; text-decoration: none; }
   border-color: #111;
 }
 
+
+/* ── HIDE AI AT WORK STANDALONE BTN ON MOBILE ── */
+@media (max-width: 768px) {
+  #btn-work { display: none !important; }
+}
+
 /* ── MOBILE POLISH ── */
 @media (max-width: 480px) {
   .section-title { font-size: 17px; margin-top: 36px; margin-bottom: 14px; }
@@ -2591,9 +2597,11 @@ body.frontier-mode .footer-email-input:focus { border-color: var(--frontier); }
           <button class="vertical-dropdown-item frontier" onclick="switchVertical('frontier');closeVerticalDropdown();">🚀 The Frontier</button>
           <div class="vertical-dropdown-divider"></div>
           <button class="vertical-dropdown-item longevity" onclick="switchVertical('longevity');closeVerticalDropdown();">🧬 Longevity</button>
+          <div class="vertical-dropdown-divider"></div>
+          <button class="vertical-dropdown-item" onclick="switchVertical('work');closeVerticalDropdown();">🛠️ AI at Work</button>
         </div>
       </div>
-      <button class="btn-filter" id="btn-work" onclick="switchVertical('work')">
+      <button class="btn-filter" id="btn-work" onclick="switchVertical('work')" style="flex-shrink:0;">
         🛠️ AI at Work
       </button>
       <button class="btn-filter" id="saved-btn">
