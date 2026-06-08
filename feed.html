@@ -2,8 +2,7 @@
 <html lang="en">
 <head>
 <meta charset="UTF-8">
-<meta name="color-scheme" content="light only" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Atomic Media Group AI Intelligence Feed</title>
 <meta name="description" content="The world's AI news, curated daily for executives, founders, and operators. The future, before it's obvious.">
 <meta name="robots" content="index, follow">
@@ -836,12 +835,8 @@ a { color: inherit; text-decoration: none; }
 .panel-scroll::-webkit-scrollbar { width: 3px; }
 .panel-scroll::-webkit-scrollbar-thumb { background: var(--border); border-radius: 2px; }
 .panel-flat {
-  max-height: none;
-  overflow: visible;
-}
-.panel-flat-scroll {
-  max-height: 320px;
-  overflow-y: auto;
+  max-height: none !important;
+  overflow: visible !important;
 }
 
 /* ── PROMPT ITEMS ── */
@@ -1604,23 +1599,21 @@ a { color: inherit; text-decoration: none; }
 /* ── TILE SHARE BUTTON ── */
 .tile-share-btn {
   position: absolute;
-  bottom: 10px;
-  right: 10px;
+  bottom: 8px;
+  right: 8px;
   background: none;
   border: none;
   cursor: pointer;
   padding: 4px;
-  opacity: 0.3;
+  opacity: 0.25;
   transition: opacity 0.15s;
   line-height: 1;
   border-radius: 4px;
+  z-index: 2;
 }
-.tile-share-btn:hover { opacity: 0.8; background: var(--surface); }
+.tile-share-btn:hover { opacity: 0.7; background: var(--surface); }
 .tile-share-btn svg { display: block; }
-/* Make tiles position:relative so button anchors correctly */
-.tool-item, .stat-tile, .watchlist-item, .forecast-panel, .tool-card {
-  position: relative;
-}
+.tool-item, .stat-tile, .watchlist-item, .forecast-panel, .tool-card { position: relative; }
 
 /* ── MOBILE POLISH ── */
 @media (max-width: 480px) {
@@ -2653,7 +2646,7 @@ body.frontier-mode .footer-email-input:focus { border-color: var(--frontier); }
       <div class="vertical-dropdown" id="vertical-dropdown">
         <button class="vertical-dropdown-btn" id="dropdown-trigger" onclick="toggleVerticalDropdown()">
           <span id="dropdown-label">🦾 AI &amp; Robotics</span>
-          <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="m6 9 6 6 6-6"/></svg>
+          <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="m6 9 6 6 6-6"/><\/svg>
         </button>
         <div class="vertical-dropdown-menu" id="dropdown-menu">
           <button class="vertical-dropdown-item active" onclick="switchVertical('ai');closeVerticalDropdown();">🦾 AI &amp; Robotics</button>
@@ -2705,13 +2698,13 @@ body.frontier-mode .footer-email-input:focus { border-color: var(--frontier); }
       color: var(--text-muted);
       font-weight: 400;
       letter-spacing: -0.01em;
-    ">Where machines think, robots walk, and the future of intelligence is decided.</span>
+    ">Everything happening in AI and robotics, curated in one place.</span>
   </div>
 
   <!-- TOP STORIES -->
   <div class="section-title">Top Stories</div>
   <div class="small-grid" id="top-stories-grid">
-    <div class="card" style="opacity:1;"><div class="card-body"><div class="tag">AI</div><div class="card-title">Pulling from the feed...</div></div></div>
+    <div class="card" style="opacity:1;"><div class="card-body"><div class="tag">AI</div><div class="card-title">Loading top stories...</div></div></div>
   </div>
 
 
@@ -2735,7 +2728,7 @@ body.frontier-mode .footer-email-input:focus { border-color: var(--frontier); }
             <div class="tool-desc">Harvey is deployed inside Allen & Overy, PwC, and 100+ law firms drafting contracts, running due diligence, and surfacing case law at a fraction of associate hours. Billing rates haven't dropped. Volume has exploded.</div>
             <div class="tool-footer"><span class="tool-cat">⊟ Legal</span><span class="tool-stars" style="color:var(--text-muted);font-size:11px;">Harvey AI · Live</span></div>
         <button class="tile-share-btn" title="Share"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="18" cy="5" r="3"/><circle cx="6" cy="12" r="3"/><circle cx="18" cy="19" r="3"/><line x1="8.59" y1="13.51" x2="15.42" y2="17.49"/><line x1="15.41" y1="6.51" x2="8.59" y2="10.49"/></svg></button>
-        </div>
+          </div>
         </div>
         <div class="tool-item">
           <div class="tool-icon">🏦</div>
@@ -2744,7 +2737,7 @@ body.frontier-mode .footer-email-input:focus { border-color: var(--frontier); }
             <div class="tool-desc">JPMorgan's COiN platform reviews 12,000 commercial credit agreements per year work that previously took 360,000 hours of lawyer time annually. Error rate is lower than human review.</div>
             <div class="tool-footer"><span class="tool-cat">⊟ Finance</span><span class="tool-stars" style="color:var(--text-muted);font-size:11px;">JPMorgan · Live</span></div>
         <button class="tile-share-btn" title="Share"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="18" cy="5" r="3"/><circle cx="6" cy="12" r="3"/><circle cx="18" cy="19" r="3"/><line x1="8.59" y1="13.51" x2="15.42" y2="17.49"/><line x1="15.41" y1="6.51" x2="8.59" y2="10.49"/></svg></button>
-        </div>
+          </div>
         </div>
         <div class="tool-item">
           <div class="tool-icon">🩺</div>
@@ -2753,7 +2746,7 @@ body.frontier-mode .footer-email-input:focus { border-color: var(--frontier); }
             <div class="tool-desc">AlphaFold has predicted the structure of 200M+ proteins essentially the entire known universe of biology. Dozens of pharmaceutical companies are now using it to accelerate drug discovery pipelines by years.</div>
             <div class="tool-footer"><span class="tool-cat">⊟ Healthcare</span><span class="tool-stars" style="color:var(--text-muted);font-size:11px;">DeepMind · Live</span></div>
         <button class="tile-share-btn" title="Share"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="18" cy="5" r="3"/><circle cx="6" cy="12" r="3"/><circle cx="18" cy="19" r="3"/><line x1="8.59" y1="13.51" x2="15.42" y2="17.49"/><line x1="15.41" y1="6.51" x2="8.59" y2="10.49"/></svg></button>
-        </div>
+          </div>
         </div>
         <div class="tool-item">
           <div class="tool-icon">🛒</div>
@@ -2762,7 +2755,7 @@ body.frontier-mode .footer-email-input:focus { border-color: var(--frontier); }
             <div class="tool-desc">Amazon's ML forecasting stack now handles real-time inventory decisions across 350M+ SKUs globally predicting regional demand spikes before they happen and auto-repositioning stock across fulfillment centers.</div>
             <div class="tool-footer"><span class="tool-cat">⊟ Retail</span><span class="tool-stars" style="color:var(--text-muted);font-size:11px;">Amazon · Live</span></div>
         <button class="tile-share-btn" title="Share"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="18" cy="5" r="3"/><circle cx="6" cy="12" r="3"/><circle cx="18" cy="19" r="3"/><line x1="8.59" y1="13.51" x2="15.42" y2="17.49"/><line x1="15.41" y1="6.51" x2="8.59" y2="10.49"/></svg></button>
-        </div>
+          </div>
         </div>
         <div class="tool-item">
           <div class="tool-icon">✈️</div>
@@ -2771,7 +2764,7 @@ body.frontier-mode .footer-email-input:focus { border-color: var(--frontier); }
             <div class="tool-desc">Airbus uses generative AI to design aircraft partition brackets that are 45% lighter than human-designed counterparts. The A320 now flies with AI-optimized structural components across its entire fleet.</div>
             <div class="tool-footer"><span class="tool-cat">⊟ Aerospace</span><span class="tool-stars" style="color:var(--text-muted);font-size:11px;">Airbus · Live</span></div>
         <button class="tile-share-btn" title="Share"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="18" cy="5" r="3"/><circle cx="6" cy="12" r="3"/><circle cx="18" cy="19" r="3"/><line x1="8.59" y1="13.51" x2="15.42" y2="17.49"/><line x1="15.41" y1="6.51" x2="8.59" y2="10.49"/></svg></button>
-        </div>
+          </div>
         </div>
       </div>
     </div>
@@ -2790,7 +2783,7 @@ body.frontier-mode .footer-email-input:focus { border-color: var(--frontier); }
             <div class="tool-desc">Every major platform Salesforce, ServiceNow, SAP, Workday is shipping autonomous agent layers in 2025. The shift from AI as a tool to AI as a worker completing multi-step tasks is the defining enterprise transition of the decade.</div>
             <div class="tool-footer"><span class="tool-cat">⊟ Enterprise</span><span class="tool-stars" style="color:var(--text-muted);font-size:11px;">Multiple · 2025–26</span></div>
         <button class="tile-share-btn" title="Share"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="18" cy="5" r="3"/><circle cx="6" cy="12" r="3"/><circle cx="18" cy="19" r="3"/><line x1="8.59" y1="13.51" x2="15.42" y2="17.49"/><line x1="15.41" y1="6.51" x2="8.59" y2="10.49"/></svg></button>
-        </div>
+          </div>
         </div>
         <div class="tool-item">
           <div class="tool-icon">🎓</div>
@@ -2799,7 +2792,7 @@ body.frontier-mode .footer-email-input:focus { border-color: var(--frontier); }
             <div class="tool-desc">Khan Academy's Khanmigo and emerging competitors are deploying personalized AI tutors to millions of students. Early data shows significant learning acceleration particularly for underserved students without access to private tutoring.</div>
             <div class="tool-footer"><span class="tool-cat">⊟ Education</span><span class="tool-stars" style="color:var(--text-muted);font-size:11px;">Khan Academy + · 2025</span></div>
         <button class="tile-share-btn" title="Share"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="18" cy="5" r="3"/><circle cx="6" cy="12" r="3"/><circle cx="18" cy="19" r="3"/><line x1="8.59" y1="13.51" x2="15.42" y2="17.49"/><line x1="15.41" y1="6.51" x2="8.59" y2="10.49"/></svg></button>
-        </div>
+          </div>
         </div>
         <div class="tool-item">
           <div class="tool-icon">🏗️</div>
@@ -2808,7 +2801,7 @@ body.frontier-mode .footer-email-input:focus { border-color: var(--frontier); }
             <div class="tool-desc">Utilities and grid operators are deploying AI to manage load balancing, predict equipment failure, and optimize renewable energy dispatch in real time. The US grid's transition to AI-managed infrastructure is already underway.</div>
             <div class="tool-footer"><span class="tool-cat">⊟ Infrastructure</span><span class="tool-stars" style="color:var(--text-muted);font-size:11px;">Multiple · 2025–26</span></div>
         <button class="tile-share-btn" title="Share"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="18" cy="5" r="3"/><circle cx="6" cy="12" r="3"/><circle cx="18" cy="19" r="3"/><line x1="8.59" y1="13.51" x2="15.42" y2="17.49"/><line x1="15.41" y1="6.51" x2="8.59" y2="10.49"/></svg></button>
-        </div>
+          </div>
         </div>
         <div class="tool-item">
           <div class="tool-icon">🎬</div>
@@ -2817,7 +2810,7 @@ body.frontier-mode .footer-email-input:focus { border-color: var(--frontier); }
             <div class="tool-desc">Major studios and ad agencies are piloting fully AI-generated video for B-roll, product ads, and localization. Sora, Runway, and Kling are already in agency workflows. Full AI feature films are 18–24 months from credibility.</div>
             <div class="tool-footer"><span class="tool-cat">⊟ Media</span><span class="tool-stars" style="color:var(--text-muted);font-size:11px;">Multiple · 2025–26</span></div>
         <button class="tile-share-btn" title="Share"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="18" cy="5" r="3"/><circle cx="6" cy="12" r="3"/><circle cx="18" cy="19" r="3"/><line x1="8.59" y1="13.51" x2="15.42" y2="17.49"/><line x1="15.41" y1="6.51" x2="8.59" y2="10.49"/></svg></button>
-        </div>
+          </div>
         </div>
         <div class="tool-item">
           <div class="tool-icon">🧬</div>
@@ -2826,7 +2819,7 @@ body.frontier-mode .footer-email-input:focus { border-color: var(--frontier); }
             <div class="tool-desc">Pharma companies are using AI to design smarter trials identifying optimal patient cohorts, predicting dropout risk, and simulating outcomes before a single dose is administered. Trial timelines are compressing from years to months.</div>
             <div class="tool-footer"><span class="tool-cat">⊟ Pharma</span><span class="tool-stars" style="color:var(--text-muted);font-size:11px;">Multiple · 2026</span></div>
         <button class="tile-share-btn" title="Share"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="18" cy="5" r="3"/><circle cx="6" cy="12" r="3"/><circle cx="18" cy="19" r="3"/><line x1="8.59" y1="13.51" x2="15.42" y2="17.49"/><line x1="15.41" y1="6.51" x2="8.59" y2="10.49"/></svg></button>
-        </div>
+          </div>
         </div>
       </div>
     </div>
@@ -2851,7 +2844,7 @@ body.frontier-mode .footer-email-input:focus { border-color: var(--frontier); }
             <div class="tool-desc">Figure AI's humanoid is operating autonomously on BMW's Spartanburg production floor handling parts, assembly support, and logistics tasks across full shifts without human intervention.</div>
             <div class="tool-footer"><span class="tool-cat">⊟ Automotive</span><span class="tool-stars" style="color:var(--text-muted);font-size:11px;">Figure AI · Live</span></div>
         <button class="tile-share-btn" title="Share"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="18" cy="5" r="3"/><circle cx="6" cy="12" r="3"/><circle cx="18" cy="19" r="3"/><line x1="8.59" y1="13.51" x2="15.42" y2="17.49"/><line x1="15.41" y1="6.51" x2="8.59" y2="10.49"/></svg></button>
-        </div>
+          </div>
         </div>
         <div class="tool-item">
           <div class="tool-icon">📦</div>
@@ -2860,7 +2853,7 @@ body.frontier-mode .footer-email-input:focus { border-color: var(--frontier); }
             <div class="tool-desc">Digit robots are running 24/7 tote-handling operations across Amazon fulfillment centers. The pilot has cleared 1M+ cycles with error rates below 0.3% expansion to 10 facilities confirmed.</div>
             <div class="tool-footer"><span class="tool-cat">⊟ Logistics</span><span class="tool-stars" style="color:var(--text-muted);font-size:11px;">Agility Robotics · Live</span></div>
         <button class="tile-share-btn" title="Share"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="18" cy="5" r="3"/><circle cx="6" cy="12" r="3"/><circle cx="18" cy="19" r="3"/><line x1="8.59" y1="13.51" x2="15.42" y2="17.49"/><line x1="15.41" y1="6.51" x2="8.59" y2="10.49"/></svg></button>
-        </div>
+          </div>
         </div>
         <div class="tool-item">
           <div class="tool-icon">🏥</div>
@@ -2869,7 +2862,7 @@ body.frontier-mode .footer-email-input:focus { border-color: var(--frontier); }
             <div class="tool-desc">Diligent Robotics' Moxi is deployed in 50+ US hospitals autonomously delivering labs, meds, and supplies across floors freeing nurses from an average of 30 minutes of fetch tasks per shift.</div>
             <div class="tool-footer"><span class="tool-cat">⊟ Healthcare</span><span class="tool-stars" style="color:var(--text-muted);font-size:11px;">Diligent Robotics · Live</span></div>
         <button class="tile-share-btn" title="Share"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="18" cy="5" r="3"/><circle cx="6" cy="12" r="3"/><circle cx="18" cy="19" r="3"/><line x1="8.59" y1="13.51" x2="15.42" y2="17.49"/><line x1="15.41" y1="6.51" x2="8.59" y2="10.49"/></svg></button>
-        </div>
+          </div>
         </div>
         <div class="tool-item">
           <div class="tool-icon">🚜</div>
@@ -2878,7 +2871,7 @@ body.frontier-mode .footer-email-input:focus { border-color: var(--frontier); }
             <div class="tool-desc">Over 500 fully autonomous 8R tractors are now operating on US farms plowing, planting, and spraying without operators. GPS + computer vision handles field navigation end-to-end.</div>
             <div class="tool-footer"><span class="tool-cat">⊟ Agriculture</span><span class="tool-stars" style="color:var(--text-muted);font-size:11px;">John Deere · Live</span></div>
         <button class="tile-share-btn" title="Share"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="18" cy="5" r="3"/><circle cx="6" cy="12" r="3"/><circle cx="18" cy="19" r="3"/><line x1="8.59" y1="13.51" x2="15.42" y2="17.49"/><line x1="15.41" y1="6.51" x2="8.59" y2="10.49"/></svg></button>
-        </div>
+          </div>
         </div>
         <div class="tool-item">
           <div class="tool-icon">🍕</div>
@@ -2887,7 +2880,7 @@ body.frontier-mode .footer-email-input:focus { border-color: var(--frontier); }
             <div class="tool-desc">Miso Robotics' Flippy 2 is frying, grilling, and plating at scale inside White Castle and Jack in the Box locations. Each unit handles the equivalent of 2 full-time workers during peak hours.</div>
             <div class="tool-footer"><span class="tool-cat">⊟ Food Service</span><span class="tool-stars" style="color:var(--text-muted);font-size:11px;">Miso Robotics · Live</span></div>
         <button class="tile-share-btn" title="Share"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="18" cy="5" r="3"/><circle cx="6" cy="12" r="3"/><circle cx="18" cy="19" r="3"/><line x1="8.59" y1="13.51" x2="15.42" y2="17.49"/><line x1="15.41" y1="6.51" x2="8.59" y2="10.49"/></svg></button>
-        </div>
+          </div>
         </div>
       </div>
     </div>
@@ -2906,7 +2899,7 @@ body.frontier-mode .footer-email-input:focus { border-color: var(--frontier); }
             <div class="tool-desc">Tesla has moved its consumer Optimus timeline to late 2026. Internal units are already handling parts sorting and battery assembly. Musk targets a $20K price point cheaper than a used car.</div>
             <div class="tool-footer"><span class="tool-cat">⊟ Consumer</span><span class="tool-stars" style="color:var(--text-muted);font-size:11px;">Tesla · Est. 2026</span></div>
         <button class="tile-share-btn" title="Share"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="18" cy="5" r="3"/><circle cx="6" cy="12" r="3"/><circle cx="18" cy="19" r="3"/><line x1="8.59" y1="13.51" x2="15.42" y2="17.49"/><line x1="15.41" y1="6.51" x2="8.59" y2="10.49"/></svg></button>
-        </div>
+          </div>
         </div>
         <div class="tool-item">
           <div class="tool-icon">🦾</div>
@@ -2915,7 +2908,7 @@ body.frontier-mode .footer-email-input:focus { border-color: var(--frontier); }
             <div class="tool-desc">The fully electric Atlas is shipping to select enterprise partners in Q3. It can lift 25kg, climb stairs, and recover from falls autonomously. Construction and heavy industry are the first targets.</div>
             <div class="tool-footer"><span class="tool-cat">⊟ Industrial</span><span class="tool-stars" style="color:var(--text-muted);font-size:11px;">Boston Dynamics · Q3 2025</span></div>
         <button class="tile-share-btn" title="Share"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="18" cy="5" r="3"/><circle cx="6" cy="12" r="3"/><circle cx="18" cy="19" r="3"/><line x1="8.59" y1="13.51" x2="15.42" y2="17.49"/><line x1="15.41" y1="6.51" x2="8.59" y2="10.49"/></svg></button>
-        </div>
+          </div>
         </div>
         <div class="tool-item">
           <div class="tool-icon">🏠</div>
@@ -2924,7 +2917,7 @@ body.frontier-mode .footer-email-input:focus { border-color: var(--frontier); }
             <div class="tool-desc">1X Technologies, backed by OpenAI, is piloting NEO in real home environments. The bet: a soft, human-scale robot that handles chores, fetches items, and assists elderly users without feeling industrial.</div>
             <div class="tool-footer"><span class="tool-cat">⊟ Home</span><span class="tool-stars" style="color:var(--text-muted);font-size:11px;">1X Technologies · 2026</span></div>
         <button class="tile-share-btn" title="Share"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="18" cy="5" r="3"/><circle cx="6" cy="12" r="3"/><circle cx="18" cy="19" r="3"/><line x1="8.59" y1="13.51" x2="15.42" y2="17.49"/><line x1="15.41" y1="6.51" x2="8.59" y2="10.49"/></svg></button>
-        </div>
+          </div>
         </div>
         <div class="tool-item">
           <div class="tool-icon">🚀</div>
@@ -2933,7 +2926,7 @@ body.frontier-mode .footer-email-input:focus { border-color: var(--frontier); }
             <div class="tool-desc">Apollo is in active NASA testing for extraterrestrial surface operations think maintenance, construction, and EVA support on the Moon. Defense contracts are also in discussion for forward logistics.</div>
             <div class="tool-footer"><span class="tool-cat">⊟ Aerospace</span><span class="tool-stars" style="color:var(--text-muted);font-size:11px;">Apptronik · 2026–27</span></div>
         <button class="tile-share-btn" title="Share"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="18" cy="5" r="3"/><circle cx="6" cy="12" r="3"/><circle cx="18" cy="19" r="3"/><line x1="8.59" y1="13.51" x2="15.42" y2="17.49"/><line x1="15.41" y1="6.51" x2="8.59" y2="10.49"/></svg></button>
-        </div>
+          </div>
         </div>
         <div class="tool-item">
           <div class="tool-icon">🌏</div>
@@ -2942,7 +2935,7 @@ body.frontier-mode .footer-email-input:focus { border-color: var(--frontier); }
             <div class="tool-desc">400+ robotics companies launched in China in 2025 alone. UBTECH, Fourier Intelligence, and Unitree are scaling fast with government backing. The race for global humanoid market share is accelerating.</div>
             <div class="tool-footer"><span class="tool-cat">⊟ Geopolitical</span><span class="tool-stars" style="color:var(--text-muted);font-size:11px;">Multiple · Ongoing</span></div>
         <button class="tile-share-btn" title="Share"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="18" cy="5" r="3"/><circle cx="6" cy="12" r="3"/><circle cx="18" cy="19" r="3"/><line x1="8.59" y1="13.51" x2="15.42" y2="17.49"/><line x1="15.41" y1="6.51" x2="8.59" y2="10.49"/></svg></button>
-        </div>
+          </div>
         </div>
       </div>
     </div>
@@ -2963,7 +2956,7 @@ body.frontier-mode .footer-email-input:focus { border-color: var(--frontier); }
       <div class="ph-search-tray" id="srch-tray-companies">
         <input class="ph-search-input" id="search-companies" type="text" placeholder="Search companies…" oninput="filterPanelSearch('companies')" autocomplete="off">
       </div>
-      <div class="panel-flat-scroll" id="scroll-companies">
+      <div class="panel-flat" id="scroll-companies">
         <div class="panel-no-results" id="nores-companies">No results</div>
       </div>
     </div>
@@ -2978,7 +2971,7 @@ body.frontier-mode .footer-email-input:focus { border-color: var(--frontier); }
       <div class="ph-search-tray" id="srch-tray-rob-companies">
         <input class="ph-search-input" id="search-rob-companies" type="text" placeholder="Search companies…" oninput="filterPanelSearch('rob-companies')" autocomplete="off">
       </div>
-      <div class="panel-flat-scroll" id="scroll-rob-companies">
+      <div class="panel-flat" id="scroll-rob-companies">
         <div class="panel-no-results" id="nores-rob-companies">No results</div>
       </div>
     </div>
@@ -2995,51 +2988,51 @@ body.frontier-mode .footer-email-input:focus { border-color: var(--frontier); }
   " id="numbers-grid">
 
     <div class="stat-tile" style="background:var(--bg);border:1px solid var(--border);border-radius:var(--radius);padding:22px 24px;">
-      <div style="font-size:11px;font-weight:700;letter-spacing:0.07em;text-transform:uppercase;color:var(--text-muted);margin-bottom:10px;">Global AI Investment<button class="tile-share-btn" title="Share"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="18" cy="5" r="3"/><circle cx="6" cy="12" r="3"/><circle cx="18" cy="19" r="3"/><line x1="8.59" y1="13.51" x2="15.42" y2="17.49"/><line x1="15.41" y1="6.51" x2="8.59" y2="10.49"/></svg></button>
-</div>
+      <div style="font-size:11px;font-weight:700;letter-spacing:0.07em;text-transform:uppercase;color:var(--text-muted);margin-bottom:10px;">Global AI Investment</div>
       <div style="font-size:32px;font-weight:800;letter-spacing:-0.03em;color:var(--text);line-height:1;">$329B</div>
       <div style="font-size:12px;color:var(--text-muted);margin-top:6px;">Deployed in AI ventures in 2024 up 62% YoY. 2025 on pace to exceed $500B.</div>
       <div style="margin-top:12px;font-size:11px;font-weight:600;color:var(--text-muted);">↑ 62% year over year</div>
+    <button class="tile-share-btn" title="Share"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="18" cy="5" r="3"/><circle cx="6" cy="12" r="3"/><circle cx="18" cy="19" r="3"/><line x1="8.59" y1="13.51" x2="15.42" y2="17.49"/><line x1="15.41" y1="6.51" x2="8.59" y2="10.49"/></svg></button>
     </div>
 
     <div class="stat-tile" style="background:var(--bg);border:1px solid var(--border);border-radius:var(--radius);padding:22px 24px;">
-      <div style="font-size:11px;font-weight:700;letter-spacing:0.07em;text-transform:uppercase;color:var(--text-muted);margin-bottom:10px;">Humanoids Deployed<button class="tile-share-btn" title="Share"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="18" cy="5" r="3"/><circle cx="6" cy="12" r="3"/><circle cx="18" cy="19" r="3"/><line x1="8.59" y1="13.51" x2="15.42" y2="17.49"/><line x1="15.41" y1="6.51" x2="8.59" y2="10.49"/></svg></button>
-</div>
+      <div style="font-size:11px;font-weight:700;letter-spacing:0.07em;text-transform:uppercase;color:var(--text-muted);margin-bottom:10px;">Humanoids Deployed</div>
       <div style="font-size:32px;font-weight:800;letter-spacing:-0.03em;color:var(--text);line-height:1;">12,400+</div>
       <div style="font-size:12px;color:var(--text-muted);margin-top:6px;">Humanoid robots in active commercial or industrial deployment globally as of Q2 2025.</div>
       <div style="margin-top:12px;font-size:11px;font-weight:600;color:var(--text-muted);">↑ 8x from 2023 baseline</div>
+    <button class="tile-share-btn" title="Share"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="18" cy="5" r="3"/><circle cx="6" cy="12" r="3"/><circle cx="18" cy="19" r="3"/><line x1="8.59" y1="13.51" x2="15.42" y2="17.49"/><line x1="15.41" y1="6.51" x2="8.59" y2="10.49"/></svg></button>
     </div>
 
     <div class="stat-tile" style="background:var(--bg);border:1px solid var(--border);border-radius:var(--radius);padding:22px 24px;">
-      <div style="font-size:11px;font-weight:700;letter-spacing:0.07em;text-transform:uppercase;color:var(--text-muted);margin-bottom:10px;">Models in Production<button class="tile-share-btn" title="Share"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="18" cy="5" r="3"/><circle cx="6" cy="12" r="3"/><circle cx="18" cy="19" r="3"/><line x1="8.59" y1="13.51" x2="15.42" y2="17.49"/><line x1="15.41" y1="6.51" x2="8.59" y2="10.49"/></svg></button>
-</div>
+      <div style="font-size:11px;font-weight:700;letter-spacing:0.07em;text-transform:uppercase;color:var(--text-muted);margin-bottom:10px;">Models in Production</div>
       <div style="font-size:32px;font-weight:800;letter-spacing:-0.03em;color:var(--text);line-height:1;">1,800+</div>
       <div style="font-size:12px;color:var(--text-muted);margin-top:6px;">Foundation models publicly available on Hugging Face. Up from 600 in early 2023.</div>
       <div style="margin-top:12px;font-size:11px;font-weight:600;color:var(--text-muted);">↑ 3x in 24 months</div>
+    <button class="tile-share-btn" title="Share"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="18" cy="5" r="3"/><circle cx="6" cy="12" r="3"/><circle cx="18" cy="19" r="3"/><line x1="8.59" y1="13.51" x2="15.42" y2="17.49"/><line x1="15.41" y1="6.51" x2="8.59" y2="10.49"/></svg></button>
     </div>
 
     <div class="stat-tile" style="background:var(--bg);border:1px solid var(--border);border-radius:var(--radius);padding:22px 24px;">
-      <div style="font-size:11px;font-weight:700;letter-spacing:0.07em;text-transform:uppercase;color:var(--text-muted);margin-bottom:10px;">NVIDIA Market Cap<button class="tile-share-btn" title="Share"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="18" cy="5" r="3"/><circle cx="6" cy="12" r="3"/><circle cx="18" cy="19" r="3"/><line x1="8.59" y1="13.51" x2="15.42" y2="17.49"/><line x1="15.41" y1="6.51" x2="8.59" y2="10.49"/></svg></button>
-</div>
+      <div style="font-size:11px;font-weight:700;letter-spacing:0.07em;text-transform:uppercase;color:var(--text-muted);margin-bottom:10px;">NVIDIA Market Cap</div>
       <div style="font-size:32px;font-weight:800;letter-spacing:-0.03em;color:var(--text);line-height:1;">$3.1T</div>
       <div style="font-size:12px;color:var(--text-muted);margin-top:6px;">NVIDIA briefly surpassed Apple as the world's most valuable company on GPU demand alone.</div>
       <div style="margin-top:12px;font-size:11px;font-weight:600;color:var(--text-muted);">↑ #1 globally by market cap</div>
+    <button class="tile-share-btn" title="Share"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="18" cy="5" r="3"/><circle cx="6" cy="12" r="3"/><circle cx="18" cy="19" r="3"/><line x1="8.59" y1="13.51" x2="15.42" y2="17.49"/><line x1="15.41" y1="6.51" x2="8.59" y2="10.49"/></svg></button>
     </div>
 
     <div class="stat-tile" style="background:var(--bg);border:1px solid var(--border);border-radius:var(--radius);padding:22px 24px;">
-      <div style="font-size:11px;font-weight:700;letter-spacing:0.07em;text-transform:uppercase;color:var(--text-muted);margin-bottom:10px;">Robotics Market Size<button class="tile-share-btn" title="Share"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="18" cy="5" r="3"/><circle cx="6" cy="12" r="3"/><circle cx="18" cy="19" r="3"/><line x1="8.59" y1="13.51" x2="15.42" y2="17.49"/><line x1="15.41" y1="6.51" x2="8.59" y2="10.49"/></svg></button>
-</div>
+      <div style="font-size:11px;font-weight:700;letter-spacing:0.07em;text-transform:uppercase;color:var(--text-muted);margin-bottom:10px;">Robotics Market Size</div>
       <div style="font-size:32px;font-weight:800;letter-spacing:-0.03em;color:var(--text);line-height:1;">$218B</div>
       <div style="font-size:12px;color:var(--text-muted);margin-top:6px;">Global robotics market valuation in 2025. Projected to reach $500B+ by 2030 on humanoid acceleration.</div>
       <div style="margin-top:12px;font-size:11px;font-weight:600;color:var(--text-muted);">↑ Projected 2x by 2030</div>
+    <button class="tile-share-btn" title="Share"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="18" cy="5" r="3"/><circle cx="6" cy="12" r="3"/><circle cx="18" cy="19" r="3"/><line x1="8.59" y1="13.51" x2="15.42" y2="17.49"/><line x1="15.41" y1="6.51" x2="8.59" y2="10.49"/></svg></button>
     </div>
 
     <div class="stat-tile" style="background:var(--bg);border:1px solid var(--border);border-radius:var(--radius);padding:22px 24px;">
-      <div style="font-size:11px;font-weight:700;letter-spacing:0.07em;text-transform:uppercase;color:var(--text-muted);margin-bottom:10px;">Jobs Touched by AI<button class="tile-share-btn" title="Share"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="18" cy="5" r="3"/><circle cx="6" cy="12" r="3"/><circle cx="18" cy="19" r="3"/><line x1="8.59" y1="13.51" x2="15.42" y2="17.49"/><line x1="15.41" y1="6.51" x2="8.59" y2="10.49"/></svg></button>
-</div>
+      <div style="font-size:11px;font-weight:700;letter-spacing:0.07em;text-transform:uppercase;color:var(--text-muted);margin-bottom:10px;">Jobs Touched by AI</div>
       <div style="font-size:32px;font-weight:800;letter-spacing:-0.03em;color:var(--text);line-height:1;">300M</div>
       <div style="font-size:12px;color:var(--text-muted);margin-top:6px;">Goldman Sachs estimate of roles globally exposed to AI automation equivalent to 18% of all work.</div>
       <div style="margin-top:12px;font-size:11px;font-weight:600;color:var(--text-muted);">→ 18% of global workforce</div>
+    <button class="tile-share-btn" title="Share"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="18" cy="5" r="3"/><circle cx="6" cy="12" r="3"/><circle cx="18" cy="19" r="3"/><line x1="8.59" y1="13.51" x2="15.42" y2="17.49"/><line x1="15.41" y1="6.51" x2="8.59" y2="10.49"/></svg></button>
     </div>
 
   </div>
@@ -3056,7 +3049,7 @@ body.frontier-mode .footer-email-input:focus { border-color: var(--frontier); }
   <!-- FORECAST BOARD -->
   <div class="section-title" style="margin-top:52px;align-items:baseline;">Atomic's Predictions <span style="font-size:13px;font-weight:400;color:var(--text-muted);letter-spacing:0;text-transform:none;border:none;padding:0;margin-left:10px;">Predictions are reviewed and updated as new signals emerge.</span></div>
   <div class="forecast-panels" id="forecast-grid">
-    <div class="forecast-panel"><div class="forecast-panel-head"><span class="forecast-panel-icon">⚡</span><span class="forecast-panel-head-title">Scanning what's ahead...</span></div></div>
+    <div class="forecast-panel"><div class="forecast-panel-head"><span class="forecast-panel-icon">⚡</span><span class="forecast-panel-head-title">Loading...</span></div></div>
   </div>
 
 
@@ -3101,18 +3094,18 @@ body.frontier-mode .footer-email-input:focus { border-color: var(--frontier); }
   <!-- TOP STORIES -->
   <div class="section-title" style="border-bottom-color:var(--frontier);">Top Stories</div>
   <div class="small-grid" id="frontier-top-stories-grid">
-    <div class="card" style="opacity:1;"><div class="card-body"><div class="tag" style="color:var(--frontier);">Space</div><div class="card-title">Pulling from the feed...</div></div></div>
+    <div class="card" style="opacity:1;"><div class="card-body"><div class="tag" style="color:var(--frontier);">Space</div><div class="card-title">Loading top stories...</div></div></div>
   </div>
 
 
 
   <!-- FRONTIER IN THE REAL WORLD -->
   <div class="section-title" style="margin-top:52px;border-bottom-color:var(--frontier);">The Frontier in the Real World</div>
-  <div class="dual-trending-grid">
+  <div class="duo-panel-grid">
     <!-- Active Missions -->
     <div class="panel-box">
-      <div class="panel-head">
-        <span class="panel-head-title tools">🚀 In Production</span>
+      <div class="panel-head" style="background:var(--surface);border-bottom:1.5px solid var(--border);">
+        <span class="panel-head-title" style="color:var(--text);">🚀 In Production</span>
         <div style="display:flex;align-items:center;gap:8px;">
           <button class="ph-search-btn" onclick="togglePanelSearch('frontier-prod-search')"><svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="8"/><path d="m21 21-4.35-4.35"/></svg></button>
           <div class="live-indicator" style="font-size:11px;"><div class="live-dot" style="background:var(--frontier);"></div>Live</div>
@@ -3125,8 +3118,8 @@ body.frontier-mode .footer-email-input:focus { border-color: var(--frontier); }
     </div>
     <!-- On the Horizon -->
     <div class="panel-box">
-      <div class="panel-head">
-        <span class="panel-head-title prompts">🔭 On the Horizon</span>
+      <div class="panel-head" style="background:var(--surface);border-bottom:1.5px solid var(--border);">
+        <span class="panel-head-title" style="color:var(--text);">🔭 On the Horizon</span>
         <button class="ph-search-btn" onclick="togglePanelSearch('frontier-horizon-search')"><svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="8"/><path d="m21 21-4.35-4.35"/></svg></button>
       </div>
       <div class="ph-search-wrap" id="frontier-horizon-search" style="display:none;padding:8px 12px;border-bottom:1px solid var(--border);"><input class="ph-search-input" placeholder="Search missions…" oninput="filterPanel(this,'frontier-horizon-scroll')" /></div>
@@ -3138,27 +3131,27 @@ body.frontier-mode .footer-email-input:focus { border-color: var(--frontier); }
 
   <!-- SPACE COMPANIES TO WATCH -->
   <div class="section-title" style="margin-top:52px;border-bottom-color:var(--frontier);">Companies to Watch</div>
-  <div class="dual-trending-grid" id="frontier-companies-section">
+  <div class="duo-panel-grid" id="frontier-companies-section">
     <div class="panel-box">
-      <div class="panel-head">
-        <span class="panel-head-title companies">🚀 Launch & Access</span>
+      <div class="panel-head" style="background:var(--surface);border-bottom:1.5px solid var(--border);">
+        <span class="panel-head-title">🚀 Launch & Access</span>
         <div style="display:flex;align-items:center;gap:8px;">
           <button class="ph-search-btn" onclick="togglePanelSearch('frontier-launch-search')"><svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="8"/><path d="m21 21-4.35-4.35"/></svg></button>
           <div class="live-indicator" style="font-size:11px;"><div class="live-dot" style="background:var(--frontier);"></div>Live</div>
         </div>
       </div>
       <div class="ph-search-wrap" id="frontier-launch-search" style="display:none;padding:8px 12px;border-bottom:1px solid var(--border);"><input class="ph-search-input" placeholder="Search companies…" oninput="filterPanel(this,'frontier-launch-scroll')" /></div>
-      <div class="panel-flat-scroll" id="frontier-launch-scroll">
+      <div class="panel-flat" id="frontier-launch-scroll">
         <div class="panel-no-results" id="nores-frontier-launch" style="display:none">No results</div>
       </div>
     </div>
     <div class="panel-box">
-      <div class="panel-head">
-        <span class="panel-head-title companies">🛰️ Space Economy</span>
+      <div class="panel-head" style="background:var(--surface);border-bottom:1.5px solid var(--border);">
+        <span class="panel-head-title">🛰️ Space Economy</span>
         <button class="ph-search-btn" onclick="togglePanelSearch('frontier-economy-search')"><svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="8"/><path d="m21 21-4.35-4.35"/></svg></button>
       </div>
       <div class="ph-search-wrap" id="frontier-economy-search" style="display:none;padding:8px 12px;border-bottom:1px solid var(--border);"><input class="ph-search-input" placeholder="Search companies…" oninput="filterPanel(this,'frontier-economy-scroll')" /></div>
-      <div class="panel-flat-scroll" id="frontier-economy-scroll">
+      <div class="panel-flat" id="frontier-economy-scroll">
         <div class="panel-no-results" id="nores-frontier-economy" style="display:none">No results</div>
       </div>
     </div>
@@ -3169,46 +3162,46 @@ body.frontier-mode .footer-email-input:focus { border-color: var(--frontier); }
   <div class="section-title" style="margin-top:52px;border-bottom-color:var(--frontier);">By the Numbers</div>
   <div style="display:grid;grid-template-columns:repeat(3,1fr);gap:14px;" id="frontier-numbers-grid">
     <div class="stat-tile" style="background:var(--surface);border:1px solid var(--border);border-radius:var(--radius);padding:22px 24px;">
-      <div style="font-size:11px;font-weight:700;letter-spacing:0.07em;text-transform:uppercase;color:var(--text-muted);margin-bottom:10px;">GLOBAL LAUNCH ATTEMPTS<button class="tile-share-btn" title="Share"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="18" cy="5" r="3"/><circle cx="6" cy="12" r="3"/><circle cx="18" cy="19" r="3"/><line x1="8.59" y1="13.51" x2="15.42" y2="17.49"/><line x1="15.41" y1="6.51" x2="8.59" y2="10.49"/></svg></button>
-</div>
+      <div style="font-size:11px;font-weight:700;letter-spacing:0.07em;text-transform:uppercase;color:var(--text-muted);margin-bottom:10px;">GLOBAL LAUNCH ATTEMPTS</div>
       <div style="font-size:32px;font-weight:800;letter-spacing:-0.03em;color:var(--text);line-height:1;">212</div>
       <div style="font-size:12px;color:var(--text-muted);margin-top:6px;">In 2023, humanity achieved a record 212 orbital launch attempts nearly doubling the pace of five years prior, driven by SpaceX, Rocket Lab, and China's growing launch cadence.</div>
       <div style="margin-top:12px;font-size:11px;font-weight:600;color:var(--text-muted);">↑ Record high in 2023</div>
+    <button class="tile-share-btn" title="Share"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="18" cy="5" r="3"/><circle cx="6" cy="12" r="3"/><circle cx="18" cy="19" r="3"/><line x1="8.59" y1="13.51" x2="15.42" y2="17.49"/><line x1="15.41" y1="6.51" x2="8.59" y2="10.49"/></svg></button>
     </div>
     <div class="stat-tile" style="background:var(--surface);border:1px solid var(--border);border-radius:var(--radius);padding:22px 24px;">
-      <div style="font-size:11px;font-weight:700;letter-spacing:0.07em;text-transform:uppercase;color:var(--text-muted);margin-bottom:10px;">COMMERCIAL SPACE ECONOMY<button class="tile-share-btn" title="Share"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="18" cy="5" r="3"/><circle cx="6" cy="12" r="3"/><circle cx="18" cy="19" r="3"/><line x1="8.59" y1="13.51" x2="15.42" y2="17.49"/><line x1="15.41" y1="6.51" x2="8.59" y2="10.49"/></svg></button>
-</div>
+      <div style="font-size:11px;font-weight:700;letter-spacing:0.07em;text-transform:uppercase;color:var(--text-muted);margin-bottom:10px;">COMMERCIAL SPACE ECONOMY</div>
       <div style="font-size:32px;font-weight:800;letter-spacing:-0.03em;color:var(--text);line-height:1;">$630B</div>
       <div style="font-size:12px;color:var(--text-muted);margin-top:6px;">The global space economy surpassed $630B in 2023, with commercial activity now representing over 80% of total value led by satellite services, launch, and emerging in-orbit manufacturing.</div>
       <div style="margin-top:12px;font-size:11px;font-weight:600;color:var(--text-muted);">↑ 8% year over year</div>
+    <button class="tile-share-btn" title="Share"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="18" cy="5" r="3"/><circle cx="6" cy="12" r="3"/><circle cx="18" cy="19" r="3"/><line x1="8.59" y1="13.51" x2="15.42" y2="17.49"/><line x1="15.41" y1="6.51" x2="8.59" y2="10.49"/></svg></button>
     </div>
     <div class="stat-tile" style="background:var(--surface);border:1px solid var(--border);border-radius:var(--radius);padding:22px 24px;">
-      <div style="font-size:11px;font-weight:700;letter-spacing:0.07em;text-transform:uppercase;color:var(--text-muted);margin-bottom:10px;">STARLINK SATELLITES<button class="tile-share-btn" title="Share"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="18" cy="5" r="3"/><circle cx="6" cy="12" r="3"/><circle cx="18" cy="19" r="3"/><line x1="8.59" y1="13.51" x2="15.42" y2="17.49"/><line x1="15.41" y1="6.51" x2="8.59" y2="10.49"/></svg></button>
-</div>
+      <div style="font-size:11px;font-weight:700;letter-spacing:0.07em;text-transform:uppercase;color:var(--text-muted);margin-bottom:10px;">STARLINK SATELLITES</div>
       <div style="font-size:32px;font-weight:800;letter-spacing:-0.03em;color:var(--text);line-height:1;">6,000+</div>
       <div style="font-size:12px;color:var(--text-muted);margin-top:6px;">SpaceX's Starlink constellation surpassed 6,000 active satellites in 2024, delivering broadband internet to over 3 million subscribers across 100+ countries.</div>
       <div style="margin-top:12px;font-size:11px;font-weight:600;color:var(--text-muted);">↑ Growing 40% annually</div>
+    <button class="tile-share-btn" title="Share"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="18" cy="5" r="3"/><circle cx="6" cy="12" r="3"/><circle cx="18" cy="19" r="3"/><line x1="8.59" y1="13.51" x2="15.42" y2="17.49"/><line x1="15.41" y1="6.51" x2="8.59" y2="10.49"/></svg></button>
     </div>
     <div class="stat-tile" style="background:var(--surface);border:1px solid var(--border);border-radius:var(--radius);padding:22px 24px;">
-      <div style="font-size:11px;font-weight:700;letter-spacing:0.07em;text-transform:uppercase;color:var(--text-muted);margin-bottom:10px;">CREWED MISSIONS LAUNCHED<button class="tile-share-btn" title="Share"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="18" cy="5" r="3"/><circle cx="6" cy="12" r="3"/><circle cx="18" cy="19" r="3"/><line x1="8.59" y1="13.51" x2="15.42" y2="17.49"/><line x1="15.41" y1="6.51" x2="8.59" y2="10.49"/></svg></button>
-</div>
+      <div style="font-size:11px;font-weight:700;letter-spacing:0.07em;text-transform:uppercase;color:var(--text-muted);margin-bottom:10px;">CREWED MISSIONS LAUNCHED</div>
       <div style="font-size:32px;font-weight:800;letter-spacing:-0.03em;color:var(--text);line-height:1;">12</div>
       <div style="font-size:12px;color:var(--text-muted);margin-top:6px;">Twelve crewed orbital missions launched in 2023-2024, the most in any comparable period since the Space Shuttle era with commercial vehicles now carrying the majority.</div>
       <div style="margin-top:12px;font-size:11px;font-weight:600;color:var(--text-muted);">↑ Most since Shuttle era</div>
+    <button class="tile-share-btn" title="Share"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="18" cy="5" r="3"/><circle cx="6" cy="12" r="3"/><circle cx="18" cy="19" r="3"/><line x1="8.59" y1="13.51" x2="15.42" y2="17.49"/><line x1="15.41" y1="6.51" x2="8.59" y2="10.49"/></svg></button>
     </div>
     <div class="stat-tile" style="background:var(--surface);border:1px solid var(--border);border-radius:var(--radius);padding:22px 24px;">
-      <div style="font-size:11px;font-weight:700;letter-spacing:0.07em;text-transform:uppercase;color:var(--text-muted);margin-bottom:10px;">SPACE VENTURE FUNDING<button class="tile-share-btn" title="Share"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="18" cy="5" r="3"/><circle cx="6" cy="12" r="3"/><circle cx="18" cy="19" r="3"/><line x1="8.59" y1="13.51" x2="15.42" y2="17.49"/><line x1="15.41" y1="6.51" x2="8.59" y2="10.49"/></svg></button>
-</div>
+      <div style="font-size:11px;font-weight:700;letter-spacing:0.07em;text-transform:uppercase;color:var(--text-muted);margin-bottom:10px;">SPACE VENTURE FUNDING</div>
       <div style="font-size:32px;font-weight:800;letter-spacing:-0.03em;color:var(--text);line-height:1;">$8.7B</div>
       <div style="font-size:12px;color:var(--text-muted);margin-top:6px;">Private space companies raised $8.7B in venture and private equity funding in 2023, with launch, in-space services, and satellite communications leading investment categories.</div>
       <div style="margin-top:12px;font-size:11px;font-weight:600;color:var(--text-muted);">↑ 12% vs prior year</div>
+    <button class="tile-share-btn" title="Share"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="18" cy="5" r="3"/><circle cx="6" cy="12" r="3"/><circle cx="18" cy="19" r="3"/><line x1="8.59" y1="13.51" x2="15.42" y2="17.49"/><line x1="15.41" y1="6.51" x2="8.59" y2="10.49"/></svg></button>
     </div>
     <div class="stat-tile" style="background:var(--surface);border:1px solid var(--border);border-radius:var(--radius);padding:22px 24px;">
-      <div style="font-size:11px;font-weight:700;letter-spacing:0.07em;text-transform:uppercase;color:var(--text-muted);margin-bottom:10px;">REUSABLE ROCKET LANDINGS<button class="tile-share-btn" title="Share"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="18" cy="5" r="3"/><circle cx="6" cy="12" r="3"/><circle cx="18" cy="19" r="3"/><line x1="8.59" y1="13.51" x2="15.42" y2="17.49"/><line x1="15.41" y1="6.51" x2="8.59" y2="10.49"/></svg></button>
-</div>
+      <div style="font-size:11px;font-weight:700;letter-spacing:0.07em;text-transform:uppercase;color:var(--text-muted);margin-bottom:10px;">REUSABLE ROCKET LANDINGS</div>
       <div style="font-size:32px;font-weight:800;letter-spacing:-0.03em;color:var(--text);line-height:1;">250+</div>
       <div style="font-size:12px;color:var(--text-muted);margin-top:6px;">SpaceX has successfully landed and reflown orbital-class booster rockets over 250 times, fundamentally changing the economics of space access with reuse factors exceeding 20x per vehicle.</div>
       <div style="margin-top:12px;font-size:11px;font-weight:600;color:var(--text-muted);">↑ Redefining launch economics</div>
+    <button class="tile-share-btn" title="Share"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="18" cy="5" r="3"/><circle cx="6" cy="12" r="3"/><circle cx="18" cy="19" r="3"/><line x1="8.59" y1="13.51" x2="15.42" y2="17.49"/><line x1="15.41" y1="6.51" x2="8.59" y2="10.49"/></svg></button>
     </div>
   </div>
   <style>
@@ -3219,7 +3212,7 @@ body.frontier-mode .footer-email-input:focus { border-color: var(--frontier); }
   <!-- ATOMIC PREDICTIONS (FRONTIER) -->
   <div class="section-title" style="margin-top:52px;align-items:center;border-bottom-color:var(--frontier);">Atomic's Predictions <span style="font-size:13px;font-weight:400;color:var(--text-muted);letter-spacing:0;text-transform:none;border:none;padding:0;margin-left:10px;display:inline-flex;align-items:center;">Predictions are reviewed and updated as new signals emerge.</span></div>
   <div class="forecast-panels" id="frontier-forecast-grid">
-    <div class="forecast-panel"><div class="forecast-panel-head"><span class="forecast-panel-icon">🚀</span><span class="forecast-panel-head-title">Scanning what's ahead...</span></div></div>
+    <div class="forecast-panel"><div class="forecast-panel-head"><span class="forecast-panel-icon">🚀</span><span class="forecast-panel-head-title">Loading...</span></div></div>
   </div>
 
 
@@ -3263,19 +3256,19 @@ body.frontier-mode .footer-email-input:focus { border-color: var(--frontier); }
   <!-- TOP STORIES -->
   <div class="section-title" style="border-bottom-color:var(--longevity);">Top Stories</div>
   <div class="small-grid" id="longevity-top-stories-grid">
-    <div class="card" style="opacity:1;"><div class="card-body"><div class="tag" style="color:var(--longevity);">Longevity</div><div class="card-title">Pulling from the feed...</div></div></div>
+    <div class="card" style="opacity:1;"><div class="card-body"><div class="tag" style="color:var(--longevity);">Longevity</div><div class="card-title">Loading top stories...</div></div></div>
   </div>
 
 
 
   <!-- LONGEVITY IN THE REAL WORLD -->
   <div class="section-title" style="margin-top:52px;border-bottom-color:var(--longevity);">Longevity in the Real World</div>
-  <div class="dual-trending-grid">
+  <div class="duo-panel-grid">
     <div class="panel-box">
-      <div class="panel-head">
-        <span class="panel-head-title tools">🔬 In Clinical Use</span>
+      <div class="panel-head" style="background:var(--surface);border-bottom:1.5px solid var(--border);">
+        <span class="panel-head-title">🔬 In Clinical Use</span>
         <div style="display:flex;align-items:center;gap:8px;">
-          <button class="ph-search-btn" onclick="togglePanelSearch('longevity-prod-search')"><svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="8"/><path d="m21 21-4.35-4.35"/></svg></button>
+          <button class="ph-search-btn" onclick="togglePanelSearch('longevity-prod-search')"><svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="8"/><path d="m21 21-4.35-4.35"/><\/svg></button>
           <div class="live-indicator" style="font-size:11px;"><div class="live-dot" style="background:var(--longevity);"></div>Live</div>
         </div>
       </div>
@@ -3285,9 +3278,9 @@ body.frontier-mode .footer-email-input:focus { border-color: var(--frontier); }
       </div>
     </div>
     <div class="panel-box">
-      <div class="panel-head">
-        <span class="panel-head-title prompts">🧪 On the Horizon</span>
-        <button class="ph-search-btn" onclick="togglePanelSearch('longevity-horizon-search')"><svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="8"/><path d="m21 21-4.35-4.35"/></svg></button>
+      <div class="panel-head" style="background:var(--surface);border-bottom:1.5px solid var(--border);">
+        <span class="panel-head-title">🧪 On the Horizon</span>
+        <button class="ph-search-btn" onclick="togglePanelSearch('longevity-horizon-search')"><svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="8"/><path d="m21 21-4.35-4.35"/><\/svg></button>
       </div>
       <div class="ph-search-wrap" id="longevity-horizon-search" style="display:none;padding:8px 12px;border-bottom:1px solid var(--border);"><input class="ph-search-input" placeholder="Search treatments…" oninput="filterPanel(this,'longevity-horizon-scroll')" /></div>
       <div class="panel-flat" id="longevity-horizon-scroll">
@@ -3298,27 +3291,27 @@ body.frontier-mode .footer-email-input:focus { border-color: var(--frontier); }
 
   <!-- COMPANIES TO WATCH -->
   <div class="section-title" style="margin-top:52px;border-bottom-color:var(--longevity);">Companies to Watch</div>
-  <div class="dual-trending-grid">
+  <div class="duo-panel-grid">
     <div class="panel-box">
-      <div class="panel-head">
-        <span class="panel-head-title companies">🧬 Biotech & Research</span>
+      <div class="panel-head" style="background:var(--surface);border-bottom:1.5px solid var(--border);">
+        <span class="panel-head-title">🧬 Biotech & Research</span>
         <div style="display:flex;align-items:center;gap:8px;">
-          <button class="ph-search-btn" onclick="togglePanelSearch('longevity-biotech-search')"><svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="8"/><path d="m21 21-4.35-4.35"/></svg></button>
+          <button class="ph-search-btn" onclick="togglePanelSearch('longevity-biotech-search')"><svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="8"/><path d="m21 21-4.35-4.35"/><\/svg></button>
           <div class="live-indicator" style="font-size:11px;"><div class="live-dot" style="background:var(--longevity);"></div>Live</div>
         </div>
       </div>
       <div class="ph-search-wrap" id="longevity-biotech-search" style="display:none;padding:8px 12px;border-bottom:1px solid var(--border);"><input class="ph-search-input" placeholder="Search companies…" oninput="filterPanel(this,'longevity-biotech-scroll')" /></div>
-      <div class="panel-flat-scroll" id="longevity-biotech-scroll">
+      <div class="panel-flat" id="longevity-biotech-scroll">
         <div class="panel-no-results" id="nores-longevity-biotech" style="display:none">No results</div>
       </div>
     </div>
     <div class="panel-box">
-      <div class="panel-head">
-        <span class="panel-head-title companies">💊 Therapeutics & Clinics</span>
-        <button class="ph-search-btn" onclick="togglePanelSearch('longevity-clinics-search')"><svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="8"/><path d="m21 21-4.35-4.35"/></svg></button>
+      <div class="panel-head" style="background:var(--surface);border-bottom:1.5px solid var(--border);">
+        <span class="panel-head-title">💊 Therapeutics & Clinics</span>
+        <button class="ph-search-btn" onclick="togglePanelSearch('longevity-clinics-search')"><svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="8"/><path d="m21 21-4.35-4.35"/><\/svg></button>
       </div>
       <div class="ph-search-wrap" id="longevity-clinics-search" style="display:none;padding:8px 12px;border-bottom:1px solid var(--border);"><input class="ph-search-input" placeholder="Search companies…" oninput="filterPanel(this,'longevity-clinics-scroll')" /></div>
-      <div class="panel-flat-scroll" id="longevity-clinics-scroll">
+      <div class="panel-flat" id="longevity-clinics-scroll">
         <div class="panel-no-results" id="nores-longevity-clinics" style="display:none">No results</div>
       </div>
     </div>
@@ -3328,46 +3321,46 @@ body.frontier-mode .footer-email-input:focus { border-color: var(--frontier); }
   <div class="section-title" style="margin-top:52px;border-bottom-color:var(--longevity);">By the Numbers</div>
   <div style="display:grid;grid-template-columns:repeat(3,1fr);gap:14px;" id="longevity-numbers-grid">
     <div class="stat-tile" style="background:var(--surface);border:1px solid var(--border);border-radius:var(--radius);padding:22px 24px;">
-      <div style="font-size:11px;font-weight:700;letter-spacing:0.07em;text-transform:uppercase;color:var(--text-muted);margin-bottom:10px;">GLOBAL LONGEVITY MARKET<button class="tile-share-btn" title="Share"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="18" cy="5" r="3"/><circle cx="6" cy="12" r="3"/><circle cx="18" cy="19" r="3"/><line x1="8.59" y1="13.51" x2="15.42" y2="17.49"/><line x1="15.41" y1="6.51" x2="8.59" y2="10.49"/></svg></button>
-</div>
+      <div style="font-size:11px;font-weight:700;letter-spacing:0.07em;text-transform:uppercase;color:var(--text-muted);margin-bottom:10px;">GLOBAL LONGEVITY MARKET</div>
       <div style="font-size:32px;font-weight:800;letter-spacing:-0.03em;color:var(--text);line-height:1;">$25B</div>
       <div style="font-size:12px;color:var(--text-muted);margin-top:6px;">The longevity therapeutics and diagnostics market reached $25B in 2024, with projections to surpass $600B by 2025 as anti-aging interventions move from research into mainstream clinical use.</div>
       <div style="margin-top:12px;font-size:11px;font-weight:600;color:var(--text-muted);">↑ Fastest growing health category</div>
+    <button class="tile-share-btn" title="Share"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="18" cy="5" r="3"/><circle cx="6" cy="12" r="3"/><circle cx="18" cy="19" r="3"/><line x1="8.59" y1="13.51" x2="15.42" y2="17.49"/><line x1="15.41" y1="6.51" x2="8.59" y2="10.49"/></svg></button>
     </div>
     <div class="stat-tile" style="background:var(--surface);border:1px solid var(--border);border-radius:var(--radius);padding:22px 24px;">
-      <div style="font-size:11px;font-weight:700;letter-spacing:0.07em;text-transform:uppercase;color:var(--text-muted);margin-bottom:10px;">GLP-1 PRESCRIPTIONS (US)<button class="tile-share-btn" title="Share"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="18" cy="5" r="3"/><circle cx="6" cy="12" r="3"/><circle cx="18" cy="19" r="3"/><line x1="8.59" y1="13.51" x2="15.42" y2="17.49"/><line x1="15.41" y1="6.51" x2="8.59" y2="10.49"/></svg></button>
-</div>
+      <div style="font-size:11px;font-weight:700;letter-spacing:0.07em;text-transform:uppercase;color:var(--text-muted);margin-bottom:10px;">GLP-1 PRESCRIPTIONS (US)</div>
       <div style="font-size:32px;font-weight:800;letter-spacing:-0.03em;color:var(--text);line-height:1;">9M+</div>
       <div style="font-size:12px;color:var(--text-muted);margin-top:6px;">Over 9 million Americans are now prescribed GLP-1 receptor agonists, with Ozempic and Wegovy reshaping metabolic health, obesity treatment, and now showing promise for cardiovascular and cognitive disease.</div>
       <div style="margin-top:12px;font-size:11px;font-weight:600;color:var(--text-muted);">↑ 400% growth since 2021</div>
+    <button class="tile-share-btn" title="Share"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="18" cy="5" r="3"/><circle cx="6" cy="12" r="3"/><circle cx="18" cy="19" r="3"/><line x1="8.59" y1="13.51" x2="15.42" y2="17.49"/><line x1="15.41" y1="6.51" x2="8.59" y2="10.49"/></svg></button>
     </div>
     <div class="stat-tile" style="background:var(--surface);border:1px solid var(--border);border-radius:var(--radius);padding:22px 24px;">
-      <div style="font-size:11px;font-weight:700;letter-spacing:0.07em;text-transform:uppercase;color:var(--text-muted);margin-bottom:10px;">LONGEVITY VC INVESTMENT<button class="tile-share-btn" title="Share"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="18" cy="5" r="3"/><circle cx="6" cy="12" r="3"/><circle cx="18" cy="19" r="3"/><line x1="8.59" y1="13.51" x2="15.42" y2="17.49"/><line x1="15.41" y1="6.51" x2="8.59" y2="10.49"/></svg></button>
-</div>
+      <div style="font-size:11px;font-weight:700;letter-spacing:0.07em;text-transform:uppercase;color:var(--text-muted);margin-bottom:10px;">LONGEVITY VC INVESTMENT</div>
       <div style="font-size:32px;font-weight:800;letter-spacing:-0.03em;color:var(--text);line-height:1;">$5.2B</div>
       <div style="font-size:12px;color:var(--text-muted);margin-top:6px;">Venture capital invested $5.2B into longevity and aging-focused biotechs in 2023, with Altos Labs, Retro Biosciences, and NewLimit collectively raising over $1.5B from tech billionaires alone.</div>
       <div style="margin-top:12px;font-size:11px;font-weight:600;color:var(--text-muted);">↑ 3x increase since 2020</div>
+    <button class="tile-share-btn" title="Share"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="18" cy="5" r="3"/><circle cx="6" cy="12" r="3"/><circle cx="18" cy="19" r="3"/><line x1="8.59" y1="13.51" x2="15.42" y2="17.49"/><line x1="15.41" y1="6.51" x2="8.59" y2="10.49"/></svg></button>
     </div>
     <div class="stat-tile" style="background:var(--surface);border:1px solid var(--border);border-radius:var(--radius);padding:22px 24px;">
-      <div style="font-size:11px;font-weight:700;letter-spacing:0.07em;text-transform:uppercase;color:var(--text-muted);margin-bottom:10px;">HUMAN LIFESPAN EXTENSION TARGET<button class="tile-share-btn" title="Share"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="18" cy="5" r="3"/><circle cx="6" cy="12" r="3"/><circle cx="18" cy="19" r="3"/><line x1="8.59" y1="13.51" x2="15.42" y2="17.49"/><line x1="15.41" y1="6.51" x2="8.59" y2="10.49"/></svg></button>
-</div>
+      <div style="font-size:11px;font-weight:700;letter-spacing:0.07em;text-transform:uppercase;color:var(--text-muted);margin-bottom:10px;">HUMAN LIFESPAN EXTENSION TARGET</div>
       <div style="font-size:32px;font-weight:800;letter-spacing:-0.03em;color:var(--text);line-height:1;">25 yrs</div>
       <div style="font-size:12px;color:var(--text-muted);margin-top:6px;">Leading longevity scientists project interventions currently in development could extend healthy human lifespan by 25 or more years within the next two decades moving from disease treatment to biological aging reversal.</div>
       <div style="margin-top:12px;font-size:11px;font-weight:600;color:var(--text-muted);">↑ Escape velocity within reach</div>
+    <button class="tile-share-btn" title="Share"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="18" cy="5" r="3"/><circle cx="6" cy="12" r="3"/><circle cx="18" cy="19" r="3"/><line x1="8.59" y1="13.51" x2="15.42" y2="17.49"/><line x1="15.41" y1="6.51" x2="8.59" y2="10.49"/></svg></button>
     </div>
     <div class="stat-tile" style="background:var(--surface);border:1px solid var(--border);border-radius:var(--radius);padding:22px 24px;">
-      <div style="font-size:11px;font-weight:700;letter-spacing:0.07em;text-transform:uppercase;color:var(--text-muted);margin-bottom:10px;">AI DRUG DISCOVERY SPEED<button class="tile-share-btn" title="Share"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="18" cy="5" r="3"/><circle cx="6" cy="12" r="3"/><circle cx="18" cy="19" r="3"/><line x1="8.59" y1="13.51" x2="15.42" y2="17.49"/><line x1="15.41" y1="6.51" x2="8.59" y2="10.49"/></svg></button>
-</div>
+      <div style="font-size:11px;font-weight:700;letter-spacing:0.07em;text-transform:uppercase;color:var(--text-muted);margin-bottom:10px;">AI DRUG DISCOVERY SPEED</div>
       <div style="font-size:32px;font-weight:800;letter-spacing:-0.03em;color:var(--text);line-height:1;">10x</div>
       <div style="font-size:12px;color:var(--text-muted);margin-top:6px;">AI-driven drug discovery platforms are identifying longevity candidates up to 10x faster than traditional methods, with companies like Insilico Medicine advancing molecules from target identification to clinical trials in under 18 months.</div>
       <div style="margin-top:12px;font-size:11px;font-weight:600;color:var(--text-muted);">↑ Compressing decade-long timelines</div>
+    <button class="tile-share-btn" title="Share"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="18" cy="5" r="3"/><circle cx="6" cy="12" r="3"/><circle cx="18" cy="19" r="3"/><line x1="8.59" y1="13.51" x2="15.42" y2="17.49"/><line x1="15.41" y1="6.51" x2="8.59" y2="10.49"/></svg></button>
     </div>
     <div class="stat-tile" style="background:var(--surface);border:1px solid var(--border);border-radius:var(--radius);padding:22px 24px;">
-      <div style="font-size:11px;font-weight:700;letter-spacing:0.07em;text-transform:uppercase;color:var(--text-muted);margin-bottom:10px;">CENTENARIAN POPULATION<button class="tile-share-btn" title="Share"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="18" cy="5" r="3"/><circle cx="6" cy="12" r="3"/><circle cx="18" cy="19" r="3"/><line x1="8.59" y1="13.51" x2="15.42" y2="17.49"/><line x1="15.41" y1="6.51" x2="8.59" y2="10.49"/></svg></button>
-</div>
+      <div style="font-size:11px;font-weight:700;letter-spacing:0.07em;text-transform:uppercase;color:var(--text-muted);margin-bottom:10px;">CENTENARIAN POPULATION</div>
       <div style="font-size:32px;font-weight:800;letter-spacing:-0.03em;color:var(--text);line-height:1;">722K</div>
       <div style="font-size:12px;color:var(--text-muted);margin-top:6px;">The global centenarian population exceeded 722,000 in 2024 and is projected to reach 3.7 million by 2050 driven by improvements in healthcare, nutrition, and the early effects of longevity-focused interventions.</div>
       <div style="margin-top:12px;font-size:11px;font-weight:600;color:var(--text-muted);">↑ 5x growth projected by 2050</div>
+    <button class="tile-share-btn" title="Share"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="18" cy="5" r="3"/><circle cx="6" cy="12" r="3"/><circle cx="18" cy="19" r="3"/><line x1="8.59" y1="13.51" x2="15.42" y2="17.49"/><line x1="15.41" y1="6.51" x2="8.59" y2="10.49"/></svg></button>
     </div>
   </div>
   <style>
@@ -3378,7 +3371,7 @@ body.frontier-mode .footer-email-input:focus { border-color: var(--frontier); }
   <!-- ATOMIC PREDICTIONS -->
   <div class="section-title" style="margin-top:52px;align-items:center;border-bottom-color:var(--longevity);">Atomic's Predictions <span style="font-size:13px;font-weight:400;color:var(--text-muted);letter-spacing:0;text-transform:none;border:none;padding:0;margin-left:10px;display:inline-flex;align-items:center;">Predictions are reviewed and updated as new signals emerge.</span></div>
   <div class="forecast-panels" id="longevity-forecast-grid">
-    <div class="forecast-panel"><div class="forecast-panel-head"><span class="forecast-panel-icon">🧬</span><span class="forecast-panel-head-title">Scanning what's ahead...</span></div></div>
+    <div class="forecast-panel"><div class="forecast-panel-head"><span class="forecast-panel-icon">🧬</span><span class="forecast-panel-head-title">Loading...</span></div></div>
   </div>
 
 </div><!-- end section-longevity -->
@@ -3422,7 +3415,7 @@ body.frontier-mode .footer-email-input:focus { border-color: var(--frontier); }
     <section class="toolkit-section">
       <div class="toolkit-section-header">
         <span class="toolkit-section-icon">👤</span>
-        <span class="toolkit-section-title">Start Here  -  By Role</span>
+        <span class="toolkit-section-title">Start Here — By Role</span>
         <span class="toolkit-section-count">8 roles</span>
       </div>
       <div class="roles-grid">
@@ -3472,7 +3465,7 @@ body.frontier-mode .footer-email-input:focus { border-color: var(--frontier); }
         <span class="toolkit-section-title">Writing</span>
         <div class="section-search-wrap">
           <button class="section-search-btn" onclick="toggleSectionSearch(this)" title="Search Writing">
-            <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="8"/><path d="m21 21-4.35-4.35"/></svg>
+            <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="8"/><path d="m21 21-4.35-4.35"/><\/svg>
           </button>
           <div class="section-search-input-wrap">
             <input class="section-search-input" placeholder="Search writing..." oninput="filterSectionCards(this, 'writing')" />
@@ -3525,7 +3518,7 @@ body.frontier-mode .footer-email-input:focus { border-color: var(--frontier); }
               <div class="tool-card-category">Writing / Editing</div>
             </div>
           </div>
-          <div class="tool-card-desc">Real-time writing suggestions across tone, clarity, and correctness. Works everywhere you write  -  email, docs, Slack, browser.</div>
+          <div class="tool-card-desc">Real-time writing suggestions across tone, clarity, and correctness. Works everywhere you write — email, docs, Slack, browser.</div>
           <div class="tool-card-tags"><span class="tool-tag">Editing</span><span class="tool-tag">Tone</span><span class="tool-tag">Clarity</span></div>
           <div class="tool-card-link">Try Grammarly →</div>
         </a>
@@ -3582,7 +3575,7 @@ body.frontier-mode .footer-email-input:focus { border-color: var(--frontier); }
             <div class="tool-card-name">Wordtune</div>
             <div class="tool-card-category">Writing / Rewriting</div>
           </div></div>
-          <div class="tool-card-desc">AI writing companion that rewrites sentences while preserving your voice and intent. Offers multiple tone options: casual, formal, shorter, longer  -  all in one click.</div>
+          <div class="tool-card-desc">AI writing companion that rewrites sentences while preserving your voice and intent. Offers multiple tone options: casual, formal, shorter, longer — all in one click.</div>
           <div class="tool-card-tags"><span class="tool-tag">Rewriting</span><span class="tool-tag">Tone</span><span class="tool-tag">Voice</span></div>
           <div class="tool-card-link">Try Wordtune →</div>
         </a>
@@ -3624,7 +3617,7 @@ body.frontier-mode .footer-email-input:focus { border-color: var(--frontier); }
         <span class="toolkit-section-title">Research</span>
         <div class="section-search-wrap">
           <button class="section-search-btn" onclick="toggleSectionSearch(this)" title="Search Research">
-            <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="8"/><path d="m21 21-4.35-4.35"/></svg>
+            <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="8"/><path d="m21 21-4.35-4.35"/><\/svg>
           </button>
           <div class="section-search-input-wrap">
             <input class="section-search-input" placeholder="Search research..." oninput="filterSectionCards(this, 'research')" />
@@ -3776,7 +3769,7 @@ body.frontier-mode .footer-email-input:focus { border-color: var(--frontier); }
         <span class="toolkit-section-title">Sales</span>
         <div class="section-search-wrap">
           <button class="section-search-btn" onclick="toggleSectionSearch(this)" title="Search Sales">
-            <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="8"/><path d="m21 21-4.35-4.35"/></svg>
+            <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="8"/><path d="m21 21-4.35-4.35"/><\/svg>
           </button>
           <div class="section-search-input-wrap">
             <input class="section-search-input" placeholder="Search sales..." oninput="filterSectionCards(this, 'sales')" />
@@ -3928,7 +3921,7 @@ body.frontier-mode .footer-email-input:focus { border-color: var(--frontier); }
         <span class="toolkit-section-title">Marketing</span>
         <div class="section-search-wrap">
           <button class="section-search-btn" onclick="toggleSectionSearch(this)" title="Search Marketing">
-            <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="8"/><path d="m21 21-4.35-4.35"/></svg>
+            <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="8"/><path d="m21 21-4.35-4.35"/><\/svg>
           </button>
           <div class="section-search-input-wrap">
             <input class="section-search-input" placeholder="Search marketing..." oninput="filterSectionCards(this, 'marketing')" />
@@ -4080,7 +4073,7 @@ body.frontier-mode .footer-email-input:focus { border-color: var(--frontier); }
         <span class="toolkit-section-title">Finance</span>
         <div class="section-search-wrap">
           <button class="section-search-btn" onclick="toggleSectionSearch(this)" title="Search Finance">
-            <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="8"/><path d="m21 21-4.35-4.35"/></svg>
+            <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="8"/><path d="m21 21-4.35-4.35"/><\/svg>
           </button>
           <div class="section-search-input-wrap">
             <input class="section-search-input" placeholder="Search finance..." oninput="filterSectionCards(this, 'finance')" />
@@ -4232,7 +4225,7 @@ body.frontier-mode .footer-email-input:focus { border-color: var(--frontier); }
         <span class="toolkit-section-title">HR</span>
         <div class="section-search-wrap">
           <button class="section-search-btn" onclick="toggleSectionSearch(this)" title="Search HR">
-            <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="8"/><path d="m21 21-4.35-4.35"/></svg>
+            <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="8"/><path d="m21 21-4.35-4.35"/><\/svg>
           </button>
           <div class="section-search-input-wrap">
             <input class="section-search-input" placeholder="Search hr..." oninput="filterSectionCards(this, 'hr')" />
@@ -4384,7 +4377,7 @@ body.frontier-mode .footer-email-input:focus { border-color: var(--frontier); }
         <span class="toolkit-section-title">Operations</span>
         <div class="section-search-wrap">
           <button class="section-search-btn" onclick="toggleSectionSearch(this)" title="Search Operations">
-            <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="8"/><path d="m21 21-4.35-4.35"/></svg>
+            <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="8"/><path d="m21 21-4.35-4.35"/><\/svg>
           </button>
           <div class="section-search-input-wrap">
             <input class="section-search-input" placeholder="Search operations..." oninput="filterSectionCards(this, 'operations')" />
@@ -4684,28 +4677,6 @@ function renderYMAL(currentTitle, currentCat){
 </script>
 
 <script>
-
-// ── PLACEHOLDER IMAGE HELPER ──
-var CAT_GRADIENTS = {
-  'ai':        ['#1e3a5f','#2563eb','🤖'],
-  'frontier':  ['#431407','#ea580c','🚀'],
-  'longevity': ['#052e16','#059669','🧬'],
-  'robotics':  ['#1e1b4b','#7c3aed','🦾'],
-  'space':     ['#0c1445','#3b82f6','🛰️'],
-  'work':      ['#1c1917','#78716c','🛠️'],
-  'default':   ['#111827','#374151','📡']
-};
-function makePlaceholderImg(cat, category, height) {
-  height = height || 160;
-  var key = (cat||'').toLowerCase();
-  var g = CAT_GRADIENTS[key] || CAT_GRADIENTS['default'];
-  var label = (category || cat || 'Intelligence').toUpperCase();
-  return '<div style="width:100%;height:'+height+'px;background:linear-gradient(135deg,'+g[0]+','+g[1]+');border-radius:8px 8px 0 0;margin:-16px -16px 12px -16px;width:calc(100% + 32px);flex-shrink:0;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:8px;">'+
-    '<div style="font-size:28px;">'+g[2]+'</div>'+
-    '<div style="font-size:10px;font-weight:700;letter-spacing:0.12em;color:rgba(255,255,255,0.6);">'+label+'</div>'+
-    '</div>';
-}
-
 // ── SUPABASE CONFIG ──
 const SUPABASE_URL = 'https://qybwjkyifdroktiriaqt.supabase.co';
 const SUPABASE_KEY = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6InF5Yndqa3lpZmRyb2t0aXJpYXF0Iiwicm9sZSI6ImFub24iLCJpYXQiOjE3ODA1MTUzNzYsImV4cCI6MjA5NjA5MTM3Nn0.JJFqoCugHoe6fsah3kEjk8ezZZ4kTVzcfu_AQ7x-lg8';
@@ -4820,7 +4791,7 @@ async function fetchStories() {
           title: s.title || '',
           cat: (s.category || 'ai').toLowerCase().replace(/\s+/g, '-'),
           source: s.source || 'AMG',
-          time: s.created_at ? timeAgo(s.created_at) : (s.published_at ? timeAgo(s.published_at) : 'Today'),
+          time: s.published_at ? timeAgo(s.published_at) : 'Today',
           excerpt: s.excerpt || '',
           url: s.url || '#',
           image_url: s.image_url || null
@@ -4943,8 +4914,7 @@ async function fetchTools() {
         '<span class="tool-stars">' + stars + '</span>' +
         '<a class="tool-try" href="' + (t.url || '#') + '" target="_blank" rel="noopener">Try It →</a>' +
         '</div>
-        <button class="tile-share-btn" title="Share"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="18" cy="5" r="3"/><circle cx="6" cy="12" r="3"/><circle cx="18" cy="19" r="3"/><line x1="8.59" y1="13.51" x2="15.42" y2="17.49"/><line x1="15.41" y1="6.51" x2="8.59" y2="10.49"/></svg></button>
-        </div></div>';
+        <button class="tile-share-btn" title="Share"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="18" cy="5" r="3"/><circle cx="6" cy="12" r="3"/><circle cx="18" cy="19" r="3"/><line x1="8.59" y1="13.51" x2="15.42" y2="17.49"/><line x1="15.41" y1="6.51" x2="8.59" y2="10.49"/></svg></button></div></div>';
     }
 
     var el = document.getElementById('scroll-tools');
@@ -4971,7 +4941,7 @@ async function fetchPrompts() {
         '<div class="prompt-footer">' +
         '<button class="prompt-copy-btn" data-prompt="' + escaped + '">✤ Copy</button>' +
         '<span class="prompt-level">' + (p.level || '') + '</span>' +
-        '<button class=\"tile-share-btn\" title=\"Share\"><svg width=\"14\" height=\"14\" viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"2\"><circle cx=\"18\" cy=\"5\" r=\"3\"/><circle cx=\"6\" cy=\"12\" r=\"3\"/><circle cx=\"18\" cy=\"19\" r=\"3\"/><line x1=\"8.59\" y1=\"13.51\" x2=\"15.42\" y2=\"17.49\"/><line x1=\"15.41\" y1=\"6.51\" x2=\"8.59\" y2=\"10.49\"/></svg></button></div></div>';
+        '</div></div>';
     }
 
     var el = document.getElementById('scroll-prompts');
@@ -5045,8 +5015,7 @@ async function fetchRealWorldAI() {
         '<div class="tool-footer"><span class="tool-cat">⊟ ' + (d.sector || '') + '</span>' +
         '<span class="tool-stars" style="color:var(--text-muted);font-size:11px;">' + (d.status || '') + '</span>' +
         '</div>
-        <button class="tile-share-btn" title="Share"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="18" cy="5" r="3"/><circle cx="6" cy="12" r="3"/><circle cx="18" cy="19" r="3"/><line x1="8.59" y1="13.51" x2="15.42" y2="17.49"/><line x1="15.41" y1="6.51" x2="8.59" y2="10.49"/></svg></button>
-        </div></div>';
+        <button class="tile-share-btn" title="Share"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="18" cy="5" r="3"/><circle cx="6" cy="12" r="3"/><circle cx="18" cy="19" r="3"/><line x1="8.59" y1="13.51" x2="15.42" y2="17.49"/><line x1="15.41" y1="6.51" x2="8.59" y2="10.49"/></svg></button></div></div>';
     }
 
     var prodEl = document.getElementById('scroll-ai-production');
@@ -5108,8 +5077,7 @@ async function fetchRealWorldRobotics() {
         '<div class="tool-footer"><span class="tool-cat">⊟ ' + (d.sector || '') + '</span>' +
         '<span class="tool-stars" style="color:var(--text-muted);font-size:11px;">' + (d.status || '') + '</span>' +
         '</div>
-        <button class="tile-share-btn" title="Share"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="18" cy="5" r="3"/><circle cx="6" cy="12" r="3"/><circle cx="18" cy="19" r="3"/><line x1="8.59" y1="13.51" x2="15.42" y2="17.49"/><line x1="15.41" y1="6.51" x2="8.59" y2="10.49"/></svg></button>
-        </div></div>';
+        <button class="tile-share-btn" title="Share"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="18" cy="5" r="3"/><circle cx="6" cy="12" r="3"/><circle cx="18" cy="19" r="3"/><line x1="8.59" y1="13.51" x2="15.42" y2="17.49"/><line x1="15.41" y1="6.51" x2="8.59" y2="10.49"/></svg></button></div></div>';
     }
 
     var prodEl = document.getElementById('scroll-rob-production');
@@ -5158,7 +5126,7 @@ function renderFeed() {
 
   function makeCard(s) {
     var t = s.title.replace(/"/g,"&quot;").replace(/'/g,"&#39;");
-    var imgHtml = s.image_url ? '<div class="card-image" style="width:100%;height:160px;background:url(\'' + s.image_url + '\') center/cover no-repeat;border-radius:8px 8px 0 0;margin:-16px -16px 12px -16px;width:calc(100% + 32px);flex-shrink:0;"></div>' : makePlaceholderImg(s.cat||'ai', s.cat, 160);
+    var imgHtml = s.image_url ? '<div class="card-image" style="width:100%;height:160px;background:url(\'' + s.image_url + '\') center/cover no-repeat;border-radius:8px 8px 0 0;margin:-16px -16px 12px -16px;width:calc(100% + 32px);flex-shrink:0;"></div>' : '';
     return '<div class="card" data-cat="'+s.cat+'" data-source="'+s.source+'" data-title="'+t+'" data-time="'+s.time+'" style="cursor:pointer">' +
       '<div class="card-body">' +
       imgHtml +
@@ -5169,8 +5137,9 @@ function renderFeed() {
       '<div class="card-actions">' +
       '<button class="card-btn summarize-btn" data-title="'+t+'">&#9889; AI Summary</button>' +
       '<button class="card-btn bookmark-btn" data-title="'+t+'">&#128278; Save</button>' +
-      '<button class="card-btn share-btn" data-title="'+t+'"><svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="18" cy="5" r="3"/><circle cx="6" cy="12" r="3"/><circle cx="18" cy="19" r="3"/><line x1="8.59" y1="13.51" x2="15.42" y2="17.49"/><line x1="15.41" y1="6.51" x2="8.59" y2="10.49"/></svg> Share</button>' +
-      '<button class=\"tile-share-btn\" title=\"Share\"><svg width=\"14\" height=\"14\" viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"2\"><circle cx=\"18\" cy=\"5\" r=\"3\"/><circle cx=\"6\" cy=\"12\" r=\"3\"/><circle cx=\"18\" cy=\"19\" r=\"3\"/><line x1=\"8.59\" y1=\"13.51\" x2=\"15.42\" y2=\"17.49\"/><line x1=\"15.41\" y1=\"6.51\" x2=\"8.59\" y2=\"10.49\"/></svg></button></div></div></div>';
+      '<button class="card-btn share-btn" data-title="'+t+'"><svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="18" cy="5" r="3"/><circle cx="6" cy="12" r="3"/><circle cx="18" cy="19" r="3"/><line x1="8.59" y1="13.51" x2="15.42" y2="17.49"/><line x1="15.41" y1="6.51" x2="8.59" y2="10.49"/><\/svg> Share</button>' +
+      '</div>
+    <button class="tile-share-btn" title="Share"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="18" cy="5" r="3"/><circle cx="6" cy="12" r="3"/><circle cx="18" cy="19" r="3"/><line x1="8.59" y1="13.51" x2="15.42" y2="17.49"/><line x1="15.41" y1="6.51" x2="8.59" y2="10.49"/></svg></button></div></div>';
   }
 
   function makeFeedItem(s) {
@@ -5183,12 +5152,12 @@ function renderFeed() {
       '<div class="feed-item-content">' +
       '<div class="feed-item-title">'+s.title+'</div>' +
       '<div class="feed-item-meta"><span class="feed-item-cat">'+(s.cat||'AI').toUpperCase()+'</span><span class="feed-item-time">'+s.time+'</span></div>' +
-      '<button class=\"tile-share-btn\" title=\"Share\"><svg width=\"14\" height=\"14\" viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"2\"><circle cx=\"18\" cy=\"5\" r=\"3\"/><circle cx=\"6\" cy=\"12\" r=\"3\"/><circle cx=\"18\" cy=\"19\" r=\"3\"/><line x1=\"8.59\" y1=\"13.51\" x2=\"15.42\" y2=\"17.49\"/><line x1=\"15.41\" y1=\"6.51\" x2=\"8.59\" y2=\"10.49\"/></svg></button></div></div>';
+      '</div></div>';
   }
 
   function makeTrendCard(s) {
     var t = s.title.replace(/"/g,"&quot;").replace(/'/g,"&#39;");
-    var imgHtml = s.image_url ? '<div class="card-image" style="width:100%;height:140px;background:url(\'' + s.image_url + '\') center/cover no-repeat;border-radius:8px 8px 0 0;margin:-16px -16px 12px -16px;width:calc(100% + 32px);flex-shrink:0;"></div>' : makePlaceholderImg(s.cat||'ai', s.cat, 140);
+    var imgHtml = s.image_url ? '<div class="card-image" style="width:100%;height:140px;background:url(\'' + s.image_url + '\') center/cover no-repeat;border-radius:8px 8px 0 0;margin:-16px -16px 12px -16px;width:calc(100% + 32px);flex-shrink:0;"></div>' : '';
     return '<div class="card" data-cat="'+s.cat+'" data-source="'+s.source+'" data-title="'+t+'" data-time="'+s.time+'" style="cursor:pointer">' +
       '<div class="card-body">' +
       imgHtml +
@@ -5198,8 +5167,8 @@ function renderFeed() {
       '<div class="card-actions">' +
       '<button class="card-btn summarize-btn" data-title="'+t+'">&#9889; Summary</button>' +
       '<button class="card-btn bookmark-btn" data-title="'+t+'">&#128278; Save</button>' +
-      '<button class="card-btn share-btn" data-title="'+t+'"><svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="18" cy="5" r="3"/><circle cx="6" cy="12" r="3"/><circle cx="18" cy="19" r="3"/><line x1="8.59" y1="13.51" x2="15.42" y2="17.49"/><line x1="15.41" y1="6.51" x2="8.59" y2="10.49"/></svg> Share</button>' +
-      '<button class=\"tile-share-btn\" title=\"Share\"><svg width=\"14\" height=\"14\" viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"2\"><circle cx=\"18\" cy=\"5\" r=\"3\"/><circle cx=\"6\" cy=\"12\" r=\"3\"/><circle cx=\"18\" cy=\"19\" r=\"3\"/><line x1=\"8.59\" y1=\"13.51\" x2=\"15.42\" y2=\"17.49\"/><line x1=\"15.41\" y1=\"6.51\" x2=\"8.59\" y2=\"10.49\"/></svg></button></div></div></div>';
+      '<button class="card-btn share-btn" data-title="'+t+'"><svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="18" cy="5" r="3"/><circle cx="6" cy="12" r="3"/><circle cx="18" cy="19" r="3"/><line x1="8.59" y1="13.51" x2="15.42" y2="17.49"/><line x1="15.41" y1="6.51" x2="8.59" y2="10.49"/><\/svg> Share</button>' +
+      '</div></div></div>';
   }
 
   var heroLeft = document.getElementById('top-stories-grid');
@@ -5222,9 +5191,8 @@ document.addEventListener('click', function(e) {
   e.stopPropagation();
   var tile = btn.closest('.tool-item, .stat-tile, .watchlist-item, .forecast-panel, .tool-card');
   if (!tile) return;
-  // Build share title from tile content
-  var name = tile.querySelector('.tool-name, .tool-card-name, .watchlist-name, .stat-label, .forecast-panel-head-title, .tool-title');
-  var title = name ? name.textContent.trim() : 'Atomic Media Group Intelligence';
+  var nameEl = tile.querySelector('.tool-name, .tool-card-name, .watchlist-name, .stat-label, .forecast-panel-head-title, .tool-title');
+  var title = nameEl ? nameEl.textContent.trim() : 'Atomic Media Group Intelligence';
   openShare(title);
 });
 
@@ -5334,18 +5302,12 @@ document.addEventListener('DOMContentLoaded', function() {
   fetchRealWorldRobotics();
   fetchStats();
 
-  // Auto-switch vertical based on URL parameter, then localStorage
+  // Auto-switch vertical based on URL parameter
   var urlParams = new URLSearchParams(window.location.search);
   var vertical = urlParams.get('v');
   if (vertical === 'frontier') switchVertical('frontier');
   else if (vertical === 'longevity') switchVertical('longevity');
   else if (vertical === 'work') switchVertical('work');
-  else {
-    try {
-      var saved = localStorage.getItem('amg-vertical');
-      if (saved && saved !== 'ai') switchVertical(saved);
-    } catch(e) {}
-  }
 });
 // ── SAVED (localStorage) ──
 function getSaved(){ try{return JSON.parse(localStorage.getItem('amg-saved')||'[]');}catch(e){return[];} }
@@ -5390,8 +5352,7 @@ function renderSavedPanel(){
   list.innerHTML = filtered.map(title => {
     const s = STORIES.find(x=>x.title===title)||{title,source:'',time:''};
     return `<div class="saved-item">
-      <div class="saved-item-title">${s.title}<button class="tile-share-btn" title="Share"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="18" cy="5" r="3"/><circle cx="6" cy="12" r="3"/><circle cx="18" cy="19" r="3"/><line x1="8.59" y1="13.51" x2="15.42" y2="17.49"/><line x1="15.41" y1="6.51" x2="8.59" y2="10.49"/></svg></button>
-</div>
+      <div class="saved-item-title">${s.title}</div>
       <div class="saved-item-meta">${s.source}${s.time?' · '+s.time:''}</div>
       <button class="saved-remove" onclick="toggleSaved('${s.title.replace(/'/g,"\'")}')">Remove</button>
     </div>`;
@@ -5454,19 +5415,17 @@ let activeFilters = { cat: 'all', source: 'all' };
 const filterBtn = document.getElementById('filter-btn');
 const filterPanel = document.getElementById('filter-panel');
 
-if (filterBtn) {
-  filterBtn.addEventListener('click', function(e){
-    e.stopPropagation();
-    filterPanel.classList.toggle('open');
-    filterBtn.classList.toggle('active', filterPanel.classList.contains('open'));
-  });
-  document.addEventListener('click', function(e){
-    if(!filterPanel.contains(e.target) && e.target !== filterBtn){
-      filterPanel.classList.remove('open');
-      filterBtn.classList.remove('active');
-    }
-  });
-}
+filterBtn.addEventListener('click', function(e){
+  e.stopPropagation();
+  filterPanel.classList.toggle('open');
+  filterBtn.classList.toggle('active', filterPanel.classList.contains('open'));
+});
+document.addEventListener('click', function(e){
+  if(!filterPanel.contains(e.target) && e.target !== filterBtn){
+    filterPanel.classList.remove('open');
+    filterBtn.classList.remove('active');
+  }
+});
 
 function wireFilterChips() {
   document.querySelectorAll('.filter-chip').forEach(chip => {
@@ -5666,7 +5625,7 @@ document.querySelectorAll('.card-actions').forEach(actions => {
   const btn = document.createElement('button');
   btn.className = 'card-btn share-btn';
   btn.dataset.title = card.dataset.title;
-  btn.innerHTML = '<svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="18" cy="5" r="3"/><circle cx="6" cy="12" r="3"/><circle cx="18" cy="19" r="3"/><line x1="8.59" y1="13.51" x2="15.42" y2="17.49"/><line x1="15.41" y1="6.51" x2="8.59" y2="10.49"/></svg> Share';
+  btn.innerHTML = '<svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="18" cy="5" r="3"/><circle cx="6" cy="12" r="3"/><circle cx="18" cy="19" r="3"/><line x1="8.59" y1="13.51" x2="15.42" y2="17.49"/><line x1="15.41" y1="6.51" x2="8.59" y2="10.49"/><\/svg> Share';
   actions.appendChild(btn);
 });
 
@@ -5696,16 +5655,16 @@ document.addEventListener('click', function(e){
 
 // Share to X
 document.getElementById('share-twitter').addEventListener('click', function(){
-  const text = encodeURIComponent(currentShareTitle + ' — via Atomic Media Group');
-  const url = encodeURIComponent('https://atomicmediagroup.ai/feed.html');
+  const text = encodeURIComponent(currentShareTitle + ' via Atomic Media Group');
+  const url = encodeURIComponent('https://atomicmediagroup.ai');
   window.open('https://twitter.com/intent/tweet?text='+text+'&url='+url, '_blank', 'noopener');
 });
 
 // Share to LinkedIn
 document.getElementById('share-linkedin').addEventListener('click', function(){
-  const url = encodeURIComponent('https://atomicmediagroup.ai/feed.html');
-  const summary = encodeURIComponent(currentShareTitle + ' — via Atomic Media Group');
-  window.open('https://www.linkedin.com/sharing/share-offsite/?url='+url+'&summary='+summary, '_blank', 'noopener');
+  const url = encodeURIComponent('https://atomicmediagroup.ai');
+  const title = encodeURIComponent(currentShareTitle);
+  window.open('https://www.linkedin.com/sharing/share-offsite/?url='+url+'&title='+title, '_blank', 'noopener');
 });
 
 // Share via Email
@@ -5811,9 +5770,8 @@ document.addEventListener('keydown', function(e){ if(e.key === 'Escape') closeAb
 
 // ── VERTICAL SWITCHER ──
 function switchVertical(mode) {
-  setTimeout(function(){ window.scrollTo(0, 0); }, 0);
+  window.scrollTo(0, 0);
   updateDropdownLabel(mode);
-  try { localStorage.setItem('amg-vertical', mode); } catch(e) {}
   var aiSection = document.getElementById('section-ai-robotics');
   var frontierSection = document.getElementById('section-frontier');
   var btnAI = document.getElementById('btn-ai-robotics');
@@ -5823,15 +5781,10 @@ function switchVertical(mode) {
   if (mode === 'frontier') {
     aiSection.style.display = 'none';
     frontierSection.style.display = 'block';
-    document.getElementById('section-longevity').style.display = 'none';
-    if (document.getElementById('section-work')) document.getElementById('section-work').style.display = 'none';
     btnAI.classList.remove('active');
     btnFrontier.classList.add('active');
-    document.getElementById('btn-longevity').classList.remove('active');
-    document.getElementById('btn-work').classList.remove('active');
     document.body.classList.add('frontier-mode');
-    document.body.classList.remove('longevity-mode');
-    if (!frontierSection.dataset.loaded) {
+      if (!frontierSection.dataset.loaded) {
       fetchFrontierStories();
       fetchFrontierRealWorld();
       fetchFrontierCompanies();
@@ -5842,11 +5795,9 @@ function switchVertical(mode) {
     aiSection.style.display = 'none';
     frontierSection.style.display = 'none';
     document.getElementById('section-longevity').style.display = 'block';
-    if (document.getElementById('section-work')) document.getElementById('section-work').style.display = 'none';
     btnAI.classList.remove('active');
     btnFrontier.classList.remove('active');
     document.getElementById('btn-longevity').classList.add('active');
-    document.getElementById('btn-work').classList.remove('active');
     document.body.classList.remove('frontier-mode');
     document.body.classList.add('longevity-mode');
       var longevitySection = document.getElementById('section-longevity');
@@ -5888,28 +5839,22 @@ async function fetchFrontierStories() {
   try {
     var data = await supabaseFetch('frontier_stories', 'select=*&order=created_at.desc&limit=15');
     if (!data || data.length === 0) return;
-    data.slice(0,6).forEach(function(s) {
-      if (s.title && !STORIES.find(function(x){ return x.title===s.title; }))
-        STORIES.push({title:s.title,cat:'frontier',source:s.source||'AMG',time:s.created_at?timeAgo(s.created_at):'Today',excerpt:s.excerpt||'',url:s.url||'#',image_url:s.image_url||null});
-    });
+
+    // Breaking feed (first 6)
+
     var heroEl = document.getElementById('frontier-top-stories-grid');
-    if (heroEl) {
-      heroEl.innerHTML = data.slice(0,6).map(function(s) {
-        var t = (s.title||'').replace(/"/g,'&quot;').replace(/'/g,'&#39;');
-        var imgHtml = s.image_url ? '<div class="card-image" style="width:100%;height:160px;background:url(\''+s.image_url+'\') center/cover no-repeat;border-radius:8px 8px 0 0;margin:-16px -16px 12px -16px;width:calc(100% + 32px);flex-shrink:0;"></div>' : makePlaceholderImg('frontier', s.category, 160);
-        return '<div class="card" data-cat="frontier" data-source="'+(s.source||'')+'" data-title="'+t+'" data-url="'+(s.url||'')+'" style="cursor:pointer;">'+
-          '<div class="card-body">'+imgHtml+
-          '<div class="tag" style="color:var(--frontier);">'+(s.category||'Space')+'</div>'+
-          '<div class="card-title">'+(s.title||'')+'</div>'+
-          '<div class="card-excerpt">'+(s.excerpt||'')+'</div>'+
-          '<div class="card-footer"><span class="card-source">'+(s.source||'')+'</span><span class="card-time">'+(s.created_at?timeAgo(s.created_at):'Today')+'</span></div>'+
-          '<div class="card-actions">'+
-          '<button class="card-btn summarize-btn" data-title="'+t+'">&#9889; AI Summary</button>'+
-          '<button class="card-btn bookmark-btn" data-title="'+t+'">&#128278; Save</button>'+
-          '<button class="card-btn share-btn" data-title="'+t+'"><svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="18" cy="5" r="3"/><circle cx="6" cy="12" r="3"/><circle cx="18" cy="19" r="3"/><line x1="8.59" y1="13.51" x2="15.42" y2="17.49"/><line x1="15.41" y1="6.51" x2="8.59" y2="10.49"/></svg> Share</button>'+
-          '<button class=\"tile-share-btn\" title=\"Share\"><svg width=\"14\" height=\"14\" viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"2\"><circle cx=\"18\" cy=\"5\" r=\"3\"/><circle cx=\"6\" cy=\"12\" r=\"3\"/><circle cx=\"18\" cy=\"19\" r=\"3\"/><line x1=\"8.59\" y1=\"13.51\" x2=\"15.42\" y2=\"17.49\"/><line x1=\"15.41\" y1=\"6.51\" x2=\"8.59\" y2=\"10.49\"/></svg></button></div></div></div>';
+    if (heroEl && data.length > 0) {
+      heroEl.innerHTML = data.slice(0, 6).map(function(s) {
+        var imgHtml = s.image_url ? '<img src="'+s.image_url+'" alt="" style="width:100%;height:160px;object-fit:cover;border-radius:8px 8px 0 0;display:block;" loading="lazy" onerror="this.style.display=\'none\'" />' : '';
+        return '<div class="card" style="opacity:1;">' +
+          imgHtml +
+          '<div class="card-body">' +
+          '<div class="tag" style="color:var(--frontier);">'+(s.category||'Space')+'</div>' +
+          '<div class="card-title">'+(s.title||'')+'</div>' +
+          '<div class="card-excerpt">'+(s.excerpt||'')+'</div>' +
+          '<div class="card-footer"><span class="card-source">'+(s.source||'')+'</span><span class="card-time">Today</span></div>' +
+          '</div></div>';
       }).join('');
-      wireCards();
     }
   } catch(e) { console.error('fetchFrontierStories:', e); }
 }
@@ -5921,20 +5866,12 @@ async function fetchFrontierRealWorld() {
     var prod = data.filter(function(d){ return (d.status||'').toLowerCase().includes('production'); }).slice(0,4);
     var horizon = data.filter(function(d){ return (d.status||'').toLowerCase().includes('horizon'); }).slice(0,4);
 
-    var FRONTIER_ICONS = {'launch':'🚀','satellites':'🛰️','exploration':'🌌','stations':'🏗️','connectivity':'📡','defense':'🛡️','tourism':'🌍','economy':'💰','transport':'🚀','energy':'⚡'};
     function makeItem(d) {
-      var domain = '';
-      try { if (d.url) domain = new URL(d.url).hostname.replace('www.',''); } catch(e) {}
-      var icon = domain ? makeLogoImg(domain, d.name, FRONTIER_ICONS[(d.sector||'').toLowerCase()]||'🚀', 'watchlist-logo') : '<div class="tool-icon">'+(FRONTIER_ICONS[(d.sector||'').toLowerCase()]||'🚀')+'</div>';
       return '<div class="tool-item">' +
-        icon +
-        '<div class="tool-body">' +
         '<div class="tool-name">'+(d.name||'')+'</div>' +
         '<div class="tool-desc">'+(d.description||'')+'</div>' +
-        '<div class="tool-footer"><span class="tool-cat">⊟ '+(d.sector||'Space')+'</span><span class="tool-stars" style="color:var(--text-muted);font-size:11px;">'+(d.status||'')+'</span></div>' +
-        '</div>
-        <button class="tile-share-btn" title="Share"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="18" cy="5" r="3"/><circle cx="6" cy="12" r="3"/><circle cx="18" cy="19" r="3"/><line x1="8.59" y1="13.51" x2="15.42" y2="17.49"/><line x1="15.41" y1="6.51" x2="8.59" y2="10.49"/></svg></button>
-        </div>';
+        '<div class="tool-tag">'+(d.sector||'Space')+'</div>' +
+        '</div>';
     }
 
     var prodEl = document.getElementById('frontier-prod-scroll');
@@ -5968,11 +5905,9 @@ async function fetchFrontierCompanies() {
 
     function makeWatchItem(c) {
       var href = c.url || ('https://www.google.com/search?q='+encodeURIComponent((c.name||'')+' space company'));
-      var domain = '';
-      try { if (c.url) domain = new URL(c.url).hostname.replace('www.',''); } catch(e) {}
-      var logoHtml = domain ? makeLogoImg(domain, c.name, 'letter', 'watchlist-logo') : makeLetterAvatar(c.name, '');
+      var initials = (c.name||'?').substring(0,2).toUpperCase();
       return '<a class="watchlist-item" href="'+href+'" target="_blank" rel="noopener">' +
-        logoHtml +
+        '<div class="watchlist-logo" style="width:36px;height:36px;border-radius:8px;background:linear-gradient(135deg,var(--frontier),#f97316);display:flex;align-items:center;justify-content:center;flex-shrink:0;font-size:12px;font-weight:800;color:#fff;">'+initials+'</div>' +
         '<div class="watchlist-body">' +
         '<div class="watchlist-name">'+(c.name||'')+'<span class="watchlist-status status-active" style="background:#fff7ed;color:var(--frontier);border-color:#fed7aa;">'+(c.category||'Space')+'</span></div>' +
         '<div class="watchlist-latest">'+(c.update||c.description||'')+'</div>' +
@@ -5993,27 +5928,21 @@ async function fetchFrontierTrending() {
     var data = await supabaseFetch('frontier_stories', 'select=*&order=created_at.desc&limit=6');
     var el = document.getElementById('frontier-trending-grid');
     if (!el || !data || data.length === 0) return;
-    data.slice(0,6).forEach(function(s) {
-      if (s.title && !STORIES.find(function(x){ return x.title===s.title; }))
-        STORIES.push({title:s.title,cat:'frontier',source:s.source||'AMG',time:s.created_at?timeAgo(s.created_at):'Today',excerpt:s.excerpt||'',url:s.url||'#',image_url:s.image_url||null});
-    });
     el.innerHTML = data.slice(0,6).map(function(s) {
-      var t = (s.title||'').replace(/"/g,'&quot;').replace(/'/g,'&#39;');
-      var imgHtml = s.image_url ? '<div class="card-image" style="width:100%;height:140px;background:url(\''+s.image_url+'\') center/cover no-repeat;border-radius:8px 8px 0 0;margin:-16px -16px 12px -16px;width:calc(100% + 32px);flex-shrink:0;"></div>' : makePlaceholderImg('frontier', s.category, 140);
-      return '<div class="card" data-cat="frontier" data-source="'+(s.source||'')+'" data-title="'+t+'" data-url="'+(s.url||'')+'" style="cursor:pointer;">'+
-        '<div class="card-body">'+imgHtml+
-        '<div class="tag" style="color:var(--frontier);">'+(s.category||'Space')+'</div>'+
-        '<div class="card-title">'+(s.title||'')+'</div>'+
-        '<div class="card-footer"><span class="card-source">'+(s.source||'')+'</span><span class="card-time">'+(s.created_at?timeAgo(s.created_at):'Today')+'</span></div>'+
-        '<div class="card-actions">'+
-        '<button class="card-btn summarize-btn" data-title="'+t+'">&#9889; Summary</button>'+
-        '<button class="card-btn bookmark-btn" data-title="'+t+'">&#128278; Save</button>'+
-        '<button class="card-btn share-btn" data-title="'+t+'"><svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="18" cy="5" r="3"/><circle cx="6" cy="12" r="3"/><circle cx="18" cy="19" r="3"/><line x1="8.59" y1="13.51" x2="15.42" y2="17.49"/><line x1="15.41" y1="6.51" x2="8.59" y2="10.49"/></svg> Share</button>'+
-        '<button class=\"tile-share-btn\" title=\"Share\"><svg width=\"14\" height=\"14\" viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"2\"><circle cx=\"18\" cy=\"5\" r=\"3\"/><circle cx=\"6\" cy=\"12\" r=\"3\"/><circle cx=\"18\" cy=\"19\" r=\"3\"/><line x1=\"8.59\" y1=\"13.51\" x2=\"15.42\" y2=\"17.49\"/><line x1=\"15.41\" y1=\"6.51\" x2=\"8.59\" y2=\"10.49\"/></svg></button></div></div></div>';
+      var imgHtml = s.image_url
+        ? '<img src="'+s.image_url+'" alt="" style="width:100%;height:120px;object-fit:cover;border-radius:8px 8px 0 0;display:block;" loading="lazy" onerror="this.style.display=\'none\'" />'
+        : '';
+      return '<div class="card" style="opacity:1;">' +
+        imgHtml +
+        '<div class="card-body">' +
+        '<div class="tag" style="color:var(--frontier);">'+(s.category||'Space')+'</div>' +
+        '<div class="card-title">'+(s.title||'')+'</div>' +
+        '<div class="card-footer"><span class="card-source">'+(s.source||'')+'</span><span class="card-time">Today</span></div>' +
+        '</div></div>';
     }).join('');
-    wireCards();
   } catch(e) { console.error('fetchFrontierTrending:', e); }
 }
+
 // ── FRONTIER ATOMIC PREDICTIONS ──
 async function fetchFrontierForecasts() {
   try {
@@ -6074,7 +6003,7 @@ async function fetchFrontierForecasts() {
         '<span class="forecast-panel-head-title" style="color:var(--frontier);">'+cat+' Predictions</span>' +
         '</div><div class="forecast-timeline">' +
         (timelineHtml||'<p style="color:var(--text-muted);font-size:13px;padding:8px 0;">No predictions yet.</p>') +
-        '<button class=\"tile-share-btn\" title=\"Share\"><svg width=\"14\" height=\"14\" viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"2\"><circle cx=\"18\" cy=\"5\" r=\"3\"/><circle cx=\"6\" cy=\"12\" r=\"3\"/><circle cx=\"18\" cy=\"19\" r=\"3\"/><line x1=\"8.59\" y1=\"13.51\" x2=\"15.42\" y2=\"17.49\"/><line x1=\"15.41\" y1=\"6.51\" x2=\"8.59\" y2=\"10.49\"/></svg></button></div></div>';
+        '</div></div>';
     }
 
     // Group by category pairs
@@ -6099,77 +6028,47 @@ async function fetchLongevityStories() {
   try {
     var data = await supabaseFetch('longevity_stories', 'select=*&order=created_at.desc&limit=15');
     if (!data || data.length === 0) return;
-    data.slice(0,6).forEach(function(s) {
-      if (s.title && !STORIES.find(function(x){ return x.title===s.title; }))
-        STORIES.push({title:s.title,cat:'longevity',source:s.source||'AMG',time:s.created_at?timeAgo(s.created_at):'Today',excerpt:s.excerpt||'',url:s.url||'#',image_url:s.image_url||null});
-    });
     var heroEl = document.getElementById('longevity-top-stories-grid');
     if (heroEl) {
       heroEl.innerHTML = data.slice(0,6).map(function(s) {
-        var t = (s.title||'').replace(/"/g,'&quot;').replace(/'/g,'&#39;');
-        var imgHtml = s.image_url ? '<div class="card-image" style="width:100%;height:160px;background:url(\''+s.image_url+'\') center/cover no-repeat;border-radius:8px 8px 0 0;margin:-16px -16px 12px -16px;width:calc(100% + 32px);flex-shrink:0;"></div>' : makePlaceholderImg('frontier', s.category, 160);
-        return '<div class="card" data-cat="longevity" data-source="'+(s.source||'')+'" data-title="'+t+'" data-url="'+(s.url||'')+'" style="cursor:pointer;">'+
-          '<div class="card-body">'+imgHtml+
-          '<div class="tag" style="color:var(--longevity);">'+(s.category||'Longevity')+'</div>'+
-          '<div class="card-title">'+(s.title||'')+'</div>'+
-          '<div class="card-excerpt">'+(s.excerpt||'')+'</div>'+
-          '<div class="card-footer"><span class="card-source">'+(s.source||'')+'</span><span class="card-time">'+(s.created_at?timeAgo(s.created_at):'Today')+'</span></div>'+
-          '<div class="card-actions">'+
-          '<button class="card-btn summarize-btn" data-title="'+t+'">&#9889; AI Summary</button>'+
-          '<button class="card-btn bookmark-btn" data-title="'+t+'">&#128278; Save</button>'+
-          '<button class="card-btn share-btn" data-title="'+t+'"><svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="18" cy="5" r="3"/><circle cx="6" cy="12" r="3"/><circle cx="18" cy="19" r="3"/><line x1="8.59" y1="13.51" x2="15.42" y2="17.49"/><line x1="15.41" y1="6.51" x2="8.59" y2="10.49"/></svg> Share</button>'+
-          '<button class=\"tile-share-btn\" title=\"Share\"><svg width=\"14\" height=\"14\" viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"2\"><circle cx=\"18\" cy=\"5\" r=\"3\"/><circle cx=\"6\" cy=\"12\" r=\"3\"/><circle cx=\"18\" cy=\"19\" r=\"3\"/><line x1=\"8.59\" y1=\"13.51\" x2=\"15.42\" y2=\"17.49\"/><line x1=\"15.41\" y1=\"6.51\" x2=\"8.59\" y2=\"10.49\"/></svg></button></div></div></div>';
+        var imgHtml = s.image_url ? '<img src="'+s.image_url+'" alt="" style="width:100%;height:160px;object-fit:cover;border-radius:8px 8px 0 0;display:block;" loading="lazy" onerror="this.style.display=\'none\'" />' : '';
+        return '<div class="card" style="opacity:1;">' + imgHtml +
+          '<div class="card-body">' +
+          '<div class="tag" style="color:var(--longevity);">'+(s.category||'Longevity')+'</div>' +
+          '<div class="card-title">'+(s.title||'')+'</div>' +
+          '<div class="card-excerpt">'+(s.excerpt||'')+'</div>' +
+          '<div class="card-footer"><span class="card-source">'+(s.source||'')+'</span><span class="card-time">Today</span></div>' +
+          '</div></div>';
       }).join('');
-      wireCards();
     }
   } catch(e) { console.error('fetchLongevityStories:', e); }
 }
+
 async function fetchLongevityTrending() {
   try {
     var data = await supabaseFetch('longevity_stories', 'select=*&order=created_at.desc&limit=6');
     var el = document.getElementById('longevity-trending-grid');
     if (!el || !data || data.length === 0) return;
-    data.slice(0,6).forEach(function(s) {
-      if (s.title && !STORIES.find(function(x){ return x.title===s.title; }))
-        STORIES.push({title:s.title,cat:'longevity',source:s.source||'AMG',time:s.created_at?timeAgo(s.created_at):'Today',excerpt:s.excerpt||'',url:s.url||'#',image_url:s.image_url||null});
-    });
     el.innerHTML = data.slice(0,6).map(function(s) {
-      var t = (s.title||'').replace(/"/g,'&quot;').replace(/'/g,'&#39;');
-      var imgHtml = s.image_url ? '<div class="card-image" style="width:100%;height:140px;background:url(\''+s.image_url+'\') center/cover no-repeat;border-radius:8px 8px 0 0;margin:-16px -16px 12px -16px;width:calc(100% + 32px);flex-shrink:0;"></div>' : makePlaceholderImg('longevity', s.category, 140);
-      return '<div class="card" data-cat="longevity" data-source="'+(s.source||'')+'" data-title="'+t+'" data-url="'+(s.url||'')+'" style="cursor:pointer;">'+
-        '<div class="card-body">'+imgHtml+
-        '<div class="tag" style="color:var(--longevity);">'+(s.category||'Longevity')+'</div>'+
-        '<div class="card-title">'+(s.title||'')+'</div>'+
-        '<div class="card-footer"><span class="card-source">'+(s.source||'')+'</span><span class="card-time">'+(s.created_at?timeAgo(s.created_at):'Today')+'</span></div>'+
-        '<div class="card-actions">'+
-        '<button class="card-btn summarize-btn" data-title="'+t+'">&#9889; Summary</button>'+
-        '<button class="card-btn bookmark-btn" data-title="'+t+'">&#128278; Save</button>'+
-        '<button class="card-btn share-btn" data-title="'+t+'"><svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="18" cy="5" r="3"/><circle cx="6" cy="12" r="3"/><circle cx="18" cy="19" r="3"/><line x1="8.59" y1="13.51" x2="15.42" y2="17.49"/><line x1="15.41" y1="6.51" x2="8.59" y2="10.49"/></svg> Share</button>'+
-        '<button class=\"tile-share-btn\" title=\"Share\"><svg width=\"14\" height=\"14\" viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"2\"><circle cx=\"18\" cy=\"5\" r=\"3\"/><circle cx=\"6\" cy=\"12\" r=\"3\"/><circle cx=\"18\" cy=\"19\" r=\"3\"/><line x1=\"8.59\" y1=\"13.51\" x2=\"15.42\" y2=\"17.49\"/><line x1=\"15.41\" y1=\"6.51\" x2=\"8.59\" y2=\"10.49\"/></svg></button></div></div></div>';
+      var imgHtml = s.image_url ? '<img src="'+s.image_url+'" alt="" style="width:100%;height:120px;object-fit:cover;border-radius:8px 8px 0 0;display:block;" loading="lazy" onerror="this.style.display=\'none\'" />' : '';
+      return '<div class="card" style="opacity:1;">' + imgHtml +
+        '<div class="card-body">' +
+        '<div class="tag" style="color:var(--longevity);">'+(s.category||'Longevity')+'</div>' +
+        '<div class="card-title">'+(s.title||'')+'</div>' +
+        '<div class="card-footer"><span class="card-source">'+(s.source||'')+'</span><span class="card-time">Today</span></div>' +
+        '</div></div>';
     }).join('');
-    wireCards();
   } catch(e) { console.error('fetchLongevityTrending:', e); }
 }
+
 async function fetchLongevityRealWorld() {
   try {
     var data = await supabaseFetch('longevity_real_world', 'select=*&order=created_at.desc&limit=20');
     if (!data || data.length === 0) return;
     var prod = data.filter(function(d){ return (d.status||'').toLowerCase().includes('production') || (d.status||'').toLowerCase().includes('clinical use'); }).slice(0,4);
     var horizon = data.filter(function(d){ return (d.status||'').toLowerCase().includes('horizon'); }).slice(0,4);
-    var LONGEVITY_ICONS = {'therapeutics':'💊','diagnostics':'🔬','biotech':'🧬','ai drug discovery':'🤖','biohacking':'⚡','genomics':'🧪','oncology':'🏥','neuroscience':'🧠','longevity':'♾️','clinical':'🏥','research':'🔬'};
     function makeItem(d) {
-      var domain = '';
-      try { if (d.url) domain = new URL(d.url).hostname.replace('www.',''); } catch(e) {}
-      var icon = domain ? makeLogoImg(domain, d.name, LONGEVITY_ICONS[(d.sector||'').toLowerCase()]||'🧬', 'watchlist-logo') : '<div class="tool-icon">'+(LONGEVITY_ICONS[(d.sector||'').toLowerCase()]||'🧬')+'</div>';
-      return '<div class="tool-item">' +
-        icon +
-        '<div class="tool-body">' +
-        '<div class="tool-name">'+(d.name||'')+'</div>' +
-        '<div class="tool-desc">'+(d.description||'')+'</div>' +
-        '<div class="tool-footer"><span class="tool-cat">⊟ '+(d.sector||'Longevity')+'</span><span class="tool-stars" style="color:var(--text-muted);font-size:11px;">'+(d.status||'')+'</span></div>' +
-        '</div>
-        <button class="tile-share-btn" title="Share"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="18" cy="5" r="3"/><circle cx="6" cy="12" r="3"/><circle cx="18" cy="19" r="3"/><line x1="8.59" y1="13.51" x2="15.42" y2="17.49"/><line x1="15.41" y1="6.51" x2="8.59" y2="10.49"/></svg></button>
-        </div>';
+      return '<div class="tool-item"><div class="tool-name">'+(d.name||'')+'</div><div class="tool-desc">'+(d.description||'')+'</div><div class="tool-tag">'+(d.sector||'Longevity')+'<button class=\"tile-share-btn\" title=\"Share\"><svg width=\"14\" height=\"14\" viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"2\"><circle cx=\"18\" cy=\"5\" r=\"3\"/><circle cx=\"6\" cy=\"12\" r=\"3\"/><circle cx=\"18\" cy=\"19\" r=\"3\"/><line x1=\"8.59\" y1=\"13.51\" x2=\"15.42\" y2=\"17.49\"/><line x1=\"15.41\" y1=\"6.51\" x2=\"8.59\" y2=\"10.49\"/></svg></button></div></div>';
     }
     var prodEl = document.getElementById('longevity-prod-scroll');
     if (prodEl) prodEl.innerHTML = '<div class="panel-no-results" style="display:none">No results</div>' + prod.slice(0,4).map(makeItem).join('');
@@ -6197,15 +6096,13 @@ async function fetchLongevityCompanies() {
     var clinicCos = data.filter(function(c){ return (c.type||'').toLowerCase()!=='biotech'; }).slice(0,4);
     function makeItem(c) {
       var href = c.url || ('https://www.google.com/search?q='+encodeURIComponent((c.name||'')+' longevity'));
-      var domain = '';
-      try { if (c.url) domain = new URL(c.url).hostname.replace('www.',''); } catch(e) {}
-      var logoHtml = domain ? makeLogoImg(domain, c.name, 'letter', 'watchlist-logo') : makeLetterAvatar(c.name, '');
+      var initials = (c.name||'?').substring(0,2).toUpperCase();
       return '<a class="watchlist-item" href="'+href+'" target="_blank" rel="noopener">' +
-        logoHtml +
+        '<div style="width:36px;height:36px;border-radius:8px;background:linear-gradient(135deg,var(--longevity),#34d399);display:flex;align-items:center;justify-content:center;flex-shrink:0;font-size:12px;font-weight:800;color:#fff;">'+initials+'</div>' +
         '<div class="watchlist-body">' +
         '<div class="watchlist-name">'+(c.name||'')+'<span class="watchlist-status status-active" style="background:#ecfdf5;color:var(--longevity);border-color:#a7f3d0;">'+(c.category||'Longevity')+'</span></div>' +
         '<div class="watchlist-latest">'+(c.update||c.description||'')+'</div>' +
-        '<button class=\"tile-share-btn\" title=\"Share\"><svg width=\"14\" height=\"14\" viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"2\"><circle cx=\"18\" cy=\"5\" r=\"3\"/><circle cx=\"6\" cy=\"12\" r=\"3\"/><circle cx=\"18\" cy=\"19\" r=\"3\"/><line x1=\"8.59\" y1=\"13.51\" x2=\"15.42\" y2=\"17.49\"/><line x1=\"15.41\" y1=\"6.51\" x2=\"8.59\" y2=\"10.49\"/></svg></button></div></a>';
+        '</div></a>';
     }
     var biotechEl = document.getElementById('longevity-biotech-scroll');
     if (biotechEl) biotechEl.innerHTML = '<div class="panel-no-results" style="display:none">No results</div>' + biotechCos.map(makeItem).join('');
@@ -6357,7 +6254,7 @@ document.addEventListener('keydown', function(e) {
       var workSection = document.getElementById('section-work');
       if (!workSection) return;
 
-      // Update active tab  -  only within the work section
+      // Update active tab — only within the work section
       workSection.querySelectorAll('.filter-tab').forEach(function(t) {
         t.classList.remove('active');
       });
