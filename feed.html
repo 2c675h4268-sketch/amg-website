@@ -5302,12 +5302,18 @@ document.addEventListener('DOMContentLoaded', function() {
   fetchRealWorldRobotics();
   fetchStats();
 
-  // Auto-switch vertical based on URL parameter
+  // Auto-switch vertical based on URL parameter, then localStorage
   var urlParams = new URLSearchParams(window.location.search);
   var vertical = urlParams.get('v');
   if (vertical === 'frontier') switchVertical('frontier');
   else if (vertical === 'longevity') switchVertical('longevity');
   else if (vertical === 'work') switchVertical('work');
+  else {
+    try {
+      var saved = localStorage.getItem('amg-vertical');
+      if (saved && saved !== 'ai') switchVertical(saved);
+    } catch(e) {}
+  }
 });
 // ── SAVED (localStorage) ──
 function getSaved(){ try{return JSON.parse(localStorage.getItem('amg-saved')||'[]');}catch(e){return[];} }
@@ -5415,17 +5421,19 @@ let activeFilters = { cat: 'all', source: 'all' };
 const filterBtn = document.getElementById('filter-btn');
 const filterPanel = document.getElementById('filter-panel');
 
-filterBtn.addEventListener('click', function(e){
-  e.stopPropagation();
-  filterPanel.classList.toggle('open');
-  filterBtn.classList.toggle('active', filterPanel.classList.contains('open'));
-});
-document.addEventListener('click', function(e){
-  if(!filterPanel.contains(e.target) && e.target !== filterBtn){
-    filterPanel.classList.remove('open');
-    filterBtn.classList.remove('active');
-  }
-});
+if (filterBtn) {
+  filterBtn.addEventListener('click', function(e){
+    e.stopPropagation();
+    filterPanel.classList.toggle('open');
+    filterBtn.classList.toggle('active', filterPanel.classList.contains('open'));
+  });
+  document.addEventListener('click', function(e){
+    if(!filterPanel.contains(e.target) && e.target !== filterBtn){
+      filterPanel.classList.remove('open');
+      filterBtn.classList.remove('active');
+    }
+  });
+}
 
 function wireFilterChips() {
   document.querySelectorAll('.filter-chip').forEach(chip => {
@@ -5770,8 +5778,9 @@ document.addEventListener('keydown', function(e){ if(e.key === 'Escape') closeAb
 
 // ── VERTICAL SWITCHER ──
 function switchVertical(mode) {
-  window.scrollTo(0, 0);
+  setTimeout(function(){ window.scrollTo(0, 0); }, 0);
   updateDropdownLabel(mode);
+  try { localStorage.setItem('amg-vertical', mode); } catch(e) {}
   var aiSection = document.getElementById('section-ai-robotics');
   var frontierSection = document.getElementById('section-frontier');
   var btnAI = document.getElementById('btn-ai-robotics');
@@ -5781,10 +5790,15 @@ function switchVertical(mode) {
   if (mode === 'frontier') {
     aiSection.style.display = 'none';
     frontierSection.style.display = 'block';
+    document.getElementById('section-longevity').style.display = 'none';
+    if (document.getElementById('section-work')) document.getElementById('section-work').style.display = 'none';
     btnAI.classList.remove('active');
     btnFrontier.classList.add('active');
+    document.getElementById('btn-longevity').classList.remove('active');
+    document.getElementById('btn-work').classList.remove('active');
     document.body.classList.add('frontier-mode');
-      if (!frontierSection.dataset.loaded) {
+    document.body.classList.remove('longevity-mode');
+    if (!frontierSection.dataset.loaded) {
       fetchFrontierStories();
       fetchFrontierRealWorld();
       fetchFrontierCompanies();
@@ -5795,9 +5809,11 @@ function switchVertical(mode) {
     aiSection.style.display = 'none';
     frontierSection.style.display = 'none';
     document.getElementById('section-longevity').style.display = 'block';
+    if (document.getElementById('section-work')) document.getElementById('section-work').style.display = 'none';
     btnAI.classList.remove('active');
     btnFrontier.classList.remove('active');
     document.getElementById('btn-longevity').classList.add('active');
+    document.getElementById('btn-work').classList.remove('active');
     document.body.classList.remove('frontier-mode');
     document.body.classList.add('longevity-mode');
       var longevitySection = document.getElementById('section-longevity');
