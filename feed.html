@@ -1595,26 +1595,6 @@ a { color: inherit; text-decoration: none; }
 }
 
 
-
-/* ── TILE SHARE BUTTON ── */
-.tile-share-btn {
-  position: absolute;
-  bottom: 8px;
-  right: 8px;
-  background: none;
-  border: none;
-  cursor: pointer;
-  padding: 4px;
-  opacity: 0.25;
-  transition: opacity 0.15s;
-  line-height: 1;
-  border-radius: 4px;
-  z-index: 2;
-}
-.tile-share-btn:hover { opacity: 0.7; background: var(--surface); }
-.tile-share-btn svg { display: block; }
-.tool-item, .stat-tile, .watchlist-item, .forecast-panel, .tool-card { position: relative; }
-
 /* ── MOBILE POLISH ── */
 @media (max-width: 480px) {
   .section-title { font-size: 17px; margin-top: 36px; margin-bottom: 14px; }
@@ -2727,7 +2707,6 @@ body.frontier-mode .footer-email-input:focus { border-color: var(--frontier); }
             <div class="tool-name">Harvey Enterprise Legal AI</div>
             <div class="tool-desc">Harvey is deployed inside Allen & Overy, PwC, and 100+ law firms drafting contracts, running due diligence, and surfacing case law at a fraction of associate hours. Billing rates haven't dropped. Volume has exploded.</div>
             <div class="tool-footer"><span class="tool-cat">⊟ Legal</span><span class="tool-stars" style="color:var(--text-muted);font-size:11px;">Harvey AI · Live</span></div>
-        <button class="tile-share-btn" title="Share"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="18" cy="5" r="3"/><circle cx="6" cy="12" r="3"/><circle cx="18" cy="19" r="3"/><line x1="8.59" y1="13.51" x2="15.42" y2="17.49"/><line x1="15.41" y1="6.51" x2="8.59" y2="10.49"/></svg></button>
           </div>
         </div>
         <div class="tool-item">
@@ -2736,7 +2715,6 @@ body.frontier-mode .footer-email-input:focus { border-color: var(--frontier); }
             <div class="tool-name">JPMorgan COiN Contract Intelligence</div>
             <div class="tool-desc">JPMorgan's COiN platform reviews 12,000 commercial credit agreements per year work that previously took 360,000 hours of lawyer time annually. Error rate is lower than human review.</div>
             <div class="tool-footer"><span class="tool-cat">⊟ Finance</span><span class="tool-stars" style="color:var(--text-muted);font-size:11px;">JPMorgan · Live</span></div>
-        <button class="tile-share-btn" title="Share"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="18" cy="5" r="3"/><circle cx="6" cy="12" r="3"/><circle cx="18" cy="19" r="3"/><line x1="8.59" y1="13.51" x2="15.42" y2="17.49"/><line x1="15.41" y1="6.51" x2="8.59" y2="10.49"/></svg></button>
           </div>
         </div>
         <div class="tool-item">
@@ -2745,7 +2723,6 @@ body.frontier-mode .footer-email-input:focus { border-color: var(--frontier); }
             <div class="tool-name">Google DeepMind AlphaFold Drug Discovery</div>
             <div class="tool-desc">AlphaFold has predicted the structure of 200M+ proteins essentially the entire known universe of biology. Dozens of pharmaceutical companies are now using it to accelerate drug discovery pipelines by years.</div>
             <div class="tool-footer"><span class="tool-cat">⊟ Healthcare</span><span class="tool-stars" style="color:var(--text-muted);font-size:11px;">DeepMind · Live</span></div>
-        <button class="tile-share-btn" title="Share"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="18" cy="5" r="3"/><circle cx="6" cy="12" r="3"/><circle cx="18" cy="19" r="3"/><line x1="8.59" y1="13.51" x2="15.42" y2="17.49"/><line x1="15.41" y1="6.51" x2="8.59" y2="10.49"/></svg></button>
           </div>
         </div>
         <div class="tool-item">
@@ -2754,7 +2731,6 @@ body.frontier-mode .footer-email-input:focus { border-color: var(--frontier); }
             <div class="tool-name">Amazon AI-Powered Demand Forecasting</div>
             <div class="tool-desc">Amazon's ML forecasting stack now handles real-time inventory decisions across 350M+ SKUs globally predicting regional demand spikes before they happen and auto-repositioning stock across fulfillment centers.</div>
             <div class="tool-footer"><span class="tool-cat">⊟ Retail</span><span class="tool-stars" style="color:var(--text-muted);font-size:11px;">Amazon · Live</span></div>
-        <button class="tile-share-btn" title="Share"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="18" cy="5" r="3"/><circle cx="6" cy="12" r="3"/><circle cx="18" cy="19" r="3"/><line x1="8.59" y1="13.51" x2="15.42" y2="17.49"/><line x1="15.41" y1="6.51" x2="8.59" y2="10.49"/></svg></button>
           </div>
         </div>
         <div class="tool-item">
@@ -2763,7 +2739,6 @@ body.frontier-mode .footer-email-input:focus { border-color: var(--frontier); }
             <div class="tool-name">Airbus Generative Design for Aircraft Parts</div>
             <div class="tool-desc">Airbus uses generative AI to design aircraft partition brackets that are 45% lighter than human-designed counterparts. The A320 now flies with AI-optimized structural components across its entire fleet.</div>
             <div class="tool-footer"><span class="tool-cat">⊟ Aerospace</span><span class="tool-stars" style="color:var(--text-muted);font-size:11px;">Airbus · Live</span></div>
-        <button class="tile-share-btn" title="Share"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="18" cy="5" r="3"/><circle cx="6" cy="12" r="3"/><circle cx="18" cy="19" r="3"/><line x1="8.59" y1="13.51" x2="15.42" y2="17.49"/><line x1="15.41" y1="6.51" x2="8.59" y2="10.49"/></svg></button>
           </div>
         </div>
       </div>
@@ -2782,7 +2757,6 @@ body.frontier-mode .footer-email-input:focus { border-color: var(--frontier); }
             <div class="tool-name">Agentic AI in the Enterprise</div>
             <div class="tool-desc">Every major platform Salesforce, ServiceNow, SAP, Workday is shipping autonomous agent layers in 2025. The shift from AI as a tool to AI as a worker completing multi-step tasks is the defining enterprise transition of the decade.</div>
             <div class="tool-footer"><span class="tool-cat">⊟ Enterprise</span><span class="tool-stars" style="color:var(--text-muted);font-size:11px;">Multiple · 2025–26</span></div>
-        <button class="tile-share-btn" title="Share"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="18" cy="5" r="3"/><circle cx="6" cy="12" r="3"/><circle cx="18" cy="19" r="3"/><line x1="8.59" y1="13.51" x2="15.42" y2="17.49"/><line x1="15.41" y1="6.51" x2="8.59" y2="10.49"/></svg></button>
           </div>
         </div>
         <div class="tool-item">
@@ -2791,7 +2765,6 @@ body.frontier-mode .footer-email-input:focus { border-color: var(--frontier); }
             <div class="tool-name">AI Tutors at Scale</div>
             <div class="tool-desc">Khan Academy's Khanmigo and emerging competitors are deploying personalized AI tutors to millions of students. Early data shows significant learning acceleration particularly for underserved students without access to private tutoring.</div>
             <div class="tool-footer"><span class="tool-cat">⊟ Education</span><span class="tool-stars" style="color:var(--text-muted);font-size:11px;">Khan Academy + · 2025</span></div>
-        <button class="tile-share-btn" title="Share"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="18" cy="5" r="3"/><circle cx="6" cy="12" r="3"/><circle cx="18" cy="19" r="3"/><line x1="8.59" y1="13.51" x2="15.42" y2="17.49"/><line x1="15.41" y1="6.51" x2="8.59" y2="10.49"/></svg></button>
           </div>
         </div>
         <div class="tool-item">
@@ -2800,7 +2773,6 @@ body.frontier-mode .footer-email-input:focus { border-color: var(--frontier); }
             <div class="tool-name">AI in Physical Infrastructure</div>
             <div class="tool-desc">Utilities and grid operators are deploying AI to manage load balancing, predict equipment failure, and optimize renewable energy dispatch in real time. The US grid's transition to AI-managed infrastructure is already underway.</div>
             <div class="tool-footer"><span class="tool-cat">⊟ Infrastructure</span><span class="tool-stars" style="color:var(--text-muted);font-size:11px;">Multiple · 2025–26</span></div>
-        <button class="tile-share-btn" title="Share"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="18" cy="5" r="3"/><circle cx="6" cy="12" r="3"/><circle cx="18" cy="19" r="3"/><line x1="8.59" y1="13.51" x2="15.42" y2="17.49"/><line x1="15.41" y1="6.51" x2="8.59" y2="10.49"/></svg></button>
           </div>
         </div>
         <div class="tool-item">
@@ -2809,7 +2781,6 @@ body.frontier-mode .footer-email-input:focus { border-color: var(--frontier); }
             <div class="tool-name">AI-Generated Film & Advertising</div>
             <div class="tool-desc">Major studios and ad agencies are piloting fully AI-generated video for B-roll, product ads, and localization. Sora, Runway, and Kling are already in agency workflows. Full AI feature films are 18–24 months from credibility.</div>
             <div class="tool-footer"><span class="tool-cat">⊟ Media</span><span class="tool-stars" style="color:var(--text-muted);font-size:11px;">Multiple · 2025–26</span></div>
-        <button class="tile-share-btn" title="Share"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="18" cy="5" r="3"/><circle cx="6" cy="12" r="3"/><circle cx="18" cy="19" r="3"/><line x1="8.59" y1="13.51" x2="15.42" y2="17.49"/><line x1="15.41" y1="6.51" x2="8.59" y2="10.49"/></svg></button>
           </div>
         </div>
         <div class="tool-item">
@@ -2818,7 +2789,6 @@ body.frontier-mode .footer-email-input:focus { border-color: var(--frontier); }
             <div class="tool-name">AI-Designed Clinical Trials</div>
             <div class="tool-desc">Pharma companies are using AI to design smarter trials identifying optimal patient cohorts, predicting dropout risk, and simulating outcomes before a single dose is administered. Trial timelines are compressing from years to months.</div>
             <div class="tool-footer"><span class="tool-cat">⊟ Pharma</span><span class="tool-stars" style="color:var(--text-muted);font-size:11px;">Multiple · 2026</span></div>
-        <button class="tile-share-btn" title="Share"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="18" cy="5" r="3"/><circle cx="6" cy="12" r="3"/><circle cx="18" cy="19" r="3"/><line x1="8.59" y1="13.51" x2="15.42" y2="17.49"/><line x1="15.41" y1="6.51" x2="8.59" y2="10.49"/></svg></button>
           </div>
         </div>
       </div>
@@ -2843,7 +2813,6 @@ body.frontier-mode .footer-email-input:focus { border-color: var(--frontier); }
             <div class="tool-name">Figure 02 BMW Manufacturing</div>
             <div class="tool-desc">Figure AI's humanoid is operating autonomously on BMW's Spartanburg production floor handling parts, assembly support, and logistics tasks across full shifts without human intervention.</div>
             <div class="tool-footer"><span class="tool-cat">⊟ Automotive</span><span class="tool-stars" style="color:var(--text-muted);font-size:11px;">Figure AI · Live</span></div>
-        <button class="tile-share-btn" title="Share"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="18" cy="5" r="3"/><circle cx="6" cy="12" r="3"/><circle cx="18" cy="19" r="3"/><line x1="8.59" y1="13.51" x2="15.42" y2="17.49"/><line x1="15.41" y1="6.51" x2="8.59" y2="10.49"/></svg></button>
           </div>
         </div>
         <div class="tool-item">
@@ -2852,7 +2821,6 @@ body.frontier-mode .footer-email-input:focus { border-color: var(--frontier); }
             <div class="tool-name">Agility Digit Amazon Warehouses</div>
             <div class="tool-desc">Digit robots are running 24/7 tote-handling operations across Amazon fulfillment centers. The pilot has cleared 1M+ cycles with error rates below 0.3% expansion to 10 facilities confirmed.</div>
             <div class="tool-footer"><span class="tool-cat">⊟ Logistics</span><span class="tool-stars" style="color:var(--text-muted);font-size:11px;">Agility Robotics · Live</span></div>
-        <button class="tile-share-btn" title="Share"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="18" cy="5" r="3"/><circle cx="6" cy="12" r="3"/><circle cx="18" cy="19" r="3"/><line x1="8.59" y1="13.51" x2="15.42" y2="17.49"/><line x1="15.41" y1="6.51" x2="8.59" y2="10.49"/></svg></button>
           </div>
         </div>
         <div class="tool-item">
@@ -2861,7 +2829,6 @@ body.frontier-mode .footer-email-input:focus { border-color: var(--frontier); }
             <div class="tool-name">Moxi Hospital Delivery Networks</div>
             <div class="tool-desc">Diligent Robotics' Moxi is deployed in 50+ US hospitals autonomously delivering labs, meds, and supplies across floors freeing nurses from an average of 30 minutes of fetch tasks per shift.</div>
             <div class="tool-footer"><span class="tool-cat">⊟ Healthcare</span><span class="tool-stars" style="color:var(--text-muted);font-size:11px;">Diligent Robotics · Live</span></div>
-        <button class="tile-share-btn" title="Share"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="18" cy="5" r="3"/><circle cx="6" cy="12" r="3"/><circle cx="18" cy="19" r="3"/><line x1="8.59" y1="13.51" x2="15.42" y2="17.49"/><line x1="15.41" y1="6.51" x2="8.59" y2="10.49"/></svg></button>
           </div>
         </div>
         <div class="tool-item">
@@ -2870,7 +2837,6 @@ body.frontier-mode .footer-email-input:focus { border-color: var(--frontier); }
             <div class="tool-name">John Deere Autonomous Tractors</div>
             <div class="tool-desc">Over 500 fully autonomous 8R tractors are now operating on US farms plowing, planting, and spraying without operators. GPS + computer vision handles field navigation end-to-end.</div>
             <div class="tool-footer"><span class="tool-cat">⊟ Agriculture</span><span class="tool-stars" style="color:var(--text-muted);font-size:11px;">John Deere · Live</span></div>
-        <button class="tile-share-btn" title="Share"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="18" cy="5" r="3"/><circle cx="6" cy="12" r="3"/><circle cx="18" cy="19" r="3"/><line x1="8.59" y1="13.51" x2="15.42" y2="17.49"/><line x1="15.41" y1="6.51" x2="8.59" y2="10.49"/></svg></button>
           </div>
         </div>
         <div class="tool-item">
@@ -2879,7 +2845,6 @@ body.frontier-mode .footer-email-input:focus { border-color: var(--frontier); }
             <div class="tool-name">Flippy 2 Commercial Kitchens</div>
             <div class="tool-desc">Miso Robotics' Flippy 2 is frying, grilling, and plating at scale inside White Castle and Jack in the Box locations. Each unit handles the equivalent of 2 full-time workers during peak hours.</div>
             <div class="tool-footer"><span class="tool-cat">⊟ Food Service</span><span class="tool-stars" style="color:var(--text-muted);font-size:11px;">Miso Robotics · Live</span></div>
-        <button class="tile-share-btn" title="Share"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="18" cy="5" r="3"/><circle cx="6" cy="12" r="3"/><circle cx="18" cy="19" r="3"/><line x1="8.59" y1="13.51" x2="15.42" y2="17.49"/><line x1="15.41" y1="6.51" x2="8.59" y2="10.49"/></svg></button>
           </div>
         </div>
       </div>
@@ -2898,7 +2863,6 @@ body.frontier-mode .footer-email-input:focus { border-color: var(--frontier); }
             <div class="tool-name">Tesla Optimus Consumer Launch</div>
             <div class="tool-desc">Tesla has moved its consumer Optimus timeline to late 2026. Internal units are already handling parts sorting and battery assembly. Musk targets a $20K price point cheaper than a used car.</div>
             <div class="tool-footer"><span class="tool-cat">⊟ Consumer</span><span class="tool-stars" style="color:var(--text-muted);font-size:11px;">Tesla · Est. 2026</span></div>
-        <button class="tile-share-btn" title="Share"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="18" cy="5" r="3"/><circle cx="6" cy="12" r="3"/><circle cx="18" cy="19" r="3"/><line x1="8.59" y1="13.51" x2="15.42" y2="17.49"/><line x1="15.41" y1="6.51" x2="8.59" y2="10.49"/></svg></button>
           </div>
         </div>
         <div class="tool-item">
@@ -2907,7 +2871,6 @@ body.frontier-mode .footer-email-input:focus { border-color: var(--frontier); }
             <div class="tool-name">Boston Dynamics Atlas Enterprise Rollout</div>
             <div class="tool-desc">The fully electric Atlas is shipping to select enterprise partners in Q3. It can lift 25kg, climb stairs, and recover from falls autonomously. Construction and heavy industry are the first targets.</div>
             <div class="tool-footer"><span class="tool-cat">⊟ Industrial</span><span class="tool-stars" style="color:var(--text-muted);font-size:11px;">Boston Dynamics · Q3 2025</span></div>
-        <button class="tile-share-btn" title="Share"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="18" cy="5" r="3"/><circle cx="6" cy="12" r="3"/><circle cx="18" cy="19" r="3"/><line x1="8.59" y1="13.51" x2="15.42" y2="17.49"/><line x1="15.41" y1="6.51" x2="8.59" y2="10.49"/></svg></button>
           </div>
         </div>
         <div class="tool-item">
@@ -2916,7 +2879,6 @@ body.frontier-mode .footer-email-input:focus { border-color: var(--frontier); }
             <div class="tool-name">1X NEO Home Assistant</div>
             <div class="tool-desc">1X Technologies, backed by OpenAI, is piloting NEO in real home environments. The bet: a soft, human-scale robot that handles chores, fetches items, and assists elderly users without feeling industrial.</div>
             <div class="tool-footer"><span class="tool-cat">⊟ Home</span><span class="tool-stars" style="color:var(--text-muted);font-size:11px;">1X Technologies · 2026</span></div>
-        <button class="tile-share-btn" title="Share"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="18" cy="5" r="3"/><circle cx="6" cy="12" r="3"/><circle cx="18" cy="19" r="3"/><line x1="8.59" y1="13.51" x2="15.42" y2="17.49"/><line x1="15.41" y1="6.51" x2="8.59" y2="10.49"/></svg></button>
           </div>
         </div>
         <div class="tool-item">
@@ -2925,7 +2887,6 @@ body.frontier-mode .footer-email-input:focus { border-color: var(--frontier); }
             <div class="tool-name">Apptronik Apollo NASA + Defense</div>
             <div class="tool-desc">Apollo is in active NASA testing for extraterrestrial surface operations think maintenance, construction, and EVA support on the Moon. Defense contracts are also in discussion for forward logistics.</div>
             <div class="tool-footer"><span class="tool-cat">⊟ Aerospace</span><span class="tool-stars" style="color:var(--text-muted);font-size:11px;">Apptronik · 2026–27</span></div>
-        <button class="tile-share-btn" title="Share"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="18" cy="5" r="3"/><circle cx="6" cy="12" r="3"/><circle cx="18" cy="19" r="3"/><line x1="8.59" y1="13.51" x2="15.42" y2="17.49"/><line x1="15.41" y1="6.51" x2="8.59" y2="10.49"/></svg></button>
           </div>
         </div>
         <div class="tool-item">
@@ -2934,7 +2895,6 @@ body.frontier-mode .footer-email-input:focus { border-color: var(--frontier); }
             <div class="tool-name">China's Humanoid Surge</div>
             <div class="tool-desc">400+ robotics companies launched in China in 2025 alone. UBTECH, Fourier Intelligence, and Unitree are scaling fast with government backing. The race for global humanoid market share is accelerating.</div>
             <div class="tool-footer"><span class="tool-cat">⊟ Geopolitical</span><span class="tool-stars" style="color:var(--text-muted);font-size:11px;">Multiple · Ongoing</span></div>
-        <button class="tile-share-btn" title="Share"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="18" cy="5" r="3"/><circle cx="6" cy="12" r="3"/><circle cx="18" cy="19" r="3"/><line x1="8.59" y1="13.51" x2="15.42" y2="17.49"/><line x1="15.41" y1="6.51" x2="8.59" y2="10.49"/></svg></button>
           </div>
         </div>
       </div>
@@ -2992,7 +2952,6 @@ body.frontier-mode .footer-email-input:focus { border-color: var(--frontier); }
       <div style="font-size:32px;font-weight:800;letter-spacing:-0.03em;color:var(--text);line-height:1;">$329B</div>
       <div style="font-size:12px;color:var(--text-muted);margin-top:6px;">Deployed in AI ventures in 2024 up 62% YoY. 2025 on pace to exceed $500B.</div>
       <div style="margin-top:12px;font-size:11px;font-weight:600;color:var(--text-muted);">↑ 62% year over year</div>
-    <button class="tile-share-btn" title="Share"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="18" cy="5" r="3"/><circle cx="6" cy="12" r="3"/><circle cx="18" cy="19" r="3"/><line x1="8.59" y1="13.51" x2="15.42" y2="17.49"/><line x1="15.41" y1="6.51" x2="8.59" y2="10.49"/></svg></button>
     </div>
 
     <div class="stat-tile" style="background:var(--bg);border:1px solid var(--border);border-radius:var(--radius);padding:22px 24px;">
@@ -3000,7 +2959,6 @@ body.frontier-mode .footer-email-input:focus { border-color: var(--frontier); }
       <div style="font-size:32px;font-weight:800;letter-spacing:-0.03em;color:var(--text);line-height:1;">12,400+</div>
       <div style="font-size:12px;color:var(--text-muted);margin-top:6px;">Humanoid robots in active commercial or industrial deployment globally as of Q2 2025.</div>
       <div style="margin-top:12px;font-size:11px;font-weight:600;color:var(--text-muted);">↑ 8x from 2023 baseline</div>
-    <button class="tile-share-btn" title="Share"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="18" cy="5" r="3"/><circle cx="6" cy="12" r="3"/><circle cx="18" cy="19" r="3"/><line x1="8.59" y1="13.51" x2="15.42" y2="17.49"/><line x1="15.41" y1="6.51" x2="8.59" y2="10.49"/></svg></button>
     </div>
 
     <div class="stat-tile" style="background:var(--bg);border:1px solid var(--border);border-radius:var(--radius);padding:22px 24px;">
@@ -3008,7 +2966,6 @@ body.frontier-mode .footer-email-input:focus { border-color: var(--frontier); }
       <div style="font-size:32px;font-weight:800;letter-spacing:-0.03em;color:var(--text);line-height:1;">1,800+</div>
       <div style="font-size:12px;color:var(--text-muted);margin-top:6px;">Foundation models publicly available on Hugging Face. Up from 600 in early 2023.</div>
       <div style="margin-top:12px;font-size:11px;font-weight:600;color:var(--text-muted);">↑ 3x in 24 months</div>
-    <button class="tile-share-btn" title="Share"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="18" cy="5" r="3"/><circle cx="6" cy="12" r="3"/><circle cx="18" cy="19" r="3"/><line x1="8.59" y1="13.51" x2="15.42" y2="17.49"/><line x1="15.41" y1="6.51" x2="8.59" y2="10.49"/></svg></button>
     </div>
 
     <div class="stat-tile" style="background:var(--bg);border:1px solid var(--border);border-radius:var(--radius);padding:22px 24px;">
@@ -3016,7 +2973,6 @@ body.frontier-mode .footer-email-input:focus { border-color: var(--frontier); }
       <div style="font-size:32px;font-weight:800;letter-spacing:-0.03em;color:var(--text);line-height:1;">$3.1T</div>
       <div style="font-size:12px;color:var(--text-muted);margin-top:6px;">NVIDIA briefly surpassed Apple as the world's most valuable company on GPU demand alone.</div>
       <div style="margin-top:12px;font-size:11px;font-weight:600;color:var(--text-muted);">↑ #1 globally by market cap</div>
-    <button class="tile-share-btn" title="Share"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="18" cy="5" r="3"/><circle cx="6" cy="12" r="3"/><circle cx="18" cy="19" r="3"/><line x1="8.59" y1="13.51" x2="15.42" y2="17.49"/><line x1="15.41" y1="6.51" x2="8.59" y2="10.49"/></svg></button>
     </div>
 
     <div class="stat-tile" style="background:var(--bg);border:1px solid var(--border);border-radius:var(--radius);padding:22px 24px;">
@@ -3024,7 +2980,6 @@ body.frontier-mode .footer-email-input:focus { border-color: var(--frontier); }
       <div style="font-size:32px;font-weight:800;letter-spacing:-0.03em;color:var(--text);line-height:1;">$218B</div>
       <div style="font-size:12px;color:var(--text-muted);margin-top:6px;">Global robotics market valuation in 2025. Projected to reach $500B+ by 2030 on humanoid acceleration.</div>
       <div style="margin-top:12px;font-size:11px;font-weight:600;color:var(--text-muted);">↑ Projected 2x by 2030</div>
-    <button class="tile-share-btn" title="Share"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="18" cy="5" r="3"/><circle cx="6" cy="12" r="3"/><circle cx="18" cy="19" r="3"/><line x1="8.59" y1="13.51" x2="15.42" y2="17.49"/><line x1="15.41" y1="6.51" x2="8.59" y2="10.49"/></svg></button>
     </div>
 
     <div class="stat-tile" style="background:var(--bg);border:1px solid var(--border);border-radius:var(--radius);padding:22px 24px;">
@@ -3032,7 +2987,6 @@ body.frontier-mode .footer-email-input:focus { border-color: var(--frontier); }
       <div style="font-size:32px;font-weight:800;letter-spacing:-0.03em;color:var(--text);line-height:1;">300M</div>
       <div style="font-size:12px;color:var(--text-muted);margin-top:6px;">Goldman Sachs estimate of roles globally exposed to AI automation equivalent to 18% of all work.</div>
       <div style="margin-top:12px;font-size:11px;font-weight:600;color:var(--text-muted);">→ 18% of global workforce</div>
-    <button class="tile-share-btn" title="Share"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="18" cy="5" r="3"/><circle cx="6" cy="12" r="3"/><circle cx="18" cy="19" r="3"/><line x1="8.59" y1="13.51" x2="15.42" y2="17.49"/><line x1="15.41" y1="6.51" x2="8.59" y2="10.49"/></svg></button>
     </div>
 
   </div>
@@ -3166,42 +3120,36 @@ body.frontier-mode .footer-email-input:focus { border-color: var(--frontier); }
       <div style="font-size:32px;font-weight:800;letter-spacing:-0.03em;color:var(--text);line-height:1;">212</div>
       <div style="font-size:12px;color:var(--text-muted);margin-top:6px;">In 2023, humanity achieved a record 212 orbital launch attempts nearly doubling the pace of five years prior, driven by SpaceX, Rocket Lab, and China's growing launch cadence.</div>
       <div style="margin-top:12px;font-size:11px;font-weight:600;color:var(--text-muted);">↑ Record high in 2023</div>
-    <button class="tile-share-btn" title="Share"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="18" cy="5" r="3"/><circle cx="6" cy="12" r="3"/><circle cx="18" cy="19" r="3"/><line x1="8.59" y1="13.51" x2="15.42" y2="17.49"/><line x1="15.41" y1="6.51" x2="8.59" y2="10.49"/></svg></button>
     </div>
     <div class="stat-tile" style="background:var(--surface);border:1px solid var(--border);border-radius:var(--radius);padding:22px 24px;">
       <div style="font-size:11px;font-weight:700;letter-spacing:0.07em;text-transform:uppercase;color:var(--text-muted);margin-bottom:10px;">COMMERCIAL SPACE ECONOMY</div>
       <div style="font-size:32px;font-weight:800;letter-spacing:-0.03em;color:var(--text);line-height:1;">$630B</div>
       <div style="font-size:12px;color:var(--text-muted);margin-top:6px;">The global space economy surpassed $630B in 2023, with commercial activity now representing over 80% of total value led by satellite services, launch, and emerging in-orbit manufacturing.</div>
       <div style="margin-top:12px;font-size:11px;font-weight:600;color:var(--text-muted);">↑ 8% year over year</div>
-    <button class="tile-share-btn" title="Share"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="18" cy="5" r="3"/><circle cx="6" cy="12" r="3"/><circle cx="18" cy="19" r="3"/><line x1="8.59" y1="13.51" x2="15.42" y2="17.49"/><line x1="15.41" y1="6.51" x2="8.59" y2="10.49"/></svg></button>
     </div>
     <div class="stat-tile" style="background:var(--surface);border:1px solid var(--border);border-radius:var(--radius);padding:22px 24px;">
       <div style="font-size:11px;font-weight:700;letter-spacing:0.07em;text-transform:uppercase;color:var(--text-muted);margin-bottom:10px;">STARLINK SATELLITES</div>
       <div style="font-size:32px;font-weight:800;letter-spacing:-0.03em;color:var(--text);line-height:1;">6,000+</div>
       <div style="font-size:12px;color:var(--text-muted);margin-top:6px;">SpaceX's Starlink constellation surpassed 6,000 active satellites in 2024, delivering broadband internet to over 3 million subscribers across 100+ countries.</div>
       <div style="margin-top:12px;font-size:11px;font-weight:600;color:var(--text-muted);">↑ Growing 40% annually</div>
-    <button class="tile-share-btn" title="Share"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="18" cy="5" r="3"/><circle cx="6" cy="12" r="3"/><circle cx="18" cy="19" r="3"/><line x1="8.59" y1="13.51" x2="15.42" y2="17.49"/><line x1="15.41" y1="6.51" x2="8.59" y2="10.49"/></svg></button>
     </div>
     <div class="stat-tile" style="background:var(--surface);border:1px solid var(--border);border-radius:var(--radius);padding:22px 24px;">
       <div style="font-size:11px;font-weight:700;letter-spacing:0.07em;text-transform:uppercase;color:var(--text-muted);margin-bottom:10px;">CREWED MISSIONS LAUNCHED</div>
       <div style="font-size:32px;font-weight:800;letter-spacing:-0.03em;color:var(--text);line-height:1;">12</div>
       <div style="font-size:12px;color:var(--text-muted);margin-top:6px;">Twelve crewed orbital missions launched in 2023-2024, the most in any comparable period since the Space Shuttle era with commercial vehicles now carrying the majority.</div>
       <div style="margin-top:12px;font-size:11px;font-weight:600;color:var(--text-muted);">↑ Most since Shuttle era</div>
-    <button class="tile-share-btn" title="Share"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="18" cy="5" r="3"/><circle cx="6" cy="12" r="3"/><circle cx="18" cy="19" r="3"/><line x1="8.59" y1="13.51" x2="15.42" y2="17.49"/><line x1="15.41" y1="6.51" x2="8.59" y2="10.49"/></svg></button>
     </div>
     <div class="stat-tile" style="background:var(--surface);border:1px solid var(--border);border-radius:var(--radius);padding:22px 24px;">
       <div style="font-size:11px;font-weight:700;letter-spacing:0.07em;text-transform:uppercase;color:var(--text-muted);margin-bottom:10px;">SPACE VENTURE FUNDING</div>
       <div style="font-size:32px;font-weight:800;letter-spacing:-0.03em;color:var(--text);line-height:1;">$8.7B</div>
       <div style="font-size:12px;color:var(--text-muted);margin-top:6px;">Private space companies raised $8.7B in venture and private equity funding in 2023, with launch, in-space services, and satellite communications leading investment categories.</div>
       <div style="margin-top:12px;font-size:11px;font-weight:600;color:var(--text-muted);">↑ 12% vs prior year</div>
-    <button class="tile-share-btn" title="Share"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="18" cy="5" r="3"/><circle cx="6" cy="12" r="3"/><circle cx="18" cy="19" r="3"/><line x1="8.59" y1="13.51" x2="15.42" y2="17.49"/><line x1="15.41" y1="6.51" x2="8.59" y2="10.49"/></svg></button>
     </div>
     <div class="stat-tile" style="background:var(--surface);border:1px solid var(--border);border-radius:var(--radius);padding:22px 24px;">
       <div style="font-size:11px;font-weight:700;letter-spacing:0.07em;text-transform:uppercase;color:var(--text-muted);margin-bottom:10px;">REUSABLE ROCKET LANDINGS</div>
       <div style="font-size:32px;font-weight:800;letter-spacing:-0.03em;color:var(--text);line-height:1;">250+</div>
       <div style="font-size:12px;color:var(--text-muted);margin-top:6px;">SpaceX has successfully landed and reflown orbital-class booster rockets over 250 times, fundamentally changing the economics of space access with reuse factors exceeding 20x per vehicle.</div>
       <div style="margin-top:12px;font-size:11px;font-weight:600;color:var(--text-muted);">↑ Redefining launch economics</div>
-    <button class="tile-share-btn" title="Share"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="18" cy="5" r="3"/><circle cx="6" cy="12" r="3"/><circle cx="18" cy="19" r="3"/><line x1="8.59" y1="13.51" x2="15.42" y2="17.49"/><line x1="15.41" y1="6.51" x2="8.59" y2="10.49"/></svg></button>
     </div>
   </div>
   <style>
@@ -3325,42 +3273,36 @@ body.frontier-mode .footer-email-input:focus { border-color: var(--frontier); }
       <div style="font-size:32px;font-weight:800;letter-spacing:-0.03em;color:var(--text);line-height:1;">$25B</div>
       <div style="font-size:12px;color:var(--text-muted);margin-top:6px;">The longevity therapeutics and diagnostics market reached $25B in 2024, with projections to surpass $600B by 2025 as anti-aging interventions move from research into mainstream clinical use.</div>
       <div style="margin-top:12px;font-size:11px;font-weight:600;color:var(--text-muted);">↑ Fastest growing health category</div>
-    <button class="tile-share-btn" title="Share"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="18" cy="5" r="3"/><circle cx="6" cy="12" r="3"/><circle cx="18" cy="19" r="3"/><line x1="8.59" y1="13.51" x2="15.42" y2="17.49"/><line x1="15.41" y1="6.51" x2="8.59" y2="10.49"/></svg></button>
     </div>
     <div class="stat-tile" style="background:var(--surface);border:1px solid var(--border);border-radius:var(--radius);padding:22px 24px;">
       <div style="font-size:11px;font-weight:700;letter-spacing:0.07em;text-transform:uppercase;color:var(--text-muted);margin-bottom:10px;">GLP-1 PRESCRIPTIONS (US)</div>
       <div style="font-size:32px;font-weight:800;letter-spacing:-0.03em;color:var(--text);line-height:1;">9M+</div>
       <div style="font-size:12px;color:var(--text-muted);margin-top:6px;">Over 9 million Americans are now prescribed GLP-1 receptor agonists, with Ozempic and Wegovy reshaping metabolic health, obesity treatment, and now showing promise for cardiovascular and cognitive disease.</div>
       <div style="margin-top:12px;font-size:11px;font-weight:600;color:var(--text-muted);">↑ 400% growth since 2021</div>
-    <button class="tile-share-btn" title="Share"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="18" cy="5" r="3"/><circle cx="6" cy="12" r="3"/><circle cx="18" cy="19" r="3"/><line x1="8.59" y1="13.51" x2="15.42" y2="17.49"/><line x1="15.41" y1="6.51" x2="8.59" y2="10.49"/></svg></button>
     </div>
     <div class="stat-tile" style="background:var(--surface);border:1px solid var(--border);border-radius:var(--radius);padding:22px 24px;">
       <div style="font-size:11px;font-weight:700;letter-spacing:0.07em;text-transform:uppercase;color:var(--text-muted);margin-bottom:10px;">LONGEVITY VC INVESTMENT</div>
       <div style="font-size:32px;font-weight:800;letter-spacing:-0.03em;color:var(--text);line-height:1;">$5.2B</div>
       <div style="font-size:12px;color:var(--text-muted);margin-top:6px;">Venture capital invested $5.2B into longevity and aging-focused biotechs in 2023, with Altos Labs, Retro Biosciences, and NewLimit collectively raising over $1.5B from tech billionaires alone.</div>
       <div style="margin-top:12px;font-size:11px;font-weight:600;color:var(--text-muted);">↑ 3x increase since 2020</div>
-    <button class="tile-share-btn" title="Share"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="18" cy="5" r="3"/><circle cx="6" cy="12" r="3"/><circle cx="18" cy="19" r="3"/><line x1="8.59" y1="13.51" x2="15.42" y2="17.49"/><line x1="15.41" y1="6.51" x2="8.59" y2="10.49"/></svg></button>
     </div>
     <div class="stat-tile" style="background:var(--surface);border:1px solid var(--border);border-radius:var(--radius);padding:22px 24px;">
       <div style="font-size:11px;font-weight:700;letter-spacing:0.07em;text-transform:uppercase;color:var(--text-muted);margin-bottom:10px;">HUMAN LIFESPAN EXTENSION TARGET</div>
       <div style="font-size:32px;font-weight:800;letter-spacing:-0.03em;color:var(--text);line-height:1;">25 yrs</div>
       <div style="font-size:12px;color:var(--text-muted);margin-top:6px;">Leading longevity scientists project interventions currently in development could extend healthy human lifespan by 25 or more years within the next two decades moving from disease treatment to biological aging reversal.</div>
       <div style="margin-top:12px;font-size:11px;font-weight:600;color:var(--text-muted);">↑ Escape velocity within reach</div>
-    <button class="tile-share-btn" title="Share"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="18" cy="5" r="3"/><circle cx="6" cy="12" r="3"/><circle cx="18" cy="19" r="3"/><line x1="8.59" y1="13.51" x2="15.42" y2="17.49"/><line x1="15.41" y1="6.51" x2="8.59" y2="10.49"/></svg></button>
     </div>
     <div class="stat-tile" style="background:var(--surface);border:1px solid var(--border);border-radius:var(--radius);padding:22px 24px;">
       <div style="font-size:11px;font-weight:700;letter-spacing:0.07em;text-transform:uppercase;color:var(--text-muted);margin-bottom:10px;">AI DRUG DISCOVERY SPEED</div>
       <div style="font-size:32px;font-weight:800;letter-spacing:-0.03em;color:var(--text);line-height:1;">10x</div>
       <div style="font-size:12px;color:var(--text-muted);margin-top:6px;">AI-driven drug discovery platforms are identifying longevity candidates up to 10x faster than traditional methods, with companies like Insilico Medicine advancing molecules from target identification to clinical trials in under 18 months.</div>
       <div style="margin-top:12px;font-size:11px;font-weight:600;color:var(--text-muted);">↑ Compressing decade-long timelines</div>
-    <button class="tile-share-btn" title="Share"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="18" cy="5" r="3"/><circle cx="6" cy="12" r="3"/><circle cx="18" cy="19" r="3"/><line x1="8.59" y1="13.51" x2="15.42" y2="17.49"/><line x1="15.41" y1="6.51" x2="8.59" y2="10.49"/></svg></button>
     </div>
     <div class="stat-tile" style="background:var(--surface);border:1px solid var(--border);border-radius:var(--radius);padding:22px 24px;">
       <div style="font-size:11px;font-weight:700;letter-spacing:0.07em;text-transform:uppercase;color:var(--text-muted);margin-bottom:10px;">CENTENARIAN POPULATION</div>
       <div style="font-size:32px;font-weight:800;letter-spacing:-0.03em;color:var(--text);line-height:1;">722K</div>
       <div style="font-size:12px;color:var(--text-muted);margin-top:6px;">The global centenarian population exceeded 722,000 in 2024 and is projected to reach 3.7 million by 2050 driven by improvements in healthcare, nutrition, and the early effects of longevity-focused interventions.</div>
       <div style="margin-top:12px;font-size:11px;font-weight:600;color:var(--text-muted);">↑ 5x growth projected by 2050</div>
-    <button class="tile-share-btn" title="Share"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="18" cy="5" r="3"/><circle cx="6" cy="12" r="3"/><circle cx="18" cy="19" r="3"/><line x1="8.59" y1="13.51" x2="15.42" y2="17.49"/><line x1="15.41" y1="6.51" x2="8.59" y2="10.49"/></svg></button>
     </div>
   </div>
   <style>
@@ -4867,7 +4809,7 @@ async function fetchCompanies() {
         '<div class="watchlist-body">' +
         '<div class="watchlist-name">' + (c.name || '') + ' <span class="watchlist-status ' + statusClass + '">' + (c.category || 'Active') + '</span></div>' +
         '<div class="watchlist-latest">' + (c.update || c.description || '') + '</div>' +
-        '<button class=\"tile-share-btn\" title=\"Share\"><svg width=\"14\" height=\"14\" viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"2\"><circle cx=\"18\" cy=\"5\" r=\"3\"/><circle cx=\"6\" cy=\"12\" r=\"3\"/><circle cx=\"18\" cy=\"19\" r=\"3\"/><line x1=\"8.59\" y1=\"13.51\" x2=\"15.42\" y2=\"17.49\"/><line x1=\"15.41\" y1=\"6.51\" x2=\"8.59\" y2=\"10.49\"/></svg></button></div></a>';
+        '</div></a>';
     }
 
     var aiEl = document.getElementById('scroll-companies');
@@ -4913,8 +4855,7 @@ async function fetchTools() {
         '<div class="tool-footer"><span class="tool-cat">⊟ ' + (t.category || '') + '</span>' +
         '<span class="tool-stars">' + stars + '</span>' +
         '<a class="tool-try" href="' + (t.url || '#') + '" target="_blank" rel="noopener">Try It →</a>' +
-        '</div>
-        <button class="tile-share-btn" title="Share"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="18" cy="5" r="3"/><circle cx="6" cy="12" r="3"/><circle cx="18" cy="19" r="3"/><line x1="8.59" y1="13.51" x2="15.42" y2="17.49"/><line x1="15.41" y1="6.51" x2="8.59" y2="10.49"/></svg></button></div></div>';
+        '</div></div></div>';
     }
 
     var el = document.getElementById('scroll-tools');
@@ -5014,8 +4955,7 @@ async function fetchRealWorldAI() {
         '<div class="tool-desc">' + (d.description || '') + '</div>' +
         '<div class="tool-footer"><span class="tool-cat">⊟ ' + (d.sector || '') + '</span>' +
         '<span class="tool-stars" style="color:var(--text-muted);font-size:11px;">' + (d.status || '') + '</span>' +
-        '</div>
-        <button class="tile-share-btn" title="Share"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="18" cy="5" r="3"/><circle cx="6" cy="12" r="3"/><circle cx="18" cy="19" r="3"/><line x1="8.59" y1="13.51" x2="15.42" y2="17.49"/><line x1="15.41" y1="6.51" x2="8.59" y2="10.49"/></svg></button></div></div>';
+        '</div></div></div>';
     }
 
     var prodEl = document.getElementById('scroll-ai-production');
@@ -5076,8 +5016,7 @@ async function fetchRealWorldRobotics() {
         '<div class="tool-desc">' + (d.description || '') + '</div>' +
         '<div class="tool-footer"><span class="tool-cat">⊟ ' + (d.sector || '') + '</span>' +
         '<span class="tool-stars" style="color:var(--text-muted);font-size:11px;">' + (d.status || '') + '</span>' +
-        '</div>
-        <button class="tile-share-btn" title="Share"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="18" cy="5" r="3"/><circle cx="6" cy="12" r="3"/><circle cx="18" cy="19" r="3"/><line x1="8.59" y1="13.51" x2="15.42" y2="17.49"/><line x1="15.41" y1="6.51" x2="8.59" y2="10.49"/></svg></button></div></div>';
+        '</div></div></div>';
     }
 
     var prodEl = document.getElementById('scroll-rob-production');
@@ -5138,8 +5077,7 @@ function renderFeed() {
       '<button class="card-btn summarize-btn" data-title="'+t+'">&#9889; AI Summary</button>' +
       '<button class="card-btn bookmark-btn" data-title="'+t+'">&#128278; Save</button>' +
       '<button class="card-btn share-btn" data-title="'+t+'"><svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="18" cy="5" r="3"/><circle cx="6" cy="12" r="3"/><circle cx="18" cy="19" r="3"/><line x1="8.59" y1="13.51" x2="15.42" y2="17.49"/><line x1="15.41" y1="6.51" x2="8.59" y2="10.49"/><\/svg> Share</button>' +
-      '</div>
-    <button class="tile-share-btn" title="Share"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="18" cy="5" r="3"/><circle cx="6" cy="12" r="3"/><circle cx="18" cy="19" r="3"/><line x1="8.59" y1="13.51" x2="15.42" y2="17.49"/><line x1="15.41" y1="6.51" x2="8.59" y2="10.49"/></svg></button></div></div>';
+      '</div></div></div>';
   }
 
   function makeFeedItem(s) {
@@ -5182,19 +5120,6 @@ function renderFeed() {
   buildSourceFilters();
   document.body.classList.add('feed-loaded');
 }
-
-
-// ── TILE SHARE BUTTON HANDLER ──
-document.addEventListener('click', function(e) {
-  var btn = e.target.closest('.tile-share-btn');
-  if (!btn) return;
-  e.stopPropagation();
-  var tile = btn.closest('.tool-item, .stat-tile, .watchlist-item, .forecast-panel, .tool-card');
-  if (!tile) return;
-  var nameEl = tile.querySelector('.tool-name, .tool-card-name, .watchlist-name, .stat-label, .forecast-panel-head-title, .tool-title');
-  var title = nameEl ? nameEl.textContent.trim() : 'Atomic Media Group Intelligence';
-  openShare(title);
-});
 
 // ── UNIFIED DELEGATED CLICK HANDLER ──
 document.addEventListener('click', function(e) {
@@ -5302,18 +5227,12 @@ document.addEventListener('DOMContentLoaded', function() {
   fetchRealWorldRobotics();
   fetchStats();
 
-  // Auto-switch vertical based on URL parameter, then localStorage
+  // Auto-switch vertical based on URL parameter
   var urlParams = new URLSearchParams(window.location.search);
   var vertical = urlParams.get('v');
   if (vertical === 'frontier') switchVertical('frontier');
   else if (vertical === 'longevity') switchVertical('longevity');
   else if (vertical === 'work') switchVertical('work');
-  else {
-    try {
-      var saved = localStorage.getItem('amg-vertical');
-      if (saved && saved !== 'ai') switchVertical(saved);
-    } catch(e) {}
-  }
 });
 // ── SAVED (localStorage) ──
 function getSaved(){ try{return JSON.parse(localStorage.getItem('amg-saved')||'[]');}catch(e){return[];} }
@@ -5778,9 +5697,8 @@ document.addEventListener('keydown', function(e){ if(e.key === 'Escape') closeAb
 
 // ── VERTICAL SWITCHER ──
 function switchVertical(mode) {
-  setTimeout(function(){ window.scrollTo(0, 0); }, 0);
+  window.scrollTo(0, 0);
   updateDropdownLabel(mode);
-  try { localStorage.setItem('amg-vertical', mode); } catch(e) {}
   var aiSection = document.getElementById('section-ai-robotics');
   var frontierSection = document.getElementById('section-frontier');
   var btnAI = document.getElementById('btn-ai-robotics');
@@ -5790,15 +5708,10 @@ function switchVertical(mode) {
   if (mode === 'frontier') {
     aiSection.style.display = 'none';
     frontierSection.style.display = 'block';
-    document.getElementById('section-longevity').style.display = 'none';
-    if (document.getElementById('section-work')) document.getElementById('section-work').style.display = 'none';
     btnAI.classList.remove('active');
     btnFrontier.classList.add('active');
-    document.getElementById('btn-longevity').classList.remove('active');
-    document.getElementById('btn-work').classList.remove('active');
     document.body.classList.add('frontier-mode');
-    document.body.classList.remove('longevity-mode');
-    if (!frontierSection.dataset.loaded) {
+      if (!frontierSection.dataset.loaded) {
       fetchFrontierStories();
       fetchFrontierRealWorld();
       fetchFrontierCompanies();
@@ -5809,11 +5722,9 @@ function switchVertical(mode) {
     aiSection.style.display = 'none';
     frontierSection.style.display = 'none';
     document.getElementById('section-longevity').style.display = 'block';
-    if (document.getElementById('section-work')) document.getElementById('section-work').style.display = 'none';
     btnAI.classList.remove('active');
     btnFrontier.classList.remove('active');
     document.getElementById('btn-longevity').classList.add('active');
-    document.getElementById('btn-work').classList.remove('active');
     document.body.classList.remove('frontier-mode');
     document.body.classList.add('longevity-mode');
       var longevitySection = document.getElementById('section-longevity');
@@ -5927,7 +5838,7 @@ async function fetchFrontierCompanies() {
         '<div class="watchlist-body">' +
         '<div class="watchlist-name">'+(c.name||'')+'<span class="watchlist-status status-active" style="background:#fff7ed;color:var(--frontier);border-color:#fed7aa;">'+(c.category||'Space')+'</span></div>' +
         '<div class="watchlist-latest">'+(c.update||c.description||'')+'</div>' +
-        '<button class=\"tile-share-btn\" title=\"Share\"><svg width=\"14\" height=\"14\" viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"2\"><circle cx=\"18\" cy=\"5\" r=\"3\"/><circle cx=\"6\" cy=\"12\" r=\"3\"/><circle cx=\"18\" cy=\"19\" r=\"3\"/><line x1=\"8.59\" y1=\"13.51\" x2=\"15.42\" y2=\"17.49\"/><line x1=\"15.41\" y1=\"6.51\" x2=\"8.59\" y2=\"10.49\"/></svg></button></div></a>';
+        '</div></a>';
     }
 
     var launchEl = document.getElementById('frontier-launch-scroll');
@@ -6084,7 +5995,7 @@ async function fetchLongevityRealWorld() {
     var prod = data.filter(function(d){ return (d.status||'').toLowerCase().includes('production') || (d.status||'').toLowerCase().includes('clinical use'); }).slice(0,4);
     var horizon = data.filter(function(d){ return (d.status||'').toLowerCase().includes('horizon'); }).slice(0,4);
     function makeItem(d) {
-      return '<div class="tool-item"><div class="tool-name">'+(d.name||'')+'</div><div class="tool-desc">'+(d.description||'')+'</div><div class="tool-tag">'+(d.sector||'Longevity')+'<button class=\"tile-share-btn\" title=\"Share\"><svg width=\"14\" height=\"14\" viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"2\"><circle cx=\"18\" cy=\"5\" r=\"3\"/><circle cx=\"6\" cy=\"12\" r=\"3\"/><circle cx=\"18\" cy=\"19\" r=\"3\"/><line x1=\"8.59\" y1=\"13.51\" x2=\"15.42\" y2=\"17.49\"/><line x1=\"15.41\" y1=\"6.51\" x2=\"8.59\" y2=\"10.49\"/></svg></button></div></div>';
+      return '<div class="tool-item"><div class="tool-name">'+(d.name||'')+'</div><div class="tool-desc">'+(d.description||'')+'</div><div class="tool-tag">'+(d.sector||'Longevity')+'</div></div>';
     }
     var prodEl = document.getElementById('longevity-prod-scroll');
     if (prodEl) prodEl.innerHTML = '<div class="panel-no-results" style="display:none">No results</div>' + prod.slice(0,4).map(makeItem).join('');
@@ -6176,7 +6087,7 @@ async function fetchLongevityForecasts() {
         '<div class="forecast-panel-head" style="background:var(--surface);border-bottom:1.5px solid var(--border);">' +
         '<span class="forecast-panel-icon">'+icon+'</span>' +
         '<span class="forecast-panel-head-title" style="color:var(--longevity);">'+cat+'</span>' +
-        '</div><div class="forecast-timeline">'+(html||'<p style="color:var(--text-muted);font-size:13px;padding:8px 0;">No predictions yet.</p>')+'<button class=\"tile-share-btn\" title=\"Share\"><svg width=\"14\" height=\"14\" viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"2\"><circle cx=\"18\" cy=\"5\" r=\"3\"/><circle cx=\"6\" cy=\"12\" r=\"3\"/><circle cx=\"18\" cy=\"19\" r=\"3\"/><line x1=\"8.59\" y1=\"13.51\" x2=\"15.42\" y2=\"17.49\"/><line x1=\"15.41\" y1=\"6.51\" x2=\"8.59\" y2=\"10.49\"/></svg></button></div></div>';
+        '</div><div class="forecast-timeline">'+(html||'<p style="color:var(--text-muted);font-size:13px;padding:8px 0;">No predictions yet.</p>')+'</div></div>';
     }
     var cats = [...new Set(data.map(function(d){ return d.category||'Longevity'; }))];
     var panelHtml = buildPanel(cats[0]||'Therapeutics','💊') + buildPanel(cats[1]||'Biotech','🧬');
