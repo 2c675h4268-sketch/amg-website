@@ -5615,16 +5615,16 @@ document.addEventListener('click', function(e){
 
 // Share to X
 document.getElementById('share-twitter').addEventListener('click', function(){
-  const text = encodeURIComponent(currentShareTitle + ' via Atomic Media Group');
-  const url = encodeURIComponent('https://atomicmediagroup.ai');
+  const text = encodeURIComponent(currentShareTitle + ' — via Atomic Media Group');
+  const url = encodeURIComponent('https://atomicmediagroup.ai/feed.html');
   window.open('https://twitter.com/intent/tweet?text='+text+'&url='+url, '_blank', 'noopener');
 });
 
 // Share to LinkedIn
 document.getElementById('share-linkedin').addEventListener('click', function(){
-  const url = encodeURIComponent('https://atomicmediagroup.ai');
-  const title = encodeURIComponent(currentShareTitle);
-  window.open('https://www.linkedin.com/sharing/share-offsite/?url='+url+'&title='+title, '_blank', 'noopener');
+  const url = encodeURIComponent('https://atomicmediagroup.ai/feed.html');
+  const summary = encodeURIComponent(currentShareTitle + ' — via Atomic Media Group');
+  window.open('https://www.linkedin.com/sharing/share-offsite/?url='+url+'&summary='+summary, '_blank', 'noopener');
 });
 
 // Share via Email
