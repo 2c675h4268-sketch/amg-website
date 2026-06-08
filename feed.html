@@ -2635,6 +2635,9 @@ body.frontier-mode .footer-email-input:focus { border-color: var(--frontier); }
       <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="8"/><path d="m21 21-4.35-4.35"/></svg>
       Search stories…
     </div>
+    <button class="btn-filter" id="brief-btn" onclick="openBrief()" style="background:#111;color:#fff;border-color:#111;flex-shrink:0;">
+      📋 Today's Brief
+    </button>
     <div class="header-right">
       <div class="vertical-switcher">
         <button class="vertical-btn active" id="btn-ai-robotics" onclick="switchVertical('ai')">🦾 AI &amp; Robotics</button>
@@ -2660,9 +2663,6 @@ body.frontier-mode .footer-email-input:focus { border-color: var(--frontier); }
       </div>
       <button class="btn-filter" id="saved-btn">
         🔖 Saved <span id="saved-count" style="display:none;margin-left:4px;background:#111;color:#fff;font-size:10px;font-weight:700;padding:2px 7px;border-radius:100px;">0</span>
-      </button>
-      <button class="btn-filter" id="brief-btn" onclick="openBrief()" style="background:#111;color:#fff;border-color:#111;">
-        📋 Today's Brief
       </button>
     </div>
   </div>
@@ -5599,7 +5599,24 @@ async function loadBrief() {
     var brief = data[0];
     var date = new Date(brief.created_at).toLocaleDateString('en-US', {weekday:'long',month:'long',day:'numeric',year:'numeric'});
     dateEl.textContent = date + ' · Intelligence Brief';
-    el.innerHTML = brief.content || '<p style="color:#9ca3af;">No content available.</p>';
+    var briefText = brief.content || '';
+    // If content looks like raw JSON (Claude API response), extract the text
+    if (briefText.startsWith('{') || briefText.startsWith('[')) {
+      try {
+        var parsed = JSON.parse(briefText);
+        if (parsed.content && parsed.content[0] && parsed.content[0].text) {
+          briefText = parsed.content[0].text;
+        } else if (Array.isArray(parsed) && parsed[0] && parsed[0].text) {
+          briefText = parsed[0].text;
+        }
+      } catch(e) {}
+    }
+    // Convert newlines to paragraph breaks and format headers
+    briefText = briefText
+      .replace(/# ([^\n]+)/g, '<h3 style="font-size:15px;font-weight:700;margin:20px 0 6px;color:#111;">$1</h3>')
+      .replace(/\n\n/g, '</p><p style="margin:0 0 14px;">')
+      .replace(/\n/g, ' ');
+    el.innerHTML = briefText ? '<p style="margin:0 0 14px;">' + briefText + '</p>' : '<p style="color:#9ca3af;">No content available.</p>';
   } catch(e) {
     el.innerHTML = '<p style="color:#9ca3af;font-style:italic;">Unable to load today\'s brief.</p>';
   }
