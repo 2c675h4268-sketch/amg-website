@@ -5478,12 +5478,19 @@ function renderSavedPanel(){
   }
   list.innerHTML = filtered.map(title => {
     const s = STORIES.find(x=>x.title===title)||{title,source:'',time:''};
+    const safeTitle = s.title.replace(/&/g,'&amp;').replace(/"/g,'&quot;');
     return `<div class="saved-item">
       <div class="saved-item-title">${s.title}</div>
       <div class="saved-item-meta">${s.source}${s.time?' · '+s.time:''}</div>
-      <button class="saved-remove" onclick="toggleSaved('${s.title.replace(/'/g,"\'")}')">Remove</button>
+      <button class="saved-remove" data-title="${safeTitle}">Remove</button>
     </div>`;
   }).join('');
+  list.querySelectorAll('.saved-remove').forEach(btn => {
+    btn.addEventListener('click', function(e) {
+      e.stopPropagation();
+      toggleSaved(this.dataset.title);
+    });
+  });
 }
 
 // ── READING PANEL ──
