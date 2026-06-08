@@ -1595,6 +1595,27 @@ a { color: inherit; text-decoration: none; }
 }
 
 
+
+/* ── TILE MODAL SHARE BUTTON ── */
+.tile-modal-share {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  margin-top: 20px;
+  padding: 9px 16px;
+  border: 1px solid var(--border);
+  border-radius: 8px;
+  background: none;
+  cursor: pointer;
+  font-size: 13px;
+  font-weight: 500;
+  color: var(--text-muted);
+  font-family: inherit;
+  transition: background 0.15s, color 0.15s;
+}
+.tile-modal-share:hover { background: var(--surface); color: var(--text); }
+.tile-modal-share svg { flex-shrink: 0; }
+
 /* ── MOBILE POLISH ── */
 @media (max-width: 480px) {
   .section-title { font-size: 17px; margin-top: 36px; margin-bottom: 14px; }
@@ -4731,9 +4752,9 @@ async function fetchStories() {
       STORIES = data.map(function(s) {
         return {
           title: s.title || '',
-          cat: (s.category || 'ai').toLowerCase().replace(/\s+/g, '-'),
+          cat: (s.cat || s.category || 'ai').toLowerCase().replace(/\s+/g, '-'),
           source: s.source || 'AMG',
-          time: s.published_at ? timeAgo(s.published_at) : 'Today',
+          time: s.created_at ? timeAgo(s.created_at) : (s.published_at ? timeAgo(s.published_at) : 'Today'),
           excerpt: s.excerpt || '',
           url: s.url || '#',
           image_url: s.image_url || null
@@ -6332,6 +6353,10 @@ document.querySelectorAll('a[href^="#"]').forEach(function(a) {
     <div class="tile-modal-title" id="modal-title"></div>
     <div class="tile-modal-body" id="modal-body"></div>
     <div class="tile-modal-trend" id="modal-trend" style="display:none;"></div>
+    <button class="tile-modal-share" id="tile-modal-share-btn" onclick="openShare(document.getElementById('modal-title').textContent)">
+      <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="18" cy="5" r="3"/><circle cx="6" cy="12" r="3"/><circle cx="18" cy="19" r="3"/><line x1="8.59" y1="13.51" x2="15.42" y2="17.49"/><line x1="15.41" y1="6.51" x2="8.59" y2="10.49"/></svg>
+      Share
+    </button>
   </div>
 </div>
 
