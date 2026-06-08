@@ -2661,6 +2661,9 @@ body.frontier-mode .footer-email-input:focus { border-color: var(--frontier); }
       <button class="btn-filter" id="saved-btn">
         🔖 Saved <span id="saved-count" style="display:none;margin-left:4px;background:#111;color:#fff;font-size:10px;font-weight:700;padding:2px 7px;border-radius:100px;">0</span>
       </button>
+      <button class="btn-filter" id="brief-btn" onclick="openBrief()" style="background:#111;color:#fff;border-color:#111;">
+        📋 Today's Brief
+      </button>
     </div>
   </div>
 </header>
@@ -4645,6 +4648,25 @@ body.frontier-mode .footer-email-input:focus { border-color: var(--frontier); }
 </div><!-- end section-work -->
 
 
+
+<!-- DAILY BRIEF MODAL -->
+<div id="brief-overlay" style="display:none;position:fixed;inset:0;background:rgba(0,0,0,0.55);z-index:9999;align-items:center;justify-content:center;padding:20px;">
+  <div style="background:#fff;border-radius:16px;max-width:620px;width:100%;max-height:85vh;overflow-y:auto;box-shadow:0 24px 80px rgba(0,0,0,0.18);">
+    <div style="padding:32px 36px 28px;">
+      <div style="display:flex;align-items:center;justify-content:space-between;margin-bottom:24px;">
+        <div>
+          <div style="font-size:11px;font-weight:700;letter-spacing:0.08em;text-transform:uppercase;color:#6b7280;margin-bottom:6px;" id="brief-date">Today's Intelligence Brief</div>
+          <div style="font-size:22px;font-weight:800;letter-spacing:-0.02em;color:#111;">Atomic Media Group</div>
+        </div>
+        <button onclick="closeBrief()" style="background:none;border:none;cursor:pointer;font-size:22px;color:#9ca3af;line-height:1;">✕</button>
+      </div>
+      <div id="brief-content" style="font-size:15px;line-height:1.75;color:#374151;">
+        <div style="color:#9ca3af;font-style:italic;">Loading today's brief...</div>
+      </div>
+    </div>
+  </div>
+</div>
+
 </main>
 
 
@@ -5543,6 +5565,45 @@ function wireCards(){
 }
 wireCards();
 updateSavedBadge();
+
+
+// ── DAILY BRIEF ──
+function openBrief() {
+  var overlay = document.getElementById('brief-overlay');
+  overlay.style.display = 'flex';
+  document.body.style.overflow = 'hidden';
+  loadBrief();
+}
+
+function closeBrief() {
+  document.getElementById('brief-overlay').style.display = 'none';
+  document.body.style.overflow = '';
+}
+
+document.getElementById('brief-overlay').addEventListener('click', function(e) {
+  if (e.target === this) closeBrief();
+});
+
+async function loadBrief() {
+  var el = document.getElementById('brief-content');
+  var dateEl = document.getElementById('brief-date');
+  try {
+    var res = await fetch(SUPABASE_URL + '/rest/v1/daily_brief?select=*&order=created_at.desc&limit=1', {
+      headers: { 'apikey': SUPABASE_KEY, 'Authorization': 'Bearer ' + SUPABASE_KEY }
+    });
+    var data = await res.json();
+    if (!data || data.length === 0) {
+      el.innerHTML = '<p style="color:#9ca3af;font-style:italic;">Today\'s brief is being prepared. Check back shortly.</p>';
+      return;
+    }
+    var brief = data[0];
+    var date = new Date(brief.created_at).toLocaleDateString('en-US', {weekday:'long',month:'long',day:'numeric',year:'numeric'});
+    dateEl.textContent = date + ' · Intelligence Brief';
+    el.innerHTML = brief.content || '<p style="color:#9ca3af;">No content available.</p>';
+  } catch(e) {
+    el.innerHTML = '<p style="color:#9ca3af;font-style:italic;">Unable to load today\'s brief.</p>';
+  }
+}
 
 // ── FILTER ──
 let activeFilters = { cat: 'all', source: 'all' };
