@@ -6163,10 +6163,15 @@ function switchVertical(mode) {
   if (mode === 'frontier') {
     aiSection.style.display = 'none';
     frontierSection.style.display = 'block';
+    document.getElementById('section-longevity').style.display = 'none';
+    if (document.getElementById('section-work')) document.getElementById('section-work').style.display = 'none';
     btnAI.classList.remove('active');
     btnFrontier.classList.add('active');
+    document.getElementById('btn-longevity').classList.remove('active');
+    document.getElementById('btn-work').classList.remove('active');
     document.body.classList.add('frontier-mode');
-      if (!frontierSection.dataset.loaded) {
+    document.body.classList.remove('longevity-mode');
+    if (!frontierSection.dataset.loaded) {
       fetchFrontierStories();
       fetchFrontierRealWorld();
       fetchFrontierCompanies();
