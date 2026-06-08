@@ -5227,7 +5227,7 @@ async function fetchRealWorldRobotics() {
 // ── FETCH STATS (BY THE NUMBERS) ──
 async function fetchStats() {
   try {
-    const data = await supabaseFetch('stats', 'select=*&order=created_at.desc&limit=6');
+    const data = await supabaseFetch('ai_stats', 'select=*&order=id.asc&limit=6');
     if (!data || !data.length) return;
 
     function makeStatTile(s) {
@@ -5931,6 +5931,7 @@ function switchVertical(mode) {
       fetchFrontierRealWorld();
       fetchFrontierCompanies();
       fetchFrontierForecasts();
+      fetchFrontierStats();
       frontierSection.dataset.loaded = '1';
     }
   } else if (mode === 'longevity') {
@@ -5950,6 +5951,7 @@ function switchVertical(mode) {
       fetchLongevityRealWorld();
       fetchLongevityCompanies();
       fetchLongevityForecasts();
+      fetchLongevityStats();
       longevitySection.dataset.loaded = '1';
     }
   } else if (mode === 'work') {
@@ -5979,6 +5981,40 @@ function switchVertical(mode) {
 }
 
 // ── FRONTIER DATA FETCHERS ──
+async function fetchFrontierStats() {
+  try {
+    var data = await supabaseFetch('frontier_stats', 'select=*&order=id.asc&limit=6');
+    var grid = document.getElementById('frontier-numbers-grid');
+    if (!grid || !data || !data.length) return;
+    grid.innerHTML = data.map(function(s){
+      var trendText = (s.trend||'').replace(/<[^>]*>/g,'');
+      return '<div class="stat-tile" style="background:var(--surface);border:1px solid var(--border);border-radius:var(--radius);padding:22px 24px;">' +
+        '<div style="font-size:11px;font-weight:700;letter-spacing:0.07em;text-transform:uppercase;color:var(--text-muted);margin-bottom:10px;">'+(s.label||'')+'</div>' +
+        '<div style="font-size:32px;font-weight:800;letter-spacing:-0.03em;color:var(--text);line-height:1;">'+(s.value||'')+'</div>' +
+        '<div style="font-size:12px;color:var(--text-muted);margin-top:6px;">'+(s.context||'')+'</div>' +
+        '<div style="margin-top:12px;font-size:11px;font-weight:600;color:var(--text-muted);">'+trendText+'</div>' +
+        '</div>';
+    }).join('');
+  } catch(e) { console.error('fetchFrontierStats:', e); }
+}
+
+async function fetchLongevityStats() {
+  try {
+    var data = await supabaseFetch('longevity_stats', 'select=*&order=id.asc&limit=6');
+    var grid = document.getElementById('longevity-numbers-grid');
+    if (!grid || !data || !data.length) return;
+    grid.innerHTML = data.map(function(s){
+      var trendText = (s.trend||'').replace(/<[^>]*>/g,'');
+      return '<div class="stat-tile" style="background:var(--surface);border:1px solid var(--border);border-radius:var(--radius);padding:22px 24px;">' +
+        '<div style="font-size:11px;font-weight:700;letter-spacing:0.07em;text-transform:uppercase;color:var(--text-muted);margin-bottom:10px;">'+(s.label||'')+'</div>' +
+        '<div style="font-size:32px;font-weight:800;letter-spacing:-0.03em;color:var(--text);line-height:1;">'+(s.value||'')+'</div>' +
+        '<div style="font-size:12px;color:var(--text-muted);margin-top:6px;">'+(s.context||'')+'</div>' +
+        '<div style="margin-top:12px;font-size:11px;font-weight:600;color:var(--text-muted);">'+trendText+'</div>' +
+        '</div>';
+    }).join('');
+  } catch(e) { console.error('fetchLongevityStats:', e); }
+}
+
 async function fetchFrontierStories() {
   try {
     var data = await supabaseFetch('frontier_stories', 'select=*&order=created_at.desc&limit=15');
