@@ -3872,7 +3872,7 @@ async function fetchTools() {
         logoHtml +
         '<div class="tool-body">' +
         '<div class="tool-name">' + (t.name || '') + ' ' + badgeHtml + '</div>' +
-        '<div class="tool-desc">' + ((t.description||'').split('.')[0] + ((t.description||'').includes('.')?'.':'')) + '</div>' +
+        '<div class="tool-desc">' + (t.description || '') + '</div>' +
         '<div class="tool-footer"><span class="tool-cat">⊟ ' + (t.category || '') + '</span>' +
         '<span class="tool-stars">' + stars + '</span>' +
         '<a class="tool-try" href="' + (t.url || '#') + '" target="_blank" rel="noopener">Try It →</a>' +
@@ -3973,7 +3973,7 @@ async function fetchRealWorldAI() {
         getRealWorldIcon(d) +
         '<div class="tool-body">' +
         '<div class="tool-name">' + (d.name || '') + '</div>' +
-        '<div class="tool-desc">' + ((d.description||'').split('.')[0] + ((d.description||'').includes('.')?'.':'')) + '</div>' +
+        '<div class="tool-desc">' + (d.description || '') + '</div>' +
         '<div class="tool-footer"><span class="tool-cat">⊟ ' + (d.sector || '') + '</span>' +
         '<span class="tool-stars">' + (d.status || '') + '</span>' +
         '</div></div></div>';
@@ -4038,7 +4038,7 @@ async function fetchRealWorldRobotics() {
         getRoboticsIcon(d) +
         '<div class="tool-body">' +
         '<div class="tool-name">' + (d.name || '') + '</div>' +
-        '<div class="tool-desc">' + ((d.description||'').split('.')[0] + ((d.description||'').includes('.')?'.':'')) + '</div>' +
+        '<div class="tool-desc">' + (d.description || '') + '</div>' +
         '<div class="tool-footer"><span class="tool-cat">⊟ ' + (d.sector || '') + '</span>' +
         '<span class="tool-stars">' + (d.status || '') + '</span>' +
         '</div></div></a>';
@@ -4831,7 +4831,7 @@ async function fetchFrontierRealWorld() {
         logoHtml +
         '<div style="flex:1;min-width:0;">' +
         '<div class="tool-name">'+(d.name||'')+'</div>' +
-        '<div class="tool-desc">'+((d.description||'').split('.')[0]+((d.description||'').includes('.')?'.':''))+'</div>' +
+        '<div class="tool-desc">'+(d.description||'')+'</div>' +
         '<div class="tool-tag">'+(d.sector||'Space')+'</div>' +
         '</div></div>';
     }
@@ -5057,7 +5057,7 @@ async function fetchLongevityRealWorld() {
         logoHtml +
         '<div style="flex:1;min-width:0;">' +
         '<div class="tool-name">'+(d.name||'')+'</div>' +
-        '<div class="tool-desc">'+((d.description||'').split('.')[0]+((d.description||'').includes('.')?'.':''))+'</div>' +
+        '<div class="tool-desc">'+(d.description||'')+'</div>' +
         '<div class="tool-tag">'+(d.sector||'Longevity')+'</div>' +
         '</div></div>';
     }
