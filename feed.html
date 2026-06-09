@@ -3479,12 +3479,12 @@ document.addEventListener('DOMContentLoaded', function() {
   fetchRealWorldRobotics();
   fetchStats();
 
-  // Auto-switch vertical based on URL parameter, then localStorage
+  // Auto-switch vertical: explicit URL parameter always wins; otherwise restore last-viewed
   var urlParams = new URLSearchParams(window.location.search);
   var vertical = urlParams.get('v');
-  if (vertical === 'frontier') switchVertical('frontier');
-  else if (vertical === 'longevity') switchVertical('longevity');
-  else {
+  if (vertical === 'frontier' || vertical === 'longevity' || vertical === 'ai') {
+    switchVertical(vertical);
+  } else {
     try {
       var saved = localStorage.getItem('amg-vertical');
       if (saved && saved !== 'ai') switchVertical(saved);
