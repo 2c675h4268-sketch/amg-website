@@ -700,7 +700,8 @@ a { color: inherit; text-decoration: none; }
 .status-active { background: var(--blue-light); color: var(--blue); }
 .status-rising { background: #edfff4; color: #34c759; }
 .status-quiet { background: var(--surface); color: var(--text-dim); }
-.watchlist-latest { font-size: 12px; color: var(--text-muted); white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+.watchlist-latest { display: none; }
+.watchlist-item-arrow { font-size: 13px; color: var(--text-muted); margin-left: auto; flex-shrink: 0; }
 
 /* ── EDUCATION GRID ── */
 .edu-grid {
@@ -883,16 +884,22 @@ a { color: inherit; text-decoration: none; }
 
 /* ── TOOL ITEMS ── */
 .tool-item {
-  padding: 13px 18px;
+  padding: 12px 16px;
   border-bottom: 1px solid var(--border);
   cursor: pointer;
   transition: background 0.15s;
   display: flex;
-  align-items: flex-start;
+  align-items: center;
   gap: 12px;
+  text-decoration: none;
+  color: inherit;
 }
 .tool-item:last-child { border-bottom: none; }
-.tool-item:hover { background: rgba(217,119,6,0.05); }
+.tool-item:hover { background: var(--surface); }
+.tool-item:hover .tool-name { color: var(--blue); }
+.tool-desc { display: none; }
+.tool-footer { display: none; }
+.tool-item-arrow { font-size: 13px; color: var(--text-muted); margin-left: auto; flex-shrink: 0; }
 .tool-icon {
   width: 36px;
   height: 36px;
@@ -1594,9 +1601,10 @@ a { color: inherit; text-decoration: none; }
 
 
 
+/* ── AI AT WORK STANDALONE BUTTON ACTIVE STATE ── */
 
 
-}
+/* ── HIDE AI AT WORK STANDALONE BTN ON MOBILE ── */
 
 
 
@@ -2729,6 +2737,7 @@ body.frontier-mode .footer-email-input:focus { border-color: var(--frontier); }
           <div class="vertical-dropdown-divider"></div>
           <button class="vertical-dropdown-item longevity" onclick="switchVertical('longevity');closeVerticalDropdown();">🧬 Longevity</button>
           <div class="vertical-dropdown-divider"></div>
+          <div class="vertical-dropdown-divider"></div>
           <button class="vertical-dropdown-item" onclick="closeBrief();openBrief();closeVerticalDropdown();">📋 Today's Brief</button>
           <div class="vertical-dropdown-divider"></div>
           <button class="vertical-dropdown-item" onclick="closeVerticalDropdown();document.getElementById('saved-btn').click();">🔖 Saved</button>
@@ -2803,7 +2812,8 @@ body.frontier-mode .footer-email-input:focus { border-color: var(--frontier); }
             <div class="tool-name">Harvey Enterprise Legal AI</div>
             <div class="tool-desc">Harvey is deployed inside Allen & Overy, PwC, and 100+ law firms drafting contracts, running due diligence, and surfacing case law at a fraction of associate hours. Billing rates haven't dropped. Volume has exploded.</div>
             <div class="tool-footer"><span class="tool-cat">⊟ Legal</span><span class="tool-stars" style="color:var(--text-muted);font-size:11px;">Harvey AI · Live</span></div>
-          </div>
+          <span class="tool-item-arrow">→</span>
+        </div>
         </a>
         <a class="tool-item" href="https://www.google.com/search?q=AI+JPMorgan+COiN+Contract+Intelligence" target="_blank" rel="noopener" style="text-decoration:none;color:inherit;">
           <div class="tool-icon">🏦</div>
@@ -2811,7 +2821,8 @@ body.frontier-mode .footer-email-input:focus { border-color: var(--frontier); }
             <div class="tool-name">JPMorgan COiN Contract Intelligence</div>
             <div class="tool-desc">JPMorgan's COiN platform reviews 12,000 commercial credit agreements per year work that previously took 360,000 hours of lawyer time annually. Error rate is lower than human review.</div>
             <div class="tool-footer"><span class="tool-cat">⊟ Finance</span><span class="tool-stars" style="color:var(--text-muted);font-size:11px;">JPMorgan · Live</span></div>
-          </div>
+          <span class="tool-item-arrow">→</span>
+        </div>
         </a>
         <a class="tool-item" href="https://www.google.com/search?q=AI+Google+DeepMind+AlphaFold+Drug+Discovery" target="_blank" rel="noopener" style="text-decoration:none;color:inherit;">
           <div class="tool-icon">🩺</div>
@@ -2819,7 +2830,8 @@ body.frontier-mode .footer-email-input:focus { border-color: var(--frontier); }
             <div class="tool-name">Google DeepMind AlphaFold Drug Discovery</div>
             <div class="tool-desc">AlphaFold has predicted the structure of 200M+ proteins essentially the entire known universe of biology. Dozens of pharmaceutical companies are now using it to accelerate drug discovery pipelines by years.</div>
             <div class="tool-footer"><span class="tool-cat">⊟ Healthcare</span><span class="tool-stars" style="color:var(--text-muted);font-size:11px;">DeepMind · Live</span></div>
-          </div>
+          <span class="tool-item-arrow">→</span>
+        </div>
         </a>
         <a class="tool-item" href="https://www.google.com/search?q=AI+Amazon+AI-Powered+Demand+Forecasting" target="_blank" rel="noopener" style="text-decoration:none;color:inherit;">
           <div class="tool-icon">🛒</div>
@@ -2827,7 +2839,8 @@ body.frontier-mode .footer-email-input:focus { border-color: var(--frontier); }
             <div class="tool-name">Amazon AI-Powered Demand Forecasting</div>
             <div class="tool-desc">Amazon's ML forecasting stack now handles real-time inventory decisions across 350M+ SKUs globally predicting regional demand spikes before they happen and auto-repositioning stock across fulfillment centers.</div>
             <div class="tool-footer"><span class="tool-cat">⊟ Retail</span><span class="tool-stars" style="color:var(--text-muted);font-size:11px;">Amazon · Live</span></div>
-          </div>
+          <span class="tool-item-arrow">→</span>
+        </div>
         </a>
         <a class="tool-item" href="https://www.google.com/search?q=AI+Airbus+Generative+Design+for+Aircraft+Parts" target="_blank" rel="noopener" style="text-decoration:none;color:inherit;">
           <div class="tool-icon">✈️</div>
@@ -2835,7 +2848,8 @@ body.frontier-mode .footer-email-input:focus { border-color: var(--frontier); }
             <div class="tool-name">Airbus Generative Design for Aircraft Parts</div>
             <div class="tool-desc">Airbus uses generative AI to design aircraft partition brackets that are 45% lighter than human-designed counterparts. The A320 now flies with AI-optimized structural components across its entire fleet.</div>
             <div class="tool-footer"><span class="tool-cat">⊟ Aerospace</span><span class="tool-stars" style="color:var(--text-muted);font-size:11px;">Airbus · Live</span></div>
-          </div>
+          <span class="tool-item-arrow">→</span>
+        </div>
         </a>
       </div>
     </div>
@@ -2853,7 +2867,8 @@ body.frontier-mode .footer-email-input:focus { border-color: var(--frontier); }
             <div class="tool-name">Agentic AI in the Enterprise</div>
             <div class="tool-desc">Every major platform Salesforce, ServiceNow, SAP, Workday is shipping autonomous agent layers in 2025. The shift from AI as a tool to AI as a worker completing multi-step tasks is the defining enterprise transition of the decade.</div>
             <div class="tool-footer"><span class="tool-cat">⊟ Enterprise</span><span class="tool-stars" style="color:var(--text-muted);font-size:11px;">Multiple · 2025–26</span></div>
-          </div>
+          <span class="tool-item-arrow">→</span>
+        </div>
         </a>
         <a class="tool-item" href="https://www.google.com/search?q=AI+AI+Tutors+at+Scale" target="_blank" rel="noopener" style="text-decoration:none;color:inherit;">
           <div class="tool-icon">🎓</div>
@@ -2861,7 +2876,8 @@ body.frontier-mode .footer-email-input:focus { border-color: var(--frontier); }
             <div class="tool-name">AI Tutors at Scale</div>
             <div class="tool-desc">Khan Academy's Khanmigo and emerging competitors are deploying personalized AI tutors to millions of students. Early data shows significant learning acceleration particularly for underserved students without access to private tutoring.</div>
             <div class="tool-footer"><span class="tool-cat">⊟ Education</span><span class="tool-stars" style="color:var(--text-muted);font-size:11px;">Khan Academy + · 2025</span></div>
-          </div>
+          <span class="tool-item-arrow">→</span>
+        </div>
         </a>
         <a class="tool-item" href="https://www.google.com/search?q=AI+AI+in+Physical+Infrastructure" target="_blank" rel="noopener" style="text-decoration:none;color:inherit;">
           <div class="tool-icon">🏗️</div>
@@ -2869,7 +2885,8 @@ body.frontier-mode .footer-email-input:focus { border-color: var(--frontier); }
             <div class="tool-name">AI in Physical Infrastructure</div>
             <div class="tool-desc">Utilities and grid operators are deploying AI to manage load balancing, predict equipment failure, and optimize renewable energy dispatch in real time. The US grid's transition to AI-managed infrastructure is already underway.</div>
             <div class="tool-footer"><span class="tool-cat">⊟ Infrastructure</span><span class="tool-stars" style="color:var(--text-muted);font-size:11px;">Multiple · 2025–26</span></div>
-          </div>
+          <span class="tool-item-arrow">→</span>
+        </div>
         </a>
         <a class="tool-item" href="https://www.google.com/search?q=AI+AI-Generated+Film+&+Advertising" target="_blank" rel="noopener" style="text-decoration:none;color:inherit;">
           <div class="tool-icon">🎬</div>
@@ -2877,7 +2894,8 @@ body.frontier-mode .footer-email-input:focus { border-color: var(--frontier); }
             <div class="tool-name">AI-Generated Film & Advertising</div>
             <div class="tool-desc">Major studios and ad agencies are piloting fully AI-generated video for B-roll, product ads, and localization. Sora, Runway, and Kling are already in agency workflows. Full AI feature films are 18–24 months from credibility.</div>
             <div class="tool-footer"><span class="tool-cat">⊟ Media</span><span class="tool-stars" style="color:var(--text-muted);font-size:11px;">Multiple · 2025–26</span></div>
-          </div>
+          <span class="tool-item-arrow">→</span>
+        </div>
         </a>
         <a class="tool-item" href="https://www.google.com/search?q=AI+AI-Designed+Clinical+Trials" target="_blank" rel="noopener" style="text-decoration:none;color:inherit;">
           <div class="tool-icon">🧬</div>
@@ -2885,7 +2903,8 @@ body.frontier-mode .footer-email-input:focus { border-color: var(--frontier); }
             <div class="tool-name">AI-Designed Clinical Trials</div>
             <div class="tool-desc">Pharma companies are using AI to design smarter trials identifying optimal patient cohorts, predicting dropout risk, and simulating outcomes before a single dose is administered. Trial timelines are compressing from years to months.</div>
             <div class="tool-footer"><span class="tool-cat">⊟ Pharma</span><span class="tool-stars" style="color:var(--text-muted);font-size:11px;">Multiple · 2026</span></div>
-          </div>
+          <span class="tool-item-arrow">→</span>
+        </div>
         </a>
       </div>
     </div>
@@ -2909,7 +2928,8 @@ body.frontier-mode .footer-email-input:focus { border-color: var(--frontier); }
             <div class="tool-name">Figure 02 BMW Manufacturing</div>
             <div class="tool-desc">Figure AI's humanoid is operating autonomously on BMW's Spartanburg production floor handling parts, assembly support, and logistics tasks across full shifts without human intervention.</div>
             <div class="tool-footer"><span class="tool-cat">⊟ Automotive</span><span class="tool-stars" style="color:var(--text-muted);font-size:11px;">Figure AI · Live</span></div>
-          </div>
+          <span class="tool-item-arrow">→</span>
+        </div>
         </div>
         <div class="tool-item">
           <div class="tool-icon">📦</div>
@@ -2917,7 +2937,8 @@ body.frontier-mode .footer-email-input:focus { border-color: var(--frontier); }
             <div class="tool-name">Agility Digit Amazon Warehouses</div>
             <div class="tool-desc">Digit robots are running 24/7 tote-handling operations across Amazon fulfillment centers. The pilot has cleared 1M+ cycles with error rates below 0.3% expansion to 10 facilities confirmed.</div>
             <div class="tool-footer"><span class="tool-cat">⊟ Logistics</span><span class="tool-stars" style="color:var(--text-muted);font-size:11px;">Agility Robotics · Live</span></div>
-          </div>
+          <span class="tool-item-arrow">→</span>
+        </div>
         </div>
         <div class="tool-item">
           <div class="tool-icon">🏥</div>
@@ -2925,7 +2946,8 @@ body.frontier-mode .footer-email-input:focus { border-color: var(--frontier); }
             <div class="tool-name">Moxi Hospital Delivery Networks</div>
             <div class="tool-desc">Diligent Robotics' Moxi is deployed in 50+ US hospitals autonomously delivering labs, meds, and supplies across floors freeing nurses from an average of 30 minutes of fetch tasks per shift.</div>
             <div class="tool-footer"><span class="tool-cat">⊟ Healthcare</span><span class="tool-stars" style="color:var(--text-muted);font-size:11px;">Diligent Robotics · Live</span></div>
-          </div>
+          <span class="tool-item-arrow">→</span>
+        </div>
         </div>
         <div class="tool-item">
           <div class="tool-icon">🚜</div>
@@ -2933,7 +2955,8 @@ body.frontier-mode .footer-email-input:focus { border-color: var(--frontier); }
             <div class="tool-name">John Deere Autonomous Tractors</div>
             <div class="tool-desc">Over 500 fully autonomous 8R tractors are now operating on US farms plowing, planting, and spraying without operators. GPS + computer vision handles field navigation end-to-end.</div>
             <div class="tool-footer"><span class="tool-cat">⊟ Agriculture</span><span class="tool-stars" style="color:var(--text-muted);font-size:11px;">John Deere · Live</span></div>
-          </div>
+          <span class="tool-item-arrow">→</span>
+        </div>
         </div>
         <div class="tool-item">
           <div class="tool-icon">🍕</div>
@@ -2941,7 +2964,8 @@ body.frontier-mode .footer-email-input:focus { border-color: var(--frontier); }
             <div class="tool-name">Flippy 2 Commercial Kitchens</div>
             <div class="tool-desc">Miso Robotics' Flippy 2 is frying, grilling, and plating at scale inside White Castle and Jack in the Box locations. Each unit handles the equivalent of 2 full-time workers during peak hours.</div>
             <div class="tool-footer"><span class="tool-cat">⊟ Food Service</span><span class="tool-stars" style="color:var(--text-muted);font-size:11px;">Miso Robotics · Live</span></div>
-          </div>
+          <span class="tool-item-arrow">→</span>
+        </div>
         </div>
       </div>
     </div>
@@ -2959,7 +2983,8 @@ body.frontier-mode .footer-email-input:focus { border-color: var(--frontier); }
             <div class="tool-name">Tesla Optimus Consumer Launch</div>
             <div class="tool-desc">Tesla has moved its consumer Optimus timeline to late 2026. Internal units are already handling parts sorting and battery assembly. Musk targets a $20K price point cheaper than a used car.</div>
             <div class="tool-footer"><span class="tool-cat">⊟ Consumer</span><span class="tool-stars" style="color:var(--text-muted);font-size:11px;">Tesla · Est. 2026</span></div>
-          </div>
+          <span class="tool-item-arrow">→</span>
+        </div>
         </div>
         <div class="tool-item">
           <div class="tool-icon">🦾</div>
@@ -2967,7 +2992,8 @@ body.frontier-mode .footer-email-input:focus { border-color: var(--frontier); }
             <div class="tool-name">Boston Dynamics Atlas Enterprise Rollout</div>
             <div class="tool-desc">The fully electric Atlas is shipping to select enterprise partners in Q3. It can lift 25kg, climb stairs, and recover from falls autonomously. Construction and heavy industry are the first targets.</div>
             <div class="tool-footer"><span class="tool-cat">⊟ Industrial</span><span class="tool-stars" style="color:var(--text-muted);font-size:11px;">Boston Dynamics · Q3 2025</span></div>
-          </div>
+          <span class="tool-item-arrow">→</span>
+        </div>
         </div>
         <div class="tool-item">
           <div class="tool-icon">🏠</div>
@@ -2975,7 +3001,8 @@ body.frontier-mode .footer-email-input:focus { border-color: var(--frontier); }
             <div class="tool-name">1X NEO Home Assistant</div>
             <div class="tool-desc">1X Technologies, backed by OpenAI, is piloting NEO in real home environments. The bet: a soft, human-scale robot that handles chores, fetches items, and assists elderly users without feeling industrial.</div>
             <div class="tool-footer"><span class="tool-cat">⊟ Home</span><span class="tool-stars" style="color:var(--text-muted);font-size:11px;">1X Technologies · 2026</span></div>
-          </div>
+          <span class="tool-item-arrow">→</span>
+        </div>
         </div>
         <div class="tool-item">
           <div class="tool-icon">🚀</div>
@@ -2983,7 +3010,8 @@ body.frontier-mode .footer-email-input:focus { border-color: var(--frontier); }
             <div class="tool-name">Apptronik Apollo NASA + Defense</div>
             <div class="tool-desc">Apollo is in active NASA testing for extraterrestrial surface operations think maintenance, construction, and EVA support on the Moon. Defense contracts are also in discussion for forward logistics.</div>
             <div class="tool-footer"><span class="tool-cat">⊟ Aerospace</span><span class="tool-stars" style="color:var(--text-muted);font-size:11px;">Apptronik · 2026–27</span></div>
-          </div>
+          <span class="tool-item-arrow">→</span>
+        </div>
         </div>
         <div class="tool-item">
           <div class="tool-icon">🌏</div>
@@ -2991,7 +3019,8 @@ body.frontier-mode .footer-email-input:focus { border-color: var(--frontier); }
             <div class="tool-name">China's Humanoid Surge</div>
             <div class="tool-desc">400+ robotics companies launched in China in 2025 alone. UBTECH, Fourier Intelligence, and Unitree are scaling fast with government backing. The race for global humanoid market share is accelerating.</div>
             <div class="tool-footer"><span class="tool-cat">⊟ Geopolitical</span><span class="tool-stars" style="color:var(--text-muted);font-size:11px;">Multiple · Ongoing</span></div>
-          </div>
+          <span class="tool-item-arrow">→</span>
+        </div>
         </div>
       </div>
     </div>
@@ -3441,8 +3470,6 @@ body.frontier-mode .footer-email-input:focus { border-color: var(--frontier); }
   </div>
 </div>
 
-
-
 </main>
 
 
@@ -3804,7 +3831,7 @@ async function fetchCompanies() {
         '<div class="watchlist-body">' +
         '<div class="watchlist-name">' + (c.name || '') + ' <span class="watchlist-status ' + statusClass + '">' + (c.category || 'Active') + '</span></div>' +
         '<div class="watchlist-latest">' + (c.update || c.description || '') + '</div>' +
-        '</div></a>';
+        '<span class="watchlist-item-arrow">→</span></div></a>';
     }
 
     var aiEl = document.getElementById('scroll-companies');
@@ -4165,6 +4192,7 @@ document.addEventListener('click', function(e) {
   // 5. Real World item
   var rwItem = e.target.closest('.tool-item');
   if (rwItem) {
+    e.preventDefault();
     var name = rwItem.querySelector('.tool-name');
     var desc = rwItem.querySelector('.tool-desc');
     var tag = rwItem.querySelector('.tool-cat') || rwItem.querySelector('.tool-tag');
@@ -4174,7 +4202,7 @@ document.addEventListener('click', function(e) {
       label: tag ? tag.textContent.replace('⊟ ', '').trim() : 'Real World',
       title: name ? name.textContent : '',
       body: desc ? desc.textContent : '',
-      trend: status ? status.textContent : '',
+      trend: status ? status.textContent.trim() : '',
       url: rwHref || ''
     });
     return;
@@ -4236,8 +4264,6 @@ document.addEventListener('DOMContentLoaded', function() {
   else {
     try {
       var saved = localStorage.getItem('amg-vertical');
-      // Clear stale work vertical
-      if (saved === 'work') { localStorage.removeItem('amg-vertical'); saved = null; }
       if (saved && saved !== 'ai') switchVertical(saved);
     } catch(e) {}
   }
@@ -4396,7 +4422,8 @@ async function loadBrief() {
     }
     // Convert newlines to paragraph breaks and format headers
     briefText = briefText
-      .replace(/# ([^\n]+)/g, '<h3 style="font-size:15px;font-weight:700;margin:20px 0 6px;color:#111;">$1</h3>')
+      .replace(/\*\*([^*]+)\*\*/g, '<strong>$1</strong>')
+      .replace(/^#{1,3}\s*(.+)$/gm, '<div style="font-size:11px;font-weight:700;letter-spacing:0.08em;text-transform:uppercase;color:#9ca3af;margin:24px 0 6px;padding-top:20px;border-top:1px solid #f3f4f6;">$1</div>')
       .replace(/\n\n/g, '</p><p style="margin:0 0 14px;">')
       .replace(/\n/g, ' ');
     el.innerHTML = briefText ? '<p style="margin:0 0 14px;">' + briefText + '</p>' : '<p style="color:#9ca3af;">No content available.</p>';
@@ -4847,7 +4874,7 @@ async function fetchFrontierCompanies() {
         '<div class="watchlist-body">' +
         '<div class="watchlist-name">'+(c.name||'')+'<span class="watchlist-status status-active" style="background:#fff7ed;color:var(--frontier);border-color:#fed7aa;">'+(c.category||'Space')+'</span></div>' +
         '<div class="watchlist-latest">'+(c.update||c.description||'')+'</div>' +
-        '</div></a>';
+        '<span class="watchlist-item-arrow">→</span></div></a>';
     }
 
     var launchEl = document.getElementById('frontier-launch-scroll');
@@ -5067,7 +5094,7 @@ async function fetchLongevityCompanies() {
         '<div class="watchlist-body">' +
         '<div class="watchlist-name">'+(c.name||'')+'<span class="watchlist-status status-active" style="background:#ecfdf5;color:var(--longevity);border-color:#a7f3d0;">'+(c.subcategory||c.specialty||(c.type&&c.type!=='biotech'&&c.type!=='clinic'?c.type:null)||((c.category&&c.category.toLowerCase()!=='longevity')?c.category:'Research'))+'</span></div>' +
         '<div class="watchlist-latest">'+(c.update||c.description||'')+'</div>' +
-        '</div></a>';
+        '<span class="watchlist-item-arrow">→</span></div></a>';
     }
     var biotechEl = document.getElementById('longevity-biotech-scroll');
     if (biotechEl) biotechEl.innerHTML = '<div class="panel-no-results" style="display:none">No results</div>' + biotechCos.map(makeItem).join('');
@@ -5311,6 +5338,11 @@ function searchSectionPrompts(input, sectionId) {
 }
 
 
+
+
+
+
+
 </script>
 
 
@@ -5328,7 +5360,8 @@ function searchSectionPrompts(input, sectionId) {
       <span id="modal-url-text"></span>
     </a>
   </div>
-</div>
+          <span class="tool-item-arrow">→</span>
+        </div>
 
 
 <button id="btt2" onclick="window.scrollTo({top:0,behavior:'smooth'})">&#8593;</button><script>window.addEventListener("scroll",function(){document.getElementById("btt2").style.opacity=window.pageYOffset>200?"1":"0.3";});</script></body>
