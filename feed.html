@@ -1609,7 +1609,7 @@ a { color: inherit; text-decoration: none; }
 }
 
 
-/* ── MOBILE REAL WORLD + STATS FONT SIZES ── */
+
 @media (max-width: 768px) {
   /* Real World items */
   .tool-name { font-size: 16px !important; }
@@ -1640,6 +1640,92 @@ a { color: inherit; text-decoration: none; }
   .stat-value { font-size: 26px; }
   .stat-context { font-size: 14px; line-height: 1.5; }
   .stat-trend { font-size: 13px; }
+}
+
+
+/* ══════════════════════════════════════════
+   GLOBAL MOBILE TYPOGRAPHY — 40+ READABLE
+   ══════════════════════════════════════════ */
+@media (max-width: 768px) {
+
+  /* ── Base body ── */
+  body { font-size: 16px; }
+
+  /* ── Cards ── */
+  .card-title { font-size: 17px !important; line-height: 1.35 !important; }
+  .card-excerpt { font-size: 15px !important; line-height: 1.65 !important; }
+  .card-source { font-size: 13px !important; }
+  .card-time { font-size: 13px !important; }
+  .tag { font-size: 12px !important; }
+
+  /* ── Reading panel ── */
+  .reading-title { font-size: 22px !important; line-height: 1.3 !important; }
+  .reading-meta { font-size: 15px !important; }
+  .reading-tag { font-size: 13px !important; }
+  .reading-body { font-size: 18px !important; line-height: 1.8 !important; }
+
+  /* ── Tile modal popups ── */
+  .tile-modal-label { font-size: 13px !important; }
+  .tile-modal-value { font-size: 28px !important; }
+  .tile-modal-title { font-size: 20px !important; line-height: 1.3 !important; }
+  .tile-modal-body { font-size: 16px !important; line-height: 1.7 !important; }
+  .tile-modal-trend { font-size: 14px !important; }
+
+  /* ── Feed items (trending panel) ── */
+  .feed-item-title { font-size: 15px !important; line-height: 1.5 !important; }
+  .feed-item-cat { font-size: 11px !important; }
+  .feed-item-time { font-size: 13px !important; }
+
+  /* ── Real World items ── */
+  .tool-name { font-size: 16px !important; }
+  .tool-desc { font-size: 14px !important; line-height: 1.55 !important; }
+  .tool-tag { font-size: 12px !important; }
+
+  /* ── Companies to Watch ── */
+  .watchlist-name { font-size: 16px !important; }
+  .watchlist-desc { font-size: 14px !important; }
+  .watchlist-status { font-size: 12px !important; }
+
+  /* ── By the Numbers ── */
+  .stat-tile div[style*="font-size:11px"] { font-size: 13px !important; }
+  .stat-tile div[style*="font-size:32px"] { font-size: 26px !important; }
+  .stat-tile div[style*="font-size:12px"] { font-size: 14px !important; line-height: 1.5 !important; }
+  .stat-label { font-size: 13px !important; }
+  .stat-value { font-size: 26px !important; }
+  .stat-context { font-size: 14px !important; line-height: 1.5 !important; }
+  .stat-trend { font-size: 13px !important; }
+
+  /* ── Predictions ── */
+  .forecast-panel-head-title { font-size: 16px !important; }
+  .forecast-panel-body { font-size: 15px !important; line-height: 1.65 !important; }
+  .forecast-confidence { font-size: 14px !important; }
+  .forecast-timeline { font-size: 13px !important; }
+
+  /* ── Search results ── */
+  .search-result-title { font-size: 16px !important; }
+  .search-result-meta { font-size: 14px !important; }
+
+  /* ── Section titles ── */
+  .section-title { font-size: 18px !important; }
+
+  /* ── Daily Brief modal ── */
+  #brief-content { font-size: 16px !important; line-height: 1.75 !important; }
+  #brief-content h3 { font-size: 16px !important; }
+
+  /* ── You Might Also Like ── */
+  .reading-ymal-label { font-size: 13px !important; }
+  .ymal-title { font-size: 15px !important; }
+  .ymal-source { font-size: 13px !important; }
+
+  /* ── Filter tabs and chips ── */
+  .filter-chip { font-size: 13px !important; padding: 6px 12px !important; }
+  .filter-tab { font-size: 13px !important; }
+
+  /* ── Panel items ── */
+  .panel-head-title { font-size: 14px !important; }
+  .panel-head-badge-deployed,
+  .panel-head-badge-horizon,
+  .panel-head-badge-live { font-size: 11px !important; }
 }
 
 /* ── MOBILE POLISH ── */
@@ -3084,10 +3170,10 @@ body.frontier-mode .footer-email-input:focus { border-color: var(--frontier); }
     <!-- Active Missions -->
     <div class="panel-box">
       <div class="panel-head" style="background:var(--surface);border-bottom:1.5px solid var(--border);">
-        <span class="panel-head-title" style="color:var(--text);">🚀 In Production</span>
+        <span class="panel-head-title tools">🚀 In Production</span>
         <div style="display:flex;align-items:center;gap:8px;">
+          <span class="panel-head-badge-deployed">Deployed Now</span>
           <button class="ph-search-btn" onclick="togglePanelSearch('frontier-prod-search')"><svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="8"/><path d="m21 21-4.35-4.35"/></svg></button>
-          <div class="live-indicator" style="font-size:11px;"><div class="live-dot" style="background:var(--frontier);"></div>Live</div>
         </div>
       </div>
       <div class="ph-search-wrap" id="frontier-prod-search" style="display:none;padding:8px 12px;border-bottom:1px solid var(--border);"><input class="ph-search-input" placeholder="Search missions…" oninput="filterPanel(this,'frontier-prod-scroll')" /></div>
@@ -3098,8 +3184,11 @@ body.frontier-mode .footer-email-input:focus { border-color: var(--frontier); }
     <!-- On the Horizon -->
     <div class="panel-box">
       <div class="panel-head" style="background:var(--surface);border-bottom:1.5px solid var(--border);">
-        <span class="panel-head-title" style="color:var(--text);">🔭 On the Horizon</span>
-        <button class="ph-search-btn" onclick="togglePanelSearch('frontier-horizon-search')"><svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="8"/><path d="m21 21-4.35-4.35"/></svg></button>
+        <span class="panel-head-title prompts">🔭 On the Horizon</span>
+        <div style="display:flex;align-items:center;gap:8px;">
+          <span class="panel-head-badge-horizon">6–18 Months Out</span>
+          <button class="ph-search-btn" onclick="togglePanelSearch('frontier-horizon-search')"><svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="8"/><path d="m21 21-4.35-4.35"/></svg></button>
+        </div>
       </div>
       <div class="ph-search-wrap" id="frontier-horizon-search" style="display:none;padding:8px 12px;border-bottom:1px solid var(--border);"><input class="ph-search-input" placeholder="Search missions…" oninput="filterPanel(this,'frontier-horizon-scroll')" /></div>
       <div class="panel-flat" id="frontier-horizon-scroll">
@@ -3241,8 +3330,8 @@ body.frontier-mode .footer-email-input:focus { border-color: var(--frontier); }
       <div class="panel-head" style="background:var(--surface);border-bottom:1.5px solid var(--border);">
         <span class="panel-head-title">🔬 In Clinical Use</span>
         <div style="display:flex;align-items:center;gap:8px;">
+          <span class="panel-head-badge-deployed">Deployed Now</span>
           <button class="ph-search-btn" onclick="togglePanelSearch('longevity-prod-search')"><svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="8"/><path d="m21 21-4.35-4.35"/><\/svg></button>
-          <div class="live-indicator" style="font-size:11px;"><div class="live-dot" style="background:var(--longevity);"></div>Live</div>
         </div>
       </div>
       <div class="ph-search-wrap" id="longevity-prod-search" style="display:none;padding:8px 12px;border-bottom:1px solid var(--border);"><input class="ph-search-input" placeholder="Search treatments…" oninput="filterPanel(this,'longevity-prod-scroll')" /></div>
@@ -3252,7 +3341,8 @@ body.frontier-mode .footer-email-input:focus { border-color: var(--frontier); }
     </div>
     <div class="panel-box">
       <div class="panel-head" style="background:var(--surface);border-bottom:1.5px solid var(--border);">
-        <span class="panel-head-title">🧪 On the Horizon</span>
+        <span class="panel-head-title prompts">🧪 On the Horizon</span>
+        <span class="panel-head-badge-horizon">6–18 Months Out</span>
         <button class="ph-search-btn" onclick="togglePanelSearch('longevity-horizon-search')"><svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="8"/><path d="m21 21-4.35-4.35"/><\/svg></button>
       </div>
       <div class="ph-search-wrap" id="longevity-horizon-search" style="display:none;padding:8px 12px;border-bottom:1px solid var(--border);"><input class="ph-search-input" placeholder="Search treatments…" oninput="filterPanel(this,'longevity-horizon-scroll')" /></div>
