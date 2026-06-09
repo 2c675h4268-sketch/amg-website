@@ -2717,7 +2717,7 @@ body.frontier-mode .footer-email-input:focus { border-color: var(--frontier); }
       <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="8"/><path d="m21 21-4.35-4.35"/></svg>
       Search stories…
     </div>
-    <button class="btn-filter" id="brief-btn" onclick="openBrief()" style="background:#111;color:#fff;border-color:#111;flex-shrink:0;">
+    <button class="btn-filter" id="brief-btn" onclick="openBrief()" style="flex-shrink:0;">
       📋 Today's Brief
     </button>
     <div class="header-right">
@@ -5485,11 +5485,13 @@ document.addEventListener('click', function(e) {
     var desc = rwItem.querySelector('.tool-desc');
     var tag = rwItem.querySelector('.tool-cat') || rwItem.querySelector('.tool-tag');
     var status = rwItem.querySelector('.tool-stars');
+    var rwHref = rwItem.tagName === 'A' ? rwItem.getAttribute('href') : '';
     openTileModal({
       label: tag ? tag.textContent.replace('⊟ ', '').trim() : 'Real World',
       title: name ? name.textContent : '',
       body: desc ? desc.textContent : '',
-      trend: status ? status.textContent : ''
+      trend: status ? status.textContent : '',
+      url: rwHref || ''
     });
     return;
   }
@@ -5506,7 +5508,7 @@ document.addEventListener('click', function(e) {
       label: wStatus ? wStatus.textContent.trim() : 'Company',
       title: nameText,
       body: latest ? latest.textContent.trim() : '',
-      trend: href ? '↗ ' + href.replace('https://','').replace('www.','') : ''
+      url: href || ''
     });
     return;
   }
@@ -6400,7 +6402,7 @@ async function fetchLongevityCompanies() {
       return '<a class="watchlist-item" href="'+href+'" target="_blank" rel="noopener">' +
         (href.startsWith('http') ? makeLogoImg(href.replace(/https?:\/\//,'').split('/')[0], c.name, 'letter', 'watchlist-logo') : '<div class="watchlist-logo" style="background:linear-gradient(135deg,var(--longevity),#34d399);display:flex;align-items:center;justify-content:center;font-size:12px;font-weight:800;color:#fff;">'+initials+'</div>') +
         '<div class="watchlist-body">' +
-        '<div class="watchlist-name">'+(c.name||'')+'<span class="watchlist-status status-active" style="background:#ecfdf5;color:var(--longevity);border-color:#a7f3d0;">'+(c.category||'Longevity')+'</span></div>' +
+        '<div class="watchlist-name">'+(c.name||'')+'<span class="watchlist-status status-active" style="background:#ecfdf5;color:var(--longevity);border-color:#a7f3d0;">'+(c.subcategory||c.specialty||(c.type&&c.type!=='biotech'&&c.type!=='clinic'?c.type:null)||((c.category&&c.category.toLowerCase()!=='longevity')?c.category:'Research'))+'</span></div>' +
         '<div class="watchlist-latest">'+(c.update||c.description||'')+'</div>' +
         '</div></a>';
     }
@@ -6522,6 +6524,17 @@ function openTileModal(data) {
     trendEl.style.display = 'block';
   } else {
     trendEl.style.display = 'none';
+  }
+  var urlEl = document.getElementById('modal-url-link');
+  if (urlEl) {
+    if (data.url) {
+      urlEl.href = data.url.startsWith('http') ? data.url : 'https://' + data.url;
+      var span = urlEl.querySelector('span') || urlEl;
+      span.textContent = data.url.replace(/https?:\/\//, '').replace(/\/.*/, '');
+      urlEl.style.display = 'inline-flex';
+    } else {
+      urlEl.style.display = 'none';
+    }
   }
   document.getElementById('tile-modal-overlay').classList.add('open');
   document.body.style.overflow = 'hidden';
@@ -6705,7 +6718,10 @@ document.querySelectorAll('a[href^="#"]').forEach(function(a) {
     <div class="tile-modal-title" id="modal-title"></div>
     <div class="tile-modal-body" id="modal-body"></div>
     <div class="tile-modal-trend" id="modal-trend" style="display:none;"></div>
-
+    <a id="modal-url-link" href="#" target="_blank" rel="noopener" style="display:none;margin-top:16px;font-size:14px;font-weight:500;color:var(--text-muted);text-decoration:none;align-items:center;gap:5px;">
+      <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M7 17L17 7"/><path d="M7 7h10v10"/></svg>
+      <span id="modal-url-text"></span>
+    </a>
   </div>
 </div>
 
