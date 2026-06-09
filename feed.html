@@ -3915,8 +3915,8 @@ async function loadBrief() {
     }
     // Convert newlines to paragraph breaks and format headers
     briefText = briefText
-      .replace(/\*\*([^*]+)\*\*/g, '<strong>$1</strong>')
-      .replace(/^#{1,3}\s*(.+)$/gm, '<div style="font-size:11px;font-weight:700;letter-spacing:0.08em;text-transform:uppercase;color:#9ca3af;margin:24px 0 6px;padding-top:20px;border-top:1px solid #f3f4f6;">$1</div>')
+      .replace(/\*\*([^*]+)\*\*/g, '<strong style="color:#111;font-weight:700;">$1</strong>')
+      .replace(/^#{1,3}\s*(.+)$/gm, '<div style="font-size:11px;font-weight:800;letter-spacing:0.08em;text-transform:uppercase;color:#111;margin:24px 0 6px;padding-top:20px;border-top:1px solid #f3f4f6;">$1</div>')
       .replace(/\n\n/g, '</p><p style="margin:0 0 14px;">')
       .replace(/\n/g, ' ');
     el.innerHTML = briefText ? '<p style="margin:0 0 14px;">' + briefText + '</p>' : '<p style="color:#9ca3af;">No content available.</p>';
