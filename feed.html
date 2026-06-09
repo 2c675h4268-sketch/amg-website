@@ -655,6 +655,41 @@ a { color: inherit; text-decoration: none; }
   font-family: inherit;
 }
 .saved-remove:hover { color: #ff3b30; }
+.saved-item.linkable { cursor: pointer; transition: background 0.15s; }
+.saved-item.linkable:hover { background: var(--surface); margin: 0 -12px; padding-left: 12px; padding-right: 12px; border-radius: 8px; }
+.saved-item.linkable:hover .saved-item-title { color: var(--blue); }
+.saved-item-arrow { font-size: 11px; color: var(--text-dim); }
+.saved-item-cat {
+  display: inline-block;
+  font-size: 9px;
+  font-weight: 700;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  padding: 2px 7px;
+  border-radius: 999px;
+  background: var(--surface);
+  border: 1px solid var(--border);
+  color: var(--text-muted);
+  margin-right: 8px;
+  vertical-align: middle;
+}
+.saved-filter-row { display: none; flex-wrap: wrap; gap: 6px; margin-bottom: 18px; }
+.saved-filter-chip {
+  font-family: inherit;
+  font-size: 10px;
+  font-weight: 700;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  padding: 5px 11px;
+  border-radius: 999px;
+  border: 1px solid var(--border);
+  background: var(--bg);
+  color: var(--text-muted);
+  cursor: pointer;
+  transition: border-color 0.15s, background 0.15s, color 0.15s;
+}
+.saved-filter-chip:hover { border-color: var(--text-muted); color: var(--text); }
+.saved-filter-chip.active { background: var(--text); color: var(--bg); border-color: var(--text); }
 
 /* ── WATCHLIST ── */
 .watchlist {
@@ -2038,6 +2073,7 @@ body.frontier-mode .footer-email-input:focus { border-color: var(--frontier); }
   max-height: 80vh;
   overflow-y: auto;
   position: relative;
+  margin: auto;
   box-shadow: 0 24px 64px rgba(0,0,0,0.18);
   animation: modalIn 0.2s ease;
 }
@@ -2645,6 +2681,7 @@ body.frontier-mode .footer-email-input:focus { border-color: var(--frontier); }
     <div class="saved-search-wrap">
       <input class="saved-search-input" id="saved-search" type="text" placeholder="Search saved articles…" oninput="renderSavedPanel()" autocomplete="off">
     </div>
+    <div class="saved-filter-row" id="saved-filter-row" style="display:none;"></div>
     <div id="saved-list">
       <div class="saved-empty" id="saved-empty">
         <div class="saved-empty-icon">🔖</div>
@@ -4162,32 +4199,7 @@ document.addEventListener('click', function(e) {
     if (t) openReading(t);
     return;
   }
-  // 3. Forecast card
-  var fCard = e.target.closest('.forecast-card');
-  if (fCard) {
-    var prediction = fCard.querySelector('.forecast-prediction');
-    var pct = fCard.querySelector('.forecast-pct');
-    var group = fCard.closest('.forecast-group');
-    var timeLabel = group ? group.querySelector('.forecast-group-label') : null;
-    openTileModal({
-      label: timeLabel ? timeLabel.textContent.trim() : "Atomic's Prediction",
-      title: prediction ? prediction.textContent : '',
-      body: pct ? pct.textContent : ''
-    });
-    return;
-  }
-  // 4. Stat tile
-  var sTile = e.target.closest('.stat-tile');
-  if (sTile) {
-    var kids = Array.from(sTile.children);
-    openTileModal({
-      label: kids[0] ? kids[0].textContent.trim() : 'Stat',
-      value: kids[1] ? kids[1].textContent.trim() : '',
-      body: kids[2] ? kids[2].textContent.trim() : '',
-      trend: kids[3] ? kids[3].textContent.trim() : ''
-    });
-    return;
-  }
+  // 3. Stat tiles and forecast cards: no popup (content is fully visible on the card itself)
   // 5. Real World item
   var rwItem = e.target.closest('.tool-item');
   if (rwItem) {
@@ -4232,7 +4244,7 @@ document.addEventListener('click', function(e) {
 
 function attachCardListeners() {
   // Update saved state on visible bookmark buttons
-  var saved = getSaved();
+  var saved = savedTitles();
   document.querySelectorAll('.bookmark-btn').forEach(function(btn) {
     if (saved.includes(btn.dataset.title)) {
       btn.classList.add('saved');
@@ -4268,16 +4280,47 @@ document.addEventListener('DOMContentLoaded', function() {
   }
 });
 // ── SAVED (localStorage) ──
-function getSaved(){ try{return JSON.parse(localStorage.getItem('amg-saved')||'[]');}catch(e){return[];} }
+// Saved items are stored as objects: {title, url, source, cat, time}.
+// Older saves (plain title strings) are migrated on read.
+function normalizeSavedItem(item){
+  if (typeof item !== 'string') return item;
+  var s = (typeof STORIES !== 'undefined' && STORIES.find(function(x){ return x.title === item; })) || null;
+  return {
+    title: item,
+    url: (s && s.url && s.url !== '#') ? s.url : '',
+    source: s ? (s.source || '') : '',
+    cat: s ? (s.cat || '') : '',
+    time: s ? (s.time || '') : ''
+  };
+}
+function getSaved(){
+  try {
+    var raw = JSON.parse(localStorage.getItem('amg-saved')||'[]');
+    return raw.map(normalizeSavedItem);
+  } catch(e){ return []; }
+}
 function setSaved(a){ localStorage.setItem('amg-saved', JSON.stringify(a)); updateSavedBadge(); }
+function savedTitles(){ return getSaved().map(function(s){ return s.title; }); }
 function toggleSaved(title){
   let saved = getSaved();
-  const idx = saved.indexOf(title);
-  if(idx > -1) saved.splice(idx,1); else saved.push(title);
+  const idx = saved.findIndex(function(s){ return s.title === title; });
+  if(idx > -1){
+    saved.splice(idx,1);
+  } else {
+    var s = (typeof STORIES !== 'undefined' && STORIES.find(function(x){ return x.title === title; })) || null;
+    saved.push({
+      title: title,
+      url: (s && s.url && s.url !== '#') ? s.url : '',
+      source: s ? (s.source || '') : '',
+      cat: s ? (s.cat || '') : '',
+      time: s ? (s.time || '') : ''
+    });
+  }
   setSaved(saved);
+  const isNowSaved = idx === -1;
   document.querySelectorAll('.bookmark-btn[data-title="'+CSS.escape(title)+'"]').forEach(btn=>{
-    btn.classList.toggle('saved', saved.includes(title));
-    btn.textContent = saved.includes(title) ? '✓ Saved' : '🔖 Save';
+    btn.classList.toggle('saved', isNowSaved);
+    btn.textContent = isNowSaved ? '✓ Saved' : '🔖 Save';
   });
   updateSavedBadge();
   renderSavedPanel();
@@ -4287,38 +4330,82 @@ function updateSavedBadge(){
   const badge = document.getElementById('saved-count');
   if(badge){ badge.textContent = n; badge.style.display = n > 0 ? 'inline' : 'none'; }
 }
+var savedCatFilter = 'all';
+function setSavedFilter(cat){ savedCatFilter = cat; renderSavedPanel(); }
 function renderSavedPanel(){
   const saved = getSaved();
   const list = document.getElementById('saved-list');
   if(!list) return;
   const searchEl = document.getElementById('saved-search');
   const query = searchEl ? searchEl.value.toLowerCase().trim() : '';
+
+  // Category filter chips, built from whatever categories are actually saved.
+  // Only shown when there are 2+ categories (no point filtering one bucket).
+  const chipRow = document.getElementById('saved-filter-row');
+  if (chipRow) {
+    var cats = [];
+    saved.forEach(function(s){ var c = (s.cat||'').trim(); if(c && cats.indexOf(c) === -1) cats.push(c); });
+    if (saved.length > 0 && cats.length > 1) {
+      if (savedCatFilter !== 'all' && cats.indexOf(savedCatFilter) === -1) savedCatFilter = 'all';
+      chipRow.style.display = 'flex';
+      chipRow.innerHTML = ['all'].concat(cats).map(function(c){
+        var label = c === 'all' ? 'All' : c.replace(/-/g,' ').toUpperCase();
+        return '<button class="saved-filter-chip' + (savedCatFilter === c ? ' active' : '') + '" data-cat="' + c.replace(/"/g,'&quot;') + '">' + label + '</button>';
+      }).join('');
+      chipRow.querySelectorAll('.saved-filter-chip').forEach(function(chip){
+        chip.addEventListener('click', function(){ setSavedFilter(this.dataset.cat); });
+      });
+    } else {
+      chipRow.style.display = 'none';
+      chipRow.innerHTML = '';
+      savedCatFilter = 'all';
+    }
+  }
+
   if(saved.length === 0){
     list.innerHTML = '<div class="saved-empty"><div class="saved-empty-icon">🔖</div><div>No saved articles yet.</div><div style="margin-top:6px;font-size:12px;color:var(--text-dim);">Tap &ldquo;Save&rdquo; on any story.</div></div>';
     return;
   }
-  const filtered = saved.filter(title => {
+  const filtered = saved.filter(function(s){
+    if(savedCatFilter !== 'all' && (s.cat||'') !== savedCatFilter) return false;
     if(!query) return true;
-    const s = STORIES.find(x=>x.title===title)||{title,source:'',time:'',excerpt:''};
-    return (s.title+' '+(s.source||'')+' '+(s.excerpt||'')).toLowerCase().indexOf(query) !== -1;
+    return ((s.title||'')+' '+(s.source||'')+' '+(s.cat||'')).toLowerCase().indexOf(query) !== -1;
   });
   if(filtered.length === 0){
     list.innerHTML = '<div class="saved-empty"><div class="saved-empty-icon">🔍</div><div>No matching saved articles.</div></div>';
     return;
   }
-  list.innerHTML = filtered.map(title => {
-    const s = STORIES.find(x=>x.title===title)||{title,source:'',time:''};
-    const safeTitle = s.title.replace(/&/g,'&amp;').replace(/"/g,'&quot;');
-    return `<div class="saved-item">
-      <div class="saved-item-title">${s.title}</div>
-      <div class="saved-item-meta">${s.source}${s.time?' · '+s.time:''}</div>
-      <button class="saved-remove" data-title="${safeTitle}">Remove</button>
-    </div>`;
+  list.innerHTML = filtered.map(function(s){
+    const safeTitle = (s.title||'').replace(/&/g,'&amp;').replace(/"/g,'&quot;');
+    const hasUrl = !!(s.url && s.url !== '#');
+    const safeUrl = hasUrl ? s.url.replace(/"/g,'&quot;') : '';
+    const meta = [s.source, s.time].filter(Boolean).join(' · ');
+    const catBadge = s.cat ? '<span class="saved-item-cat">' + s.cat.replace(/-/g,' ').toUpperCase() + '</span>' : '';
+    return '<div class="saved-item' + (hasUrl ? ' linkable' : '') + '" data-title="' + safeTitle + '" data-url="' + safeUrl + '">' +
+      '<div class="saved-item-title">' + s.title + (hasUrl ? ' <span class="saved-item-arrow">&#8599;</span>' : '') + '</div>' +
+      '<div class="saved-item-meta">' + catBadge + (meta || '') + '</div>' +
+      '<button class="saved-remove" data-title="' + safeTitle + '">Remove</button>' +
+      '</div>';
   }).join('');
   list.querySelectorAll('.saved-remove').forEach(btn => {
     btn.addEventListener('click', function(e) {
       e.stopPropagation();
       toggleSaved(this.dataset.title);
+    });
+  });
+  // Clicking a saved item opens the original article in a new tab.
+  // Fallback: if no URL was captured but the story is in the current feed, open the reading panel.
+  list.querySelectorAll('.saved-item').forEach(function(item){
+    item.addEventListener('click', function(e){
+      if (e.target.closest('.saved-remove')) return;
+      var url = this.dataset.url;
+      if (url) {
+        window.open(url, '_blank', 'noopener');
+      } else if (typeof STORIES !== 'undefined' && STORIES.find(x => x.title === this.dataset.title)) {
+        document.getElementById('saved-overlay').classList.remove('open');
+        document.body.style.overflow = '';
+        openReading(this.dataset.title);
+      }
     });
   });
 }
@@ -4363,7 +4450,7 @@ function wireCards(){
     });
   });
   // Restore saved state
-  const saved = getSaved();
+  const saved = savedTitles();
   document.querySelectorAll('.bookmark-btn').forEach(btn => {
     if(saved.includes(btn.dataset.title)){
       btn.classList.add('saved');
@@ -5359,8 +5446,7 @@ function searchSectionPrompts(input, sectionId) {
       <span id="modal-url-text"></span>
     </a>
   </div>
-          <span class="tool-item-arrow">→</span>
-        </div>
+</div>
 
 
 <button id="btt2" onclick="window.scrollTo({top:0,behavior:'smooth'})">&#8593;</button><script>window.addEventListener("scroll",function(){document.getElementById("btt2").style.opacity=window.pageYOffset>200?"1":"0.3";});</script></body>
