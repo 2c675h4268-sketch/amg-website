@@ -34,7 +34,6 @@ html { scroll-behavior: smooth; }
   --frontier: #ea580c;
   --frontier-light: #fff7ed;
   --longevity: #059669;
-  --grid: #7c3aed;
   --longevity-light: #ecfdf5;
   --radius: 10px;
   --radius-sm: 7px;
@@ -1924,20 +1923,9 @@ a { color: inherit; text-decoration: none; }
   color: var(--longevity);
   background: #ecfdf5;
 }
-.vertical-btn.grid {
-  color: var(--grid);
-}
-.vertical-btn.active.grid {
-  color: var(--grid);
-  background: #f5f3ff;
-}
-.vertical-dropdown-item.grid { color: var(--grid); }
 body.longevity-mode .tag { color: var(--longevity); }
 body.longevity-mode .feed-item-cat { color: var(--longevity); }
 body.longevity-mode .section-title { border-bottom-color: var(--longevity); }
-body.grid-mode .tag { color: var(--grid); }
-body.grid-mode .feed-item-cat { color: var(--grid); }
-body.grid-mode .section-title { border-bottom-color: var(--grid); }
 body.longevity-mode .live-dot { background: var(--longevity); }
 body.longevity-mode .footer-subscribe-btn { background: var(--longevity); }
 body.longevity-mode .footer-email-input:focus { border-color: var(--longevity); }
@@ -2727,7 +2715,6 @@ body.frontier-mode .footer-email-input:focus { border-color: var(--frontier); }
         <button class="vertical-btn active" id="btn-ai-robotics" onclick="switchVertical('ai')">🦾 AI &amp; Robotics</button>
         <button class="vertical-btn frontier" id="btn-frontier" onclick="switchVertical('frontier')">🚀 The Frontier</button>
         <button class="vertical-btn longevity" id="btn-longevity" onclick="switchVertical('longevity')">🧬 Longevity</button>
-        <button class="vertical-btn grid" id="btn-grid" onclick="switchVertical('grid')">⚡ The Grid</button>
       </div>
       <!-- Mobile dropdown -->
       <div class="vertical-dropdown" id="vertical-dropdown">
@@ -2741,7 +2728,6 @@ body.frontier-mode .footer-email-input:focus { border-color: var(--frontier); }
           <button class="vertical-dropdown-item frontier" onclick="switchVertical('frontier');closeVerticalDropdown();">🚀 The Frontier</button>
           <div class="vertical-dropdown-divider"></div>
           <button class="vertical-dropdown-item longevity" onclick="switchVertical('longevity');closeVerticalDropdown();">🧬 Longevity</button>
-          <button class="vertical-dropdown-item grid" onclick="switchVertical('grid');closeVerticalDropdown();">⚡ The Grid</button>
           <div class="vertical-dropdown-divider"></div>
           <button class="vertical-dropdown-item" onclick="closeBrief();openBrief();closeVerticalDropdown();">📋 Today's Brief</button>
           <div class="vertical-dropdown-divider"></div>
@@ -3456,190 +3442,6 @@ body.frontier-mode .footer-email-input:focus { border-color: var(--frontier); }
 </div>
 
 
-<!-- ═══════════════════════════════════════
-     THE GRID SECTION
-     ═══════════════════════════════════════ -->
-<div id="section-grid" style="display:none;">
-  <div class="site">
-
-    <!-- Section header -->
-    <div class="section-header-row">
-      <h2 class="section-title" style="border-bottom-color:var(--grid);">
-        <span style="font-size:28px;margin-right:10px;">⚡</span> The Grid
-        <span class="section-tagline">· The global energy system is being rebuilt from the ground up. Stay ahead of it.</span>
-      </h2>
-    </div>
-
-    <!-- Top Stories -->
-    <div class="section-title-row"><span class="section-label">Top Stories</span></div>
-    <div class="section-divider" style="background:var(--grid);"></div>
-    <div class="small-grid" id="grid-top-stories-grid">
-      <!-- Mock story cards -->
-      <div class="card" data-title="Global Grid Investment Hits $1.2 Trillion in 2026" style="cursor:pointer;" onclick="openReading('Global Grid Investment Hits $1.2 Trillion in 2026')">
-        <div style="height:160px;background:linear-gradient(135deg,#2e1065,#7c3aed);border-radius:8px 8px 0 0;margin:-16px -16px 12px -16px;display:flex;align-items:center;justify-content:center;font-size:36px;">⚡</div>
-        <div class="tag" style="color:var(--grid);">INFRASTRUCTURE</div>
-        <div class="card-title">Global Grid Investment Hits $1.2 Trillion in 2026</div>
-        <div class="card-excerpt">Global investment in electricity grid infrastructure surpassed $1.2 trillion in 2026, driven by the twin demands of AI data centers and renewable energy integration. The IEA reports this marks a 40% increase over 2024 levels, with the US, EU, and China accounting for 70% of total spend.</div>
-        <div class="card-meta"><span class="card-source">IEA.ORG</span><span class="card-time">2h ago</span></div>
-        <div class="card-actions"><button class="card-btn bookmark-btn" data-title="Global Grid Investment Hits $1.2 Trillion in 2026">🔖 Save</button></div>
-      </div>
-      <div class="card" data-title="AI Data Centers Now Consume 3% of Global Electricity" style="cursor:pointer;" onclick="openReading('AI Data Centers Now Consume 3% of Global Electricity')">
-        <div style="height:160px;background:linear-gradient(135deg,#1e1b4b,#4338ca);border-radius:8px 8px 0 0;margin:-16px -16px 12px -16px;display:flex;align-items:center;justify-content:center;font-size:36px;">🖥️</div>
-        <div class="tag" style="color:var(--grid);">AI DEMAND</div>
-        <div class="card-title">AI Data Centers Now Consume 3% of Global Electricity</div>
-        <div class="card-excerpt">The explosive growth of AI training and inference has pushed data center electricity consumption to 3% of global supply — equivalent to the entire power output of Germany. Microsoft, Google, and Amazon are now among the world's largest electricity buyers.</div>
-        <div class="card-meta"><span class="card-source">BLOOMBERG</span><span class="card-time">4h ago</span></div>
-        <div class="card-actions"><button class="card-btn bookmark-btn" data-title="AI Data Centers Now Consume 3% of Global Electricity">🔖 Save</button></div>
-      </div>
-      <div class="card" data-title="Nuclear Renaissance: 40 New Reactors Approved Globally" style="cursor:pointer;" onclick="openReading('Nuclear Renaissance: 40 New Reactors Approved Globally')">
-        <div style="height:160px;background:linear-gradient(135deg,#0f172a,#1e40af);border-radius:8px 8px 0 0;margin:-16px -16px 12px -16px;display:flex;align-items:center;justify-content:center;font-size:36px;">☢️</div>
-        <div class="tag" style="color:var(--grid);">NUCLEAR</div>
-        <div class="card-title">Nuclear Renaissance: 40 New Reactors Approved Globally</div>
-        <div class="card-excerpt">2026 has seen more nuclear reactor approvals than any year since 1979. The US, France, South Korea, and India are leading a coordinated buildout as policymakers recognize nuclear as the only scalable carbon-free baseload option capable of powering an AI-driven economy.</div>
-        <div class="card-meta"><span class="card-source">WORLD NUCLEAR NEWS</span><span class="card-time">6h ago</span></div>
-        <div class="card-actions"><button class="card-btn bookmark-btn" data-title="Nuclear Renaissance: 40 New Reactors Approved Globally">🔖 Save</button></div>
-      </div>
-    </div>
-
-    <!-- By the Numbers -->
-    <div class="section-title-row" style="margin-top:40px;"><span class="section-label">By the Numbers</span></div>
-    <div class="section-divider" style="background:var(--grid);"></div>
-    <div class="numbers-grid" id="grid-numbers-grid">
-      <div class="stat-tile" style="background:var(--bg);border:1px solid var(--border);border-radius:var(--radius);padding:22px 24px;">
-        <div class="stat-label">GLOBAL GRID INVESTMENT</div>
-        <div class="stat-value">$1.2T</div>
-        <div class="stat-context">Annual global investment in electricity grid infrastructure in 2026 — a record high driven by AI demand and energy transition.</div>
-        <div class="stat-trend">↑ 40% year over year</div>
-      </div>
-      <div class="stat-tile" style="background:var(--bg);border:1px solid var(--border);border-radius:var(--radius);padding:22px 24px;">
-        <div class="stat-label">AI POWER DEMAND</div>
-        <div class="stat-value">3%</div>
-        <div class="stat-context">Share of global electricity now consumed by AI data centers — projected to reach 8% by 2030 if current growth continues.</div>
-        <div class="stat-trend">↑ Growing 35% annually</div>
-      </div>
-      <div class="stat-tile" style="background:var(--bg);border:1px solid var(--border);border-radius:var(--radius);padding:22px 24px;">
-        <div class="stat-label">BATTERY STORAGE</div>
-        <div class="stat-value">400 GWh</div>
-        <div class="stat-context">Global grid-scale battery storage deployed in 2026, enabling renewable energy to cover demand gaps for the first time at scale.</div>
-        <div class="stat-trend">↑ 3x increase since 2023</div>
-      </div>
-      <div class="stat-tile" style="background:var(--bg);border:1px solid var(--border);border-radius:var(--radius);padding:22px 24px;">
-        <div class="stat-label">SOLAR CAPACITY</div>
-        <div class="stat-value">5 TW</div>
-        <div class="stat-context">Cumulative global solar capacity crossed 5 terawatts in 2026. Solar is now the cheapest source of electricity ever deployed by humanity.</div>
-        <div class="stat-trend">↑ Doubling every 3 years</div>
-      </div>
-      <div class="stat-tile" style="background:var(--bg);border:1px solid var(--border);border-radius:var(--radius);padding:22px 24px;">
-        <div class="stat-label">GRID JOBS CREATED</div>
-        <div class="stat-value">2.1M</div>
-        <div class="stat-context">New jobs created globally in grid construction, maintenance, and management in 2026 — the fastest growing employment category in infrastructure.</div>
-        <div class="stat-trend">↑ Fastest growing sector</div>
-      </div>
-      <div class="stat-tile" style="background:var(--bg);border:1px solid var(--border);border-radius:var(--radius);padding:22px 24px;">
-        <div class="stat-label">NUCLEAR CAPACITY</div>
-        <div class="stat-value">600 GW</div>
-        <div class="stat-context">Nuclear power capacity under construction or approved globally as of 2026 — the largest pipeline since the 1970s energy crisis.</div>
-        <div class="stat-trend">↑ Renaissance underway</div>
-      </div>
-    </div>
-
-    <!-- In the Real World -->
-    <div class="section-title-row" style="margin-top:40px;"><span class="section-label">Energy & Grid in the Real World</span></div>
-    <div class="section-divider" style="background:var(--grid);"></div>
-    <div class="panel-flat">
-      <div class="panel-head">
-        <span class="panel-head-title" style="color:var(--grid);">⚡ DEPLOYED NOW</span>
-        <span class="panel-head-badge-deployed" style="background:#f5f3ff;color:var(--grid);border-color:#ddd6fe;">Live</span>
-      </div>
-      <a href="https://www.tesla.com/megapack" target="_blank" rel="noopener" class="tool-item" style="text-decoration:none;color:inherit;">
-        <div class="tool-icon">🔋</div>
-        <div class="tool-body">
-          <div class="tool-name">Tesla Megapack — Grid-Scale Battery Storage</div>
-          <div class="tool-desc">Tesla's Megapack is deployed in utility-scale battery projects across 40+ countries. The Moss Landing installation in California is the world's largest battery system at 3 GWh, providing grid stability for 750,000 homes during peak demand.</div>
-          <div class="tool-footer"><span class="tool-cat">⊟ Storage</span><span class="tool-stars">Tesla · Commercial Scale</span></div>
-        </div>
-      </a>
-      <a href="https://www.ge.com/renewableenergy" target="_blank" rel="noopener" class="tool-item" style="text-decoration:none;color:inherit;">
-        <div class="tool-icon">🌬️</div>
-        <div class="tool-body">
-          <div class="tool-name">GE Haliade-X — Offshore Wind at Scale</div>
-          <div class="tool-desc">The world's most powerful offshore wind turbine at 18 MW per unit. A single Haliade-X can power 16,000 European homes annually. Deployed across the North Sea, US Atlantic coast, and East Asia as offshore wind becomes cost-competitive with gas.</div>
-          <div class="tool-footer"><span class="tool-cat">⊟ Wind</span><span class="tool-stars">GE Vernova · Commercial Scale</span></div>
-        </div>
-      </a>
-      <a href="https://www.kairos-power.com" target="_blank" rel="noopener" class="tool-item" style="text-decoration:none;color:inherit;">
-        <div class="tool-icon">☢️</div>
-        <div class="tool-body">
-          <div class="tool-name">Kairos Power — Molten Salt SMR</div>
-          <div class="tool-desc">Kairos Power's fluoride salt-cooled small modular reactor is under construction in Tennessee — the first new US nuclear technology approved by the NRC in decades. Google has contracted 500 MW of output starting 2030 to power its AI data centers.</div>
-          <div class="tool-footer"><span class="tool-cat">⊟ Nuclear</span><span class="tool-stars">Kairos Power · 2030 deployment</span></div>
-        </div>
-      </a>
-    </div>
-
-    <!-- Companies to Watch -->
-    <div class="section-title-row" style="margin-top:32px;"><span class="section-label">Companies to Watch</span></div>
-    <div class="section-divider" style="background:var(--grid);"></div>
-    <div class="panel-flat">
-      <div class="panel-head">
-        <span class="panel-head-title" style="color:var(--grid);">⚡ GRID & ENERGY</span>
-      </div>
-      <a href="https://nextracker.com" target="_blank" rel="noopener" class="watchlist-item" style="text-decoration:none;">
-        <img class="watchlist-logo" src="https://www.google.com/s2/favicons?domain=nextracker.com&sz=64" alt="Nextracker" onerror="this.style.display='none'">
-        <div class="watchlist-body">
-          <div class="watchlist-name">Nextracker <span class="watchlist-status status-active" style="background:#f5f3ff;color:var(--grid);border-color:#ddd6fe;">Solar Tracking</span></div>
-          <div class="watchlist-latest">The world's largest solar tracker manufacturer. AI-powered NX Horizon trackers optimize panel angle in real time, improving solar yield by 25%+ over fixed installations.</div>
-        </div>
-      </a>
-      <a href="https://www.fluenceenergy.com" target="_blank" rel="noopener" class="watchlist-item" style="text-decoration:none;">
-        <img class="watchlist-logo" src="https://www.google.com/s2/favicons?domain=fluenceenergy.com&sz=64" alt="Fluence" onerror="this.style.display='none'">
-        <div class="watchlist-body">
-          <div class="watchlist-name">Fluence <span class="watchlist-status status-active" style="background:#f5f3ff;color:var(--grid);border-color:#ddd6fe;">Battery Storage</span></div>
-          <div class="watchlist-latest">Siemens and AES joint venture building utility-scale battery storage systems globally. Over 10 GWh deployed across 30+ countries with AI-powered grid optimization software.</div>
-        </div>
-      </a>
-      <a href="https://www.commonwealth-fusion.com" target="_blank" rel="noopener" class="watchlist-item" style="text-decoration:none;">
-        <img class="watchlist-logo" src="https://www.google.com/s2/favicons?domain=commonwealth-fusion.com&sz=64" alt="Commonwealth Fusion" onerror="this.style.display='none'">
-        <div class="watchlist-body">
-          <div class="watchlist-name">Commonwealth Fusion Systems <span class="watchlist-status status-active" style="background:#f5f3ff;color:var(--grid);border-color:#ddd6fe;">Fusion</span></div>
-          <div class="watchlist-latest">MIT spinout targeting commercial fusion power by 2030. Their SPARC reactor uses high-temperature superconducting magnets to achieve net energy gain — backed by $2B+ from Bill Gates and others.</div>
-        </div>
-      </a>
-      <a href="https://www.terrapower.com" target="_blank" rel="noopener" class="watchlist-item" style="text-decoration:none;">
-        <img class="watchlist-logo" src="https://www.google.com/s2/favicons?domain=terrapower.com&sz=64" alt="TerraPower" onerror="this.style.display='none'">
-        <div class="watchlist-body">
-          <div class="watchlist-name">TerraPower <span class="watchlist-status status-active" style="background:#f5f3ff;color:var(--grid);border-color:#ddd6fe;">Nuclear</span></div>
-          <div class="watchlist-latest">Bill Gates-backed next-gen nuclear company building the Natrium reactor in Wyoming — a sodium-cooled fast reactor that can pair with molten salt storage to dispatch power on demand.</div>
-        </div>
-      </a>
-    </div>
-
-    <!-- Atomic's Predictions -->
-    <div class="section-title-row" style="margin-top:40px;"><span class="section-label">Atomic's Predictions</span></div>
-    <div class="section-divider" style="background:var(--grid);"></div>
-    <div class="forecasts-grid" id="grid-forecasts-grid">
-      <div class="forecast-card">
-        <div class="forecast-time-label">2027</div>
-        <div class="forecast-title">AI companies will directly own and operate nuclear power plants</div>
-        <div class="forecast-body">Microsoft, Google, and Amazon are already signing nuclear PPAs. The next step is direct ownership. At least one major hyperscaler will announce equity ownership in a nuclear facility by 2027 to secure guaranteed clean baseload power for AI infrastructure.</div>
-        <div class="forecast-confidence"><span class="confidence-bar" style="width:80%;background:var(--grid);"></span><span class="confidence-label">80% confidence</span></div>
-      </div>
-      <div class="forecast-card">
-        <div class="forecast-time-label">2028</div>
-        <div class="forecast-title">Grid failure becomes a national security issue in the US</div>
-        <div class="forecast-body">The US grid was built for a different era. As AI, EVs, and electrification push demand past current capacity, at least one major regional grid failure will prompt emergency federal intervention and accelerated modernization funding exceeding $500B.</div>
-        <div class="forecast-confidence"><span class="confidence-bar" style="width:65%;background:var(--grid);"></span><span class="confidence-label">65% confidence</span></div>
-      </div>
-      <div class="forecast-card">
-        <div class="forecast-time-label">2030</div>
-        <div class="forecast-title">Commercial fusion power achieves grid connection</div>
-        <div class="forecast-body">Multiple fusion companies — Commonwealth Fusion, TAE Technologies, Helion — are targeting 2030 for first power. At least one will connect to the grid before 2031, marking the most significant energy milestone since the first commercial nuclear plant in 1958.</div>
-        <div class="forecast-confidence"><span class="confidence-bar" style="width:45%;background:var(--grid);"></span><span class="confidence-label">45% confidence</span></div>
-      </div>
-    </div>
-
-  </div>
-</div><!-- end section-grid -->
 
 </main>
 
@@ -4431,10 +4233,11 @@ document.addEventListener('DOMContentLoaded', function() {
   var vertical = urlParams.get('v');
   if (vertical === 'frontier') switchVertical('frontier');
   else if (vertical === 'longevity') switchVertical('longevity');
-  else if (vertical === 'work') switchVertical('work');
   else {
     try {
       var saved = localStorage.getItem('amg-vertical');
+      // Clear stale work vertical
+      if (saved === 'work') { localStorage.removeItem('amg-vertical'); saved = null; }
       if (saved && saved !== 'ai') switchVertical(saved);
     } catch(e) {}
   }
@@ -4878,7 +4681,6 @@ function switchVertical(mode) {
     aiSection.style.display = 'none';
     frontierSection.style.display = 'block';
     document.getElementById('section-longevity').style.display = 'none';
-    if (document.getElementById('section-grid')) document.getElementById('section-grid').style.display = 'none';
     btnAI.classList.remove('active');
     btnFrontier.classList.add('active');
     document.getElementById('btn-longevity').classList.remove('active');
@@ -4892,21 +4694,6 @@ function switchVertical(mode) {
       fetchFrontierStats();
       frontierSection.dataset.loaded = '1';
     }
-  } else if (mode === 'grid') {
-    aiSection.style.display = 'none';
-    frontierSection.style.display = 'none';
-    document.getElementById('section-longevity').style.display = 'none';
-    if (document.getElementById('section-grid')) document.getElementById('section-grid').style.display = 'none';
-    document.getElementById('section-grid').style.display = 'block';
-    btnAI.classList.remove('active');
-    btnFrontier.classList.remove('active');
-    document.getElementById('btn-longevity').classList.remove('active');
-    document.getElementById('btn-grid').classList.add('active');
-    document.body.classList.remove('frontier-mode');
-    document.body.classList.remove('longevity-mode');
-    document.body.classList.add('grid-mode');
-    label.innerHTML = '⚡ The Grid';
-    updateSavedBadge();
   } else if (mode === 'longevity') {
     aiSection.style.display = 'none';
     frontierSection.style.display = 'none';
@@ -4929,7 +4716,6 @@ function switchVertical(mode) {
     aiSection.style.display = 'block';
     frontierSection.style.display = 'none';
     document.getElementById('section-longevity').style.display = 'none';
-    if (document.getElementById('section-grid')) document.getElementById('section-grid').style.display = 'none';
     btnFrontier.classList.remove('active');
     document.getElementById('btn-longevity').classList.remove('active');
     btnAI.classList.add('active');
@@ -5365,7 +5151,6 @@ function updateDropdownLabel(mode) {
   if (!label) return;
   if (mode === 'frontier') label.innerHTML = '🚀 The Frontier';
   else if (mode === 'longevity') label.innerHTML = '🧬 Longevity';
-  else if (mode === 'grid') label.innerHTML = '⚡ The Grid';
   else label.innerHTML = '🦾 AI &amp; Robotics';
   // Update active state on items
   document.querySelectorAll('.vertical-dropdown-item').forEach(function(item) {
