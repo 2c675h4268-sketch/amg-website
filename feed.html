@@ -3068,16 +3068,19 @@ async function supabaseFetch(table, params) {
 }
 
 // ── FEED RECENCY WINDOW ──
-// Feed and vertical story lists only ever display articles added in the last
-// FEED_WINDOW_HOURS. The table keeps everything (archive/search are unfiltered);
-// this just controls what the daily feed surfaces, so articles never repeat
-// day over day. Tune this one number if feeds get thin. Must stay below the
-// daily run interval (24h) to prevent day-over-day repeats.
-var FEED_WINDOW_HOURS = 24;
+// Feed and vertical story lists only display articles PUBLISHED in the last
+// FEED_WINDOW_HOURS, sorted by real publish date. This filters by published_at
+// (when the article was actually published), not created_at (when we inserted
+// it), so stale or back-dated articles never surface no matter when they were
+// fetched. The table keeps everything; archive/search remain unfiltered. Tune
+// this one number to widen or tighten the window.
+var FEED_WINDOW_HOURS = 48;
 function feedSinceFilter() {
   var since = new Date(Date.now() - FEED_WINDOW_HOURS * 3600 * 1000).toISOString();
-  return '&created_at=gte.' + since;
+  return '&published_at=gte.' + since;
 }
+// Order clause for feed queries: newest published first.
+var FEED_ORDER = 'order=published_at.desc';
 
 // ── ALL STORIES (populated from Supabase) ──
 let STORIES = [];
@@ -3139,7 +3142,7 @@ async function fetchForecasts() {
 
 async function fetchBreakingNow() {
   try {
-    const data = await supabaseFetch('stories', 'select=*&order=created_at.desc&limit=6' + feedSinceFilter());
+    const data = await supabaseFetch('stories', 'select=*&order=published_at.desc&limit=6' + feedSinceFilter());
     const el = document.getElementById('breaking-now-feed');
     if (!el) return;
     if (!data || data.length === 0) {
@@ -3191,7 +3194,7 @@ function makePlaceholderImg(cat, height) {
 
 async function fetchStories() {
   try {
-    const data = await supabaseFetch('stories', 'select=*&order=created_at.desc&limit=10' + feedSinceFilter());
+    const data = await supabaseFetch('stories', 'select=*&order=published_at.desc&limit=10' + feedSinceFilter());
     if (data && data.length > 0) {
       STORIES = data.map(function(s) {
         return {
@@ -4049,7 +4052,7 @@ async function fetchLongevityStats() {
 
 async function fetchFrontierStories() {
   try {
-    var data = await supabaseFetch('frontier_stories', 'select=*&order=created_at.desc&limit=15' + feedSinceFilter());
+    var data = await supabaseFetch('frontier_stories', 'select=*&order=published_at.desc&limit=15' + feedSinceFilter());
     if (!data || data.length === 0) return;
 
     // Breaking feed (first 6)
@@ -4147,7 +4150,7 @@ async function fetchFrontierCompanies() {
 // ── FRONTIER TRENDING NOW ──
 async function fetchFrontierTrending() {
   try {
-    var data = await supabaseFetch('frontier_stories', 'select=*&order=created_at.desc&limit=6' + feedSinceFilter());
+    var data = await supabaseFetch('frontier_stories', 'select=*&order=published_at.desc&limit=6' + feedSinceFilter());
     var el = document.getElementById('frontier-trending-grid');
     if (!el || !data || data.length === 0) return;
     var fTrendData = data.slice(0,6);
@@ -4253,7 +4256,7 @@ async function fetchFrontierForecasts() {
 // ── LONGEVITY DATA FETCHERS ──
 async function fetchLongevityStories() {
   try {
-    var data = await supabaseFetch('longevity_stories', 'select=*&order=created_at.desc&limit=15' + feedSinceFilter());
+    var data = await supabaseFetch('longevity_stories', 'select=*&order=published_at.desc&limit=15' + feedSinceFilter());
     if (!data || data.length === 0) return;
     var heroEl = document.getElementById('longevity-top-stories-grid');
     if (heroEl) {
@@ -4279,7 +4282,7 @@ async function fetchLongevityStories() {
 
 async function fetchLongevityTrending() {
   try {
-    var data = await supabaseFetch('longevity_stories', 'select=*&order=created_at.desc&limit=6' + feedSinceFilter());
+    var data = await supabaseFetch('longevity_stories', 'select=*&order=published_at.desc&limit=6' + feedSinceFilter());
     var el = document.getElementById('longevity-trending-grid');
     if (!el || !data || data.length === 0) return;
     el.innerHTML = data.slice(0,6).map(function(s) {
