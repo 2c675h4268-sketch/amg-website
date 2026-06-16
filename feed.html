@@ -1707,7 +1707,7 @@ body.longevity-mode .so-what-card { border-left-color: #059669; }
     <div class="header-right">
       <div class="vertical-switcher">
         <button class="vertical-btn active" id="btn-ai-robotics" onclick="switchVertical('ai')">🦾 AI &amp; Robotics</button>
-        <button class="vertical-btn frontier" id="btn-frontier" onclick="switchVertical('frontier')">🚀 The Frontier</button>
+        <button class="vertical-btn frontier" id="btn-frontier" onclick="switchVertical('frontier')">🚀 Space</button>
         <button class="vertical-btn longevity" id="btn-longevity" onclick="switchVertical('longevity')">🧬 Longevity</button>
       </div>
       <!-- Mobile dropdown -->
@@ -1719,7 +1719,7 @@ body.longevity-mode .so-what-card { border-left-color: #059669; }
         <div class="vertical-dropdown-menu" id="dropdown-menu">
           <button class="vertical-dropdown-item active" onclick="switchVertical('ai');closeVerticalDropdown();">🦾 AI &amp; Robotics</button>
           <div class="vertical-dropdown-divider"></div>
-          <button class="vertical-dropdown-item frontier" onclick="switchVertical('frontier');closeVerticalDropdown();">🚀 The Frontier</button>
+          <button class="vertical-dropdown-item frontier" onclick="switchVertical('frontier');closeVerticalDropdown();">🚀 Space</button>
           <div class="vertical-dropdown-divider"></div>
           <button class="vertical-dropdown-item longevity" onclick="switchVertical('longevity');closeVerticalDropdown();">🧬 Longevity</button>
           <div class="vertical-dropdown-divider"></div>
@@ -1778,7 +1778,7 @@ body.longevity-mode .so-what-card { border-left-color: #059669; }
 
   <!-- TAGLINE STRIP -->
   <div style="padding-bottom: 24px; border-bottom: 1px solid #e5e7eb; margin-bottom: 32px;">
-    <div style="font-size: 24px; font-weight: 800; letter-spacing: -0.025em; color: #ea580c; line-height: 1.2; margin-bottom: 8px;">🚀 The Frontier</div>
+    <div style="font-size: 24px; font-weight: 800; letter-spacing: -0.025em; color: #ea580c; line-height: 1.2; margin-bottom: 8px;">🚀 Space</div>
     <div style="font-size: 15px; color: #6b7280; font-weight: 400; line-height: 1.5;">Humanity is becoming a multi-planetary species. Every launch, mission, and breakthrough moving that story forward.</div>
   </div>
 
@@ -2543,7 +2543,7 @@ function renderSearch(q) { renderSearchLocal(q); }
 async function fetchSoWhat() {
   var vtags = {
     ai:        { label:'AI Intelligence', cls:'tag-ai' },
-    frontier:  { label:'The Frontier',    cls:'tag-frontier' },
+    frontier:  { label:'Space',           cls:'tag-frontier' },
     longevity: { label:'Longevity',       cls:'tag-longevity' }
   };
   var pending = '<div style="background:#ffffff;border:1.5px solid #e5e7eb;border-left:4px solid #2563eb;border-radius:0 10px 10px 0;padding:20px 22px;"><div style="font-size:15px;font-style:italic;font-weight:700;color:#6b7280;line-height:1.6;">Interpretation coming soon. Once live, this card will answer what this week\'s news means for humanity\'s future.</div></div>';
@@ -2700,6 +2700,7 @@ async function fetchLongevityStories() {
       }).join('');
     }
   } catch(e) { console.error('fetchLongevityStories:', e); }
+}
 
 // ── VERTICAL DROPDOWN ──
 function toggleVerticalDropdown() {
@@ -2715,7 +2716,7 @@ function closeVerticalDropdown() {
 function updateDropdownLabel(mode) {
   var label = document.getElementById('dropdown-label');
   if (!label) return;
-  if (mode === 'frontier') label.innerHTML = '🚀 The Frontier';
+  if (mode === 'frontier') label.innerHTML = '🚀 Space';
   else if (mode === 'longevity') label.innerHTML = '🧬 Longevity';
   else label.innerHTML = '🦾 AI &amp; Robotics';
   // Update active state on items
@@ -2784,7 +2785,6 @@ document.addEventListener('keydown', function(e) {
 
     // Show all sections
 
-}
 </script>
 
 <!-- TILE EXPAND MODAL -->
