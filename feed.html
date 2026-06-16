@@ -2227,7 +2227,7 @@ function makePlaceholderImg(cat, height) {
 
 async function fetchStories() {
   try {
-    const data = await supabaseFetch('stories', 'select=*&order=published_at.desc&limit=10' + feedSinceFilter());
+    const data = await supabaseFetch('stories', 'select=*&order=published_at.desc&limit=20' + feedSinceFilter());
     if (data && data.length > 0) {
       STORIES = data.map(function(s) {
         return {
@@ -2312,7 +2312,7 @@ function renderFeed() {
 
   var heroLeft = document.getElementById('top-stories-grid');
   if (heroLeft) {
-    heroLeft.innerHTML = STORIES.slice(0, 6).map(makeCard).join('');
+    heroLeft.innerHTML = STORIES.slice(0, 9).map(makeCard).join('');
   }
 
   attachCardListeners();
@@ -2649,11 +2649,11 @@ function renderSearch(q) { renderSearchLocal(q); }
 
 async function fetchRoboticsStories() {
   try {
-    var data = await supabaseFetch('robotics_stories', 'select=*&order=published_at.desc&limit=15' + feedSinceFilter());
+    var data = await supabaseFetch('robotics_stories', 'select=*&order=published_at.desc&limit=20' + feedSinceFilter());
     if (!data || data.length === 0) return;
     var heroEl = document.getElementById('robotics-top-stories-grid');
     if (heroEl) {
-      var rTopData = data.slice(0,6);
+      var rTopData = data.slice(0,9);
       rTopData.forEach(function(s){ STORIES.push({title:s.title||'',excerpt:s.excerpt||'',source:s.source||'',url:s.url||'',image_url:s.image_url||'',cat:(s.category||'robotics').toLowerCase(),time:s.published_at?timeAgo(s.published_at):'Today',created_at:s.created_at}); });
       heroEl.innerHTML = rTopData.map(function(s) {
         var t = (s.title||'').replace(/"/g,'&quot;').replace(/'/g,'&#39;');
@@ -2674,11 +2674,11 @@ async function fetchRoboticsStories() {
 
 async function fetchGridStories() {
   try {
-    var data = await supabaseFetch('grid_stories', 'select=*&order=published_at.desc&limit=15' + feedSinceFilter());
+    var data = await supabaseFetch('grid_stories', 'select=*&order=published_at.desc&limit=20' + feedSinceFilter());
     if (!data || data.length === 0) return;
     var heroEl = document.getElementById('grid-top-stories-grid');
     if (heroEl) {
-      var gTopData = data.slice(0,6);
+      var gTopData = data.slice(0,9);
       gTopData.forEach(function(s){ STORIES.push({title:s.title||'',excerpt:s.excerpt||'',source:s.source||'',url:s.url||'',image_url:s.image_url||'',cat:(s.category||'energy').toLowerCase(),time:s.published_at?timeAgo(s.published_at):'Today',created_at:s.created_at}); });
       heroEl.innerHTML = gTopData.map(function(s) {
         var t = (s.title||'').replace(/"/g,'&quot;').replace(/'/g,'&#39;');
@@ -2791,14 +2791,14 @@ function switchVertical(mode) {
 // ── FRONTIER DATA FETCHERS ──
 async function fetchFrontierStories() {
   try {
-    var data = await supabaseFetch('frontier_stories', 'select=*&order=published_at.desc&limit=15' + feedSinceFilter());
+    var data = await supabaseFetch('frontier_stories', 'select=*&order=published_at.desc&limit=20' + feedSinceFilter());
     if (!data || data.length === 0) return;
 
     // Breaking feed (first 6)
 
     var heroEl = document.getElementById('frontier-top-stories-grid');
     if (heroEl && data.length > 0) {
-      var fTopData = data.slice(0,6);
+      var fTopData = data.slice(0,9);
       fTopData.forEach(function(s){ STORIES.push({title:s.title||'',excerpt:s.excerpt||'',source:s.source||'',url:s.url||'',image_url:s.image_url||'',cat:(s.category||'space').toLowerCase(),time:s.created_at?timeAgo(s.created_at):'Today',created_at:s.created_at}); });
       heroEl.innerHTML = fTopData.map(function(s) {
         var t = (s.title||'').replace(/"/g,'&quot;').replace(/'/g,'&#39;');
@@ -2824,11 +2824,11 @@ async function fetchFrontierStories() {
 // ── LONGEVITY DATA FETCHERS ──
 async function fetchLongevityStories() {
   try {
-    var data = await supabaseFetch('longevity_stories', 'select=*&order=published_at.desc&limit=15' + feedSinceFilter());
+    var data = await supabaseFetch('longevity_stories', 'select=*&order=published_at.desc&limit=20' + feedSinceFilter());
     if (!data || data.length === 0) return;
     var heroEl = document.getElementById('longevity-top-stories-grid');
     if (heroEl) {
-      var lTopData = data.slice(0,6);
+      var lTopData = data.slice(0,9);
       lTopData.forEach(function(s){ STORIES.push({title:s.title||'',excerpt:s.excerpt||'',source:s.source||'',url:s.url||'',image_url:s.image_url||'',cat:(s.category||'longevity').toLowerCase(),time:s.created_at?timeAgo(s.created_at):'Today',created_at:s.created_at}); });
       heroEl.innerHTML = lTopData.map(function(s) {
         var t = (s.title||'').replace(/"/g,'&quot;').replace(/'/g,'&#39;');
