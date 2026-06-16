@@ -463,66 +463,7 @@ a { color: inherit; text-decoration: none; }
 
 /* ── SAVED PANEL ── */
 
-/* ── WATCHLIST ── */
-.watchlist {
-  border: 1px solid var(--border);
-  border-radius: var(--radius);
-  overflow: hidden;
-  margin-bottom: 14px;
-}
-.watchlist-item {
-  position: relative;
-  text-decoration: none;
-  padding: 18px 16px 16px;
-  border: 1px solid var(--border);
-  border-radius: 10px;
-  background: var(--bg);
-  display: flex;
-  flex-direction: column;
-  align-items: flex-start;
-  gap: 10px;
-  cursor: pointer;
-  transition: box-shadow 0.2s, transform 0.2s, border-color 0.2s;
-  height: 100%;
-  overflow: hidden;
-}
-.watchlist-item .watchlist-body { width: 100%; min-width: 0; }
-.watchlist-item .watchlist-name { flex-wrap: wrap; }
-.watchlist-item:hover {
-  box-shadow: 0 6px 24px rgba(0,0,0,0.09), 0 2px 6px rgba(0,0,0,0.05);
-  transform: translateY(-2px);
-  border-color: #c4c2bc;
-}
-.watchlist-item[href]:hover .watchlist-name { color: var(--blue); }
-.watchlist-logo { width: 36px; height: 36px; border-radius: 8px; object-fit: contain; background: var(--surface); border: 1px solid var(--border); padding: 4px; flex-shrink: 0; }
-.letter-avatar { width: 36px; height: 36px; border-radius: 8px; flex-shrink: 0; display: flex; align-items: center; justify-content: center; font-size: 15px; font-weight: 700; color: white; letter-spacing: -0.02em; }
-.watchlist-body { flex: 1; min-width: 0; }
-.watchlist-name { font-size: 14px; font-weight: 600; color: var(--text); display: flex; align-items: center; gap: 8px; margin-bottom: 3px; }
-.watchlist-status {
-  font-size: 10px;
-  font-weight: 700;
-  letter-spacing: 0.06em;
-  text-transform: uppercase;
-  padding: 2px 7px;
-  border-radius: 100px;
-}
-.status-hot { background: #fff0f0; color: #ff3b30; }
-.status-active { background: var(--blue-light); color: var(--blue); }
-.status-rising { background: #edfff4; color: #34c759; }
-.status-quiet { background: var(--surface); color: var(--text-dim); }
-.status-confirmed { background: #f0fdf4; color: #166534; border-color: #bbf7d0; }
-.status-missed    { background: #fef2f2; color: #991b1b; border-color: #fecaca; }
-.watchlist-latest {
-  font-size: 12.5px;
-  color: var(--text-muted);
-  line-height: 1.55;
-  display: -webkit-box;
-  -webkit-line-clamp: 2;
-  -webkit-box-orient: vertical;
-  overflow: hidden;
-}
-.watchlist-item-arrow { font-size: 13px; color: var(--text-muted); position: absolute; right: 14px; top: 14px; }
-.edu-item {
+/* ── WATCHLIST ── */.edu-item {
   padding: 13px 18px;
   border-bottom: 1px solid var(--border);
   cursor: pointer;
@@ -554,7 +495,6 @@ a { color: inherit; text-decoration: none; }
   letter-spacing: 0.08em;
   text-transform: uppercase;
 }
-.panel-head-title.companies { color: var(--text); }
 .panel-head-title.prompts   { color: #16a34a; }
 .panel-head-title.tools     { color: #d97706; }
 .panel-head-badge {
@@ -1346,9 +1286,6 @@ body.longevity-mode .subscribe-band-input:focus { border-color: var(--longevity)
   .tool-name { font-size: 16px !important; }
   .tool-desc { font-size: 14px !important; line-height: 1.55 !important; }
   .tool-tag { font-size: 12px !important; }
-  /* Companies to Watch */
-  .watchlist-name { font-size: 16px !important; }
-  .watchlist-desc { font-size: 14px !important; line-height: 1.55 !important; }
   /* JS-rendered stat classes */
   .stat-label { font-size: 13px !important; }
   .stat-value { font-size: 26px !important; }
@@ -1394,10 +1331,6 @@ body.longevity-mode .subscribe-band-input:focus { border-color: var(--longevity)
   .tool-desc { font-size: 14px !important; line-height: 1.55 !important; }
   .tool-tag { font-size: 12px !important; }
 
-  /* ── Companies to Watch ── */
-  .watchlist-name { font-size: 16px !important; }
-  .watchlist-desc { font-size: 14px !important; }
-  .watchlist-status { font-size: 12px !important; }
   .stat-label { font-size: 13px !important; }
   .stat-value { font-size: 26px !important; }
   .stat-context { font-size: 14px !important; line-height: 1.5 !important; }
@@ -1827,7 +1760,7 @@ body.frontier-mode .footer-email-input:focus { border-color: var(--frontier); }
   border-top: 1px solid var(--border);
 }
 /* Make clickable tiles show pointer */
-.tool-item, .watchlist-item, .forecast-card { cursor: pointer; }
+.tool-item, .forecast-card { cursor: pointer; }
 .search-wrap {
   position: relative;
   max-width: 480px;
@@ -1878,6 +1811,163 @@ body.frontier-mode .footer-email-input:focus { border-color: var(--frontier); }
 
 /* ── BACK TO TOP ── */
 
+
+/* ── THE ARC ── */
+.arc-section {
+  max-width: 1120px;
+  margin: 0 auto;
+  padding: 56px 24px 48px;
+  border-top: 1px solid var(--border);
+}
+.arc-eyebrow {
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: 0.09em;
+  text-transform: uppercase;
+  color: var(--text-muted);
+  margin-bottom: 6px;
+}
+.arc-title {
+  font-size: 26px;
+  font-weight: 800;
+  letter-spacing: -0.02em;
+  color: var(--text);
+  margin-bottom: 6px;
+}
+.arc-sub {
+  font-size: 14px;
+  color: var(--text-muted);
+  line-height: 1.6;
+  margin-bottom: 32px;
+  max-width: 560px;
+}
+.arc-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  gap: 24px;
+}
+.arc-col-label {
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--text-muted);
+  margin-bottom: 12px;
+}
+.arc-scoreboard {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 8px;
+  margin-bottom: 16px;
+}
+.arc-score-card {
+  background: var(--surface);
+  border-radius: 8px;
+  padding: 10px 8px;
+  text-align: center;
+}
+.arc-score-n {
+  font-size: 20px;
+  font-weight: 800;
+  color: var(--text);
+  line-height: 1.1;
+}
+.arc-score-l {
+  font-size: 10px;
+  font-weight: 600;
+  color: var(--text-muted);
+  margin-top: 2px;
+  letter-spacing: 0.03em;
+}
+.arc-pred-card {
+  background: var(--bg);
+  border: 1px solid var(--border);
+  border-radius: 12px;
+  padding: 20px 22px;
+}
+.arc-disclaimer {
+  font-size: 11px;
+  color: var(--text-muted);
+  line-height: 1.6;
+  margin-top: 14px;
+  padding-top: 12px;
+  border-top: 1px solid var(--border);
+}
+.arc-view-all {
+  display: inline-flex;
+  align-items: center;
+  gap: 5px;
+  font-size: 12px;
+  font-weight: 600;
+  color: var(--text-muted);
+  text-decoration: none;
+  margin-top: 12px;
+  cursor: pointer;
+  background: none;
+  border: none;
+  padding: 0;
+}
+.arc-view-all:hover { color: var(--text); }
+
+/* ── THE SO WHAT ── */
+.so-what-section {
+  margin: 20px 0 0;
+}
+.so-what-label {
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: 0.09em;
+  text-transform: uppercase;
+  color: var(--text-muted);
+  margin-bottom: 10px;
+}
+.so-what-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 12px;
+}
+@media (max-width: 720px) {
+  .so-what-grid { grid-template-columns: 1fr; }
+}
+.so-what-card {
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: 10px;
+  padding: 16px 18px;
+}
+.so-what-vtag {
+  display: inline-flex;
+  font-size: 10px;
+  font-weight: 700;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  padding: 2px 8px;
+  border-radius: 4px;
+  margin-bottom: 9px;
+}
+.so-what-vtag.tag-ai       { background: #dbeafe; color: #1e40af; }
+.so-what-vtag.tag-frontier { background: #ffedd5; color: #9a3412; }
+.so-what-vtag.tag-longevity{ background: #dcfce7; color: #166534; }
+.so-what-headline {
+  font-size: 13px;
+  font-weight: 700;
+  color: var(--text);
+  line-height: 1.4;
+  margin-bottom: 7px;
+}
+.so-what-body {
+  font-size: 12px;
+  color: var(--text-muted);
+  line-height: 1.6;
+  margin-bottom: 10px;
+}
+.so-what-source {
+  font-size: 10px;
+  font-weight: 600;
+  color: var(--text-dim);
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+}
 </style>
 <style>#btt2{position:fixed;bottom:30px;right:30px;width:50px;height:50px;border-radius:50%;background:#000;color:#fff;font-size:22px;font-weight:900;border:3px solid #fff;box-shadow:0 2px 16px rgba(0,0,0,0.6);cursor:pointer;z-index:2147483647;display:flex;align-items:center;justify-content:center;}</style></head>
 <body>
@@ -1959,7 +2049,7 @@ body.frontier-mode .footer-email-input:focus { border-color: var(--frontier); }
     <div class="about-mission">
       <div class="about-section-label">Our Mission</div>
       <p class="about-text">Atomic Media Group exists to answer one question: where is humanity headed? We track the three forces driving the answer, AI, space, and longevity, and surface what matters before it becomes obvious.</p>
-      <p class="about-text">Every Sunday our intelligence pipeline scans hundreds of sources across all three verticals, filters out the noise, and delivers only what moves the story of humanity forward.</p>
+      <p class="about-text">Every Sunday our intelligence pipeline scans hundreds of sources across all three verticals, filters for what matters, and delivers only what moves the story of humanity forward.</p>
     </div>
     <div class="about-stats-row">
       <div class="about-stat"><div class="about-stat-n">300+</div><div class="about-stat-l">Stories tracked weekly</div></div>
@@ -2072,6 +2162,16 @@ body.frontier-mode .footer-email-input:focus { border-color: var(--frontier); }
   <div class="section-title">Top Stories</div>
   <div class="small-grid" id="top-stories-grid">
     <div class="card" style="opacity:1;"><div class="card-body"><div class="tag">AI</div><div class="card-title">Pulling from the feed...</div></div></div>
+  </div>
+
+  <!-- THE SO WHAT -->
+  <div class="so-what-section">
+    <div class="so-what-label">The So What</div>
+    <div class="so-what-grid" id="so-what-grid-ai">
+      <div class="so-what-card"><div class="so-what-body" style="font-style:italic;color:var(--text-dim);">Interpreting this week's news...</div></div>
+      <div class="so-what-card"><div class="so-what-body" style="font-style:italic;color:var(--text-dim);">Interpreting this week's news...</div></div>
+      <div class="so-what-card"><div class="so-what-body" style="font-style:italic;color:var(--text-dim);">Interpreting this week's news...</div></div>
+    </div>
   </div>
 
   <div class="subscribe-band" data-subscribe-band>
@@ -2317,44 +2417,9 @@ body.frontier-mode .footer-email-input:focus { border-color: var(--frontier); }
 
   </div>
 
-  <!-- COMPANIES TO WATCH: AI + ROBOTICS SIDE BY SIDE -->
-  <div class="section-title" style="margin-top:48px;">Companies to Watch</div>
-  <div class="dual-trending-grid">
-
-    <!-- AI Companies to Watch -->
-    <div class="panel-box tile-panel">
-      <div class="panel-head">
-        <span class="panel-head-title companies">📈 AI Companies to Watch</span>
-        <button class="ph-search-btn" id="srch-btn-companies" onclick="togglePhSearch('companies')" title="Search"><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg></button>
-        <span class="panel-head-badge-live">Live</span>
-      </div>
-      <div class="ph-search-tray" id="srch-tray-companies">
-        <input class="ph-search-input" id="search-companies" type="text" placeholder="Search companies…" oninput="filterPanelSearch('companies')" autocomplete="off">
-      </div>
-      <div class="panel-flat" id="scroll-companies">
-        <div class="panel-no-results" id="nores-companies">No results</div>
-      </div>
-    </div>
-
-    <!-- Robotics Companies to Watch -->
-    <div class="panel-box tile-panel">
-      <div class="panel-head">
-        <span class="panel-head-title companies">🦾 Robotics Companies to Watch</span>
-        <button class="ph-search-btn" id="srch-btn-rob-companies" onclick="togglePhSearch('rob-companies')" title="Search"><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg></button>
-        <span class="panel-head-badge-live">Live</span>
-      </div>
-      <div class="ph-search-tray" id="srch-tray-rob-companies">
-        <input class="ph-search-input" id="search-rob-companies" type="text" placeholder="Search companies…" oninput="filterPanelSearch('rob-companies')" autocomplete="off">
-      </div>
-      <div class="panel-flat" id="scroll-rob-companies">
-        <div class="panel-no-results" id="nores-rob-companies">No results</div>
-      </div>
-    </div>
-
-  </div>
 
   <!-- FORECAST BOARD -->
-  <div class="section-title" style="margin-top:52px;align-items:baseline;">Atomic's Predictions <span style="font-size:13px;font-weight:400;color:var(--text-muted);letter-spacing:0;text-transform:none;border:none;padding:0;margin-left:10px;">Predictions are reviewed and updated as new signals emerge.</span></div>
+  <div class="section-title" style="margin-top:52px;align-items:baseline;">Atomic's Predictions <span style="font-size:13px;font-weight:400;color:var(--text-muted);letter-spacing:0;text-transform:none;border:none;padding:0;margin-left:10px;">Predictions are reviewed and updated as new evidence emerges.</span></div>
   <div class="forecast-panels" id="forecast-grid">
     <div class="forecast-panel"><div class="forecast-panel-head"><span class="forecast-panel-icon">⚡</span><span class="forecast-panel-head-title">Loading...</span></div></div>
   </div>
@@ -2402,6 +2467,16 @@ body.frontier-mode .footer-email-input:focus { border-color: var(--frontier); }
     <div class="card" style="opacity:1;"><div class="card-body"><div class="tag" style="color:var(--frontier);">Space</div><div class="card-title">Pulling from the feed...</div></div></div>
   </div>
 
+  <!-- THE SO WHAT -->
+  <div class="so-what-section">
+    <div class="so-what-label">The So What</div>
+    <div class="so-what-grid" id="so-what-grid-frontier">
+      <div class="so-what-card"><div class="so-what-body" style="font-style:italic;color:var(--text-dim);">Interpreting this week's news...</div></div>
+      <div class="so-what-card"><div class="so-what-body" style="font-style:italic;color:var(--text-dim);">Interpreting this week's news...</div></div>
+      <div class="so-what-card"><div class="so-what-body" style="font-style:italic;color:var(--text-dim);">Interpreting this week's news...</div></div>
+    </div>
+  </div>
+
   <div class="subscribe-band" data-subscribe-band>
     <div class="subscribe-band-text">
       <div class="subscribe-band-title">Get The Atomic Brief</div>
@@ -2446,36 +2521,8 @@ body.frontier-mode .footer-email-input:focus { border-color: var(--frontier); }
     </div>
   </div>
 
-  <!-- SPACE COMPANIES TO WATCH -->
-  <div class="section-title" style="margin-top:52px;border-bottom-color:var(--frontier);">Companies to Watch</div>
-  <div class="duo-panel-grid" id="frontier-companies-section">
-    <div class="panel-box tile-panel">
-      <div class="panel-head" style="background:var(--surface);border-bottom:1.5px solid var(--border);">
-        <span class="panel-head-title">🚀 Launch & Access</span>
-        <div style="display:flex;align-items:center;gap:8px;">
-          <button class="ph-search-btn" onclick="togglePanelSearch('frontier-launch-search')"><svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="8"/><path d="m21 21-4.35-4.35"/></svg></button>
-          <div class="live-indicator" style="font-size:11px;"><div class="live-dot" style="background:var(--frontier);"></div>Live</div>
-        </div>
-      </div>
-      <div class="ph-search-wrap" id="frontier-launch-search" style="display:none;padding:8px 12px;border-bottom:1px solid var(--border);"><input class="ph-search-input" placeholder="Search companies…" oninput="filterPanel(this,'frontier-launch-scroll')" /></div>
-      <div class="panel-flat" id="frontier-launch-scroll">
-        <div class="panel-no-results" id="nores-frontier-launch" style="display:none">No results</div>
-      </div>
-    </div>
-    <div class="panel-box tile-panel">
-      <div class="panel-head" style="background:var(--surface);border-bottom:1.5px solid var(--border);">
-        <span class="panel-head-title">🛰️ Space Economy</span>
-        <button class="ph-search-btn" onclick="togglePanelSearch('frontier-economy-search')"><svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="8"/><path d="m21 21-4.35-4.35"/></svg></button>
-      </div>
-      <div class="ph-search-wrap" id="frontier-economy-search" style="display:none;padding:8px 12px;border-bottom:1px solid var(--border);"><input class="ph-search-input" placeholder="Search companies…" oninput="filterPanel(this,'frontier-economy-scroll')" /></div>
-      <div class="panel-flat" id="frontier-economy-scroll">
-        <div class="panel-no-results" id="nores-frontier-economy" style="display:none">No results</div>
-      </div>
-    </div>
-  </div>
-
   <!-- ATOMIC PREDICTIONS (FRONTIER) -->
-  <div class="section-title" style="margin-top:52px;align-items:center;border-bottom-color:var(--frontier);">Atomic's Predictions <span style="font-size:13px;font-weight:400;color:var(--text-muted);letter-spacing:0;text-transform:none;border:none;padding:0;margin-left:10px;display:inline-flex;align-items:center;">Predictions are reviewed and updated as new signals emerge.</span></div>
+  <div class="section-title" style="margin-top:52px;align-items:center;border-bottom-color:var(--frontier);">Atomic's Predictions <span style="font-size:13px;font-weight:400;color:var(--text-muted);letter-spacing:0;text-transform:none;border:none;padding:0;margin-left:10px;display:inline-flex;align-items:center;">Predictions are reviewed and updated as new evidence emerges.</span></div>
   <div class="forecast-panels" id="frontier-forecast-grid">
     <div class="forecast-panel"><div class="forecast-panel-head"><span class="forecast-panel-icon">🚀</span><span class="forecast-panel-head-title">Loading...</span></div></div>
   </div>
@@ -2523,6 +2570,16 @@ body.frontier-mode .footer-email-input:focus { border-color: var(--frontier); }
     <div class="card" style="opacity:1;"><div class="card-body"><div class="tag" style="color:var(--longevity);">Longevity</div><div class="card-title">Pulling from the feed...</div></div></div>
   </div>
 
+  <!-- THE SO WHAT -->
+  <div class="so-what-section">
+    <div class="so-what-label">The So What</div>
+    <div class="so-what-grid" id="so-what-grid-longevity">
+      <div class="so-what-card"><div class="so-what-body" style="font-style:italic;color:var(--text-dim);">Interpreting this week's news...</div></div>
+      <div class="so-what-card"><div class="so-what-body" style="font-style:italic;color:var(--text-dim);">Interpreting this week's news...</div></div>
+      <div class="so-what-card"><div class="so-what-body" style="font-style:italic;color:var(--text-dim);">Interpreting this week's news...</div></div>
+    </div>
+  </div>
+
   <div class="subscribe-band" data-subscribe-band>
     <div class="subscribe-band-text">
       <div class="subscribe-band-title">Get The Atomic Brief</div>
@@ -2563,36 +2620,8 @@ body.frontier-mode .footer-email-input:focus { border-color: var(--frontier); }
     </div>
   </div>
 
-  <!-- COMPANIES TO WATCH -->
-  <div class="section-title" style="margin-top:52px;border-bottom-color:var(--longevity);">Companies to Watch</div>
-  <div class="duo-panel-grid">
-    <div class="panel-box tile-panel">
-      <div class="panel-head" style="background:var(--surface);border-bottom:1.5px solid var(--border);">
-        <span class="panel-head-title">🧬 Biotech & Research</span>
-        <div style="display:flex;align-items:center;gap:8px;">
-          <button class="ph-search-btn" onclick="togglePanelSearch('longevity-biotech-search')"><svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="8"/><path d="m21 21-4.35-4.35"/><\/svg></button>
-          <div class="live-indicator" style="font-size:11px;"><div class="live-dot" style="background:var(--longevity);"></div>Live</div>
-        </div>
-      </div>
-      <div class="ph-search-wrap" id="longevity-biotech-search" style="display:none;padding:8px 12px;border-bottom:1px solid var(--border);"><input class="ph-search-input" placeholder="Search companies…" oninput="filterPanel(this,'longevity-biotech-scroll')" /></div>
-      <div class="panel-flat" id="longevity-biotech-scroll">
-        <div class="panel-no-results" id="nores-longevity-biotech" style="display:none">No results</div>
-      </div>
-    </div>
-    <div class="panel-box tile-panel">
-      <div class="panel-head" style="background:var(--surface);border-bottom:1.5px solid var(--border);">
-        <span class="panel-head-title">💊 Therapeutics & Clinics</span>
-        <button class="ph-search-btn" onclick="togglePanelSearch('longevity-clinics-search')"><svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="8"/><path d="m21 21-4.35-4.35"/><\/svg></button>
-      </div>
-      <div class="ph-search-wrap" id="longevity-clinics-search" style="display:none;padding:8px 12px;border-bottom:1px solid var(--border);"><input class="ph-search-input" placeholder="Search companies…" oninput="filterPanel(this,'longevity-clinics-scroll')" /></div>
-      <div class="panel-flat" id="longevity-clinics-scroll">
-        <div class="panel-no-results" id="nores-longevity-clinics" style="display:none">No results</div>
-      </div>
-    </div>
-  </div>
-
   <!-- ATOMIC PREDICTIONS -->
-  <div class="section-title" style="margin-top:52px;align-items:center;border-bottom-color:var(--longevity);">Atomic's Predictions <span style="font-size:13px;font-weight:400;color:var(--text-muted);letter-spacing:0;text-transform:none;border:none;padding:0;margin-left:10px;display:inline-flex;align-items:center;">Predictions are reviewed and updated as new signals emerge.</span></div>
+  <div class="section-title" style="margin-top:52px;align-items:center;border-bottom-color:var(--longevity);">Atomic's Predictions <span style="font-size:13px;font-weight:400;color:var(--text-muted);letter-spacing:0;text-transform:none;border:none;padding:0;margin-left:10px;display:inline-flex;align-items:center;">Predictions are reviewed and updated as new evidence emerges.</span></div>
   <div class="forecast-panels" id="longevity-forecast-grid">
     <div class="forecast-panel"><div class="forecast-panel-head"><span class="forecast-panel-icon">🧬</span><span class="forecast-panel-head-title">Loading...</span></div></div>
   </div>
@@ -2625,6 +2654,32 @@ body.frontier-mode .footer-email-input:focus { border-color: var(--frontier); }
     </div>
   </div>
 </div>
+
+<!-- THE ARC: cross-vertical capstone section -->
+<section class="arc-section" id="section-the-arc">
+  <div class="arc-eyebrow">The Arc</div>
+  <div class="arc-title">Where humanity has been. Where it is going.</div>
+  <div class="arc-sub">A running record of confirmed turning points and forward predictions, graded publicly over time.</div>
+  <div class="arc-grid" style="grid-template-columns:1fr;max-width:680px;">
+
+    <!-- Scoreboard + Predictions summary -->
+    <div>
+      <div class="arc-col-label">Atomic's predictions</div>
+      <div class="arc-scoreboard" id="arc-scoreboard">
+        <div class="arc-score-card"><div class="arc-score-n" id="arc-total">0</div><div class="arc-score-l">Total</div></div>
+        <div class="arc-score-card"><div class="arc-score-n" id="arc-confirmed" style="color:#059669;">0</div><div class="arc-score-l">Confirmed</div></div>
+        <div class="arc-score-card"><div class="arc-score-n" id="arc-missed" style="color:#dc2626;">0</div><div class="arc-score-l">Missed</div></div>
+        <div class="arc-score-card"><div class="arc-score-n" id="arc-pending" style="color:#2563eb;">0</div><div class="arc-score-l">Pending</div></div>
+      </div>
+      <div class="arc-pred-card" id="arc-predictions-list">
+        <div style="color:var(--text-muted);font-size:13px;font-style:italic;">Loading predictions...</div>
+      </div>
+      <div class="arc-disclaimer">Predictions are drawn from AMG's live weekly news coverage. Confidence reflects trajectory analysis, not certainty. All predictions are graded publicly when their window closes.</div>
+    </div>
+
+  </div>
+</section>
+
 
 </main>
 
@@ -2754,7 +2809,7 @@ function togglePhSearch(id) {
     if(inp){ inp.value = ''; }
     // clear filter
     var type = id;
-    if(type === 'companies' || type === 'tools') filterPanelSearch(type);
+    if(type === 'tools') filterPanelSearch(type);
     else filterEdu(type);
   }
 }
@@ -2764,9 +2819,7 @@ function filterPanelSearch(type) {
   var inp = document.getElementById('search-' + type); var query = inp ? inp.value.toLowerCase().trim() : '';
   var scroll = document.getElementById('scroll-' + type);
   var nores  = document.getElementById('nores-' + type);
-  var items;
-  if (type === 'companies') items = scroll.querySelectorAll('.watchlist-item');
-  else if (type === 'tools')   items = scroll.querySelectorAll('.tool-item');
+  var items = scroll ? scroll.querySelectorAll('.tool-item') : [];
   var visible = 0;
   items.forEach(function(item) {
     var text = item.textContent.toLowerCase();
@@ -2902,7 +2955,7 @@ async function fetchForecasts() {
         '<div class="forecast-timeline">' + (timelineHtml || '<p style="color:var(--text-muted);font-size:13px;padding:8px 0;">No predictions yet.</p>') + '</div>' +
         '</div>';
     }
-    var footer = '<div class="forecast-footer" style="grid-column:1/-1;">⚡ Atomic\'s Predictions are generated by AI analysis of funding patterns, research publications, deployment signals, and market momentum across the AI and robotics landscape. Confidence levels reflect probability assessments based on current trajectory. Predictions are reviewed and updated as new signals emerge.</div>';
+    var footer = '<div class="forecast-footer" style="grid-column:1/-1;">Predictions drawn from live AI and robotics news coverage. Confidence reflects trajectory analysis, not certainty. Graded publicly when each window closes.</div>';
     el.innerHTML = buildPanel('AI', '🤖') + buildPanel('Robotics', '🦾') + footer;
   } catch(e) { console.error('fetchForecasts error:', e); }
 }
@@ -3014,52 +3067,6 @@ function handleLogoError(img) {
   div.style.cssText = 'width:36px;height:36px;border-radius:8px;flex-shrink:0;display:flex;align-items:center;justify-content:center;background:' + bgColor + ';border:1px solid var(--border);';
   div.innerHTML = inner;
   if (img.parentNode) img.parentNode.replaceChild(div, img);
-}
-
-// ── FETCH COMPANIES ──
-async function fetchCompanies() {
-  try {
-    const data = await supabaseFetch('companies', 'select=*&order=created_at.desc&limit=12');
-    if (!data || !data.length) return;
-    const aiCos = data.filter(function(c){ return c.type === 'ai'; }).slice(0, 4);
-    const robCos = data.filter(function(c){ return c.type === 'robotics'; }).slice(0, 4);
-
-    function makeWatchlistItem(c) {
-      var statusClass = 'status-active';
-      var sig = (c.update || '').toLowerCase();
-      if (sig.includes('hot') || sig.includes('surge') || sig.includes('launch')) statusClass = 'status-hot';
-      else if (sig.includes('rising') || sig.includes('growing')) statusClass = 'status-rising';
-      else if (sig.includes('quiet') || sig.includes('watch')) statusClass = 'status-quiet';
-      var domain = '';
-      try { if (c.url) domain = new URL(c.url).hostname.replace('www.', ''); } catch(e) {}
-      var logoHtml = domain
-        ? makeLogoImg(domain, c.name, 'letter', 'watchlist-logo')
-        : makeLetterAvatar(c.name, '');
-      var url = c.url || '';
-      // If no URL stored, fall back to a Google search for the company
-      var href = url || ('https://www.google.com/search?q=' + encodeURIComponent((c.name || '') + ' AI company'));
-      return '<a class="watchlist-item" href="' + href + '" target="_blank" rel="noopener">' +
-        logoHtml +
-        '<div class="watchlist-body">' +
-        '<div class="watchlist-name">' + (c.name || '') + ' <span class="watchlist-status ' + statusClass + '">' + (c.category || 'Active') + '</span></div>' +
-        '<div class="watchlist-latest">' + (c.update || c.description || '') + '</div>' +
-        '<span class="watchlist-item-arrow">→</span></div></a>';
-    }
-
-    var aiEl = document.getElementById('scroll-companies');
-    if (aiEl) {
-      var aiHtml = '<div class="panel-no-results" id="nores-companies" style="display:none">No results</div>';
-      aiHtml += aiCos.map(makeWatchlistItem).join('');
-      aiEl.innerHTML = aiHtml;
-    }
-
-    var robEl = document.getElementById('scroll-rob-companies');
-    if (robEl) {
-      var robHtml = '<div class="panel-no-results" id="nores-rob-companies" style="display:none">No results</div>';
-      robHtml += robCos.map(makeWatchlistItem).join('');
-      robEl.innerHTML = robHtml;
-    }
-  } catch(e) { console.error('fetchCompanies error:', e); }
 }
 
 // ── FETCH TOOLS ──
@@ -3296,24 +3303,7 @@ document.addEventListener('click', function(e) {
     });
     return;
   }
-  // 6. Companies to Watch
-  var wItem = e.target.closest('.watchlist-item');
-  if (wItem) {
-    e.preventDefault();
-    var nameEl = wItem.querySelector('.watchlist-name');
-    var latest = wItem.querySelector('.watchlist-latest');
-    var wStatus = wItem.querySelector('.watchlist-status');
-    var href = wItem.getAttribute('href');
-    var nameText = nameEl ? (nameEl.childNodes[0] ? nameEl.childNodes[0].textContent.trim() : nameEl.textContent.trim()) : '';
-    openTileModal({
-      label: wStatus ? wStatus.textContent.trim() : 'Company',
-      title: nameText,
-      body: latest ? latest.textContent.trim() : '',
-      url: href || ''
-    });
-    return;
-  }
-  // 7. Story card click (open reading view)
+  // 6. Story card click (open reading view)
   var card = e.target.closest('.card[data-title], .feed-item[data-title]');
   if (card && !e.target.closest('.card-btn, .summarize-btn')) {
     openReading(card.dataset.title);
@@ -3327,10 +3317,11 @@ function attachCardListeners() {
 document.addEventListener('DOMContentLoaded', function() {
   fetchForecasts();
   fetchStories();
-  fetchCompanies();
   fetchTools();
   fetchRealWorldAI();
   fetchRealWorldRobotics();
+  fetchArcScoreboard();
+  fetchSoWhat();
 
   // Auto-switch vertical: explicit URL parameter always wins; otherwise restore last-viewed
   var urlParams = new URLSearchParams(window.location.search);
@@ -3607,6 +3598,91 @@ function renderSearch(q) { renderSearchLocal(q); }
 
 // ── SAVED PANEL ──
 
+
+// ── THE ARC: SCOREBOARD + PREDICTIONS SUMMARY ──
+async function fetchArcScoreboard() {
+  try {
+    var [ai, fr, lo] = await Promise.all([
+      supabaseFetch('forecasts',          'select=status&limit=100'),
+      supabaseFetch('frontier_forecasts', 'select=status&limit=100'),
+      supabaseFetch('longevity_forecasts','select=status&limit=100'),
+    ]);
+    var all = [...(ai||[]), ...(fr||[]), ...(lo||[])];
+    var total     = all.length;
+    var confirmed = all.filter(function(f){ return (f.status||'').toLowerCase()==='confirmed'; }).length;
+    var missed    = all.filter(function(f){ return (f.status||'').toLowerCase()==='missed'; }).length;
+    var pending   = all.filter(function(f){ return (f.status||'').toLowerCase()==='pending' || !f.status; }).length;
+    var tEl = document.getElementById('arc-total');
+    var cEl = document.getElementById('arc-confirmed');
+    var mEl = document.getElementById('arc-missed');
+    var pEl = document.getElementById('arc-pending');
+    if (tEl) tEl.textContent = total;
+    if (cEl) cEl.textContent = confirmed;
+    if (mEl) mEl.textContent = missed;
+    if (pEl) pEl.textContent = pending;
+
+    // Show the 3 most recent pending predictions across all verticals
+    var predEl = document.getElementById('arc-predictions-list');
+    if (!predEl) return;
+    var pending3 = all
+      .filter(function(f){ return (f.status||'pending').toLowerCase()==='pending' || !f.status; })
+      .slice(0, 3);
+    if (!pending3.length) {
+      predEl.innerHTML = '<p style="font-size:13px;color:var(--text-muted);font-style:italic;">No predictions yet. Check individual verticals as predictions are added.</p>';
+      return;
+    }
+    var groups = { '90 days':'tf-90', '6 months':'tf-6', '12 months':'tf-12', '24 months':'tf-24' };
+    predEl.innerHTML = pending3.map(function(f) {
+      var tfCls = groups[(f.timeframe||'').toLowerCase()] || 'tf-12';
+      var conf = (function(c){ c=(c||'').toLowerCase(); return c==='high'?{pct:85,cls:'bar-high'}: c==='medium'?{pct:60,cls:'bar-medium'}:{pct:35,cls:'bar-low'}; })(f.confidence);
+      return '<div class="forecast-card ' + tfCls + '" style="margin-bottom:8px;">' +
+        (f.timeframe ? '<span class="forecast-group-label ' + tfCls + '" style="margin-bottom:6px;display:inline-flex;">' + f.timeframe + '</span>' : '') +
+        '<div class="forecast-prediction">' + (f.prediction||'') + '</div>' +
+        '<div class="forecast-pct">' + conf.pct + '% confidence</div>' +
+        '<div class="forecast-bar-wrap"><div class="forecast-bar ' + conf.cls + '" style="width:' + conf.pct + '%"></div></div>' +
+        '</div>';
+    }).join('') +
+    '<button class="arc-view-all" onclick="document.getElementById(\'section-the-arc\').scrollIntoView({behavior:\'smooth\'});document.getElementById(\'btn-ai\').click();">See all predictions in each vertical ↗</button>';
+  } catch(e) {
+    console.error('fetchArcScoreboard:', e);
+  }
+}
+
+// ── THE SO WHAT ──
+async function fetchSoWhat() {
+  var grids = ['so-what-grid-ai','so-what-grid-frontier','so-what-grid-longevity'];
+  var vtags = {
+    ai:        { label:'AI Intelligence',  cls:'tag-ai' },
+    frontier:  { label:'The Frontier',     cls:'tag-frontier' },
+    longevity: { label:'Longevity',        cls:'tag-longevity' }
+  };
+  try {
+    var data = await supabaseFetch('so_what', 'select=*&order=created_at.desc&limit=3');
+    if (!data || data.length === 0) {
+      // Coming soon state: same card rendered into all three grids
+      var pending = '<div class="so-what-card"><div class="so-what-body" style="font-style:italic;color:var(--text-dim);">Editorial interpretations are coming. Once live, each card will answer what this week\'s news means for the future of humanity.</div></div>';
+      grids.forEach(function(id){ var el=document.getElementById(id); if(el) el.innerHTML=pending+pending+pending; });
+      return;
+    }
+    // Sort so we always have ai, frontier, longevity in that order
+    var order = ['ai','frontier','longevity'];
+    data.sort(function(a,b){ return order.indexOf((a.vertical||'ai').toLowerCase()) - order.indexOf((b.vertical||'longevity').toLowerCase()); });
+    var html = data.map(function(d) {
+      var vkey = (d.vertical||'ai').toLowerCase();
+      var vt = vtags[vkey] || vtags.ai;
+      return '<div class="so-what-card">' +
+        '<div class="so-what-vtag ' + vt.cls + '">' + vt.label + '</div>' +
+        '<div class="so-what-headline">' + (d.headline||'') + '</div>' +
+        '<div class="so-what-body">' + (d.body||'') + '</div>' +
+        '<div class="so-what-source">Sourced from ' + (d.article_count||'this week\'s') + ' articles</div>' +
+        '</div>';
+    }).join('');
+    grids.forEach(function(id){ var el=document.getElementById(id); if(el) el.innerHTML=html; });
+  } catch(e) {
+    console.error('fetchSoWhat:', e);
+  }
+}
+
 // ── ABOUT PANEL ──
 var aboutPanel = document.getElementById('about-panel');
 var aboutBg = document.getElementById('about-bg');
@@ -3650,7 +3726,6 @@ function switchVertical(mode) {
     if (!frontierSection.dataset.loaded) {
       fetchFrontierStories();
       fetchFrontierRealWorld();
-      fetchFrontierCompanies();
       fetchFrontierForecasts();
       fetchFrontierStats();
       frontierSection.dataset.loaded = '1';
@@ -3668,7 +3743,6 @@ function switchVertical(mode) {
     if (!longevitySection.dataset.loaded) {
       fetchLongevityStories();
       fetchLongevityRealWorld();
-      fetchLongevityCompanies();
       fetchLongevityForecasts();
       fetchLongevityStats();
       longevitySection.dataset.loaded = '1';
@@ -3741,46 +3815,6 @@ async function fetchFrontierRealWorld() {
     var horizEl = document.getElementById('frontier-horizon-scroll');
     if (horizEl) horizEl.innerHTML = '<div class="panel-no-results" id="nores-frontier-horizon" style="display:none">No results</div>' + horizon.slice(0,4).map(makeItem).join('');
   } catch(e) { console.error('fetchFrontierRealWorld:', e); }
-}
-
-async function fetchFrontierCompanies() {
-  try {
-    var data = await supabaseFetch('frontier_companies', 'select=*&order=created_at.desc&limit=20');
-    if (!data || data.length === 0) {
-      // Seed with static companies if DB empty
-      var launch = [
-        {name:'SpaceX', signal:'Starship orbital test flight reusability milestone achieved', url:'https://spacex.com', category:'Launch'},
-        {name:'Rocket Lab', signal:'Electron launches accelerating Neutron development on track', url:'https://rocketlabusa.com', category:'Launch'},
-        {name:'Blue Origin', signal:'New Glenn operational lunar lander contract awarded', url:'https://blueorigin.com', category:'Launch'},
-        {name:'ULA', signal:'Vulcan Centaur certified national security launches secured', url:'https://ulalaunch.com', category:'Launch'},
-      ];
-      var economy = [
-        {name:'Axiom Space', signal:'Commercial station modules being built ISS transition plan active', url:'https://axiomspace.com', category:'Stations'},
-        {name:'Sierra Space', signal:'Dream Chaser spaceplane nearing first flight', url:'https://sierraspace.com', category:'Transport'},
-        {name:'Starlab', signal:'Voyager Space orbital station 2028 target', url:'https://voyagerspace.com', category:'Stations'},
-        {name:'SpaceX Starlink', signal:'6,000+ satellites global broadband coverage achieved', url:'https://starlink.com', category:'Connectivity'},
-      ];
-      data = [...launch.map(function(c){ return {...c, type:'launch'}; }), ...economy.map(function(c){ return {...c, type:'economy'}; })];
-    }
-    var launchCos = data.filter(function(c){ return (c.type||c.category||'').toLowerCase().includes('launch') || ['SpaceX','Rocket Lab','Blue Origin','ULA','Relativity Space'].includes(c.name); }).slice(0,4);
-    var economyCos = data.filter(function(c){ return !launchCos.includes(c); }).slice(0,4);
-
-    function makeWatchItem(c) {
-      var href = c.url || ('https://www.google.com/search?q='+encodeURIComponent((c.name||'')+' space company'));
-      var initials = (c.name||'?').substring(0,2).toUpperCase();
-      return '<a class="watchlist-item" href="'+href+'" target="_blank" rel="noopener">' +
-        (href.startsWith('http') ? makeLogoImg(href.replace(/https?:\/\//,'').split('/')[0], c.name, 'letter', 'watchlist-logo') : '<div class="watchlist-logo" style="background:linear-gradient(135deg,var(--frontier),#f97316);display:flex;align-items:center;justify-content:center;font-size:12px;font-weight:800;color:#fff;">'+initials+'</div>') +
-        '<div class="watchlist-body">' +
-        '<div class="watchlist-name">'+(c.name||'')+'<span class="watchlist-status status-active" style="background:#fff7ed;color:var(--frontier);border-color:#fed7aa;">'+(c.category||'Space')+'</span></div>' +
-        '<div class="watchlist-latest">'+(c.update||c.description||'')+'</div>' +
-        '<span class="watchlist-item-arrow">→</span></div></a>';
-    }
-
-    var launchEl = document.getElementById('frontier-launch-scroll');
-    if (launchEl) launchEl.innerHTML = '<div class="panel-no-results" id="nores-frontier-launch" style="display:none">No results</div>' + launchCos.map(makeWatchItem).join('');
-    var econEl = document.getElementById('frontier-economy-scroll');
-    if (econEl) econEl.innerHTML = '<div class="panel-no-results" id="nores-frontier-economy" style="display:none">No results</div>' + economyCos.map(makeWatchItem).join('');
-  } catch(e) { console.error('fetchFrontierCompanies:', e); }
 }
 
 // ── FRONTIER TRENDING NOW ──
@@ -3881,7 +3915,7 @@ async function fetchFrontierForecasts() {
     } else {
       html = buildFrontierPanel('Launch','🚀') + buildFrontierPanel('Exploration','🌌');
     }
-    var footer = '<div class="forecast-footer" style="grid-column:1/-1;">⚡ Atomic\'s Predictions are generated by AI analysis of launch manifests, mission schedules, funding signals, and Commercial Space: market momentum. Confidence levels reflect probability assessments based on current trajectory.</div>';
+    var footer = '<div class="forecast-footer" style="grid-column:1/-1;">⚡ Predictions drawn from live space and frontier news coverage. Confidence reflects trajectory analysis, not certainty. Graded publicly when each window closes.</div>';
     el.innerHTML = html + footer;
   } catch(e) { console.error('fetchFrontierForecasts:', e); }
 }
@@ -3963,40 +3997,6 @@ async function fetchLongevityRealWorld() {
   } catch(e) { console.error('fetchLongevityRealWorld:', e); }
 }
 
-async function fetchLongevityCompanies() {
-  try {
-    var data = await supabaseFetch('longevity_companies', 'select=*&order=created_at.desc&limit=20');
-    if (!data || data.length === 0) {
-      data = [
-        {name:'Altos Labs', signal:'$3B raised cellular reprogramming research accelerating', url:'https://altoslabs.com', category:'Biotech', type:'biotech'},
-        {name:'Retro Biosciences', signal:'$180M from Sam Altman targeting 10 healthy years of added life', url:'https://retro.bio', category:'Biotech', type:'biotech'},
-        {name:'NewLimit', signal:'Epigenetic reprogramming Coinbase founder backed', url:'https://newlimit.com', category:'Biotech', type:'biotech'},
-        {name:'Calico', signal:'Google-backed aging biology and drug discovery', url:'https://calicolabs.com', category:'Biotech', type:'biotech'},
-        {name:'Hims & Hers', signal:'GLP-1 and longevity therapeutics going mainstream', url:'https://forhims.com', category:'Therapeutics', type:'clinic'},
-        {name:'Function Health', signal:'100+ biomarker testing longevity diagnostics at scale', url:'https://functionhealth.com', category:'Diagnostics', type:'clinic'},
-        {name:'Insilico Medicine', signal:'AI drug discovery first AI-designed drug in Phase II trials', url:'https://insilico.com', category:'AI Drug Discovery', type:'clinic'},
-        {name:'Bryan Johnson', signal:'Blueprint protocol most measured human, open-sourcing longevity', url:'https://blueprint.bryanjohnson.com', category:'Biohacking', type:'clinic'},
-      ];
-    }
-    var biotechCos = data.filter(function(c){ return (c.type||'').toLowerCase()==='biotech'; }).slice(0,4);
-    var clinicCos = data.filter(function(c){ return (c.type||'').toLowerCase()!=='biotech'; }).slice(0,4);
-    function makeItem(c) {
-      var href = c.url || ('https://www.google.com/search?q='+encodeURIComponent((c.name||'')+' longevity'));
-      var initials = (c.name||'?').substring(0,2).toUpperCase();
-      return '<a class="watchlist-item" href="'+href+'" target="_blank" rel="noopener">' +
-        (href.startsWith('http') ? makeLogoImg(href.replace(/https?:\/\//,'').split('/')[0], c.name, 'letter', 'watchlist-logo') : '<div class="watchlist-logo" style="background:linear-gradient(135deg,var(--longevity),#34d399);display:flex;align-items:center;justify-content:center;font-size:12px;font-weight:800;color:#fff;">'+initials+'</div>') +
-        '<div class="watchlist-body">' +
-        '<div class="watchlist-name">'+(c.name||'')+'<span class="watchlist-status status-active" style="background:#ecfdf5;color:var(--longevity);border-color:#a7f3d0;">'+(c.subcategory||c.specialty||(c.type&&c.type!=='biotech'&&c.type!=='clinic'?c.type:null)||((c.category&&c.category.toLowerCase()!=='longevity')?c.category:'Research'))+'</span></div>' +
-        '<div class="watchlist-latest">'+(c.update||c.description||'')+'</div>' +
-        '<span class="watchlist-item-arrow">→</span></div></a>';
-    }
-    var biotechEl = document.getElementById('longevity-biotech-scroll');
-    if (biotechEl) biotechEl.innerHTML = '<div class="panel-no-results" style="display:none">No results</div>' + biotechCos.map(makeItem).join('');
-    var clinicEl = document.getElementById('longevity-clinics-scroll');
-    if (clinicEl) clinicEl.innerHTML = '<div class="panel-no-results" style="display:none">No results</div>' + clinicCos.map(makeItem).join('');
-  } catch(e) { console.error('fetchLongevityCompanies:', e); }
-}
-
 async function fetchLongevityForecasts() {
   try {
     var data = await supabaseFetch('longevity_forecasts', 'select=*&order=created_at.desc&limit=20');
@@ -4050,7 +4050,7 @@ async function fetchLongevityForecasts() {
     }
     var cats = [...new Set(data.map(function(d){ return d.category||'Longevity'; }))];
     var panelHtml = buildPanel(cats[0]||'Therapeutics','💊') + buildPanel(cats[1]||'Biotech','🧬');
-    var footer = '<div class="forecast-footer" style="grid-column:1/-1;">⚡ Atomic\'s Predictions are generated by AI analysis of clinical trial data, funding signals, regulatory filings, and longevity research momentum. Confidence levels reflect probability assessments based on current trajectory.</div>';
+    var footer = '<div class="forecast-footer" style="grid-column:1/-1;">⚡ Predictions drawn from live longevity and biotech news coverage. Confidence reflects trajectory analysis, not certainty. Graded publicly when each window closes.</div>';
     el.innerHTML = panelHtml + footer;
   } catch(e) { console.error('fetchLongevityForecasts:', e); }
 }
