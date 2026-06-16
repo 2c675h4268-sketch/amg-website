@@ -2709,7 +2709,7 @@ async function fetchSoWhat() {
   var pending = '<div style="background:#ffffff;border:1.5px solid #e5e7eb;border-left:4px solid #2563eb;border-radius:0 10px 10px 0;padding:20px 22px;"><div style="font-size:15px;font-style:italic;font-weight:700;color:#6b7280;line-height:1.6;">Interpretation coming soon. Once live, this card will answer what this week\'s news means for humanity\'s future.</div></div>';
   var borderColors = { ai:'#2563eb', robotics:'#7c3aed', frontier:'#ea580c', longevity:'#059669', grid:'#eab308' };
   try {
-    var data = await supabaseFetch('so_what', 'select=*&order=created_at.desc&limit=3');
+    var data = await supabaseFetch('so_what', 'select=*&order=created_at.desc&limit=10');
     ['ai','robotics','frontier','longevity','grid'].forEach(function(vkey) {
       var el = document.getElementById('so-what-grid-' + vkey);
       if (!el) return;
