@@ -323,15 +323,6 @@ a { color: inherit; text-decoration: none; }
   transform: translateY(-2px);
   border-color: #c4c2bc;
 }
-.stat-tile {
-  transition: box-shadow 0.2s, transform 0.2s;
-  cursor: default;
-}
-.stat-tile:hover {
-  box-shadow: 0 6px 24px rgba(0,0,0,0.09), 0 2px 6px rgba(0,0,0,0.05);
-  transform: translateY(-2px);
-  border-color: #c4c2bc !important;
-}
 .card-body { padding: 18px; }
 .card-title {
   font-size: 15px;
@@ -641,52 +632,6 @@ a { color: inherit; text-decoration: none; }
   overflow: visible !important;
 }
 
-/* ── PROMPT ITEMS ── */
-.prompt-item {
-  padding: 14px 18px;
-  border-bottom: 1px solid var(--border);
-  transition: background 0.15s;
-}
-.prompt-item:last-child { border-bottom: none; }
-.prompt-item:hover { background: rgba(22,163,74,0.05); }
-.prompt-use-case {
-  font-size: 10px;
-  font-weight: 700;
-  letter-spacing: 0.10em;
-  text-transform: uppercase;
-  color: #16a34a;
-  margin-bottom: 6px;
-}
-.prompt-text {
-  font-size: 12.5px;
-  color: var(--text);
-  line-height: 1.5;
-  font-style: italic;
-  margin-bottom: 9px;
-}
-.prompt-footer {
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-}
-.prompt-copy-btn {
-  display: inline-flex;
-  align-items: center;
-  gap: 5px;
-  font-size: 10px;
-  font-weight: 600;
-  color: #16a34a;
-  background: rgba(22,163,74,0.07);
-  border: 1px solid rgba(22,163,74,0.22);
-  border-radius: 100px;
-  padding: 3px 11px;
-  cursor: pointer;
-  transition: all 0.15s;
-  font-family: inherit;
-}
-.prompt-copy-btn:hover { background: rgba(22,163,74,0.14); }
-.prompt-copy-btn.copied { color: var(--text-dim); border-color: var(--border); background: var(--surface); }
-.prompt-level { font-size: 10px; color: var(--text-dim); }
 
 /* ── TOOL ITEMS ── */
 .tool-item {
@@ -1404,10 +1349,6 @@ body.longevity-mode .subscribe-band-input:focus { border-color: var(--longevity)
   /* Companies to Watch */
   .watchlist-name { font-size: 16px !important; }
   .watchlist-desc { font-size: 14px !important; line-height: 1.55 !important; }
-  /* By the Numbers stat tiles - override inline styles */
-  .stat-tile div[style*="font-size:11px"] { font-size: 13px !important; }
-  .stat-tile div[style*="font-size:32px"] { font-size: 26px !important; }
-  .stat-tile div[style*="font-size:12px"] { font-size: 14px !important; line-height: 1.5 !important; }
   /* JS-rendered stat classes */
   .stat-label { font-size: 13px !important; }
   .stat-value { font-size: 26px !important; }
@@ -1457,11 +1398,6 @@ body.longevity-mode .subscribe-band-input:focus { border-color: var(--longevity)
   .watchlist-name { font-size: 16px !important; }
   .watchlist-desc { font-size: 14px !important; }
   .watchlist-status { font-size: 12px !important; }
-
-  /* ── By the Numbers ── */
-  .stat-tile div[style*="font-size:11px"] { font-size: 13px !important; }
-  .stat-tile div[style*="font-size:32px"] { font-size: 26px !important; }
-  .stat-tile div[style*="font-size:12px"] { font-size: 14px !important; line-height: 1.5 !important; }
   .stat-label { font-size: 13px !important; }
   .stat-value { font-size: 26px !important; }
   .stat-context { font-size: 14px !important; line-height: 1.5 !important; }
@@ -1891,7 +1827,7 @@ body.frontier-mode .footer-email-input:focus { border-color: var(--frontier); }
   border-top: 1px solid var(--border);
 }
 /* Make clickable tiles show pointer */
-.stat-tile, .tool-item, .watchlist-item, .forecast-card { cursor: pointer; }
+.tool-item, .watchlist-item, .forecast-card { cursor: pointer; }
 .search-wrap {
   position: relative;
   max-width: 480px;
@@ -1929,22 +1865,7 @@ body.frontier-mode .footer-email-input:focus { border-color: var(--frontier); }
       color: var(--text-muted);
       border: 1px solid var(--border);
     }
-    .prompt-copy-btn {
-      align-self: flex-start;
-      font-size: 12px;
-      font-weight: 600;
-      padding: 6px 14px;
-      border-radius: 6px;
-      border: 1.5px solid var(--border);
-      background: none;
-      color: var(--text-muted);
-      font-family: inherit;
-      cursor: pointer;
-      transition: all 0.15s;
-    }
-    .prompt-copy-btn:hover { background: var(--text); color: #fff; border-color: var(--text); }
-    .prompt-copy-btn.copied { background: #059669; color: #fff; border-color: #059669; }
-
+            
 /* ── FILTER TABS ── */
     .filter-section {
       position: sticky;
@@ -2164,7 +2085,6 @@ body.frontier-mode .footer-email-input:focus { border-color: var(--frontier); }
     </div>
   </div>
 
-  <!-- TOP PROMPTS + TRENDING AI TOOLS SIDE BY SIDE (hidden, rendered via explore button below) -->
   <!-- AI: WHAT'S HERE, WHAT'S COMING -->
   <div class="section-title" style="margin-top:48px;">AI: What's Here, What's Coming</div>
   <div class="dual-trending-grid">
@@ -2433,68 +2353,6 @@ body.frontier-mode .footer-email-input:focus { border-color: var(--frontier); }
 
   </div>
 
-  <!-- BY THE NUMBERS -->
-  <div class="section-title" style="margin-top:48px;">By the Numbers</div>
-  <div style="
-    display: grid;
-    grid-template-columns: repeat(3, 1fr);
-    gap: 16px;
-    margin-bottom: 16px;
-  " id="numbers-grid">
-
-    <div class="stat-tile" style="background:var(--bg);border:1px solid var(--border);border-radius:var(--radius);padding:22px 24px;">
-      <div style="font-size:11px;font-weight:700;letter-spacing:0.07em;text-transform:uppercase;color:var(--text-muted);margin-bottom:10px;">Global AI Investment</div>
-      <div style="font-size:32px;font-weight:800;letter-spacing:-0.03em;color:var(--text);line-height:1;">$329B</div>
-      <div style="font-size:12px;color:var(--text-muted);margin-top:6px;">Deployed in AI ventures in 2024 up 62% YoY. 2025 on pace to exceed $500B.</div>
-      <div style="margin-top:12px;font-size:11px;font-weight:600;color:var(--text-muted);">↑ 62% year over year</div>
-    </div>
-
-    <div class="stat-tile" style="background:var(--bg);border:1px solid var(--border);border-radius:var(--radius);padding:22px 24px;">
-      <div style="font-size:11px;font-weight:700;letter-spacing:0.07em;text-transform:uppercase;color:var(--text-muted);margin-bottom:10px;">Humanoids Deployed</div>
-      <div style="font-size:32px;font-weight:800;letter-spacing:-0.03em;color:var(--text);line-height:1;">12,400+</div>
-      <div style="font-size:12px;color:var(--text-muted);margin-top:6px;">Humanoid robots in active commercial or industrial deployment globally as of Q2 2025.</div>
-      <div style="margin-top:12px;font-size:11px;font-weight:600;color:var(--text-muted);">↑ 8x from 2023 baseline</div>
-    </div>
-
-    <div class="stat-tile" style="background:var(--bg);border:1px solid var(--border);border-radius:var(--radius);padding:22px 24px;">
-      <div style="font-size:11px;font-weight:700;letter-spacing:0.07em;text-transform:uppercase;color:var(--text-muted);margin-bottom:10px;">Models in Production</div>
-      <div style="font-size:32px;font-weight:800;letter-spacing:-0.03em;color:var(--text);line-height:1;">1,800+</div>
-      <div style="font-size:12px;color:var(--text-muted);margin-top:6px;">Foundation models publicly available on Hugging Face. Up from 600 in early 2023.</div>
-      <div style="margin-top:12px;font-size:11px;font-weight:600;color:var(--text-muted);">↑ 3x in 24 months</div>
-    </div>
-
-    <div class="stat-tile" style="background:var(--bg);border:1px solid var(--border);border-radius:var(--radius);padding:22px 24px;">
-      <div style="font-size:11px;font-weight:700;letter-spacing:0.07em;text-transform:uppercase;color:var(--text-muted);margin-bottom:10px;">NVIDIA Market Cap</div>
-      <div style="font-size:32px;font-weight:800;letter-spacing:-0.03em;color:var(--text);line-height:1;">$3.1T</div>
-      <div style="font-size:12px;color:var(--text-muted);margin-top:6px;">NVIDIA briefly surpassed Apple as the world's most valuable company on GPU demand alone.</div>
-      <div style="margin-top:12px;font-size:11px;font-weight:600;color:var(--text-muted);">↑ #1 globally by market cap</div>
-    </div>
-
-    <div class="stat-tile" style="background:var(--bg);border:1px solid var(--border);border-radius:var(--radius);padding:22px 24px;">
-      <div style="font-size:11px;font-weight:700;letter-spacing:0.07em;text-transform:uppercase;color:var(--text-muted);margin-bottom:10px;">Robotics Market Size</div>
-      <div style="font-size:32px;font-weight:800;letter-spacing:-0.03em;color:var(--text);line-height:1;">$218B</div>
-      <div style="font-size:12px;color:var(--text-muted);margin-top:6px;">Global robotics market valuation in 2025. Projected to reach $500B+ by 2030 on humanoid acceleration.</div>
-      <div style="margin-top:12px;font-size:11px;font-weight:600;color:var(--text-muted);">↑ Projected 2x by 2030</div>
-    </div>
-
-    <div class="stat-tile" style="background:var(--bg);border:1px solid var(--border);border-radius:var(--radius);padding:22px 24px;">
-      <div style="font-size:11px;font-weight:700;letter-spacing:0.07em;text-transform:uppercase;color:var(--text-muted);margin-bottom:10px;">Jobs Touched by AI</div>
-      <div style="font-size:32px;font-weight:800;letter-spacing:-0.03em;color:var(--text);line-height:1;">300M</div>
-      <div style="font-size:12px;color:var(--text-muted);margin-top:6px;">Goldman Sachs estimate of roles globally exposed to AI automation equivalent to 18% of all work.</div>
-      <div style="margin-top:12px;font-size:11px;font-weight:600;color:var(--text-muted);">→ 18% of global workforce</div>
-    </div>
-
-  </div>
-
-  <style>
-    @media (max-width: 700px) {
-      #numbers-grid { grid-template-columns: 1fr 1fr !important; }
-    }
-    @media (max-width: 480px) {
-      #numbers-grid { grid-template-columns: 1fr !important; }
-    }
-  </style>
-
   <!-- FORECAST BOARD -->
   <div class="section-title" style="margin-top:52px;align-items:baseline;">Atomic's Predictions <span style="font-size:13px;font-weight:400;color:var(--text-muted);letter-spacing:0;text-transform:none;border:none;padding:0;margin-left:10px;">Predictions are reviewed and updated as new signals emerge.</span></div>
   <div class="forecast-panels" id="forecast-grid">
@@ -2616,51 +2474,6 @@ body.frontier-mode .footer-email-input:focus { border-color: var(--frontier); }
     </div>
   </div>
 
-  <!-- BY THE NUMBERS (FRONTIER) -->
-  <div class="section-title" style="margin-top:52px;border-bottom-color:var(--frontier);">By the Numbers</div>
-  <div style="display:grid;grid-template-columns:repeat(3,1fr);gap:14px;" id="frontier-numbers-grid">
-    <div class="stat-tile" style="background:var(--surface);border:1px solid var(--border);border-radius:var(--radius);padding:22px 24px;">
-      <div style="font-size:11px;font-weight:700;letter-spacing:0.07em;text-transform:uppercase;color:var(--text-muted);margin-bottom:10px;">GLOBAL LAUNCH ATTEMPTS</div>
-      <div style="font-size:32px;font-weight:800;letter-spacing:-0.03em;color:var(--text);line-height:1;">212</div>
-      <div style="font-size:12px;color:var(--text-muted);margin-top:6px;">In 2023, humanity achieved a record 212 orbital launch attempts nearly doubling the pace of five years prior, driven by SpaceX, Rocket Lab, and China's growing launch cadence.</div>
-      <div style="margin-top:12px;font-size:11px;font-weight:600;color:var(--text-muted);">↑ Record high in 2023</div>
-    </div>
-    <div class="stat-tile" style="background:var(--surface);border:1px solid var(--border);border-radius:var(--radius);padding:22px 24px;">
-      <div style="font-size:11px;font-weight:700;letter-spacing:0.07em;text-transform:uppercase;color:var(--text-muted);margin-bottom:10px;">COMMERCIAL SPACE ECONOMY</div>
-      <div style="font-size:32px;font-weight:800;letter-spacing:-0.03em;color:var(--text);line-height:1;">$630B</div>
-      <div style="font-size:12px;color:var(--text-muted);margin-top:6px;">The global space economy surpassed $630B in 2023, with commercial activity now representing over 80% of total value led by satellite services, launch, and emerging in-orbit manufacturing.</div>
-      <div style="margin-top:12px;font-size:11px;font-weight:600;color:var(--text-muted);">↑ 8% year over year</div>
-    </div>
-    <div class="stat-tile" style="background:var(--surface);border:1px solid var(--border);border-radius:var(--radius);padding:22px 24px;">
-      <div style="font-size:11px;font-weight:700;letter-spacing:0.07em;text-transform:uppercase;color:var(--text-muted);margin-bottom:10px;">STARLINK SATELLITES</div>
-      <div style="font-size:32px;font-weight:800;letter-spacing:-0.03em;color:var(--text);line-height:1;">6,000+</div>
-      <div style="font-size:12px;color:var(--text-muted);margin-top:6px;">SpaceX's Starlink constellation surpassed 6,000 active satellites in 2024, delivering broadband internet to over 3 million subscribers across 100+ countries.</div>
-      <div style="margin-top:12px;font-size:11px;font-weight:600;color:var(--text-muted);">↑ Growing 40% annually</div>
-    </div>
-    <div class="stat-tile" style="background:var(--surface);border:1px solid var(--border);border-radius:var(--radius);padding:22px 24px;">
-      <div style="font-size:11px;font-weight:700;letter-spacing:0.07em;text-transform:uppercase;color:var(--text-muted);margin-bottom:10px;">CREWED MISSIONS LAUNCHED</div>
-      <div style="font-size:32px;font-weight:800;letter-spacing:-0.03em;color:var(--text);line-height:1;">12</div>
-      <div style="font-size:12px;color:var(--text-muted);margin-top:6px;">Twelve crewed orbital missions launched in 2023-2024, the most in any comparable period since the Space Shuttle era with commercial vehicles now carrying the majority.</div>
-      <div style="margin-top:12px;font-size:11px;font-weight:600;color:var(--text-muted);">↑ Most since Shuttle era</div>
-    </div>
-    <div class="stat-tile" style="background:var(--surface);border:1px solid var(--border);border-radius:var(--radius);padding:22px 24px;">
-      <div style="font-size:11px;font-weight:700;letter-spacing:0.07em;text-transform:uppercase;color:var(--text-muted);margin-bottom:10px;">SPACE VENTURE FUNDING</div>
-      <div style="font-size:32px;font-weight:800;letter-spacing:-0.03em;color:var(--text);line-height:1;">$8.7B</div>
-      <div style="font-size:12px;color:var(--text-muted);margin-top:6px;">Private space companies raised $8.7B in venture and private equity funding in 2023, with launch, in-space services, and satellite communications leading investment categories.</div>
-      <div style="margin-top:12px;font-size:11px;font-weight:600;color:var(--text-muted);">↑ 12% vs prior year</div>
-    </div>
-    <div class="stat-tile" style="background:var(--surface);border:1px solid var(--border);border-radius:var(--radius);padding:22px 24px;">
-      <div style="font-size:11px;font-weight:700;letter-spacing:0.07em;text-transform:uppercase;color:var(--text-muted);margin-bottom:10px;">REUSABLE ROCKET LANDINGS</div>
-      <div style="font-size:32px;font-weight:800;letter-spacing:-0.03em;color:var(--text);line-height:1;">250+</div>
-      <div style="font-size:12px;color:var(--text-muted);margin-top:6px;">SpaceX has successfully landed and reflown orbital-class booster rockets over 250 times, fundamentally changing the economics of space access with reuse factors exceeding 20x per vehicle.</div>
-      <div style="margin-top:12px;font-size:11px;font-weight:600;color:var(--text-muted);">↑ Redefining launch economics</div>
-    </div>
-  </div>
-  <style>
-    @media (max-width: 700px) { #frontier-numbers-grid { grid-template-columns: 1fr 1fr !important; } }
-    @media (max-width: 480px) { #frontier-numbers-grid { grid-template-columns: 1fr !important; } }
-  </style>
-
   <!-- ATOMIC PREDICTIONS (FRONTIER) -->
   <div class="section-title" style="margin-top:52px;align-items:center;border-bottom-color:var(--frontier);">Atomic's Predictions <span style="font-size:13px;font-weight:400;color:var(--text-muted);letter-spacing:0;text-transform:none;border:none;padding:0;margin-left:10px;display:inline-flex;align-items:center;">Predictions are reviewed and updated as new signals emerge.</span></div>
   <div class="forecast-panels" id="frontier-forecast-grid">
@@ -2777,51 +2590,6 @@ body.frontier-mode .footer-email-input:focus { border-color: var(--frontier); }
       </div>
     </div>
   </div>
-
-  <!-- BY THE NUMBERS -->
-  <div class="section-title" style="margin-top:52px;border-bottom-color:var(--longevity);">By the Numbers</div>
-  <div style="display:grid;grid-template-columns:repeat(3,1fr);gap:14px;" id="longevity-numbers-grid">
-    <div class="stat-tile" style="background:var(--surface);border:1px solid var(--border);border-radius:var(--radius);padding:22px 24px;">
-      <div style="font-size:11px;font-weight:700;letter-spacing:0.07em;text-transform:uppercase;color:var(--text-muted);margin-bottom:10px;">GLOBAL LONGEVITY MARKET</div>
-      <div style="font-size:32px;font-weight:800;letter-spacing:-0.03em;color:var(--text);line-height:1;">$25B</div>
-      <div style="font-size:12px;color:var(--text-muted);margin-top:6px;">The longevity therapeutics and diagnostics market reached $25B in 2024, with projections to surpass $600B by 2025 as anti-aging interventions move from research into mainstream clinical use.</div>
-      <div style="margin-top:12px;font-size:11px;font-weight:600;color:var(--text-muted);">↑ Fastest growing health category</div>
-    </div>
-    <div class="stat-tile" style="background:var(--surface);border:1px solid var(--border);border-radius:var(--radius);padding:22px 24px;">
-      <div style="font-size:11px;font-weight:700;letter-spacing:0.07em;text-transform:uppercase;color:var(--text-muted);margin-bottom:10px;">GLP-1 PRESCRIPTIONS (US)</div>
-      <div style="font-size:32px;font-weight:800;letter-spacing:-0.03em;color:var(--text);line-height:1;">9M+</div>
-      <div style="font-size:12px;color:var(--text-muted);margin-top:6px;">Over 9 million Americans are now prescribed GLP-1 receptor agonists, with Ozempic and Wegovy reshaping metabolic health, obesity treatment, and now showing promise for cardiovascular and cognitive disease.</div>
-      <div style="margin-top:12px;font-size:11px;font-weight:600;color:var(--text-muted);">↑ 400% growth since 2021</div>
-    </div>
-    <div class="stat-tile" style="background:var(--surface);border:1px solid var(--border);border-radius:var(--radius);padding:22px 24px;">
-      <div style="font-size:11px;font-weight:700;letter-spacing:0.07em;text-transform:uppercase;color:var(--text-muted);margin-bottom:10px;">LONGEVITY VC INVESTMENT</div>
-      <div style="font-size:32px;font-weight:800;letter-spacing:-0.03em;color:var(--text);line-height:1;">$5.2B</div>
-      <div style="font-size:12px;color:var(--text-muted);margin-top:6px;">Venture capital invested $5.2B into longevity and aging-focused biotechs in 2023, with Altos Labs, Retro Biosciences, and NewLimit collectively raising over $1.5B from tech billionaires alone.</div>
-      <div style="margin-top:12px;font-size:11px;font-weight:600;color:var(--text-muted);">↑ 3x increase since 2020</div>
-    </div>
-    <div class="stat-tile" style="background:var(--surface);border:1px solid var(--border);border-radius:var(--radius);padding:22px 24px;">
-      <div style="font-size:11px;font-weight:700;letter-spacing:0.07em;text-transform:uppercase;color:var(--text-muted);margin-bottom:10px;">HUMAN LIFESPAN EXTENSION TARGET</div>
-      <div style="font-size:32px;font-weight:800;letter-spacing:-0.03em;color:var(--text);line-height:1;">25 yrs</div>
-      <div style="font-size:12px;color:var(--text-muted);margin-top:6px;">Leading longevity scientists project interventions currently in development could extend healthy human lifespan by 25 or more years within the next two decades moving from disease treatment to biological aging reversal.</div>
-      <div style="margin-top:12px;font-size:11px;font-weight:600;color:var(--text-muted);">↑ Escape velocity within reach</div>
-    </div>
-    <div class="stat-tile" style="background:var(--surface);border:1px solid var(--border);border-radius:var(--radius);padding:22px 24px;">
-      <div style="font-size:11px;font-weight:700;letter-spacing:0.07em;text-transform:uppercase;color:var(--text-muted);margin-bottom:10px;">AI DRUG DISCOVERY SPEED</div>
-      <div style="font-size:32px;font-weight:800;letter-spacing:-0.03em;color:var(--text);line-height:1;">10x</div>
-      <div style="font-size:12px;color:var(--text-muted);margin-top:6px;">AI-driven drug discovery platforms are identifying longevity candidates up to 10x faster than traditional methods, with companies like Insilico Medicine advancing molecules from target identification to clinical trials in under 18 months.</div>
-      <div style="margin-top:12px;font-size:11px;font-weight:600;color:var(--text-muted);">↑ Compressing decade-long timelines</div>
-    </div>
-    <div class="stat-tile" style="background:var(--surface);border:1px solid var(--border);border-radius:var(--radius);padding:22px 24px;">
-      <div style="font-size:11px;font-weight:700;letter-spacing:0.07em;text-transform:uppercase;color:var(--text-muted);margin-bottom:10px;">CENTENARIAN POPULATION</div>
-      <div style="font-size:32px;font-weight:800;letter-spacing:-0.03em;color:var(--text);line-height:1;">722K</div>
-      <div style="font-size:12px;color:var(--text-muted);margin-top:6px;">The global centenarian population exceeded 722,000 in 2024 and is projected to reach 3.7 million by 2050 driven by improvements in healthcare, nutrition, and the early effects of longevity-focused interventions.</div>
-      <div style="margin-top:12px;font-size:11px;font-weight:600;color:var(--text-muted);">↑ 5x growth projected by 2050</div>
-    </div>
-  </div>
-  <style>
-    @media (max-width: 700px) { #longevity-numbers-grid { grid-template-columns: 1fr 1fr !important; } }
-    @media (max-width: 480px) { #longevity-numbers-grid { grid-template-columns: 1fr !important; } }
-  </style>
 
   <!-- ATOMIC PREDICTIONS -->
   <div class="section-title" style="margin-top:52px;align-items:center;border-bottom-color:var(--longevity);">Atomic's Predictions <span style="font-size:13px;font-weight:400;color:var(--text-muted);letter-spacing:0;text-transform:none;border:none;padding:0;margin-left:10px;display:inline-flex;align-items:center;">Predictions are reviewed and updated as new signals emerge.</span></div>
@@ -2986,7 +2754,7 @@ function togglePhSearch(id) {
     if(inp){ inp.value = ''; }
     // clear filter
     var type = id;
-    if(type === 'companies' || type === 'prompts' || type === 'tools') filterPanelSearch(type);
+    if(type === 'companies' || type === 'tools') filterPanelSearch(type);
     else filterEdu(type);
   }
 }
@@ -2998,7 +2766,6 @@ function filterPanelSearch(type) {
   var nores  = document.getElementById('nores-' + type);
   var items;
   if (type === 'companies') items = scroll.querySelectorAll('.watchlist-item');
-  else if (type === 'prompts') items = scroll.querySelectorAll('.prompt-item');
   else if (type === 'tools')   items = scroll.querySelectorAll('.tool-item');
   var visible = 0;
   items.forEach(function(item) {
@@ -3334,41 +3101,6 @@ async function fetchTools() {
   } catch(e) { console.error('fetchTools error:', e); }
 }
 
-// ── FETCH PROMPTS ──
-async function fetchPrompts() {
-  try {
-    const data = await supabaseFetch('prompts', 'select=*&order=created_at.desc&limit=8');
-    if (!data || !data.length) return;
-
-    function makePromptItem(p) {
-      var promptText = (p.prompt_text || p.prompt || '');
-      var escaped = promptText.replace(/"/g, '&quot;');
-      return '<div class="prompt-item">' +
-        '<div class="prompt-use-case">⊙ ' + (p.use_case || '') + '</div>' +
-        '<div class="prompt-text">"' + promptText + '"</div>' +
-        '<div class="prompt-footer">' +
-        '<button class="prompt-copy-btn" data-prompt="' + escaped + '">✤ Copy</button>' +
-        '<span class="prompt-level">' + (p.level || '') + '</span>' +
-        '</div></div>';
-    }
-
-    var el = document.getElementById('scroll-prompts');
-    if (el) {
-      var html = '<div class="panel-no-results" id="nores-prompts" style="display:none">No results</div>';
-      html += data.map(makePromptItem).join('');
-      el.innerHTML = html;
-      // Re-wire copy buttons
-      el.querySelectorAll('.prompt-copy-btn').forEach(function(btn) {
-        btn.addEventListener('click', function() {
-          navigator.clipboard.writeText(this.getAttribute('data-prompt'));
-          var orig = this.textContent;
-          this.textContent = '✓ Copied';
-          setTimeout(function() { btn.textContent = orig; }, 1500);
-        });
-      });
-    }
-  } catch(e) { console.error('fetchPrompts error:', e); }
-}
 
 // ── FETCH REAL WORLD AI ──
 async function fetchRealWorldAI() {
@@ -3498,27 +3230,6 @@ async function fetchRealWorldRobotics() {
   } catch(e) { console.error('fetchRealWorldRobotics error:', e); }
 }
 
-// ── FETCH STATS (BY THE NUMBERS) ──
-async function fetchStats() {
-  try {
-    const data = await supabaseFetch('ai_stats', 'select=*&order=id.asc&limit=6');
-    if (!data || !data.length) return;
-
-    function makeStatTile(s) {
-      // Strip any inline styles or HTML tags from trend text so DB colors can't bleed through
-      var trendText = (s.trend || '').replace(/<[^>]*>/g, '').replace(/style="[^"]*"/g, '');
-      return '<div class="stat-tile" style="background:var(--bg);border:1px solid var(--border);border-radius:var(--radius);padding:22px 24px;">' +
-        '<div style="font-size:11px;font-weight:700;letter-spacing:0.07em;text-transform:uppercase;color:var(--text-muted);margin-bottom:10px;">' + (s.label || '') + '</div>' +
-        '<div style="font-size:32px;font-weight:800;letter-spacing:-0.03em;color:var(--text);line-height:1;">' + (s.value || '') + '</div>' +
-        '<div style="font-size:12px;color:var(--text-muted);margin-top:6px;">' + (s.context || '') + '</div>' +
-        '<div style="margin-top:12px;font-size:11px;font-weight:600;color:var(--text-muted);">' + trendText + '</div>' +
-        '</div>';
-    }
-
-    var el = document.getElementById('numbers-grid');
-    if (el) el.innerHTML = data.map(makeStatTile).join('');
-  } catch(e) { console.error('fetchStats error:', e); }
-}
 
 function timeAgo(dateStr) {
   const now = new Date();
@@ -3618,10 +3329,8 @@ document.addEventListener('DOMContentLoaded', function() {
   fetchStories();
   fetchCompanies();
   fetchTools();
-  fetchPrompts();
   fetchRealWorldAI();
   fetchRealWorldRobotics();
-  fetchStats();
 
   // Auto-switch vertical: explicit URL parameter always wins; otherwise restore last-viewed
   var urlParams = new URLSearchParams(window.location.search);
@@ -3829,7 +3538,7 @@ async function runArchiveSearch(q) {
       if (!seen.has(s.id)) { seen.add(s.id); allStories.push(s); }
     });
 
-    // Also search tools and prompts tables if they exist
+    // Also search tools table if it exists
     var toolResults = [];
     try {
       var tools = await supabaseFetch('tools', 'select=id,name,description,category,url&name=ilike.*' + encodeURIComponent(q) + '*&limit=6');
@@ -3838,17 +3547,9 @@ async function runArchiveSearch(q) {
       });
     } catch(e) {}
 
-    var promptResults = [];
-    try {
-      var prompts = await supabaseFetch('prompts', 'select=id,title,content,category&title=ilike.*' + encodeURIComponent(q) + '*&limit=6');
-      if (prompts) promptResults = prompts.map(function(p) {
-        return { title: p.title, source: 'Prompt', category: p.category || 'Prompts', url: '', excerpt: p.content || '', type: 'prompt' };
-      });
-    } catch(e) {}
-
     var combined = allStories.map(function(s) {
       return { title: s.title, source: s.source || '', category: s.category || 'AI', url: s.url || '', excerpt: s.excerpt || '', type: 'story', created_at: s.created_at };
-    }).concat(toolResults).concat(promptResults);
+    }).concat(toolResults);
 
     if (!combined.length) {
       searchResults.innerHTML = '<div style="padding:24px;text-align:center;color:var(--text-muted);font-size:14px;">No results found for <strong>' + q.replace(/</g,'&lt;') + '</strong></div>';
@@ -3862,7 +3563,7 @@ async function runArchiveSearch(q) {
 }
 
 function renderSearchResults(results, q) {
-  var typeLabels = { story: '', tool: '🛠️ Tool', prompt: '⚡ Prompt' };
+  var typeLabels = { story: '', tool: '🛠️ Tool' };
   searchResults.innerHTML = '<div style="padding:8px 16px 4px;font-size:11px;font-weight:700;letter-spacing:0.06em;text-transform:uppercase;color:var(--text-muted);">' + results.length + ' result' + (results.length !== 1 ? 's' : '') + ' in archive</div>' +
     results.map(function(r) {
       var badge = r.type !== 'story' ? '<span style="font-size:10px;font-weight:700;padding:2px 6px;border-radius:4px;background:var(--surface);color:var(--text-muted);margin-left:6px;">' + typeLabels[r.type] + '</span>' : '';
@@ -3890,26 +3591,6 @@ function renderSearchResults(results, q) {
 function renderSearch(q) { renderSearchLocal(q); }
 
 // ── SAVED PANEL ──
-
-// ── PROMPT COPY BUTTONS ──
-document.addEventListener('click', function(e){
-  const btn = e.target.closest('.prompt-copy-btn');
-  if(!btn) return;
-  e.stopPropagation();
-  const text = btn.dataset.prompt;
-  navigator.clipboard.writeText(text).catch(function(){
-    const ta = document.createElement('textarea');
-    ta.value = text;
-    document.body.appendChild(ta);
-    ta.select();
-    document.execCommand('copy');
-    document.body.removeChild(ta);
-  });
-  const orig = btn.textContent;
-  btn.textContent = '✓ Copied';
-  btn.classList.add('copied');
-  setTimeout(function(){ btn.textContent = orig; btn.classList.remove('copied'); }, 2000);
-});
 
 // ── ABOUT PANEL ──
 var aboutPanel = document.getElementById('about-panel');
@@ -3990,40 +3671,6 @@ function switchVertical(mode) {
 }
 
 // ── FRONTIER DATA FETCHERS ──
-async function fetchFrontierStats() {
-  try {
-    var data = await supabaseFetch('frontier_stats', 'select=*&order=id.asc&limit=6');
-    var grid = document.getElementById('frontier-numbers-grid');
-    if (!grid || !data || !data.length) return;
-    grid.innerHTML = data.map(function(s){
-      var trendText = (s.trend||'').replace(/<[^>]*>/g,'');
-      return '<div class="stat-tile" style="background:var(--surface);border:1px solid var(--border);border-radius:var(--radius);padding:22px 24px;">' +
-        '<div style="font-size:11px;font-weight:700;letter-spacing:0.07em;text-transform:uppercase;color:var(--text-muted);margin-bottom:10px;">'+(s.label||'')+'</div>' +
-        '<div style="font-size:32px;font-weight:800;letter-spacing:-0.03em;color:var(--text);line-height:1;">'+(s.value||'')+'</div>' +
-        '<div style="font-size:12px;color:var(--text-muted);margin-top:6px;">'+(s.context||'')+'</div>' +
-        '<div style="margin-top:12px;font-size:11px;font-weight:600;color:var(--text-muted);">'+trendText+'</div>' +
-        '</div>';
-    }).join('');
-  } catch(e) { console.error('fetchFrontierStats:', e); }
-}
-
-async function fetchLongevityStats() {
-  try {
-    var data = await supabaseFetch('longevity_stats', 'select=*&order=id.asc&limit=6');
-    var grid = document.getElementById('longevity-numbers-grid');
-    if (!grid || !data || !data.length) return;
-    grid.innerHTML = data.map(function(s){
-      var trendText = (s.trend||'').replace(/<[^>]*>/g,'');
-      return '<div class="stat-tile" style="background:var(--surface);border:1px solid var(--border);border-radius:var(--radius);padding:22px 24px;">' +
-        '<div style="font-size:11px;font-weight:700;letter-spacing:0.07em;text-transform:uppercase;color:var(--text-muted);margin-bottom:10px;">'+(s.label||'')+'</div>' +
-        '<div style="font-size:32px;font-weight:800;letter-spacing:-0.03em;color:var(--text);line-height:1;">'+(s.value||'')+'</div>' +
-        '<div style="font-size:12px;color:var(--text-muted);margin-top:6px;">'+(s.context||'')+'</div>' +
-        '<div style="margin-top:12px;font-size:11px;font-weight:600;color:var(--text-muted);">'+trendText+'</div>' +
-        '</div>';
-    }).join('');
-  } catch(e) { console.error('fetchLongevityStats:', e); }
-}
-
 async function fetchFrontierStories() {
   try {
     var data = await supabaseFetch('frontier_stories', 'select=*&order=published_at.desc&limit=15' + feedSinceFilter());
@@ -4474,11 +4121,7 @@ document.addEventListener('keydown', function(e) {
 
     // ── PER-SECTION SEARCH ──
 
-    // ── COPY PROMPT ──
-
     // Show all sections
-
-// ── INLINE PROMPT COPY ──
 
 </script>
 
