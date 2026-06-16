@@ -10,13 +10,13 @@
   <meta property="og:type" content="website" />
   <meta property="og:url" content="https://atomicmediagroup.ai" />
   <meta property="og:title" content="Atomic Media Group: Where Humanity Is Headed" />
-  <meta property="og:description" content="AI-curated intelligence every Sunday across AI & Robotics, Commercial Space, and Longevity. The future, before it's obvious." />
+  <meta property="og:description" content="AI-curated intelligence every Sunday across AI, Robotics, Space, Longevity, and The Grid. The future, before it's obvious." />
   <meta property="og:image" content="https://atomicmediagroup.ai/og-preview.png" />
   <meta property="og:site_name" content="Atomic Media Group" />
   <meta name="twitter:card" content="summary_large_image" />
   <meta name="twitter:site" content="@AtomicMediaGroup" />
   <meta name="twitter:title" content="Atomic Media Group: Where Humanity Is Headed" />
-  <meta name="twitter:description" content="AI-curated intelligence every Sunday across AI & Robotics, Commercial Space, and Longevity. The future, before it's obvious." />
+  <meta name="twitter:description" content="AI-curated intelligence every Sunday across AI, Robotics, Space, Longevity, and The Grid. The future, before it's obvious." />
   <meta name="twitter:image" content="https://atomicmediagroup.ai/og-preview.png" />
   <link rel="preconnect" href="https://api.fontshare.com" />
   <link href="https://api.fontshare.com/v2/css?f[]=satoshi@400,500,600,700,800&display=swap" rel="stylesheet" />
@@ -33,6 +33,8 @@
       --text-dim: #a1a1aa;
       --ai: #18181b;
       --frontier: #ea580c;
+    --robotics:  #7c3aed;
+    --grid:      #eab308;
       --longevity: #059669;
     }
 
@@ -244,9 +246,9 @@
     }
     .verticals-grid {
       display: grid;
-      grid-template-columns: repeat(3, 1fr);
-      gap: 20px;
-      max-width: 960px;
+      grid-template-columns: repeat(5, 1fr);
+      gap: 16px;
+      max-width: 1100px;
       margin: 0 auto;
     }
     .vertical-card {
@@ -282,9 +284,13 @@
     .vertical-card.ai::before { background: var(--ai); }
     .vertical-card.frontier::before { background: var(--frontier); }
     .vertical-card.longevity::before { background: var(--longevity); }
+    .vertical-card.robotics::before { background: var(--robotics); }
+    .vertical-card.grid::before     { background: var(--grid); }
     .vertical-card:hover.ai { border-color: #d4d4d8; }
     .vertical-card:hover.frontier { border-color: #fed7aa; }
-    .vertical-card:hover.longevity { border-color: #a7f3d0; }
+    .vertical-card:hover.longevity  { border-color: #a7f3d0; }
+    .vertical-card:hover.robotics { border-color: #ddd6fe; }
+    .vertical-card:hover.grid     { border-color: #fef08a; }
 
     .vertical-icon {
       font-size: 28px;
@@ -299,6 +305,8 @@
     }
     .vertical-card.frontier .vertical-name { color: var(--frontier); }
     .vertical-card.longevity .vertical-name { color: var(--longevity); }
+    .vertical-card.robotics  .vertical-name { color: var(--robotics); }
+    .vertical-card.grid      .vertical-name { color: var(--grid); }
 
     .vertical-desc {
       font-size: 14px;
@@ -318,9 +326,13 @@
     }
     .vertical-card.frontier .vertical-link { color: var(--frontier); }
     .vertical-card.longevity .vertical-link { color: var(--longevity); }
+    .vertical-card.robotics  .vertical-link { color: var(--robotics); }
+    .vertical-card.grid      .vertical-link { color: var(--grid); }
     .vertical-card:hover .vertical-link { color: var(--text); }
     .vertical-card.frontier:hover .vertical-link { color: var(--frontier); }
     .vertical-card.longevity:hover .vertical-link { color: var(--longevity); }
+    .vertical-card.robotics:hover .vertical-link  { color: var(--robotics); }
+    .vertical-card.grid:hover .vertical-link       { color: var(--grid); }
 
     /* ── TAGLINE SECTION ── */
     .tagline-section {
@@ -597,7 +609,7 @@
       The future of humanity<br />is being written right now.
     </h1>
     <p class="hero-sub">
-      Three forces are reshaping where humanity goes next: artificial intelligence, the expansion into space, and the science of living longer. Every Sunday, we track what matters across all three.
+      Five forces are reshaping where humanity goes next: artificial intelligence, robotics, the expansion into space, the science of living longer, and the energy and compute powering all of it. Every Sunday, we track what matters across all five.
     </p>
     <div class="hero-actions">
       <a href="/feed.html" class="btn-primary">Enter the Feed →</a>
@@ -616,23 +628,32 @@
 
   <!-- VERTICALS -->
   <section class="verticals" id="verticals">
-    <div class="verticals-label">Three Forces Shaping Where Humanity Goes.</div>
+    <div class="verticals-label">Five Forces Shaping Where Humanity Goes.</div>
     <div class="verticals-grid">
 
       <a href="/feed.html?v=ai" class="vertical-card ai">
         <div class="vertical-icon">🦾</div>
-        <div class="vertical-name">AI &amp; Robotics</div>
+        <div class="vertical-name">AI Intelligence</div>
         <p class="vertical-desc">
-          Machines are learning to think, reason, and act. The decisions being made in AI labs today will define what human capability means for the next century.
+          Machines are learning to think and act. The decisions being made in AI labs today will define what human capability means for the next century.
         </p>
-        <span class="vertical-link">Explore → </span>
+        <span class="vertical-link">Explore →</span>
+      </a>
+
+      <a href="/feed.html?v=robotics" class="vertical-card robotics">
+        <div class="vertical-icon">🤖</div>
+        <div class="vertical-name">Robotics</div>
+        <p class="vertical-desc">
+          Humanoid robots are leaving the lab. Physical AI is entering factories, hospitals, and homes, tracked as the deployments happen.
+        </p>
+        <span class="vertical-link">Explore →</span>
       </a>
 
       <a href="/feed.html?v=frontier" class="vertical-card frontier">
         <div class="vertical-icon">🚀</div>
         <div class="vertical-name">Space</div>
         <p class="vertical-desc">
-          For the first time in history, humanity is becoming a multi-planetary species. The companies, missions, and breakthroughs making that real, tracked every week.
+          For the first time in history, humanity is becoming a multi-planetary species. Every launch, mission, and breakthrough moving that story forward.
         </p>
         <span class="vertical-link">Explore →</span>
       </a>
@@ -641,7 +662,16 @@
         <div class="vertical-icon">🧬</div>
         <div class="vertical-name">Longevity</div>
         <p class="vertical-desc">
-          The biology of aging is being cracked open. The therapies, research, and companies racing to extend healthy human life, covered every week as the science accelerates.
+          The biology of aging is being cracked open. The science, companies, and therapies extending the human lifespan, tracked as they emerge.
+        </p>
+        <span class="vertical-link">Explore →</span>
+      </a>
+
+      <a href="/feed.html?v=grid" class="vertical-card grid">
+        <div class="vertical-icon">⚡</div>
+        <div class="vertical-name">The Grid</div>
+        <p class="vertical-desc">
+          Energy, compute, and chips are the invisible constraint on everything else. What gets built, and what does not, depends on The Grid.
         </p>
         <span class="vertical-link">Explore →</span>
       </a>
@@ -655,7 +685,7 @@
   <section class="tagline-section">
     <div class="tagline-inner">
       <p class="tagline-quote">Most people find out where humanity is headed after it's already arrived.</p>
-      <p class="tagline-sub">Atomic Media Group tracks the three forces reshaping the human story: AI that thinks, space that expands our reach, and science that extends our lives. Every Sunday, we surface what matters across all three, before it becomes obvious to everyone else.</p>
+      <p class="tagline-sub">Atomic Media Group tracks the five forces reshaping the human story: AI that thinks, robots that act, space that expands our reach, science that extends our lives, and the energy and compute that powers all of it. Every Sunday, we surface what matters across all five, before it becomes obvious to everyone else.</p>
       <a href="/feed.html" class="btn-primary-light">See What's Coming →</a>
     </div>
   </section>
@@ -664,7 +694,7 @@
   <section class="newsletter-section">
     <div class="newsletter-label">The Atomic Brief</div>
     <h2 class="newsletter-headline">Know where humanity is headed before everyone else does.</h2>
-    <p class="newsletter-sub">Free. Every Sunday. Three minutes. Three forces. One brief.</p>
+    <p class="newsletter-sub">Free. Every Sunday. Five forces. One brief.</p>
     <div class="newsletter-form">
       <input type="email" class="newsletter-input" placeholder="your@email.com" />
       <button class="newsletter-btn" onclick="handleSubscribe(this)">Subscribe</button>
