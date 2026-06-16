@@ -2446,22 +2446,20 @@ async function loadBrief() {
     var row = data[0];
     var date = row.created_at ? new Date(row.created_at).toLocaleDateString('en-US', { month:'long', day:'numeric', year:'numeric' }) : 'This Sunday';
     dateEl.textContent = 'Sunday Brief, ' + date;
-    // Render content: convert ## headings and \n\n paragraphs to HTML
-    var html = (row.content || '')
-      .replace(/\u2014/g, ', ')
-      .split('\n\n')
-      .map(function(block) {
-        block = block.trim();
-        if (!block) return '';
-        if (block.startsWith('## ')) {
-          return '<h3 style="font-size:14px;font-weight:700;text-transform:uppercase;letter-spacing:0.06em;color:#111;margin:24px 0 8px;">' + block.replace('## ','') + '</h3>';
-        }
-        if (block.startsWith('# ')) {
-          return '<p style="font-size:17px;font-weight:700;color:#111;margin:0 0 16px;">' + block.replace('# ','') + '</p>';
-        }
-        return '<p style="margin:0 0 16px;line-height:1.75;color:#374151;">' + block + '</p>';
-      })
-      .join('');
+    // Render content: split on every line, detect # and ## headers individually
+    var lines = (row.content || '').replace(/\u2014/g, ', ').split('\n');
+    var html = '';
+    lines.forEach(function(line) {
+      line = line.trim();
+      if (!line) return;
+      if (line.indexOf('## ') === 0) {
+        html += '<h3 style="font-size:13px;font-weight:700;text-transform:uppercase;letter-spacing:0.07em;color:#2563eb;margin:28px 0 10px;padding-bottom:6px;border-bottom:1px solid #e5e7eb;">' + line.replace('## ','') + '</h3>';
+      } else if (line.indexOf('# ') === 0) {
+        html += '<p style="font-size:19px;font-weight:800;color:#111;line-height:1.35;margin:0 0 20px;letter-spacing:-0.02em;">' + line.replace('# ','') + '</p>';
+      } else {
+        html += '<p style="margin:0 0 14px;line-height:1.75;color:#374151;font-size:15px;">' + line + '</p>';
+      }
+    });
     el.innerHTML = html;
   } catch(e) {
     el.innerHTML = '<p style="color:#9ca3af;font-style:italic;">Unable to load this week\'s brief. Try again shortly.</p>';
