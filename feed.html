@@ -2749,8 +2749,8 @@ async function fetchSoWhat() {
       el.innerHTML = '<div style="background:#ffffff;border:1.5px solid #e5e7eb;border-left:4px solid ' + bc + ';border-radius:0 10px 10px 0;padding:20px 22px;">' +
         '<div style="font-size:10px;font-weight:700;letter-spacing:0.06em;text-transform:uppercase;padding:2px 8px;border-radius:4px;margin-bottom:9px;display:inline-flex;">' + vt.label + '</div>' +
         '<div style="font-size:13px;font-weight:700;color:#111111;line-height:1.4;margin-bottom:7px;">' + (row.headline||'').replace(/\u2014/g, ', ') + '</div>' +
-        '<div style="font-size:15px;color:#6b7280;line-height:1.75;margin-bottom:10px;">' + (row.body||'').replace(/\u2014/g, ', ').split('\n\n').map(function(p){ return '<p style="margin:0 0 14px 0;">' + p.trim() + '</p>'; }).join('') + '</div>' +
-        '<div style="font-size:10px;font-weight:600;color:#9ca3af;letter-spacing:0.04em;text-transform:uppercase;">Sourced from ' + (row.article_count||'this week\'s') + ' articles</div>' +
+        '<div style="font-size:17px;color:#6b7280;line-height:1.75;margin-bottom:10px;">' + (row.body||'').replace(/\u2014/g, ', ').split('\n\n').map(function(p){ return '<p style="margin:0 0 14px 0;">' + p.trim() + '</p>'; }).join('') + '</div>' +
+        '<div style="font-size:10px;font-weight:600;color:#9ca3af;letter-spacing:0.04em;text-transform:uppercase;">SOURCED FROM THIS WEEK'S ARTICLES</div>' +
         '</div>';
     });
   } catch(e) {
