@@ -1761,7 +1761,7 @@ body.longevity-mode .so-what-card { border-left-color: #059669; }
   </div>
 
   <!-- WEEK HEADLINE -->
-  <div id="week-headline-ai" style="font-size:20px;font-weight:700;color:#111111;line-height:1.4;margin-bottom:28px;display:none;"></div>
+  <div id="week-headline-ai" style="margin-bottom:12px;display:none;"><div style="font-size:10px;font-weight:700;letter-spacing:0.1em;text-transform:uppercase;color:#2563eb;margin-bottom:8px;">THIS WEEK IN AI</div><div id="week-headline-ai-text" style="font-size:20px;font-weight:700;color:#111111;line-height:1.4;"></div></div>
 
   <!-- TOP STORIES -->
   <div class="section-title" style="border-bottom-color:#2563eb;">Top Stories</div>
@@ -1804,7 +1804,7 @@ body.longevity-mode .so-what-card { border-left-color: #059669; }
   </div>
 
   <!-- WEEK HEADLINE -->
-  <div id="week-headline-robotics" style="font-size:20px;font-weight:700;color:#111111;line-height:1.4;margin-bottom:28px;display:none;"></div>
+  <div id="week-headline-robotics" style="margin-bottom:12px;display:none;"><div style="font-size:10px;font-weight:700;letter-spacing:0.1em;text-transform:uppercase;color:#7c3aed;margin-bottom:8px;">THIS WEEK IN ROBOTICS</div><div id="week-headline-robotics-text" style="font-size:20px;font-weight:700;color:#111111;line-height:1.4;"></div></div>
 
   <!-- TOP STORIES -->
   <div class="section-title" style="border-bottom-color:#7c3aed;">Top Stories</div>
@@ -1847,7 +1847,7 @@ body.longevity-mode .so-what-card { border-left-color: #059669; }
   </div>
 
   <!-- WEEK HEADLINE -->
-  <div id="week-headline-frontier" style="font-size:20px;font-weight:700;color:#111111;line-height:1.4;margin-bottom:28px;display:none;"></div>
+  <div id="week-headline-frontier" style="margin-bottom:12px;display:none;"><div style="font-size:10px;font-weight:700;letter-spacing:0.1em;text-transform:uppercase;color:#ea580c;margin-bottom:8px;">THIS WEEK IN SPACE</div><div id="week-headline-frontier-text" style="font-size:20px;font-weight:700;color:#111111;line-height:1.4;"></div></div>
 
   <!-- TOP STORIES -->
   <div class="section-title" style="border-bottom-color:var(--frontier);">Top Stories</div>
@@ -1890,7 +1890,7 @@ body.longevity-mode .so-what-card { border-left-color: #059669; }
   </div>
 
   <!-- WEEK HEADLINE -->
-  <div id="week-headline-longevity" style="font-size:20px;font-weight:700;color:#111111;line-height:1.4;margin-bottom:28px;display:none;"></div>
+  <div id="week-headline-longevity" style="margin-bottom:12px;display:none;"><div style="font-size:10px;font-weight:700;letter-spacing:0.1em;text-transform:uppercase;color:#059669;margin-bottom:8px;">THIS WEEK IN LONGEVITY</div><div id="week-headline-longevity-text" style="font-size:20px;font-weight:700;color:#111111;line-height:1.4;"></div></div>
 
   <!-- TOP STORIES -->
   <div class="section-title" style="border-bottom-color:var(--longevity);">Top Stories</div>
@@ -1933,7 +1933,7 @@ body.longevity-mode .so-what-card { border-left-color: #059669; }
   </div>
 
   <!-- WEEK HEADLINE -->
-  <div id="week-headline-grid" style="font-size:20px;font-weight:700;color:#111111;line-height:1.4;margin-bottom:28px;display:none;"></div>
+  <div id="week-headline-grid" style="margin-bottom:12px;display:none;"><div style="font-size:10px;font-weight:700;letter-spacing:0.1em;text-transform:uppercase;color:#eab308;margin-bottom:8px;">THIS WEEK IN THE GRID</div><div id="week-headline-grid-text" style="font-size:20px;font-weight:700;color:#111111;line-height:1.4;"></div></div>
 
   <!-- TOP STORIES -->
   <div class="section-title" style="border-bottom-color:#eab308;">Top Stories</div>
@@ -2762,10 +2762,11 @@ async function fetchSoWhat() {
       var bc = borderColors[vkey] || '#2563eb';
       var vt = vtags[vkey];
       // Populate week headline above Top Stories
-      var hlEl = document.getElementById('week-headline-' + vkey);
-      if (hlEl && row.headline) {
-        hlEl.textContent = (row.headline||'').replace(/—/g, ', ');
-        hlEl.style.display = 'block';
+      var hlWrap = document.getElementById('week-headline-' + vkey);
+      var hlText = document.getElementById('week-headline-' + vkey + '-text');
+      if (hlWrap && hlText && row.headline) {
+        hlText.textContent = (row.headline||'').replace(/—/g, ', ');
+        hlWrap.style.display = 'block';
       }
       el.innerHTML = '<div style="background:#ffffff;border:1.5px solid #e5e7eb;border-left:4px solid ' + bc + ';border-radius:0 10px 10px 0;padding:20px 22px;">' +
         '<div style="font-size:10px;font-weight:700;letter-spacing:0.06em;text-transform:uppercase;padding:2px 8px;border-radius:4px;margin-bottom:9px;display:inline-flex;">' + vt.label + '</div>' +
