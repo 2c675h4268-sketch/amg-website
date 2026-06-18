@@ -1760,6 +1760,9 @@ body.longevity-mode .so-what-card { border-left-color: #059669; }
     <div style="font-size: 15px; color: #6b7280; font-weight: 400; line-height: 1.5;">Machines are learning to think and act. The decisions being made in AI labs today will define what human capability means for the next century.</div>
   </div>
 
+  <!-- WEEK HEADLINE -->
+  <div id="week-headline-ai" style="font-size:20px;font-weight:700;color:#111111;line-height:1.4;margin-bottom:28px;padding-bottom:24px;border-bottom:1px solid #e5e7eb;display:none;"></div>
+
   <!-- TOP STORIES -->
   <div class="section-title" style="border-bottom-color:#2563eb;">Top Stories</div>
   <div class="small-grid" id="top-stories-grid">
@@ -1799,6 +1802,9 @@ body.longevity-mode .so-what-card { border-left-color: #059669; }
     <div style="font-size: 24px; font-weight: 800; letter-spacing: -0.025em; color: #7c3aed; line-height: 1.2; margin-bottom: 8px;">🤖 Robotics</div>
     <div style="font-size: 15px; color: #6b7280; font-weight: 400; line-height: 1.5;">Humanoid robots are leaving the lab. Physical AI is entering factories, hospitals, and homes, tracked as the deployments happen.</div>
   </div>
+
+  <!-- WEEK HEADLINE -->
+  <div id="week-headline-robotics" style="font-size:20px;font-weight:700;color:#111111;line-height:1.4;margin-bottom:28px;padding-bottom:24px;border-bottom:1px solid #e5e7eb;display:none;"></div>
 
   <!-- TOP STORIES -->
   <div class="section-title" style="border-bottom-color:#7c3aed;">Top Stories</div>
@@ -1840,6 +1846,9 @@ body.longevity-mode .so-what-card { border-left-color: #059669; }
     <div style="font-size: 15px; color: #6b7280; font-weight: 400; line-height: 1.5;">Humanity is becoming a multi-planetary species. Every launch, mission, and breakthrough moving that story forward.</div>
   </div>
 
+  <!-- WEEK HEADLINE -->
+  <div id="week-headline-frontier" style="font-size:20px;font-weight:700;color:#111111;line-height:1.4;margin-bottom:28px;padding-bottom:24px;border-bottom:1px solid #e5e7eb;display:none;"></div>
+
   <!-- TOP STORIES -->
   <div class="section-title" style="border-bottom-color:var(--frontier);">Top Stories</div>
   <div class="small-grid" id="frontier-top-stories-grid">
@@ -1880,6 +1889,9 @@ body.longevity-mode .so-what-card { border-left-color: #059669; }
     <div style="font-size: 15px; color: #6b7280; font-weight: 400; line-height: 1.5;">The biology of aging is being cracked open. The science, companies, and therapies extending the human lifespan, tracked as they emerge.</div>
   </div>
 
+  <!-- WEEK HEADLINE -->
+  <div id="week-headline-longevity" style="font-size:20px;font-weight:700;color:#111111;line-height:1.4;margin-bottom:28px;padding-bottom:24px;border-bottom:1px solid #e5e7eb;display:none;"></div>
+
   <!-- TOP STORIES -->
   <div class="section-title" style="border-bottom-color:var(--longevity);">Top Stories</div>
   <div class="small-grid" id="longevity-top-stories-grid">
@@ -1919,6 +1931,9 @@ body.longevity-mode .so-what-card { border-left-color: #059669; }
     <div style="font-size: 24px; font-weight: 800; letter-spacing: -0.025em; color: #eab308; line-height: 1.2; margin-bottom: 8px;">⚡ The Grid</div>
     <div style="font-size: 15px; color: #6b7280; font-weight: 400; line-height: 1.5;">Energy, compute, and chips are the invisible constraint on everything else. Every data center, semiconductor breakthrough, and power infrastructure story, tracked through the lens of what it enables or blocks across AI, robotics, space, and longevity.</div>
   </div>
+
+  <!-- WEEK HEADLINE -->
+  <div id="week-headline-grid" style="font-size:20px;font-weight:700;color:#111111;line-height:1.4;margin-bottom:28px;padding-bottom:24px;border-bottom:1px solid #e5e7eb;display:none;"></div>
 
   <!-- TOP STORIES -->
   <div class="section-title" style="border-bottom-color:#eab308;">Top Stories</div>
@@ -2746,6 +2761,12 @@ async function fetchSoWhat() {
       if (!row) { el.innerHTML = pending.replace('#2563eb', borderColors[vkey]||'#2563eb'); return; }
       var bc = borderColors[vkey] || '#2563eb';
       var vt = vtags[vkey];
+      // Populate week headline above Top Stories
+      var hlEl = document.getElementById('week-headline-' + vkey);
+      if (hlEl && row.headline) {
+        hlEl.textContent = (row.headline||'').replace(/—/g, ', ');
+        hlEl.style.display = 'block';
+      }
       el.innerHTML = '<div style="background:#ffffff;border:1.5px solid #e5e7eb;border-left:4px solid ' + bc + ';border-radius:0 10px 10px 0;padding:20px 22px;">' +
         '<div style="font-size:10px;font-weight:700;letter-spacing:0.06em;text-transform:uppercase;padding:2px 8px;border-radius:4px;margin-bottom:9px;display:inline-flex;">' + vt.label + '</div>' +
         '<div style="font-size:17px;font-weight:700;color:#111111;line-height:1.4;margin-bottom:10px;">' + (row.headline||'').replace(/\u2014/g, ', ') + '</div>' +
