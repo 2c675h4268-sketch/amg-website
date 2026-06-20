@@ -734,8 +734,7 @@
       }
       btn.textContent = '\u2026';
       btn.disabled = true;
-      var body = new URLSearchParams({ email: email });
-      fetch(AMG_SUBSCRIBE_WEBHOOK, { method: 'POST', body: body })
+      fetch(AMG_SUBSCRIBE_WEBHOOK, { method: 'POST', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify({ email: email }) })
         .then(function(res){
           if (!res.ok) throw new Error('HTTP ' + res.status);
           btn.textContent = '\u2713 Done!';
