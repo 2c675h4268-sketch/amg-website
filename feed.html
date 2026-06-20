@@ -2460,7 +2460,32 @@ async function loadBrief() {
     var row = data[0];
     var date = row.created_at ? new Date(row.created_at).toLocaleDateString('en-US', { month:'long', day:'numeric', year:'numeric' }) : 'This Sunday';
     dateEl.textContent = 'Sunday Brief, ' + date;
-    el.innerHTML = row.content || '';
+    // Strip email-only sections before rendering on website
+    var html = row.content || '';
+    var parser = new DOMParser();
+    var doc = parser.parseFromString(html, 'text/html');
+    // Remove subscribe banner, sponsor block, and footer (last 3 divs inside outer wrapper)
+    var wrapper = doc.querySelector('div');
+    if (wrapper) {
+      var children = Array.from(wrapper.children);
+      // Remove header (first div - black bar with AMG/Sunday Brief)
+      // Remove subscribe band (second div)
+      // Keep verticals (middle divs)
+      // Remove sponsored by, footer (last 2 divs)
+      if (children.length > 4) {
+        // Remove first child (header - already shown in modal)
+        children[0].remove();
+        // Remove second child (subscribe/forwarded banner)
+        wrapper.children[0].remove();
+        // Remove last two children (sponsored + footer)
+        var remaining = Array.from(wrapper.children);
+        remaining[remaining.length - 1].remove();
+        remaining[remaining.length - 2].remove();
+      }
+      el.innerHTML = wrapper.innerHTML;
+    } else {
+      el.innerHTML = html;
+    }
   } catch(e) {
     el.innerHTML = '<p style="color:#9ca3af;font-style:italic;">Unable to load this week\'s brief. Try again shortly.</p>';
     console.error('loadBrief:', e);
