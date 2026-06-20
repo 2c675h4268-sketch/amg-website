@@ -723,7 +723,8 @@
   </footer>
 
   <script>
-   async function handleSubscribe(btn) {
+   var AMG_SUBSCRIBE_WEBHOOK = 'https://hook.us2.make.com/mb8j5gstllh5cutlw0byhii3y7hf66ub';
+    function handleSubscribe(btn) {
       var input = btn.previousElementSibling;
       var email = (input.value || '').trim();
       if (!email || !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)) {
@@ -733,27 +734,18 @@
       }
       btn.textContent = '\u2026';
       btn.disabled = true;
-      try {
-        var response = await fetch('https://api.brevo.com/v3/contacts', {
-          method: 'POST',
-          headers: {
-            'api-key': 'xkeysib-dfcd9858075ed9cad52865a0f17b292697f3f7edeab2082c845b1ad040a7900-LQjDErFOc9vDnkjl',
-            'Content-Type': 'application/json'
-          },
-          body: JSON.stringify({ email: email, listIds: [2], updateEnabled: true })
-        });
-        if (response.ok || response.status === 204) {
+      var body = new URLSearchParams({ email: email });
+      fetch(AMG_SUBSCRIBE_WEBHOOK, { method: 'POST', body: body })
+        .then(function(res){
+          if (!res.ok) throw new Error('HTTP ' + res.status);
           btn.textContent = '\u2713 Done!';
           btn.style.background = '#059669';
           input.disabled = true;
-        } else {
+        })
+        .catch(function(err){
           btn.textContent = 'Try again later';
           setTimeout(function(){ btn.textContent = 'Subscribe'; btn.disabled = false; }, 2000);
-        }
-      } catch(err) {
-        btn.textContent = 'Try again later';
-        setTimeout(function(){ btn.textContent = 'Subscribe'; btn.disabled = false; }, 2000);
-      }
+        });
     }
 
 </script>
