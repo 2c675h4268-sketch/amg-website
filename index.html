@@ -723,9 +723,7 @@
   </footer>
 
   <script>
-    // PASTE YOUR MAKE.COM WEBHOOK URL BETWEEN THE QUOTES BELOW (same one as feed.html):
-    var AMG_SUBSCRIBE_WEBHOOK = 'PASTE_MAKE_WEBHOOK_URL_HERE';
-    function handleSubscribe(btn) {
+   async function handleSubscribe(btn) {
       var input = btn.previousElementSibling;
       var email = (input.value || '').trim();
       if (!email || !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)) {
@@ -733,34 +731,29 @@
         setTimeout(function(){ input.style.borderColor = ''; }, 1500);
         return;
       }
-      if (AMG_SUBSCRIBE_WEBHOOK.indexOf('http') !== 0) {
-        console.warn('[AMG] Subscribe webhook not configured');
-        btn.textContent = 'Try again later';
-        setTimeout(function(){ btn.textContent = 'Subscribe'; }, 2000);
-        return;
-      }
       btn.textContent = '\u2026';
       btn.disabled = true;
-      var body = new URLSearchParams({
-        email: email,
-        utm_source: 'website',
-        utm_medium: 'landing',
-        utm_campaign: 'home',
-        page: location.pathname
-      });
-      fetch(AMG_SUBSCRIBE_WEBHOOK, { method: 'POST', body: body })
-        .then(function(res){
-          if (!res.ok) throw new Error('HTTP ' + res.status);
+      try {
+        var response = await fetch('https://api.brevo.com/v3/contacts', {
+          method: 'POST',
+          headers: {
+            'api-key': 'xkeysib-dfcd9858075ed9cad52865a0f17b292697f3f7edeab2082c845b1ad040a7900-LQjDErFOc9vDnkjl',
+            'Content-Type': 'application/json'
+          },
+          body: JSON.stringify({ email: email, listIds: [2], updateEnabled: true })
+        });
+        if (response.ok || response.status === 204) {
           btn.textContent = '\u2713 Done!';
           btn.style.background = '#059669';
           input.disabled = true;
-          try { localStorage.setItem('amg-subscribed', '1'); } catch(e) {}
-        })
-        .catch(function(err){
-          console.error('[AMG] Subscribe failed:', err);
-          btn.textContent = 'Try again';
-          btn.disabled = false;
-        });
+        } else {
+          btn.textContent = 'Try again later';
+          setTimeout(function(){ btn.textContent = 'Subscribe'; btn.disabled = false; }, 2000);
+        }
+      } catch(err) {
+        btn.textContent = 'Try again later';
+        setTimeout(function(){ btn.textContent = 'Subscribe'; btn.disabled = false; }, 2000);
+      }
     }
 
 </script>
