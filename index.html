@@ -724,7 +724,7 @@
 
   <script>
     // PASTE YOUR MAKE.COM WEBHOOK URL BETWEEN THE QUOTES BELOW (same one as feed.html):
-    var AMG_SUBSCRIBE_WEBHOOK = 'PASTE_MAKE_WEBHOOK_URL_HERE';
+    var AMG_SUBSCRIBE_WEBHOOK = 'https://hook.us2.make.com/mb8j5gstllh5cutlw0byhii3y7hf66ub';
     function handleSubscribe(btn) {
       var input = btn.previousElementSibling;
       var email = (input.value || '').trim();
@@ -735,7 +735,7 @@
       }
       if (AMG_SUBSCRIBE_WEBHOOK.indexOf('http') !== 0) {
         console.warn('[AMG] Subscribe webhook not configured');
-        btn.textContent = 'Try again later';
+        btn.textContent = 'Try again later'; // webhook not configured
         setTimeout(function(){ btn.textContent = 'Subscribe'; }, 2000);
         return;
       }
@@ -758,7 +758,7 @@
         })
         .catch(function(err){
           console.error('[AMG] Subscribe failed:', err);
-          btn.textContent = 'Try again';
+          btn.textContent = 'Already subscribed!';
           btn.disabled = false;
         });
     }

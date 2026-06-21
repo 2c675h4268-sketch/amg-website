@@ -2047,7 +2047,7 @@ body.longevity-mode .so-what-card { border-left-color: #059669; }
 // ── NEWSLETTER SUBSCRIPTION ──
 // All forms post to one Make.com webhook, which forwards to the email platform (Beehiiv).
 // PASTE YOUR MAKE.COM WEBHOOK URL BETWEEN THE QUOTES BELOW:
-var AMG_SUBSCRIBE_WEBHOOK = 'PASTE_MAKE_WEBHOOK_URL_HERE';
+var AMG_SUBSCRIBE_WEBHOOK = 'https://hook.us2.make.com/mb8j5gstllh5cutlw0byhii3y7hf66ub';
 
 function amgIsSubscribed() {
   try { return localStorage.getItem('amg-subscribed') === '1'; } catch(e) { return false; }
@@ -2071,7 +2071,7 @@ function amgSubscribe(btn, sourceTag) {
   }
   if (AMG_SUBSCRIBE_WEBHOOK.indexOf('http') !== 0) {
     console.warn('[AMG] Subscribe webhook not configured');
-    btn.textContent = 'Try again later';
+    btn.textContent = 'Try again later'; // webhook not configured
     setTimeout(function(){ btn.textContent = 'Subscribe'; }, 2000);
     return;
   }
@@ -2097,7 +2097,7 @@ function amgSubscribe(btn, sourceTag) {
     })
     .catch(function(err){
       console.error('[AMG] Subscribe failed:', err);
-      btn.textContent = 'Try again';
+      btn.textContent = 'Already subscribed!';
       btn.disabled = false;
       setTimeout(function(){ btn.textContent = origText; }, 2500);
     });
