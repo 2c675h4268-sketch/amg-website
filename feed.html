@@ -2054,12 +2054,12 @@ function amgIsSubscribed() {
 }
 function amgMarkSubscribed() {
   try { localStorage.setItem('amg-subscribed', '1'); } catch(e) {}
-  // Collapse all subscribe bands; show success on footer
+  // Collapse inline subscribe bands only; keep footer always active
   document.querySelectorAll('[data-subscribe-band]').forEach(function(el){ el.classList.add('hidden'); });
   var fBtn = document.querySelector('.footer-subscribe-btn');
   var fInput = document.querySelector('.footer-email-input');
-  if (fBtn) { fBtn.textContent = '\u2713 Subscribed'; fBtn.disabled = true; }
-  if (fInput) { fInput.disabled = true; fInput.placeholder = 'You\u2019re on the list'; fInput.value = ''; }
+  if (fBtn) { fBtn.textContent = 'Subscribe'; fBtn.disabled = false; }
+  if (fInput) { fInput.disabled = false; fInput.placeholder = 'your@email.com'; fInput.value = ''; }
 }
 function amgSubscribe(btn, sourceTag) {
   var input = btn.parentElement.querySelector('input[type="email"]') || btn.previousElementSibling;
@@ -2115,10 +2115,7 @@ function closeWhitelistModal() {
   m.style.pointerEvents = 'none';
   document.body.style.overflow = '';
 }
-// On load: if already subscribed, hide capture surfaces
-document.addEventListener('DOMContentLoaded', function(){
-  if (amgIsSubscribed()) amgMarkSubscribed();
-});
+// Subscribe bands always visible so any email can be added
 
 // ── PANEL HEADER SEARCH TOGGLE ──
 function togglePhSearch(id) {
