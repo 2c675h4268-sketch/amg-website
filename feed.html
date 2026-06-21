@@ -2184,7 +2184,7 @@ function renderYMAL(currentTitle, currentCat){
 <script>
 // ── SUPABASE CONFIG ──
 const SUPABASE_URL = 'https://qybwjkyifdroktiriaqt.supabase.co';
-const SUPABASE_KEY = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6InF5YndqamtpeWlmZHJva3RpcmlhcXQiLCJyb2xlIjoiYW5vbiIsImlhdCI6MTc0MzUzNzMwMCwiZXhwIjoyMDU5MTEzMzAwfQ.JJFqoCugHoe6fsah3kEjk8ezZZ4kTVzcfu_AQ7x-lg8';
+const SUPABASE_KEY = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6InF5Yndqa3lpZmRyb2t0aXJpYXF0Iiwicm9sZSI6ImFub24iLCJpYXQiOjE3ODA1MTUzNzYsImV4cCI6MjA5NjA5MTM3Nn0.JJFqoCugHoe6fsah3kEjk8ezZZ4kTVzcfu_AQ7x-lg8';
 
 // ── SUPABASE HELPER ──
 async function supabaseFetch(table, params) {
@@ -2460,24 +2460,16 @@ async function loadBrief() {
     var row = data[0];
     var date = row.created_at ? new Date(row.created_at).toLocaleDateString('en-US', { month:'long', day:'numeric', year:'numeric' }) : 'This Sunday';
     dateEl.textContent = 'Sunday Brief, ' + date;
-    // Strip email-only sections before rendering on website
+    // Render HTML content directly
     var html = row.content || '';
     var parser = new DOMParser();
     var doc = parser.parseFromString(html, 'text/html');
-    // Remove subscribe banner, sponsor block, and footer (last 3 divs inside outer wrapper)
     var wrapper = doc.querySelector('div');
     if (wrapper) {
       var children = Array.from(wrapper.children);
-      // Remove header (first div - black bar with AMG/Sunday Brief)
-      // Remove subscribe band (second div)
-      // Keep verticals (middle divs)
-      // Remove sponsored by, footer (last 2 divs)
       if (children.length > 4) {
-        // Remove first child (header - already shown in modal)
         children[0].remove();
-        // Remove second child (subscribe/forwarded banner)
         wrapper.children[0].remove();
-        // Remove last two children (sponsored + footer)
         var remaining = Array.from(wrapper.children);
         remaining[remaining.length - 1].remove();
         remaining[remaining.length - 2].remove();
