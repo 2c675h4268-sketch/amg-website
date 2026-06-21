@@ -755,12 +755,21 @@
           btn.style.background = '#059669';
           input.disabled = true;
           try { localStorage.setItem('amg-subscribed', '1'); } catch(e) {}
+          setTimeout(showWhitelistModal, 1200);
         })
         .catch(function(err){
           console.error('[AMG] Subscribe failed:', err);
           btn.textContent = 'Already subscribed!';
           btn.disabled = false;
         });
+    }
+    function showWhitelistModal() {
+      document.getElementById('amg-whitelist-modal').style.display = 'flex';
+      document.body.style.overflow = 'hidden';
+    }
+    function closeWhitelistModal() {
+      document.getElementById('amg-whitelist-modal').style.display = 'none';
+      document.body.style.overflow = '';
     }
 
 </script>
@@ -827,5 +836,17 @@ async function loadBrief() {
   }
 }
 </script>
-<button id="btt2" onclick="window.scrollTo({top:0,behavior:'smooth'})">&#8593;</button><script>window.addEventListener("scroll",function(){document.getElementById("btt2").style.opacity=window.pageYOffset>200?"1":"0.3";});</script></body>
+<button id="btt2" onclick="window.scrollTo({top:0,behavior:'smooth'})">&#8593;</button><script>window.addEventListener("scroll",function(){document.getElementById("btt2").style.opacity=window.pageYOffset>200?"1":"0.3";});</script>
+
+<!-- WHITELIST MODAL -->
+<div id="amg-whitelist-modal" onclick="if(event.target===this)closeWhitelistModal()" style="display:none;position:fixed;inset:0;background:rgba(0,0,0,0.55);z-index:9999;align-items:center;justify-content:center;padding:20px;">
+  <div style="background:#fff;border-radius:16px;max-width:480px;width:100%;padding:36px 32px 28px;box-shadow:0 24px 80px rgba(0,0,0,0.18);position:relative;text-align:center;">
+    <button onclick="closeWhitelistModal()" style="position:absolute;top:16px;right:16px;background:none;border:none;font-size:18px;color:#9ca3af;cursor:pointer;line-height:1;">&#10005;</button>
+    <div style="font-size:32px;margin-bottom:12px;">&#128231;</div>
+    <div style="font-size:20px;font-weight:800;letter-spacing:-0.02em;color:#111;margin-bottom:10px;">You're in!</div>
+    <p style="font-size:15px;color:#4b5563;line-height:1.6;margin-bottom:20px;">Your first Atomic Sunday Brief is on its way, arriving this Sunday. To make sure it lands in your inbox every week, add <strong>brief@atomicmediagroup.ai</strong> to your contacts or move us out of junk if you see us there. Takes 5 seconds and makes all the difference.</p>
+    <button onclick="closeWhitelistModal()" style="background:#111;color:#fff;border:none;border-radius:8px;padding:12px 28px;font-size:14px;font-weight:600;cursor:pointer;letter-spacing:-0.01em;">Got it</button>
+  </div>
+</div>
+</body>
 </html>
