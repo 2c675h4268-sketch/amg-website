@@ -522,7 +522,7 @@
   
     /* ── SCROLL INDICATOR ── */
     .scroll-indicator {
-      position: absolute;
+      position: fixed;
       bottom: 32px;
       left: 50%;
       transform: translateX(-50%);
@@ -533,6 +533,12 @@
       cursor: pointer;
       opacity: 0;
       animation: fadeInScroll 1s 1.2s ease forwards;
+      z-index: 100;
+      transition: opacity 0.3s;
+    }
+    .scroll-indicator.hidden {
+      opacity: 0 !important;
+      pointer-events: none;
     }
     .scroll-indicator span {
       font-size: 13px;
@@ -561,10 +567,6 @@
       display: flex;
       align-items: center;
       justify-content: center;
-    }
-    @media (max-width: 1024px) {
-      .hero-wrap { min-height: 100svh; }
-      .scroll-indicator { bottom: 24px; opacity: 1; animation: bounceDown 1.8s ease-in-out infinite; }
     }
 
 /* ── BACK TO TOP ── */
@@ -613,7 +615,7 @@
 
   <!-- HERO -->
   <div class="hero-wrap">
-  <section class="hero">
+  <section class="hero" style="min-height:0;">
     <div class="hero-eyebrow">
       <span class="hero-eyebrow-dot"></span>
       Know Where Humanity Is Headed
@@ -759,7 +761,6 @@
           btn.style.background = '#059669';
           input.disabled = true;
           try { localStorage.setItem('amg-subscribed', '1'); } catch(e) {}
-          setTimeout(showWhitelistModal, 1200);
         })
         .catch(function(err){
           console.error('[AMG] Subscribe failed:', err);
@@ -767,14 +768,16 @@
           btn.disabled = false;
         });
     }
-    function showWhitelistModal() {
-      document.getElementById('amg-whitelist-modal').style.display = 'flex';
-      document.body.style.overflow = 'hidden';
-    }
-    function closeWhitelistModal() {
-      document.getElementById('amg-whitelist-modal').style.display = 'none';
-      document.body.style.overflow = '';
-    }
+    // Hide scroll indicator after user scrolls past hero
+    window.addEventListener('scroll', function() {
+      var indicator = document.querySelector('.scroll-indicator');
+      if (!indicator) return;
+      if (window.pageYOffset > 80) {
+        indicator.classList.add('hidden');
+      } else {
+        indicator.classList.remove('hidden');
+      }
+    });
 
 </script>
 
@@ -840,17 +843,5 @@ async function loadBrief() {
   }
 }
 </script>
-<button id="btt2" onclick="window.scrollTo({top:0,behavior:'smooth'})">&#8593;</button><script>window.addEventListener("scroll",function(){document.getElementById("btt2").style.opacity=window.pageYOffset>200?"1":"0.3";});</script>
-
-<!-- WHITELIST MODAL -->
-<div id="amg-whitelist-modal" onclick="if(event.target===this)closeWhitelistModal()" style="display:none;position:fixed;inset:0;background:rgba(0,0,0,0.55);z-index:9999;align-items:center;justify-content:center;padding:20px;">
-  <div style="background:#fff;border-radius:16px;max-width:480px;width:100%;padding:36px 32px 28px;box-shadow:0 24px 80px rgba(0,0,0,0.18);position:relative;text-align:center;">
-    <button onclick="closeWhitelistModal()" style="position:absolute;top:16px;right:16px;background:none;border:none;font-size:18px;color:#9ca3af;cursor:pointer;line-height:1;">&#10005;</button>
-    <div style="font-size:32px;margin-bottom:12px;">&#128231;</div>
-    <div style="font-size:20px;font-weight:800;letter-spacing:-0.02em;color:#111;margin-bottom:10px;">You're in!</div>
-    <p style="font-size:15px;color:#4b5563;line-height:1.6;margin-bottom:20px;">Your first Atomic Sunday Brief is on its way, arriving this Sunday. To make sure it lands in your inbox every week, add <strong>brief@atomicmediagroup.ai</strong> to your contacts or move us out of junk if you see us there. Takes 5 seconds and makes all the difference.</p>
-    <button onclick="closeWhitelistModal()" style="background:#111;color:#fff;border:none;border-radius:8px;padding:12px 28px;font-size:14px;font-weight:600;cursor:pointer;letter-spacing:-0.01em;">Got it</button>
-  </div>
-</div>
-</body>
+<button id="btt2" onclick="window.scrollTo({top:0,behavior:'smooth'})">&#8593;</button><script>window.addEventListener("scroll",function(){document.getElementById("btt2").style.opacity=window.pageYOffset>200?"1":"0.3";});</script></body>
 </html>
