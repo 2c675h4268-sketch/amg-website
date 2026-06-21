@@ -132,7 +132,7 @@
 
     /* ── HERO ── */
     .hero {
-      padding: 48px 24px 150px;
+      padding: 80px 24px 120px;
       max-width: 1080px;
       margin: 0 auto;
       text-align: center;
@@ -723,7 +723,8 @@
   </footer>
 
   <script>
-   var AMG_SUBSCRIBE_WEBHOOK = 'https://hook.us2.make.com/mb8j5gstllh5cutlw0byhii3y7hf66ub';
+    // PASTE YOUR MAKE.COM WEBHOOK URL BETWEEN THE QUOTES BELOW (same one as feed.html):
+    var AMG_SUBSCRIBE_WEBHOOK = 'PASTE_MAKE_WEBHOOK_URL_HERE';
     function handleSubscribe(btn) {
       var input = btn.previousElementSibling;
       var email = (input.value || '').trim();
@@ -732,18 +733,33 @@
         setTimeout(function(){ input.style.borderColor = ''; }, 1500);
         return;
       }
+      if (AMG_SUBSCRIBE_WEBHOOK.indexOf('http') !== 0) {
+        console.warn('[AMG] Subscribe webhook not configured');
+        btn.textContent = 'Try again later';
+        setTimeout(function(){ btn.textContent = 'Subscribe'; }, 2000);
+        return;
+      }
       btn.textContent = '\u2026';
       btn.disabled = true;
-      fetch(AMG_SUBSCRIBE_WEBHOOK, { method: 'POST', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify({ email: email }) })
+      var body = new URLSearchParams({
+        email: email,
+        utm_source: 'website',
+        utm_medium: 'landing',
+        utm_campaign: 'home',
+        page: location.pathname
+      });
+      fetch(AMG_SUBSCRIBE_WEBHOOK, { method: 'POST', body: body })
         .then(function(res){
           if (!res.ok) throw new Error('HTTP ' + res.status);
           btn.textContent = '\u2713 Done!';
           btn.style.background = '#059669';
           input.disabled = true;
+          try { localStorage.setItem('amg-subscribed', '1'); } catch(e) {}
         })
         .catch(function(err){
-          btn.textContent = 'Try again later';
-          setTimeout(function(){ btn.textContent = 'Subscribe'; btn.disabled = false; }, 2000);
+          console.error('[AMG] Subscribe failed:', err);
+          btn.textContent = 'Try again';
+          btn.disabled = false;
         });
     }
 
