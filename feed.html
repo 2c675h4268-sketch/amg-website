@@ -2793,7 +2793,19 @@ async function fetchSoWhat() {
       el.innerHTML = '<div style="background:#ffffff;border:1.5px solid #e5e7eb;border-left:4px solid ' + bc + ';border-radius:0 10px 10px 0;padding:20px 22px;">' +
         '<div style="font-size:10px;font-weight:700;letter-spacing:0.06em;text-transform:uppercase;padding:2px 8px;border-radius:4px;margin-bottom:9px;display:inline-flex;">' + vt.label + '</div>' +
         '<div style="font-size:17px;font-weight:700;color:#111111;line-height:1.4;margin-bottom:10px;">' + (row.headline||'').replace(/\u2014/g, ', ') + '</div>' +
-        '<div style="font-size:17px;color:#6b7280;line-height:1.75;margin-bottom:10px;">' + (row.body||'').replace(/\u2014/g, ', ').split('\n\n').map(function(p){ return '<p style="margin:0 0 14px 0;">' + p.trim() + '</p>'; }).join('') + '</div>' +
+        (function() {
+          var paragraphs = (row.body||'').replace(/\u2014/g, ', ').split('\n\n').map(function(p){ return p.trim(); }).filter(function(p){ return p.length > 0; });
+          var labels = ['What Happened', 'Why It Matters', 'What to Watch'];
+          var html = '';
+          paragraphs.forEach(function(p, i) {
+            var label = labels[i] || '';
+            if (label) {
+              html += '<p style="margin:0 0 4px 0;font-size:11px;font-weight:700;letter-spacing:0.08em;text-transform:uppercase;color:#9ca3af;">' + label + '</p>';
+            }
+            html += '<p style="margin:0 0 20px 0;font-size:17px;line-height:1.75;color:#374151;">' + p + '</p>';
+          });
+          return '<div style="margin-bottom:10px;">' + html + '</div>';
+        })() +
         (row.companies ? '<div style="margin-bottom:14px;padding:10px 14px;background:#f8f8f8;border-radius:6px;"><span style="font-size:11px;font-weight:700;letter-spacing:0.06em;text-transform:uppercase;color:#6b7280;">Companies making the biggest impact this week: </span><span style="font-size:13px;color:#111111;font-weight:600;">' + row.companies + '</span></div>' : '') +
         '<div style="font-size:10px;font-weight:600;color:#9ca3af;letter-spacing:0.04em;text-transform:uppercase;">SOURCED FROM THIS WEEK&#39;S ARTICLES</div>' +
         '</div>';
