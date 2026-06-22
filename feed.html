@@ -2775,7 +2775,7 @@ async function fetchSoWhat() {
   var pending = '<div style="background:#ffffff;border:1.5px solid #e5e7eb;border-left:4px solid #2563eb;border-radius:0 10px 10px 0;padding:20px 22px;"><div style="font-size:15px;font-style:italic;font-weight:700;color:#6b7280;line-height:1.6;">Interpretation coming soon. Once live, this card will answer what this week\'s news means for humanity\'s future.</div></div>';
   var borderColors = { ai:'#2563eb', robotics:'#7c3aed', frontier:'#ea580c', longevity:'#059669', grid:'#eab308' };
   try {
-    var data = await supabaseFetch('so_what', 'select=*&order=created_at.desc&limit=25');
+    var data = await supabaseFetch('so_what', 'select=*&order=created_at.desc&limit=10');
     ['ai','robotics','frontier','longevity','grid'].forEach(function(vkey) {
       var el = document.getElementById('so-what-grid-' + vkey);
       if (!el) return;
@@ -2794,6 +2794,7 @@ async function fetchSoWhat() {
         '<div style="font-size:10px;font-weight:700;letter-spacing:0.06em;text-transform:uppercase;padding:2px 8px;border-radius:4px;margin-bottom:9px;display:inline-flex;">' + vt.label + '</div>' +
         '<div style="font-size:17px;font-weight:700;color:#111111;line-height:1.4;margin-bottom:10px;">' + (row.headline||'').replace(/\u2014/g, ', ') + '</div>' +
         '<div style="font-size:17px;color:#6b7280;line-height:1.75;margin-bottom:10px;">' + (row.body||'').replace(/\u2014/g, ', ').split('\n\n').map(function(p){ return '<p style="margin:0 0 14px 0;">' + p.trim() + '</p>'; }).join('') + '</div>' +
+        (row.companies ? '<div style="margin-bottom:14px;padding:10px 14px;background:#f8f8f8;border-radius:6px;"><span style="font-size:11px;font-weight:700;letter-spacing:0.06em;text-transform:uppercase;color:#6b7280;">Companies making the biggest impact this week: </span><span style="font-size:13px;color:#111111;font-weight:600;">' + row.companies + '</span></div>' : '') +
         '<div style="font-size:10px;font-weight:600;color:#9ca3af;letter-spacing:0.04em;text-transform:uppercase;">SOURCED FROM THIS WEEK&#39;S ARTICLES</div>' +
         '</div>';
     });
