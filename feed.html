@@ -2335,6 +2335,15 @@ function tileIcon(cat) {
   var m = { ai:'🦾', robotics:'🤖', space:'🚀', frontier:'🚀', longevity:'🧬', grid:'⚡', energy:'⚡' };
   return m[(cat||'').toLowerCase()] || '⚡';
 }
+// Scrim tinted with the section color (dark enough to keep overlaid text readable).
+function tileScrim(cat) {
+  var m = {
+    ai:'18,42,108', robotics:'54,18,98', space:'74,28,6', frontier:'74,28,6',
+    longevity:'7,58,34', grid:'74,54,8', energy:'74,54,8'
+  };
+  var c = m[(cat||'').toLowerCase()] || m.ai;
+  return 'linear-gradient(to top, rgba(' + c + ',0.97) 0%, rgba(' + c + ',0.9) 30%, rgba(' + c + ',0.72) 48%, rgba(' + c + ',0.38) 64%, rgba(' + c + ',0) 85%)';
+}
 // o: { title, image_url, source, time, cat, tag, url } — emits a .card.tile element.
 function makeStoryTile(o) {
   var cat = (o.cat || 'ai');
@@ -2347,7 +2356,7 @@ function makeStoryTile(o) {
     : '<div class="tile-icon">' + tileIcon(cat) + '</div>';
   return '<div class="card tile" ' + data + ' style="opacity:1;background:' + tileGradient(cat) + ';">'
     + media
-    + '<div class="tile-scrim"></div>'
+    + '<div class="tile-scrim" style="background:' + tileScrim(cat) + ';"></div>'
     + '<div class="tile-content">'
     +   '<div class="tile-tag" style="color:' + tileAccent(cat) + ';">' + label + '</div>'
     +   '<div class="tile-title">' + (o.title||'') + '</div>'
