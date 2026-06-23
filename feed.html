@@ -551,6 +551,8 @@ a { color: inherit; text-decoration: none; }
 .tile-source { font-weight: 700; text-transform: uppercase; letter-spacing: 0.03em; }
 .tile-dot { color: rgba(255,255,255,0.5); }
 .tile-time { color: rgba(255,255,255,0.66); }
+.cw-pill { transition: transform 0.14s ease, box-shadow 0.14s ease, filter 0.14s ease; }
+.cw-pill:hover { transform: translateY(-1px); box-shadow: 0 3px 10px rgba(0,0,0,0.12); filter: brightness(0.97); }
 @media (max-width: 700px) {
   .card.tile { aspect-ratio: 16 / 10; }
   .tile-title { font-size: 17px !important; }
@@ -2877,6 +2879,10 @@ async function fetchSoWhat() {
   // Light tints used by the Sunday Brief — keep the section cards visually identical to the brief
   var whBgs = { ai:'#f8faff', robotics:'#faf8ff', frontier:'#fff8f5', longevity:'#f6fdf9', grid:'#fffdf0' };
   var wlBgs = { ai:'#f0f6ff', robotics:'#f7f4ff', frontier:'#fff5f0', longevity:'#f0fdf6', grid:'#fffef0' };
+  // Section-tinted "Companies to Watch" pills: light fill, soft border, dark same-hue text
+  var pillBg     = { ai:'#eff6ff', robotics:'#f5f3ff', frontier:'#fff7ed', longevity:'#ecfdf5', grid:'#fefce8' };
+  var pillBorder = { ai:'#bfdbfe', robotics:'#ddd6fe', frontier:'#fed7aa', longevity:'#a7f3d0', grid:'#fde68a' };
+  var pillText   = { ai:'#1e40af', robotics:'#5b21b6', frontier:'#9a3412', longevity:'#065f46', grid:'#854d0e' };
   try {
     var data = await supabaseFetch('so_what', 'select=*&order=created_at.desc&limit=50');
     ['ai','robotics','frontier','longevity','grid'].forEach(function(vkey) {
@@ -2945,11 +2951,12 @@ async function fetchSoWhat() {
       // \u2500\u2500 Companies to Watch \u2014 pill chips linking to a search (matches brief) \u2500\u2500
       var companiesBox = '';
       if (row.companies) {
+        var pBg = pillBg[vkey] || '#eff6ff', pBd = pillBorder[vkey] || '#bfdbfe', pTx = pillText[vkey] || '#1e40af';
         var pills = row.companies.split(',').map(function(c){ return c.trim(); }).filter(Boolean).map(function(c){
-          return '<a href="https://www.google.com/search?q=' + encodeURIComponent(c) + '" target="_blank" rel="noopener" style="font-size:13px;font-weight:600;color:#111111;background:#f3f4f6;border:1px solid #d1d5db;border-radius:100px;padding:4px 12px;text-decoration:none;display:inline-block;margin:2px;">' + c + '</a>';
+          return '<a class="cw-pill" href="https://www.google.com/search?q=' + encodeURIComponent(c) + '" target="_blank" rel="noopener" style="font-size:13px;font-weight:600;color:' + pTx + ';background:' + pBg + ';border:1px solid ' + pBd + ';border-radius:100px;padding:5px 13px;text-decoration:none;display:inline-block;margin:3px 2px;">' + c + '</a>';
         }).join(' ');
         companiesBox = '<div style="margin-bottom:14px;">'
-          + '<div style="font-size:10px;font-weight:700;letter-spacing:0.14em;text-transform:uppercase;color:#6b7280;margin-bottom:8px;">Companies to Watch</div>'
+          + '<div style="font-size:12px;font-weight:700;letter-spacing:0.1em;text-transform:uppercase;color:' + bc + ';margin-bottom:10px;">Companies to Watch</div>'
           + pills + '</div>';
       }
 
