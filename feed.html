@@ -168,6 +168,11 @@ a { color: inherit; text-decoration: none; }
   color: #ffffff;
   border-color: #111111;
 }
+.vertical-btn.ai.active {
+  background: #2563eb;
+  border-color: #2563eb;
+  color: #ffffff;
+}
 .vertical-btn.frontier.active {
   background: #ea580c;
   border-color: #ea580c;
@@ -1820,7 +1825,7 @@ body.longevity-mode .so-what-card { border-left-color: #059669; }
     </button>
     <div class="header-right">
       <div class="vertical-switcher">
-        <button class="vertical-btn active" id="btn-ai" onclick="switchVertical('ai')">🦾 AI Intelligence</button>
+        <button class="vertical-btn ai active" id="btn-ai" onclick="switchVertical('ai')">🦾 AI Intelligence</button>
         <button class="vertical-btn robotics" id="btn-robotics" onclick="switchVertical('robotics')">🤖 Robotics</button>
         <button class="vertical-btn frontier" id="btn-frontier" onclick="switchVertical('frontier')">🚀 Space</button>
         <button class="vertical-btn longevity" id="btn-longevity" onclick="switchVertical('longevity')">🧬 Longevity</button>
