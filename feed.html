@@ -2489,7 +2489,7 @@ async function loadBrief() {
     var parser = new DOMParser();
     var doc = parser.parseFromString(html, 'text/html');
     // Remove email-only blocks by ID
-    ['email-cta', 'email-sponsor', 'email-footer'].forEach(function(id) {
+    ['email-header', 'email-cta', 'email-sponsor', 'email-footer'].forEach(function(id) {
       var el2 = doc.getElementById(id);
       if (el2) el2.remove();
     });
