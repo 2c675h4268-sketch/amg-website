@@ -2771,6 +2771,9 @@ async function fetchSoWhat() {
   };
   var pending = '<div style="background:#ffffff;border:1.5px solid #e5e7eb;border-left:4px solid #2563eb;border-radius:0 10px 10px 0;padding:20px 22px;"><div style="font-size:15px;font-style:italic;font-weight:700;color:#6b7280;line-height:1.6;">Interpretation coming soon. Once live, this card will answer what this week\'s news means for humanity\'s future.</div></div>';
   var borderColors = { ai:'#2563eb', robotics:'#7c3aed', frontier:'#ea580c', longevity:'#059669', grid:'#eab308' };
+  // Light tints used by the Sunday Brief — keep the section cards visually identical to the brief
+  var whBgs = { ai:'#f8faff', robotics:'#faf8ff', frontier:'#fff8f5', longevity:'#f6fdf9', grid:'#fffdf0' };
+  var wlBgs = { ai:'#f0f6ff', robotics:'#f7f4ff', frontier:'#fff5f0', longevity:'#f0fdf6', grid:'#fffef0' };
   try {
     var data = await supabaseFetch('so_what', 'select=*&order=created_at.desc&limit=50');
     ['ai','robotics','frontier','longevity','grid'].forEach(function(vkey) {
@@ -2779,6 +2782,8 @@ async function fetchSoWhat() {
       var row = data && data.find(function(d){ return (d.vertical||'').toLowerCase() === vkey; });
       if (!row) { el.innerHTML = pending.replace('#2563eb', borderColors[vkey]||'#2563eb'); return; }
       var bc = borderColors[vkey] || '#2563eb';
+      var whBg = whBgs[vkey] || '#f8faff';
+      var wlBg = wlBgs[vkey] || '#f0f6ff';
       var vt = vtags[vkey];
       // Populate week headline above Top Stories
       var hlWrap = document.getElementById('week-headline-' + vkey);
@@ -2787,45 +2792,70 @@ async function fetchSoWhat() {
         hlText.textContent = (row.headline||'').replace(/—/g, ', ');
         hlWrap.style.display = 'block';
       }
-      el.innerHTML = '<div style="background:#ffffff;border:1.5px solid #e5e7eb;border-left:4px solid ' + bc + ';border-radius:0 10px 10px 0;padding:20px 22px;">' +
-        '<div style="font-size:10px;font-weight:700;letter-spacing:0.06em;text-transform:uppercase;padding:2px 8px;border-radius:4px;margin-bottom:9px;display:inline-flex;">' + vt.label + '</div>' +
-        '<div style="font-size:17px;font-weight:700;color:#111111;line-height:1.4;margin-bottom:10px;">' + (row.headline||'').replace(/\u2014/g, ', ') + '</div>' +
-        (function() {
-          var paragraphs = (row.body||'').replace(/\u2014/g, ', ').split('\n\n').map(function(p){ return p.trim(); }).filter(function(p){ return p.length > 0; });
-          var labels = ['What Happened', 'Why It Matters', 'Watch List: Next 90 Days'];
-          function formatParagraph(p, isWatchList) {
-            // Convert **bold** to <strong>
-            var out = p.replace(/\*\*([^*]+)\*\*/g, '<strong>$1</strong>');
-            if (isWatchList) {
-              // Split on bullet lines: lines starting with "- "
-              var lines = out.split(/\n/);
-              var result = '';
-              lines.forEach(function(line) {
-                line = line.trim();
-                if (line.startsWith('- ')) {
-                  result += '<p style="margin:0 0 10px 0;padding-left:14px;font-size:17px;line-height:1.75;color:#374151;">&#8226; ' + line.slice(2) + '</p>';
-                } else if (line.length > 0) {
-                  result += '<p style="margin:0 0 10px 0;font-size:17px;line-height:1.75;color:#374151;">' + line + '</p>';
-                }
-              });
-              return result;
-            }
-            return '<p style="margin:0 0 22px 0;font-size:17px;line-height:1.75;color:#374151;">' + out + '</p>';
-          }
-          var html = '';
-          paragraphs.forEach(function(p, i) {
-            var label = labels[i] || '';
-            var isWatchList = (i === 2);
-            if (label) {
-              html += '<p style="margin:0 0 6px 0;font-size:12px;font-weight:700;letter-spacing:0.06em;text-transform:uppercase;color:#111111;">' + label + '</p>';
-            }
-            html += formatParagraph(p, isWatchList);
+      // Parse the body into the same logical blocks the Sunday Brief uses:
+      //   paragraph 0 = What Happened, 1 = Why It Matters, 2 = Watch List (bulleted, with **bold** lead-ins)
+      var bold = function(s){ return (s||'').replace(/\*\*([^*]+)\*\*/g, '<strong>$1</strong>'); };
+      var paragraphs = (row.body||'').replace(/\u2014/g, ', ').split('\n\n').map(function(p){ return p.trim(); }).filter(function(p){ return p.length > 0; });
+      var whatHappened = paragraphs[0] || '';
+      var whyMatters   = paragraphs[1] || '';
+      var watchRaw     = paragraphs[2] || '';
+
+      // \u2500\u2500 What Happened / Why It Matters \u2014 left-accent tinted box (matches brief) \u2500\u2500
+      var analysisBox = '';
+      if (whatHappened || whyMatters) {
+        analysisBox = '<div style="border-left:4px solid ' + bc + ';background:' + whBg + ';padding:16px 18px;margin-bottom:12px;border-radius:0 6px 6px 0;">';
+        if (whatHappened) {
+          analysisBox += '<div style="font-size:12px;font-weight:700;letter-spacing:0.14em;text-transform:uppercase;color:' + bc + ';margin-bottom:6px;">What Happened</div>'
+            + '<p style="margin:0' + (whyMatters ? ' 0 16px 0' : '') + ';font-size:17px;line-height:1.7;color:#1a1a1a;">' + bold(whatHappened) + '</p>';
+        }
+        if (whyMatters) {
+          analysisBox += '<div style="font-size:12px;font-weight:700;letter-spacing:0.14em;text-transform:uppercase;color:' + bc + ';margin-bottom:6px;">Why It Matters</div>'
+            + '<p style="margin:0;font-size:17px;line-height:1.7;color:#1a1a1a;">' + bold(whyMatters) + '</p>';
+        }
+        analysisBox += '</div>';
+      }
+
+      // \u2500\u2500 Watch List: Next 90 Days \u2014 bordered box with clock badge + numbered circles (matches brief) \u2500\u2500
+      var watchBox = '';
+      if (watchRaw) {
+        var bullets = watchRaw.split(/\n/).map(function(l){ return l.trim(); })
+          .filter(function(l){ return l.indexOf('- ') === 0; })
+          .map(function(l){ return l.slice(2); });
+        var itemsHtml = '';
+        if (bullets.length) {
+          bullets.forEach(function(b, bi) {
+            itemsHtml += '<div style="display:flex;align-items:flex-start;gap:10px;' + (bi < bullets.length - 1 ? 'margin-bottom:10px;' : '') + '">'
+              + '<span style="flex-shrink:0;width:22px;height:22px;background:' + bc + ';border-radius:50%;display:inline-flex;align-items:center;justify-content:center;font-size:11px;font-weight:700;color:#ffffff;margin-top:3px;">' + (bi + 1) + '</span>'
+              + '<span style="font-size:16px;line-height:1.6;color:#1a1a1a;">' + bold(b) + '</span>'
+              + '</div>';
           });
-          return '<div style="margin-bottom:10px;">' + html + '</div>';
-        })() +
-        (row.companies ? '<div style="margin-bottom:14px;padding:10px 14px;background:#f8f8f8;border-radius:6px;"><span style="font-size:11px;font-weight:700;letter-spacing:0.06em;text-transform:uppercase;color:#6b7280;">Companies making the biggest impact this week: </span><span style="font-size:13px;color:#111111;font-weight:600;">' + row.companies + '</span></div>' : '') +
-        '<div style="font-size:10px;font-weight:600;color:#9ca3af;letter-spacing:0.04em;text-transform:uppercase;">SOURCED FROM THIS WEEK&#39;S ARTICLES</div>' +
-        '</div>';
+        } else {
+          itemsHtml = '<p style="margin:0;font-size:16px;line-height:1.7;color:#1a1a1a;">' + bold(watchRaw.replace(/\n/g, ' ')) + '</p>';
+        }
+        watchBox = '<div style="border:1px solid ' + bc + ';border-radius:8px;background:' + wlBg + ';padding:16px 18px;margin-bottom:16px;">'
+          + '<div style="display:flex;align-items:center;gap:8px;margin-bottom:12px;">'
+          + '<span style="flex-shrink:0;width:24px;height:24px;background:' + bc + ';border-radius:6px;display:inline-flex;align-items:center;justify-content:center;font-size:13px;color:#ffffff;">&#9201;</span>'
+          + '<span style="font-size:12px;font-weight:700;letter-spacing:0.14em;text-transform:uppercase;color:' + bc + ';">Watch List: Next 90 Days</span>'
+          + '</div>' + itemsHtml + '</div>';
+      }
+
+      // \u2500\u2500 Companies to Watch \u2014 pill chips linking to a search (matches brief) \u2500\u2500
+      var companiesBox = '';
+      if (row.companies) {
+        var pills = row.companies.split(',').map(function(c){ return c.trim(); }).filter(Boolean).map(function(c){
+          return '<a href="https://www.google.com/search?q=' + encodeURIComponent(c) + '" target="_blank" rel="noopener" style="font-size:13px;font-weight:600;color:#111111;background:#f3f4f6;border:1px solid #d1d5db;border-radius:100px;padding:4px 12px;text-decoration:none;display:inline-block;margin:2px;">' + c + '</a>';
+        }).join(' ');
+        companiesBox = '<div style="margin-bottom:14px;">'
+          + '<div style="font-size:10px;font-weight:700;letter-spacing:0.14em;text-transform:uppercase;color:#6b7280;margin-bottom:8px;">Companies to Watch</div>'
+          + pills + '</div>';
+      }
+
+      el.innerHTML = '<div style="background:#ffffff;border:1.5px solid #e5e7eb;border-left:4px solid ' + bc + ';border-radius:0 10px 10px 0;padding:20px 22px;">'
+        + '<div style="font-size:10px;font-weight:700;letter-spacing:0.06em;text-transform:uppercase;padding:2px 8px;border-radius:4px;margin-bottom:9px;display:inline-flex;">' + vt.label + '</div>'
+        + '<div style="font-size:17px;font-weight:700;color:#111111;line-height:1.4;margin-bottom:14px;">' + (row.headline||'').replace(/\u2014/g, ', ') + '</div>'
+        + analysisBox + watchBox + companiesBox
+        + '<div style="font-size:10px;font-weight:600;color:#9ca3af;letter-spacing:0.04em;text-transform:uppercase;">SOURCED FROM THIS WEEK&#39;S ARTICLES</div>'
+        + '</div>';
     });
   } catch(e) {
     ['ai','robotics','frontier','longevity','grid'].forEach(function(v){
