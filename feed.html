@@ -533,9 +533,9 @@ a { color: inherit; text-decoration: none; }
   line-height: 1.3;
   letter-spacing: -0.01em;
   color: #fff;
-  text-shadow: 0 1px 6px rgba(0,0,0,0.65);
+  text-shadow: 0 1px 4px rgba(0,0,0,0.7), 0 1px 14px rgba(0,0,0,0.35);
   display: -webkit-box;
-  -webkit-line-clamp: 3;
+  -webkit-line-clamp: 2;
   -webkit-box-orient: vertical;
   overflow: hidden;
 }
@@ -2350,7 +2350,7 @@ function tileScrim(cat) {
     longevity:'7,58,34', grid:'74,54,8', energy:'74,54,8'
   };
   var c = m[(cat||'').toLowerCase()] || m.ai;
-  return 'linear-gradient(to top, rgba(' + c + ',0.9) 0%, rgba(' + c + ',0.74) 22%, rgba(' + c + ',0.4) 42%, rgba(' + c + ',0.1) 60%, rgba(' + c + ',0) 74%)';
+  return 'linear-gradient(to top, rgba(' + c + ',0.86) 0%, rgba(' + c + ',0.6) 24%, rgba(' + c + ',0.26) 44%, rgba(' + c + ',0) 60%)';
 }
 // o: { title, image_url, source, time, cat, tag, url } — emits a .card.tile element.
 function makeStoryTile(o) {
