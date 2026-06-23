@@ -31,7 +31,7 @@
       --text: #18181b;
       --text-muted: #71717a;
       --text-dim: #a1a1aa;
-      --ai: #18181b;
+      --ai: #2563eb;
       --frontier: #ea580c;
     --robotics:  #7c3aed;
     --grid:      #eab308;
@@ -296,11 +296,16 @@
     .vertical-card.longevity::before { background: var(--longevity); }
     .vertical-card.robotics::before { background: var(--robotics); }
     .vertical-card.grid::before     { background: var(--grid); }
-    .vertical-card:hover.ai { border-color: #d4d4d8; }
+    .vertical-card:hover.ai { border-color: #bfdbfe; }
     .vertical-card:hover.frontier { border-color: #fed7aa; }
     .vertical-card:hover.longevity  { border-color: #a7f3d0; }
     .vertical-card:hover.robotics { border-color: #ddd6fe; }
     .vertical-card:hover.grid     { border-color: #fef08a; }
+    .vertical-card.ai        { background: radial-gradient(135% 115% at 0% 0%, rgba(37,99,235,0.10), rgba(37,99,235,0) 58%), var(--bg); }
+    .vertical-card.robotics  { background: radial-gradient(135% 115% at 0% 0%, rgba(124,58,237,0.10), rgba(124,58,237,0) 58%), var(--bg); }
+    .vertical-card.frontier  { background: radial-gradient(135% 115% at 0% 0%, rgba(234,88,12,0.10), rgba(234,88,12,0) 58%), var(--bg); }
+    .vertical-card.longevity { background: radial-gradient(135% 115% at 0% 0%, rgba(5,150,105,0.10), rgba(5,150,105,0) 58%), var(--bg); }
+    .vertical-card.grid      { background: radial-gradient(135% 115% at 0% 0%, rgba(234,179,8,0.13), rgba(234,179,8,0) 58%), var(--bg); }
 
     .vertical-icon {
       font-size: 28px;
@@ -313,6 +318,7 @@
       color: var(--text);
       line-height: 1.2;
     }
+    .vertical-card.ai        .vertical-name { color: var(--ai); }
     .vertical-card.frontier .vertical-name { color: var(--frontier); }
     .vertical-card.longevity .vertical-name { color: var(--longevity); }
     .vertical-card.robotics  .vertical-name { color: var(--robotics); }
@@ -334,11 +340,13 @@
       margin-top: 8px;
       transition: color 0.15s;
     }
+    .vertical-card.ai        .vertical-link { color: var(--ai); }
     .vertical-card.frontier .vertical-link { color: var(--frontier); }
     .vertical-card.longevity .vertical-link { color: var(--longevity); }
     .vertical-card.robotics  .vertical-link { color: var(--robotics); }
     .vertical-card.grid      .vertical-link { color: var(--grid); }
     .vertical-card:hover .vertical-link { color: var(--text); }
+    .vertical-card.ai:hover .vertical-link { color: var(--ai); }
     .vertical-card.frontier:hover .vertical-link { color: var(--frontier); }
     .vertical-card.longevity:hover .vertical-link { color: var(--longevity); }
     .vertical-card.robotics:hover .vertical-link  { color: var(--robotics); }
