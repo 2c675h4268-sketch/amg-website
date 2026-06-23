@@ -2488,23 +2488,10 @@ async function loadBrief() {
     var html = row.brief_html || row.content || '';
     var parser = new DOMParser();
     var doc = parser.parseFromString(html, 'text/html');
-    // Remove email-only blocks: CTA, sponsor, footer
-    var allTds = Array.from(doc.querySelectorAll('td'));
-    allTds.forEach(function(td) {
-      var text = td.innerText || td.textContent || '';
-      var bg = td.getAttribute('style') || '';
-      // CTA block: black background with "Want to go deeper"
-      if (bg.indexOf('background:#111111') !== -1 || bg.indexOf('background-color:#111111') !== -1) {
-        var tr = td.closest('tr'); if (tr) tr.remove();
-      }
-      // Sponsor block: contains "Sponsored by" or "Penfield"
-      if (text.indexOf('Sponsored by') !== -1 || text.indexOf('Penfield Talent') !== -1) {
-        var tr = td.closest('tr'); if (tr) tr.remove();
-      }
-      // Footer block: contains "You are receiving" or "unsubscribe"
-      if (text.indexOf('You are receiving') !== -1 || text.indexOf('unsubscribe') !== -1) {
-        var tr = td.closest('tr'); if (tr) tr.remove();
-      }
+    // Remove email-only blocks by ID
+    ['email-cta', 'email-sponsor', 'email-footer'].forEach(function(id) {
+      var el2 = doc.getElementById(id);
+      if (el2) el2.remove();
     });
     // Get the inner content table
     var innerTable = doc.querySelector('table table');
