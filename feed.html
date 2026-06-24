@@ -2077,9 +2077,10 @@ body.longevity-mode .so-what-card { border-left-color: #059669; }
 <!-- AI AT WORK SECTION -->
 
 <!-- WEEKLY BRIEF MODAL -->
+<style>#brief-content iframe{width:100%;border:0;display:block;background:#fff;}@media (max-width:560px){#brief-overlay{padding:6px !important;}#brief-overlay .brief-modal-inner{padding:20px 12px 16px !important;}#brief-content{margin-left:-12px !important;margin-right:-12px !important;}}</style>
 <div id="brief-overlay" style="display:none;position:fixed;inset:0;background:rgba(0,0,0,0.55);z-index:9999;align-items:center;justify-content:center;padding:20px;">
   <div style="background:#fff;border-radius:16px;max-width:620px;width:100%;max-height:85vh;overflow-y:auto;box-shadow:0 24px 80px rgba(0,0,0,0.18);">
-    <div style="padding:32px 36px 28px;">
+    <div class="brief-modal-inner" style="padding:32px 36px 28px;">
       <div style="display:flex;align-items:center;justify-content:space-between;margin-bottom:24px;">
         <div>
           <div style="font-size:11px;font-weight:700;letter-spacing:0.08em;text-transform:uppercase;color:#6b7280;margin-bottom:6px;" id="brief-date">The Monday Brief</div>
@@ -2616,12 +2617,16 @@ function openBrief() {
   var overlay = document.getElementById('brief-overlay');
   overlay.style.display = 'flex';
   document.body.style.overflow = 'hidden';
+  var btt = document.getElementById('btt2');
+  if (btt) btt.style.display = 'none';
   loadBrief();
 }
 
 function closeBrief() {
   document.getElementById('brief-overlay').style.display = 'none';
   document.body.style.overflow = '';
+  var btt = document.getElementById('btt2');
+  if (btt) btt.style.display = '';
 }
 
 document.getElementById('brief-overlay').addEventListener('click', function(e) {
@@ -2657,9 +2662,21 @@ async function loadBrief() {
       var el2 = doc.getElementById(id);
       if (el2) el2.remove();
     });
-    // Get the inner content table
-    var innerTable = doc.querySelector('table table');
-    el.innerHTML = innerTable ? innerTable.outerHTML : html;
+    // Belt-and-suspenders: never let an image exceed the frame width.
+    var fix = doc.createElement('style');
+    fix.textContent = 'img{max-width:100%!important;height:auto!important}';
+    if (doc.head) doc.head.appendChild(fix);
+    // Render the brief in an iframe so the email's own responsive (mobile)
+    // styles apply — prevents the horizontal-scroll overflow on phones.
+    var ifr = document.createElement('iframe');
+    ifr.title = 'The Monday Brief';
+    ifr.setAttribute('scrolling', 'no');
+    ifr.addEventListener('load', function() {
+      try { ifr.style.height = (ifr.contentDocument.documentElement.scrollHeight + 8) + 'px'; } catch (e) {}
+    });
+    ifr.srcdoc = doc.documentElement.outerHTML;
+    el.innerHTML = '';
+    el.appendChild(ifr);
   } catch(e) {
     el.innerHTML = '<p style="color:#9ca3af;font-style:italic;">Unable to load this week\'s brief. Try again shortly.</p>';
     console.error('loadBrief:', e);
