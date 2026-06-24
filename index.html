@@ -457,6 +457,35 @@
       transition: opacity 0.15s;
     }
     .newsletter-btn:hover { opacity: 0.85; }
+    .newsletter-tz {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex-wrap: wrap;
+      gap: 8px;
+      max-width: 440px;
+      margin: 14px auto 0;
+      font-size: 13px;
+      color: var(--text-muted);
+    }
+    .newsletter-tz-select {
+      padding: 6px 28px 6px 10px;
+      border: 1.5px solid var(--border);
+      border-radius: 8px;
+      font-size: 13px;
+      font-family: inherit;
+      font-weight: 600;
+      background: var(--bg);
+      color: var(--text);
+      cursor: pointer;
+      outline: none;
+      appearance: none;
+      -webkit-appearance: none;
+      background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='10' height='6' viewBox='0 0 10 6'%3E%3Cpath d='M1 1l4 4 4-4' stroke='%239ca3af' stroke-width='1.6' fill='none' stroke-linecap='round'/%3E%3C/svg%3E");
+      background-repeat: no-repeat;
+      background-position: right 10px center;
+    }
+    .newsletter-tz-select:focus { border-color: var(--text); }
 
     /* ── FOOTER ── */
     .site-footer {
@@ -728,6 +757,10 @@
       <input type="email" class="newsletter-input" placeholder="your@email.com" />
       <button class="newsletter-btn" onclick="handleSubscribe(this)">Subscribe</button>
     </div>
+    <div class="newsletter-tz">
+      <span>Delivered Monday 6am in your timezone:</span>
+      <select id="amg-tz-select" class="newsletter-tz-select" aria-label="Your timezone"></select>
+    </div>
   </section>
 
   <!-- FOOTER -->
@@ -744,6 +777,48 @@
   <script>
     // PASTE YOUR MAKE.COM WEBHOOK URL BETWEEN THE QUOTES BELOW (same one as feed.html):
     var AMG_SUBSCRIBE_WEBHOOK = 'https://hook.us2.make.com/mb8j5gstllh5cutlw0byhii3y7hf66ub';
+
+    // ── Timezone bucketing: map the browser's IANA zone to a delivery wave ──
+    function amgDetectIana() {
+      try { return Intl.DateTimeFormat().resolvedOptions().timeZone || ''; } catch (e) { return ''; }
+    }
+    function amgBucketFromIana(iana) {
+      iana = iana || '';
+      var m = {
+        'America/New_York':'ET','America/Detroit':'ET','America/Toronto':'ET','America/Montreal':'ET','America/Indiana/Indianapolis':'ET','America/Kentucky/Louisville':'ET','America/Nassau':'ET',
+        'America/Chicago':'CT','America/Winnipeg':'CT','America/Indiana/Knox':'CT','America/Menominee':'CT','America/Matamoros':'CT',
+        'America/Denver':'MT','America/Edmonton':'MT','America/Boise':'MT','America/Phoenix':'MT','America/Mazatlan':'MT',
+        'America/Los_Angeles':'PT','America/Vancouver':'PT','America/Tijuana':'PT',
+        'America/Anchorage':'AKT','America/Juneau':'AKT','America/Sitka':'AKT',
+        'Pacific/Honolulu':'HT'
+      };
+      if (m[iana]) return m[iana];
+      if (iana === 'Europe/London' || iana === 'Europe/Dublin' || iana === 'Europe/Lisbon' || iana === 'Atlantic/Reykjavik') return 'UK';
+      if (iana.indexOf('Europe/') === 0 || iana.indexOf('Africa/') === 0 || iana.indexOf('Atlantic/') === 0) return 'EU';
+      if (iana.indexOf('Asia/') === 0 || iana.indexOf('Australia/') === 0 || iana.indexOf('Pacific/') === 0 || iana.indexOf('Indian/') === 0) return 'APAC';
+      return 'ET'; // safe default (Eastern 6am wave)
+    }
+    var AMG_TZ_OPTIONS = [['ET','US Eastern'],['CT','US Central'],['MT','US Mountain'],['PT','US Pacific'],['AKT','Alaska'],['HT','Hawaii'],['UK','UK / Ireland'],['EU','Europe'],['APAC','Asia / Pacific']];
+    // Read the chosen bucket (from the confirm dropdown if present, else auto-detect) + raw zone.
+    function amgTzFields() {
+      var iana = amgDetectIana();
+      var sel = document.getElementById('amg-tz-select');
+      var region = (sel && sel.value) ? sel.value : amgBucketFromIana(iana);
+      return { region: region, tz: iana || region };
+    }
+    // Populate the landing-page confirm dropdown, preselecting the detected zone.
+    (function initTzSelect() {
+      var sel = document.getElementById('amg-tz-select');
+      if (!sel) return;
+      var detected = amgBucketFromIana(amgDetectIana());
+      AMG_TZ_OPTIONS.forEach(function (o) {
+        var op = document.createElement('option');
+        op.value = o[0]; op.textContent = o[1];
+        if (o[0] === detected) op.selected = true;
+        sel.appendChild(op);
+      });
+    })();
+
     function handleSubscribe(btn) {
       var input = btn.previousElementSibling;
       var email = (input.value || '').trim();
@@ -760,8 +835,11 @@
       }
       btn.textContent = '\u2026';
       btn.disabled = true;
+      var tzf = amgTzFields();
       var body = new URLSearchParams({
         email: email,
+        region: tzf.region,
+        tz: tzf.tz,
         utm_source: 'website',
         utm_medium: 'landing',
         utm_campaign: 'home',

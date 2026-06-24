@@ -2158,6 +2158,31 @@ body.longevity-mode .so-what-card { border-left-color: #059669; }
 // PASTE YOUR MAKE.COM WEBHOOK URL BETWEEN THE QUOTES BELOW:
 var AMG_SUBSCRIBE_WEBHOOK = 'https://hook.us2.make.com/mb8j5gstllh5cutlw0byhii3y7hf66ub';
 
+// ── Timezone bucketing: map the browser's IANA zone to a delivery wave (silent on the feed) ──
+function amgDetectIana() {
+  try { return Intl.DateTimeFormat().resolvedOptions().timeZone || ''; } catch (e) { return ''; }
+}
+function amgBucketFromIana(iana) {
+  iana = iana || '';
+  var m = {
+    'America/New_York':'ET','America/Detroit':'ET','America/Toronto':'ET','America/Montreal':'ET','America/Indiana/Indianapolis':'ET','America/Kentucky/Louisville':'ET','America/Nassau':'ET',
+    'America/Chicago':'CT','America/Winnipeg':'CT','America/Indiana/Knox':'CT','America/Menominee':'CT','America/Matamoros':'CT',
+    'America/Denver':'MT','America/Edmonton':'MT','America/Boise':'MT','America/Phoenix':'MT','America/Mazatlan':'MT',
+    'America/Los_Angeles':'PT','America/Vancouver':'PT','America/Tijuana':'PT',
+    'America/Anchorage':'AKT','America/Juneau':'AKT','America/Sitka':'AKT',
+    'Pacific/Honolulu':'HT'
+  };
+  if (m[iana]) return m[iana];
+  if (iana === 'Europe/London' || iana === 'Europe/Dublin' || iana === 'Europe/Lisbon' || iana === 'Atlantic/Reykjavik') return 'UK';
+  if (iana.indexOf('Europe/') === 0 || iana.indexOf('Africa/') === 0 || iana.indexOf('Atlantic/') === 0) return 'EU';
+  if (iana.indexOf('Asia/') === 0 || iana.indexOf('Australia/') === 0 || iana.indexOf('Pacific/') === 0 || iana.indexOf('Indian/') === 0) return 'APAC';
+  return 'ET'; // safe default (Eastern 6am wave)
+}
+function amgTzFields() {
+  var iana = amgDetectIana();
+  return { region: amgBucketFromIana(iana), tz: iana || 'ET' };
+}
+
 function amgIsSubscribed() {
   try { return localStorage.getItem('amg-subscribed') === '1'; } catch(e) { return false; }
 }
@@ -2188,8 +2213,11 @@ function amgSubscribe(btn, sourceTag) {
   btn.textContent = '\u2026';
   btn.disabled = true;
   // Form-encoded body = simple CORS request (no preflight); Make parses fields natively
+  var tzf = amgTzFields();
   var body = new URLSearchParams({
     email: email,
+    region: tzf.region,
+    tz: tzf.tz,
     utm_source: 'website',
     utm_medium: sourceTag || 'site',
     utm_campaign: (function(){ try { return localStorage.getItem('amg-vertical') || 'ai'; } catch(e){ return 'ai'; } })(),
