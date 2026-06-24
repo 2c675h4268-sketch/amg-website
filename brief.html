@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>The Atomic Brief</title>
+  <meta name="description" content="Five forces shaping where humanity goes next — one brief, every Sunday." />
+  <meta property="og:type" content="article" />
+  <meta property="og:site_name" content="The Atomic Brief" />
+  <meta property="og:title" content="The Atomic Brief" />
+  <meta property="og:description" content="Five forces shaping where humanity goes next — one brief, every Sunday." />
+  <meta property="og:image" content="https://atomicmediagroup.ai/amg-logo.webp" />
+  <meta property="og:url" content="https://atomicmediagroup.ai/brief.html" />
+  <meta name="twitter:card" content="summary_large_image" />
+  <meta name="twitter:title" content="The Atomic Brief" />
+  <meta name="twitter:description" content="Five forces shaping where humanity goes next — one brief, every Sunday." />
+  <meta name="twitter:image" content="https://atomicmediagroup.ai/amg-logo.webp" />
+  <style>
+    html, body { margin: 0; padding: 0; height: 100%; background: #f4f4f4; }
+    #frame { border: 0; width: 100%; height: 100vh; display: block; }
+    #msg {
+      font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Arial, sans-serif;
+      color: #52525b; text-align: center; padding: 64px 24px; font-size: 15px; line-height: 1.6;
+    }
+    #msg a { color: #2563eb; text-decoration: none; font-weight: 600; }
+  </style>
+</head>
+<body>
+  <div id="msg">Loading this week’s issue…</div>
+  <iframe id="frame" title="The Atomic Brief" style="display:none"></iframe>
+  <script>
+    (function () {
+      var SUPABASE_URL = 'https://qybwjkyifdroktiriaqt.supabase.co';
+      var SUPABASE_KEY = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6InF5Yndqa3lpZmRyb2t0aXJpYXF0Iiwicm9sZSI6ImFub24iLCJpYXQiOjE3ODA1MTUzNzYsImV4cCI6MjA5NjA5MTM3Nn0.JJFqoCugHoe6fsah3kEjk8ezZZ4kTVzcfu_AQ7x-lg8';
+      var w = new URLSearchParams(location.search).get('w');
+      var q = SUPABASE_URL + '/rest/v1/issues?select=html,week,title';
+      q += w ? ('&week=eq.' + encodeURIComponent(w)) : '&order=week.desc';
+      q += '&limit=1';
+      var msg = document.getElementById('msg');
+      var frame = document.getElementById('frame');
+      fetch(q, { headers: { apikey: SUPABASE_KEY, Authorization: 'Bearer ' + SUPABASE_KEY } })
+        .then(function (r) { return r.json(); })
+        .then(function (rows) {
+          if (rows && rows[0] && rows[0].html) {
+            if (rows[0].title) { document.title = rows[0].title; }
+            frame.srcdoc = rows[0].html;
+            frame.style.display = 'block';
+            msg.style.display = 'none';
+          } else {
+            msg.innerHTML = 'That issue isn’t available yet. <a href="https://atomicmediagroup.ai">Visit The Atomic Brief →</a>';
+          }
+        })
+        .catch(function () {
+          msg.innerHTML = 'Couldn’t load the issue. <a href="https://atomicmediagroup.ai">Visit The Atomic Brief →</a>';
+        });
+    })();
+  </script>
+</body>
+</html>
