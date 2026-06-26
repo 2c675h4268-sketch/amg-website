@@ -4,18 +4,18 @@
 <meta charset="UTF-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 <meta name="color-scheme" content="light only" />
-<title>Atomic Media Group: Where Humanity Is Headed</title>
-<meta name="description" content="Five forces are reshaping the next century: AI, robotics, space, longevity, and the energy and compute behind it all. One brief, every Monday morning." />
+<title>Atomic Media Group: Know Where Humanity Is Headed</title>
+<meta name="description" content="A five-minute weekly briefing on the breakthroughs reshaping business, society, and human life: AI, robotics, space, longevity, and the infrastructure powering them. Free, every Monday morning." />
 <meta property="og:type" content="website" />
 <meta property="og:url" content="https://atomicmediagroup.ai" />
 <meta property="og:site_name" content="Atomic Media Group" />
-<meta property="og:title" content="Atomic Media Group: Where Humanity Is Headed" />
-<meta property="og:description" content="Five forces shaping where humanity goes next. One brief, every Monday morning." />
+<meta property="og:title" content="Atomic Media Group: Know Where Humanity Is Headed" />
+<meta property="og:description" content="A five-minute weekly briefing on the breakthroughs reshaping business, society, and human life. Free, every Monday morning." />
 <meta property="og:image" content="https://atomicmediagroup.ai/og-preview.png" />
 <meta property="og:image:width" content="1200" />
 <meta property="og:image:height" content="630" />
 <meta name="twitter:card" content="summary_large_image" />
-<meta name="twitter:title" content="Atomic Media Group: Where Humanity Is Headed" />
+<meta name="twitter:title" content="Atomic Media Group: Know Where Humanity Is Headed" />
 <meta name="twitter:image" content="https://atomicmediagroup.ai/og-preview.png" />
 <style>
   :root {
@@ -28,23 +28,12 @@
   }
   * { margin:0; padding:0; box-sizing:border-box; }
   html { scroll-behavior:smooth; }
-  body {
-    font-family:-apple-system, BlinkMacSystemFont, "SF Pro Display", "Helvetica Neue", Arial, sans-serif;
-    color:var(--black); background:var(--white); -webkit-font-smoothing:antialiased; line-height:1.5;
-  }
+  body { font-family:-apple-system, BlinkMacSystemFont, "SF Pro Display", "Helvetica Neue", Arial, sans-serif; color:var(--black); background:var(--white); -webkit-font-smoothing:antialiased; line-height:1.5; }
   a { text-decoration:none; color:inherit; }
 
   /* NAV */
-  nav {
-    position:sticky; top:0; z-index:100;
-    background:rgba(255,255,255,0.88);
-    backdrop-filter:saturate(180%) blur(20px); -webkit-backdrop-filter:saturate(180%) blur(20px);
-    border-bottom:1px solid rgba(0,0,0,0.08);
-  }
-  .nav-inner {
-    max-width:1080px; margin:0 auto; height:52px;
-    display:flex; align-items:center; justify-content:space-between; gap:18px; padding:0 24px;
-  }
+  nav { position:sticky; top:0; z-index:100; background:rgba(255,255,255,0.88); backdrop-filter:saturate(180%) blur(20px); -webkit-backdrop-filter:saturate(180%) blur(20px); border-bottom:1px solid rgba(0,0,0,0.08); }
+  .nav-inner { max-width:1080px; margin:0 auto; height:52px; display:flex; align-items:center; justify-content:space-between; gap:18px; padding:0 24px; }
   .nav-logo { font-size:15px; font-weight:600; letter-spacing:-0.3px; color:var(--black); white-space:nowrap; }
   .nav-links { display:flex; gap:4px; }
   .nav-links a { font-size:13px; color:var(--gray); padding:6px 13px; border-radius:980px; transition:background .15s,color .15s; white-space:nowrap; }
@@ -53,65 +42,80 @@
   .nav-feed:hover { opacity:0.8; }
 
   /* HERO */
-  .hero { max-width:800px; margin:0 auto; padding:96px 24px 80px; text-align:center; }
-  .eyebrow { font-size:13px; font-weight:700; letter-spacing:0.1em; text-transform:uppercase; color:var(--gray); margin-bottom:22px; }
-  .hero h1 { font-size:clamp(40px,7vw,72px); font-weight:700; letter-spacing:-0.035em; line-height:1.04; margin-bottom:22px; }
-  .hero-sub { font-size:clamp(17px,2.4vw,21px); line-height:1.5; color:var(--gray); max-width:620px; margin:0 auto 36px; }
-  .cta-row { display:flex; gap:14px; justify-content:center; flex-wrap:wrap; }
-  .btn { display:inline-flex; align-items:center; gap:7px; font-size:16px; font-weight:500; padding:13px 26px; border-radius:980px; cursor:pointer; font-family:inherit; transition:opacity .2s,transform .15s,background .2s; border:1.5px solid transparent; }
-  .btn:hover { transform:translateY(-1px); }
-  .btn-primary { background:var(--black); color:#fff; }
-  .btn-primary:hover { opacity:0.88; }
-  .btn-secondary { background:var(--white); color:var(--black); border-color:var(--mid-gray); }
-  .btn-secondary:hover { border-color:var(--gray); }
+  .hero { max-width:760px; margin:0 auto; padding:80px 24px 24px; text-align:center; }
+  .eyebrow { font-size:13px; font-weight:700; letter-spacing:0.1em; text-transform:uppercase; color:var(--gray); margin-bottom:20px; }
+  .hero h1 { font-size:clamp(42px,7vw,74px); font-weight:700; letter-spacing:-0.035em; line-height:1.03; margin-bottom:22px; }
+  .hero-sub { font-size:clamp(17px,2.3vw,21px); line-height:1.5; color:var(--gray); max-width:600px; margin:0 auto 30px; }
+  .hero-signup { max-width:520px; margin:0 auto; }
+  .hs-row { display:flex; gap:10px; }
+  .hs-input { flex:1; min-width:0; font-family:inherit; font-size:16px; padding:15px 20px; border:1.5px solid var(--mid-gray); border-radius:980px; outline:none; background:var(--light-gray); transition:border-color .2s,background .2s; }
+  .hs-input:focus { background:var(--white); border-color:var(--gray); }
+  .hs-btn { font-family:inherit; font-size:16px; font-weight:600; padding:15px 26px; border:none; border-radius:980px; background:var(--ai-blue); color:#fff; cursor:pointer; white-space:nowrap; transition:transform .15s, background .2s; box-shadow:0 4px 14px rgba(37,99,235,0.35); }
+  .hs-btn:hover { background:#1d4ed8; transform:translateY(-1px); }
+  .hs-meta { display:flex; align-items:center; justify-content:center; flex-wrap:wrap; gap:8px; margin-top:14px; font-size:13px; color:var(--gray); }
+  .tz-select { font-family:inherit; font-size:13px; font-weight:600; padding:5px 26px 5px 10px; border:1.5px solid var(--mid-gray); border-radius:980px; background:var(--white); color:var(--black); outline:none; cursor:pointer; appearance:none; -webkit-appearance:none; background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='10' height='6' viewBox='0 0 10 6'%3E%3Cpath d='M1 1l4 4 4-4' stroke='%239ca3af' stroke-width='1.6' fill='none' stroke-linecap='round'/%3E%3C/svg%3E"); background-repeat:no-repeat; background-position:right 11px center; }
+  .hs-note { font-size:13px; color:var(--gray); margin-top:8px; }
+  .hero-audience { font-size:14px; line-height:1.6; color:var(--gray); max-width:560px; margin:26px auto 0; padding-top:22px; border-top:1px solid var(--light-gray); }
 
-  .divider { max-width:1080px; margin:0 auto; height:1px; background:var(--mid-gray); }
+  .section { max-width:1080px; margin:0 auto; padding:0 24px; }
+  .section-head { text-align:center; margin-bottom:36px; }
+  .section-head .eyebrow { margin-bottom:10px; }
+  .section-head h2 { font-size:clamp(26px,3.4vw,38px); font-weight:700; letter-spacing:-0.03em; }
+
+  /* INSIDE THIS WEEK */
+  .brief-preview { padding:72px 24px 64px; }
+  .preview-card { max-width:760px; margin:0 auto; background:var(--white); border:1px solid rgba(0,0,0,0.08); border-radius:22px; box-shadow:0 14px 50px rgba(0,0,0,0.07); overflow:hidden; }
+  .preview-list { padding:8px 8px; }
+  .preview-item { display:flex; align-items:center; gap:18px; padding:18px 24px; border-bottom:1px solid var(--light-gray); }
+  .preview-item:last-child { border-bottom:none; }
+  .pi-tag { flex-shrink:0; width:104px; font-size:11px; font-weight:700; letter-spacing:0.06em; text-transform:uppercase; padding:5px 0; }
+  .pi-head { font-size:16px; font-weight:600; letter-spacing:-0.01em; line-height:1.35; }
+  .preview-foot { text-align:center; font-size:15px; color:var(--gray); margin:26px auto 0; max-width:560px; }
+  .preview-cta { display:block; text-align:center; margin-top:14px; font-size:15px; font-weight:600; color:var(--ai-blue); }
+  .preview-cta:hover { opacity:0.8; }
+
+  /* WHAT MAKES ATOMIC DIFFERENT */
+  .diff { background:var(--light-gray); }
+  .diff-inner { max-width:1080px; margin:0 auto; padding:72px 24px; }
+  .diff-grid { display:grid; grid-template-columns:repeat(3,1fr); gap:18px; }
+  .diff-card { background:var(--white); border-radius:18px; padding:30px 28px; }
+  .diff-card .dc-num { font-size:13px; font-weight:700; color:var(--ai-blue); margin-bottom:14px; }
+  .diff-card h3 { font-size:20px; font-weight:700; letter-spacing:-0.02em; margin-bottom:10px; }
+  .diff-card p { font-size:15px; line-height:1.6; color:var(--gray); }
 
   /* VERTICALS */
-  .verticals { max-width:1080px; margin:0 auto; padding:80px 24px 40px; }
-  .section-head { text-align:center; margin-bottom:48px; }
-  .section-head h2 { font-size:clamp(28px,4vw,40px); font-weight:700; letter-spacing:-0.03em; margin:6px 0 12px; }
-  .section-head p { font-size:17px; color:var(--gray); max-width:520px; margin:0 auto; }
+  .verticals { padding:80px 24px 40px; }
   .v-grid { display:grid; grid-template-columns:1fr 1fr; gap:18px; }
-  .v-card {
-    display:block; background:var(--white); border:1px solid rgba(0,0,0,0.08);
-    border-radius:18px; padding:30px 30px 26px; transition:box-shadow .2s, transform .18s;
-  }
+  .v-card { display:block; background:var(--white); border:1px solid rgba(0,0,0,0.08); border-radius:18px; padding:28px 30px 24px; transition:box-shadow .2s, transform .18s; }
   .v-card:hover { box-shadow:0 10px 36px rgba(0,0,0,0.12); transform:translateY(-3px); }
   .v-card.span2 { grid-column:span 2; display:flex; align-items:center; gap:28px; }
-  .v-emoji { font-size:30px; line-height:1; margin-bottom:16px; }
+  .v-emoji { font-size:30px; line-height:1; margin-bottom:14px; }
   .v-card.span2 .v-emoji { font-size:44px; margin-bottom:0; flex-shrink:0; }
-  .v-accent { height:3px; width:34px; border-radius:2px; margin-bottom:16px; }
-  .v-card h3 { font-size:21px; font-weight:700; letter-spacing:-0.02em; margin-bottom:8px; }
+  .v-accent { height:3px; width:34px; border-radius:2px; margin-bottom:14px; }
+  .v-card h3 { font-size:21px; font-weight:700; letter-spacing:-0.02em; margin-bottom:7px; }
   .v-card.span2 h3 { font-size:26px; }
-  .v-card p { font-size:15px; line-height:1.55; color:var(--gray); margin-bottom:16px; }
+  .v-card p { font-size:15px; line-height:1.55; color:var(--gray); margin-bottom:14px; }
   .v-link { font-size:14px; font-weight:600; display:inline-flex; align-items:center; gap:5px; transition:gap .15s; }
   .v-card:hover .v-link { gap:9px; }
 
-  /* PROOF BAND */
-  .proof { background:var(--light-gray); }
-  .proof-inner { max-width:1080px; margin:0 auto; padding:72px 24px; display:grid; grid-template-columns:1fr 1fr; gap:56px; align-items:center; }
-  .proof-left h2 { font-size:clamp(26px,3.4vw,36px); font-weight:700; letter-spacing:-0.03em; line-height:1.12; margin-bottom:16px; }
-  .proof-left p { font-size:17px; line-height:1.6; color:var(--gray); margin-bottom:24px; max-width:440px; }
-  .stat-grid { display:grid; grid-template-columns:1fr 1fr; gap:16px; }
-  .stat { background:var(--white); border-radius:16px; padding:26px 24px; }
-  .stat-num { font-size:38px; font-weight:700; letter-spacing:-0.03em; line-height:1; margin-bottom:8px; }
-  .stat-label { font-size:14px; color:var(--gray); }
-
-  /* SIGNUP */
-  .signup { max-width:640px; margin:0 auto; padding:88px 24px; text-align:center; }
-  .signup h2 { font-size:clamp(28px,4vw,40px); font-weight:700; letter-spacing:-0.03em; line-height:1.1; margin:6px 0 12px; }
-  .signup-sub { font-size:17px; color:var(--gray); margin-bottom:32px; }
-  .signup-form { display:flex; gap:10px; max-width:460px; margin:0 auto; }
-  .signup-input { flex:1; font-family:inherit; font-size:15px; padding:13px 20px; border:1.5px solid var(--mid-gray); border-radius:980px; outline:none; background:var(--light-gray); transition:border-color .2s,background .2s; }
-  .signup-input:focus { background:var(--white); border-color:var(--gray); }
-  .signup-btn { font-family:inherit; font-size:15px; font-weight:500; padding:13px 28px; border:none; border-radius:980px; background:var(--black); color:#fff; cursor:pointer; white-space:nowrap; transition:opacity .2s; }
-  .signup-btn:hover { opacity:0.88; }
-  .signup-tz { margin:14px auto 0; display:inline-flex; align-items:center; gap:8px; font-size:13px; color:var(--gray); }
-  .tz-select { font-family:inherit; font-size:13px; font-weight:600; padding:6px 28px 6px 12px; border:1.5px solid var(--mid-gray); border-radius:980px; background:var(--white); color:var(--black); outline:none; cursor:pointer; appearance:none; -webkit-appearance:none; background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='10' height='6' viewBox='0 0 10 6'%3E%3Cpath d='M1 1l4 4 4-4' stroke='%239ca3af' stroke-width='1.6' fill='none' stroke-linecap='round'/%3E%3C/svg%3E"); background-repeat:no-repeat; background-position:right 12px center; }
+  /* CLOSING CTA */
+  .cta-band { max-width:1080px; margin:64px auto 0; }
+  .cta-inner { background:#1d1d1f; border-radius:24px; padding:56px 40px; text-align:center; box-shadow:0 16px 50px rgba(29,31,33,0.2); }
+  .cta-inner h2 { font-size:clamp(28px,3.6vw,40px); font-weight:700; letter-spacing:-0.03em; line-height:1.1; color:#fff; margin-bottom:10px; }
+  .cta-inner p { font-size:16px; color:rgba(255,255,255,0.66); margin-bottom:28px; }
+  .cta-form { max-width:480px; margin:0 auto; }
+  .cta-row { display:flex; gap:10px; }
+  .cta-input { flex:1; min-width:0; font-family:inherit; font-size:16px; padding:14px 20px; border:1.5px solid rgba(255,255,255,0.22); border-radius:980px; outline:none; background:rgba(255,255,255,0.1); color:#fff; }
+  .cta-input::placeholder { color:rgba(255,255,255,0.5); }
+  .cta-input:focus { background:rgba(255,255,255,0.16); border-color:rgba(255,255,255,0.4); }
+  .cta-btn { font-family:inherit; font-size:16px; font-weight:600; padding:14px 28px; border:none; border-radius:980px; background:var(--ai-blue); color:#fff; cursor:pointer; white-space:nowrap; transition:transform .15s,background .2s; box-shadow:0 4px 14px rgba(37,99,235,0.4); }
+  .cta-btn:hover { background:#1d4ed8; transform:translateY(-1px); }
+  .cta-meta { display:flex; align-items:center; justify-content:center; flex-wrap:wrap; gap:8px; margin-top:14px; font-size:13px; color:rgba(255,255,255,0.6); }
+  .cta-band .tz-select { background:rgba(255,255,255,0.1); border-color:rgba(255,255,255,0.22); color:#fff; }
+  .cta-band .tz-select option { color:#1d1d1f; }
 
   /* SPONSOR */
-  .sponsor-band { max-width:1080px; margin:0 auto; padding:0 24px 56px; }
+  .sponsor-band { max-width:1080px; margin:0 auto; padding:56px 24px; }
   .sponsor-card { display:flex; gap:16px; align-items:flex-start; background:#f3f6fb; border:1px solid #dde6f1; border-radius:16px; padding:20px 24px; }
   .pt-mark { width:48px; height:48px; border-radius:12px; background:#1a2e4a; color:#fff; font-weight:700; font-size:18px; letter-spacing:1px; display:flex; align-items:center; justify-content:center; flex-shrink:0; }
   .sponsor-eyebrow { font-size:11px; font-weight:700; letter-spacing:0.1em; text-transform:uppercase; color:#8aa0bd; margin-bottom:2px; }
@@ -126,7 +130,7 @@
   .footer-inner a { color:var(--gray); } .footer-inner a:hover { color:var(--black); }
   .footer-powered { letter-spacing:0.06em; text-transform:uppercase; font-size:11px; }
 
-  /* WHITELIST + TOAST */
+  /* WHITELIST */
   .wl-modal { display:none; position:fixed; inset:0; z-index:700; background:rgba(0,0,0,0.55); backdrop-filter:blur(4px); align-items:center; justify-content:center; padding:20px; }
   .wl-modal.open { display:flex; }
   .wl-inner { background:#fff; border-radius:18px; max-width:420px; width:100%; padding:30px 28px; text-align:center; box-shadow:0 24px 70px rgba(0,0,0,0.25); }
@@ -135,17 +139,18 @@
   .wl-inner .wl-mail { font-weight:700; color:var(--black); }
   .wl-close { background:var(--black); color:#fff; border:none; border-radius:980px; padding:11px 26px; font-size:14px; font-weight:600; font-family:inherit; cursor:pointer; }
 
-  @media (max-width:820px) {
-    .proof-inner { grid-template-columns:1fr; gap:36px; }
-  }
+  @media (max-width:820px) { .diff-grid { grid-template-columns:1fr; } }
   @media (max-width:680px) {
     .nav-links { display:none; }
-    .hero { padding:64px 22px 56px; }
+    .hero { padding:56px 22px 16px; }
+    .hs-row, .cta-row { flex-direction:column; }
+    .hs-btn, .cta-btn { width:100%; }
+    .preview-item { flex-direction:column; align-items:flex-start; gap:6px; padding:16px 20px; }
+    .pi-tag { width:auto; }
     .v-grid { grid-template-columns:1fr; }
     .v-card.span2 { grid-column:span 1; flex-direction:column; align-items:flex-start; gap:0; }
-    .v-card.span2 .v-emoji { margin-bottom:16px; }
-    .signup-form { flex-direction:column; }
-    .signup-btn { width:100%; }
+    .v-card.span2 .v-emoji { margin-bottom:14px; }
+    .cta-inner { padding:40px 24px; }
   }
 </style>
 </head>
@@ -169,94 +174,121 @@
 <section class="hero">
   <div class="eyebrow">Five forces · One brief · Every Monday</div>
   <h1>Know where humanity is headed.</h1>
-  <p class="hero-sub">Artificial intelligence, robotics, space, longevity, and the energy and compute powering it all. We track the five forces reshaping the next century, and what they mean.</p>
-  <div class="cta-row">
-    <a class="btn btn-primary" href="/feed.html">Enter the Feed →</a>
-    <a class="btn btn-secondary" href="#signup">Get the Monday Brief</a>
+  <p class="hero-sub">A five-minute weekly briefing on the breakthroughs reshaping business, society, and human life: AI, robotics, space, longevity, and the infrastructure powering them.</p>
+  <div class="hero-signup" data-sub>
+    <div class="hs-row">
+      <input class="hs-input" type="email" placeholder="your@email.com" />
+      <button class="hs-btn" onclick="amgSubscribe(this)">Get the Free Monday Brief</button>
+    </div>
+    <div class="hs-meta">
+      <span>Delivered every Monday at 6&nbsp;AM in your timezone:</span>
+      <select class="tz-select" aria-label="Your timezone"></select>
+    </div>
+    <p class="hs-note">No hype, no daily inbox overload.</p>
   </div>
+  <p class="hero-audience">Built for leaders, investors, builders, and curious people who want to understand the forces shaping the next decade without following hundreds of sources.</p>
 </section>
 
-<div class="divider"></div>
+<!-- INSIDE THIS WEEK -->
+<section class="brief-preview">
+  <div class="section-head">
+    <div class="eyebrow">Inside this week’s Atomic Brief</div>
+    <h2>The product, not a promise.</h2>
+  </div>
+  <div class="preview-card">
+    <div class="preview-list" id="previewList">
+      <div class="preview-item"><span class="pi-tag" style="color:#2563eb;">AI</span><span class="pi-head">Anthropic’s AI Finds Government Flaws While Legal Battles Mount</span></div>
+      <div class="preview-item"><span class="pi-tag" style="color:#7c3aed;">Robotics</span><span class="pi-head">Robots Flood Factories, Battlefields, and Bodies as Capital Pours In</span></div>
+      <div class="preview-item"><span class="pi-tag" style="color:#ea580c;">Space</span><span class="pi-head">SpaceX IPO Rout Dominates as Launch Sites Near Capacity</span></div>
+      <div class="preview-item"><span class="pi-tag" style="color:#059669;">Longevity</span><span class="pi-head">Gene Therapy, AI Drugs, and Policy Shake Up Longevity’s Future</span></div>
+      <div class="preview-item"><span class="pi-tag" style="color:#ca8a04;">The Grid</span><span class="pi-head">Cities Push Back as AI Data Hunger Reshapes Power and Policy</span></div>
+    </div>
+  </div>
+  <p class="preview-foot">5-minute read. Five essential developments. One clear view of what comes next.</p>
+  <a class="preview-cta" href="/feed.html?brief=1">Read this week’s full brief →</a>
+</section>
+
+<!-- WHAT MAKES ATOMIC DIFFERENT -->
+<section class="diff">
+  <div class="diff-inner">
+    <div class="section-head">
+      <div class="eyebrow">What makes Atomic different</div>
+      <h2>Many cover one frontier. We cover the convergence.</h2>
+    </div>
+    <div class="diff-grid">
+      <div class="diff-card"><div class="dc-num">01</div><h3>Connected thinking</h3><p>We cover the intersection of AI, robotics, energy, biology, and space, rather than treating them as separate stories.</p></div>
+      <div class="diff-card"><div class="dc-num">02</div><h3>Meaning over headlines</h3><p>Every development includes the implication, not merely the announcement.</p></div>
+      <div class="diff-card"><div class="dc-num">03</div><h3>One weekly briefing</h3><p>The important developments, distilled into a focused Monday read.</p></div>
+    </div>
+  </div>
+</section>
 
 <!-- VERTICALS -->
 <section class="verticals">
-  <div class="section-head">
+  <div class="section section-head" style="padding:0;">
     <div class="eyebrow">The five forces</div>
     <h2>The frontiers reshaping the century.</h2>
-    <p>Five forces, tracked every week. Enter any one to read the feed.</p>
   </div>
-  <div class="v-grid">
-    <a class="v-card span2" href="/feed.html?v=ai">
-      <div class="v-emoji">🦾</div>
-      <div>
-        <div class="v-accent" style="background:var(--ai-blue);"></div>
-        <h3 style="color:var(--ai-blue);">AI Intelligence</h3>
-        <p>Machines are learning to think and act. The decisions being made in AI labs today will define what human capability means for the next century.</p>
-        <span class="v-link" style="color:var(--ai-blue);">Explore AI →</span>
+  <div class="section" style="padding:0;">
+    <div class="v-grid" style="margin-top:36px;">
+      <a class="v-card span2" href="/feed.html?v=ai">
+        <div class="v-emoji">🦾</div>
+        <div>
+          <div class="v-accent" style="background:var(--ai-blue);"></div>
+          <h3 style="color:var(--ai-blue);">AI Intelligence</h3>
+          <p>Machines are learning to think and act. The decisions being made in AI labs today will define what human capability means for the next century.</p>
+          <span class="v-link" style="color:var(--ai-blue);">Explore AI →</span>
+        </div>
+      </a>
+      <a class="v-card" href="/feed.html?v=robotics">
+        <div class="v-emoji">🤖</div>
+        <div class="v-accent" style="background:var(--robotics-purple);"></div>
+        <h3 style="color:var(--robotics-purple);">Robotics</h3>
+        <p>Humanoid robots are leaving the lab and entering factories, hospitals, and homes.</p>
+        <span class="v-link" style="color:var(--robotics-purple);">Explore →</span>
+      </a>
+      <a class="v-card" href="/feed.html?v=frontier">
+        <div class="v-emoji">🚀</div>
+        <div class="v-accent" style="background:var(--space-orange);"></div>
+        <h3 style="color:var(--space-orange);">Space</h3>
+        <p>Humanity is becoming a multi-planetary species, one launch at a time.</p>
+        <span class="v-link" style="color:var(--space-orange);">Explore →</span>
+      </a>
+      <a class="v-card" href="/feed.html?v=longevity">
+        <div class="v-emoji">🧬</div>
+        <div class="v-accent" style="background:var(--longevity-green);"></div>
+        <h3 style="color:var(--longevity-green);">Longevity</h3>
+        <p>The biology of aging is being cracked open by new science and therapies.</p>
+        <span class="v-link" style="color:var(--longevity-green);">Explore →</span>
+      </a>
+      <a class="v-card" href="/feed.html?v=grid">
+        <div class="v-emoji">⚡</div>
+        <div class="v-accent" style="background:var(--grid-yellow);"></div>
+        <h3 style="color:var(--grid-yellow);">The Grid</h3>
+        <p>Energy, compute, and chips: the constraint behind everything else.</p>
+        <span class="v-link" style="color:var(--grid-yellow);">Explore →</span>
+      </a>
+    </div>
+  </div>
+</section>
+
+<!-- CLOSING CTA -->
+<div class="cta-band">
+  <div class="cta-inner" data-sub>
+    <h2>Start your week understanding the future.</h2>
+    <p>Five forces. One brief. Free, every Monday morning.</p>
+    <div class="cta-form">
+      <div class="cta-row">
+        <input class="cta-input" type="email" placeholder="your@email.com" />
+        <button class="cta-btn" onclick="amgSubscribe(this)">Get the Free Monday Brief</button>
       </div>
-    </a>
-    <a class="v-card" href="/feed.html?v=robotics">
-      <div class="v-emoji">🤖</div>
-      <div class="v-accent" style="background:var(--robotics-purple);"></div>
-      <h3 style="color:var(--robotics-purple);">Robotics</h3>
-      <p>Humanoid robots are leaving the lab and entering factories, hospitals, and homes.</p>
-      <span class="v-link" style="color:var(--robotics-purple);">Explore →</span>
-    </a>
-    <a class="v-card" href="/feed.html?v=frontier">
-      <div class="v-emoji">🚀</div>
-      <div class="v-accent" style="background:var(--space-orange);"></div>
-      <h3 style="color:var(--space-orange);">Space</h3>
-      <p>Humanity is becoming a multi-planetary species, one launch at a time.</p>
-      <span class="v-link" style="color:var(--space-orange);">Explore →</span>
-    </a>
-    <a class="v-card" href="/feed.html?v=longevity">
-      <div class="v-emoji">🧬</div>
-      <div class="v-accent" style="background:var(--longevity-green);"></div>
-      <h3 style="color:var(--longevity-green);">Longevity</h3>
-      <p>The biology of aging is being cracked open by new science and therapies.</p>
-      <span class="v-link" style="color:var(--longevity-green);">Explore →</span>
-    </a>
-    <a class="v-card" href="/feed.html?v=grid">
-      <div class="v-emoji">⚡</div>
-      <div class="v-accent" style="background:var(--grid-yellow);"></div>
-      <h3 style="color:var(--grid-yellow);">The Grid</h3>
-      <p>Energy, compute, and chips: the constraint behind everything else.</p>
-      <span class="v-link" style="color:var(--grid-yellow);">Explore →</span>
-    </a>
-  </div>
-</section>
-
-<!-- PROOF BAND -->
-<section class="proof">
-  <div class="proof-inner">
-    <div class="proof-left">
-      <h2>One brief. Five forces. Every Monday.</h2>
-      <p>Most newsletters tell you what already happened. We focus on what it means and where humanity is headed, across the five forces that matter most.</p>
-      <a class="btn btn-primary" href="/feed.html">Start reading →</a>
-    </div>
-    <div class="stat-grid">
-      <div class="stat"><div class="stat-num">5</div><div class="stat-label">Forces tracked</div></div>
-      <div class="stat"><div class="stat-num">52</div><div class="stat-label">Briefs a year</div></div>
-      <div class="stat"><div class="stat-num">100%</div><div class="stat-label">Curated by us</div></div>
-      <div class="stat"><div class="stat-num">Free</div><div class="stat-label">Every Monday</div></div>
+      <div class="cta-meta">
+        <span>Delivered Monday 6&nbsp;AM in your timezone:</span>
+        <select class="tz-select" aria-label="Your timezone"></select>
+      </div>
     </div>
   </div>
-</section>
-
-<!-- SIGNUP -->
-<section class="signup" id="signup">
-  <div class="eyebrow">The Atomic Brief</div>
-  <h2>Start your week understanding the future.</h2>
-  <p class="signup-sub">Five forces. One brief. Free, every Monday morning.</p>
-  <div class="signup-form">
-    <input class="signup-input" type="email" placeholder="your@email.com" />
-    <button class="signup-btn" onclick="amgSubscribe(this)">Subscribe</button>
-  </div>
-  <div class="signup-tz">
-    <span>Delivered 6 AM in your timezone:</span>
-    <select id="amg-tz-select" class="tz-select" aria-label="Your timezone"></select>
-  </div>
-</section>
+</div>
 
 <!-- SPONSOR -->
 <section class="sponsor-band">
@@ -290,6 +322,9 @@
 
 <script>
   var AMG_SUBSCRIBE_WEBHOOK = 'https://hook.us2.make.com/mb8j5gstllh5cutlw0byhii3y7hf66ub';
+  var SB_URL = 'https://qybwjkyifdroktiriaqt.supabase.co';
+  var SB_KEY = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6InF5Yndqa3lpZmRyb2t0aXJpYXF0Iiwicm9sZSI6ImFub24iLCJpYXQiOjE3ODA1MTUzNzYsImV4cCI6MjA5NjA5MTM3Nn0.JJFqoCugHoe6fsah3kEjk8ezZZ4kTVzcfu_AQ7x-lg8';
+  function esc(s){ return (s==null?'':String(s)).replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;'); }
 
   function amgDetectIana(){ try { return Intl.DateTimeFormat().resolvedOptions().timeZone || ''; } catch(e){ return ''; } }
   function amgBucketFromIana(iana){
@@ -307,25 +342,26 @@
   }
   var AMG_TZ_OPTIONS = [['ET','US Eastern'],['CT','US Central'],['MT','US Mountain'],['PT','US Pacific'],['AKT','Alaska'],['HT','Hawaii'],['UK','UK / Ireland'],['EU','Europe'],['APAC','Asia / Pacific']];
   (function initTz(){
-    var sel=document.getElementById('amg-tz-select'); if(!sel) return;
     var detected=amgBucketFromIana(amgDetectIana());
-    AMG_TZ_OPTIONS.forEach(function(o){ var op=document.createElement('option'); op.value=o[0]; op.textContent=o[1]; if(o[0]===detected) op.selected=true; sel.appendChild(op); });
+    document.querySelectorAll('.tz-select').forEach(function(sel){
+      sel.innerHTML = AMG_TZ_OPTIONS.map(function(o){ return '<option value="'+o[0]+'"'+(o[0]===detected?' selected':'')+'>'+o[1]+'</option>'; }).join('');
+    });
   })();
-  function amgTzFields(){
-    var iana=amgDetectIana(); var sel=document.getElementById('amg-tz-select');
+  function amgTzFields(host){
+    var iana=amgDetectIana(); var sel=host?host.querySelector('.tz-select'):null;
     var region=(sel&&sel.value)?sel.value:amgBucketFromIana(iana);
     return { region:region, tz:iana||region };
   }
-
   function amgSubscribe(btn){
-    var input=document.querySelector('.signup-input');
+    var host = btn.closest('[data-sub]') || document.body;
+    var input = host.querySelector('input[type="email"]');
     var email=(input.value||'').trim();
     if(!email || !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)){ input.style.borderColor='#ef4444'; setTimeout(function(){ input.style.borderColor=''; },1500); return; }
     var orig=btn.textContent; btn.textContent='…'; btn.disabled=true;
-    var tzf=amgTzFields();
+    var tzf=amgTzFields(host);
     var body=new URLSearchParams({ email:email, region:tzf.region, tz:tzf.tz, utm_source:'website', utm_medium:'landing', utm_campaign:'home', page:location.pathname });
     fetch(AMG_SUBSCRIBE_WEBHOOK,{ method:'POST', body:body })
-      .then(function(res){ if(!res.ok) throw new Error('HTTP '+res.status); btn.textContent='✓ Done!'; btn.style.background='#059669'; input.disabled=true;
+      .then(function(res){ if(!res.ok) throw new Error('HTTP '+res.status); btn.textContent='✓ You’re in!'; btn.style.background='#059669'; input.disabled=true;
         try{ localStorage.setItem('amg-subscribed','1'); }catch(e){} setTimeout(openWl,700); })
       .catch(function(err){ console.error('[AMG] Subscribe failed:',err); btn.textContent='Already subscribed!'; btn.disabled=false; setTimeout(function(){ btn.textContent=orig; },2500); });
   }
@@ -333,6 +369,18 @@
   function closeWl(){ document.getElementById('wlModal').classList.remove('open'); document.body.style.overflow=''; }
   document.getElementById('wlModal').addEventListener('click', function(e){ if(e.target===this) closeWl(); });
   document.addEventListener('keydown', function(e){ if(e.key==='Escape') closeWl(); });
+
+  // Refresh the "Inside this week's Brief" preview with the latest live headlines.
+  (async function refreshPreview(){
+    var verts=[['ai','AI','#2563eb'],['robotics','Robotics','#7c3aed'],['frontier','Space','#ea580c'],['longevity','Longevity','#059669'],['grid','The Grid','#ca8a04']];
+    try{
+      var r=await fetch(SB_URL+'/rest/v1/so_what?select=vertical,headline,created_at&order=created_at.desc&limit=80',{headers:{apikey:SB_KEY,Authorization:'Bearer '+SB_KEY}});
+      if(!r.ok) return; var rows=await r.json(); if(!rows||!rows.length) return;
+      var latest={}; rows.forEach(function(x){ if(!latest[x.vertical] && x.headline) latest[x.vertical]=x.headline; });
+      var html=verts.map(function(v){ var h=latest[v[0]]; if(!h) return ''; return '<div class="preview-item"><span class="pi-tag" style="color:'+v[2]+';">'+v[1]+'</span><span class="pi-head">'+esc(h)+'</span></div>'; }).join('');
+      if(html) document.getElementById('previewList').innerHTML=html;
+    }catch(e){}
+  })();
 </script>
 </body>
 </html>
