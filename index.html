@@ -68,10 +68,13 @@
   .brief-preview { padding:72px 24px 64px; }
   .preview-card { max-width:760px; margin:0 auto; background:var(--white); border:1px solid rgba(0,0,0,0.08); border-radius:22px; box-shadow:0 14px 50px rgba(0,0,0,0.07); overflow:hidden; }
   .preview-list { padding:8px 8px; }
-  .preview-item { display:flex; align-items:center; gap:18px; padding:18px 24px; border-bottom:1px solid var(--light-gray); }
+  .preview-item { display:flex; align-items:flex-start; gap:18px; padding:18px 24px; border-bottom:1px solid var(--light-gray); }
   .preview-item:last-child { border-bottom:none; }
-  .pi-tag { flex-shrink:0; width:104px; font-size:12px; font-weight:700; letter-spacing:0.06em; text-transform:uppercase; padding:5px 0; }
+  .pi-tag { flex-shrink:0; width:104px; font-size:12px; font-weight:700; letter-spacing:0.06em; text-transform:uppercase; padding:3px 0; }
+  .pi-main { flex:1; min-width:0; display:flex; flex-direction:column; gap:5px; }
   .pi-head { font-size:18px; font-weight:600; letter-spacing:-0.01em; line-height:1.35; }
+  .pi-why { font-size:14.5px; line-height:1.5; color:var(--gray); }
+  .pi-why strong { color:var(--black); font-weight:600; }
   .preview-foot { text-align:center; font-size:17px; color:var(--gray); margin:26px auto 0; max-width:560px; }
   .preview-cta { display:block; text-align:center; margin-top:14px; font-size:17px; font-weight:600; color:var(--ai-blue); }
   .preview-cta:hover { opacity:0.8; }
@@ -218,11 +221,11 @@
   <div class="preview-card">
     <div class="preview-list" id="previewList">
       <!--AMG-PREVIEW-START-->
-      <div class="preview-item"><span class="pi-tag" style="color:#2563eb;">AI</span><span class="pi-head">Anthropic's AI Finds Government Flaws While Legal Battles Mount</span></div>
-      <div class="preview-item"><span class="pi-tag" style="color:#7c3aed;">Robotics</span><span class="pi-head">Robots Flood Factories, Battlefields, and Bodies as Capital Pours In</span></div>
-      <div class="preview-item"><span class="pi-tag" style="color:#ea580c;">Space</span><span class="pi-head">SpaceX IPO Rout Dominates as Launch Sites Near Capacity</span></div>
-      <div class="preview-item"><span class="pi-tag" style="color:#059669;">Longevity</span><span class="pi-head">Gene Therapy, AI Drugs, and Policy Shake Up Longevity's Future</span></div>
-      <div class="preview-item"><span class="pi-tag" style="color:#ca8a04;">Energy & Compute</span><span class="pi-head">Cities Push Back as AI Data Hunger Reshapes Power and Policy</span></div>
+      <div class="preview-item"><span class="pi-tag" style="color:#2563eb;">AI</span><span class="pi-main"><span class="pi-head">Anthropic's AI Finds Government Flaws While Legal Battles Mount</span><span class="pi-why"><strong>Why it matters:</strong> An AI model finding holes in classified government infrastructure is not a minor footnote.</span></span></div>
+      <div class="preview-item"><span class="pi-tag" style="color:#7c3aed;">Robotics</span><span class="pi-main"><span class="pi-head">Robots Flood Factories, Battlefields, and Bodies as Capital Pours In</span><span class="pi-why"><strong>Why it matters:</strong> Robotics funding has hit $18.8 billion through mid-2026, already past last year's full total, chasing machines that do physical work humans used to do.</span></span></div>
+      <div class="preview-item"><span class="pi-tag" style="color:#ea580c;">Space</span><span class="pi-main"><span class="pi-head">SpaceX IPO Rout Dominates as Launch Sites Near Capacity</span><span class="pi-why"><strong>Why it matters:</strong> The SpaceX IPO implosion shapes how much private capital flows into space ventures for the next several years.</span></span></div>
+      <div class="preview-item"><span class="pi-tag" style="color:#059669;">Longevity</span><span class="pi-main"><span class="pi-head">Gene Therapy, AI Drugs, and Policy Shake Up Longevity's Future</span><span class="pi-why"><strong>Why it matters:</strong> These developments reshape who controls the tools of longevity medicine and how fast new therapies can reach patients.</span></span></div>
+      <div class="preview-item"><span class="pi-tag" style="color:#ca8a04;">Energy & Compute</span><span class="pi-main"><span class="pi-head">Cities Push Back as AI Data Hunger Reshapes Power and Policy</span><span class="pi-why"><strong>Why it matters:</strong> Data centers consume enormous and growing amounts of electricity, straining local power grids and driving up costs for regular residents.</span></span></div>
       <!--AMG-PREVIEW-END-->
     </div>
   </div>
@@ -424,13 +427,33 @@
   document.addEventListener('keydown', function(e){ if(e.key==='Escape') closeWl(); });
 
   // Refresh the "Inside this week's Brief" preview with the latest live headlines.
+  function piFirstSentence(t){
+    t=String(t||'').trim();
+    var prot=t.replace(/\b([A-Za-z]\.){2,}/g,function(m){return m.replace(/\./g,'');});
+    var ss=[], idx=0, re=/.*?[.!?](\s|$)/g, m;
+    while((m=re.exec(prot))){ var seg=t.substr(idx, m[0].length).trim(); idx+=m[0].length; if(seg) ss.push(seg); if(idx>=t.length) break; }
+    if(!ss.length) return '';
+    var line=ss[0];
+    if(line.length<78 && ss.length>1) line=ss[0]+' '+ss[1];
+    line=line.replace(/^(these|those)\s+\w+\s+matters?\s+because\s+/i,'').replace(/^(this|it)\s+matters?\s+because\s+/i,'');
+    line=line.charAt(0).toUpperCase()+line.slice(1);
+    if(line.length>175) line=line.slice(0,172).replace(/\s+\S*$/,'')+'…';
+    return line;
+  }
+  function piWhy(body){
+    var parts=String(body||'').split(/\n\n+/);
+    var why=(parts.length>1?parts[1]:parts[0]||'').replace(/\*\*([^*]+)\*\*/g,'$1');
+    return piFirstSentence(why);
+  }
   (async function refreshPreview(){
     var verts=[['ai','AI','#2563eb'],['robotics','Robotics','#7c3aed'],['frontier','Space','#ea580c'],['longevity','Longevity','#059669'],['grid','Energy & Compute','#ca8a04']];
     try{
-      var r=await fetch(SB_URL+'/rest/v1/so_what?select=vertical,headline,created_at&order=created_at.desc&limit=80',{headers:{apikey:SB_KEY,Authorization:'Bearer '+SB_KEY}});
+      var r=await fetch(SB_URL+'/rest/v1/so_what?select=vertical,headline,body,created_at&order=created_at.desc&limit=80',{headers:{apikey:SB_KEY,Authorization:'Bearer '+SB_KEY}});
       if(!r.ok) return; var rows=await r.json(); if(!rows||!rows.length) return;
-      var latest={}; rows.forEach(function(x){ if(!latest[x.vertical] && x.headline) latest[x.vertical]=x.headline; });
-      var html=verts.map(function(v){ var h=latest[v[0]]; if(!h) return ''; return '<div class="preview-item"><span class="pi-tag" style="color:'+v[2]+';">'+v[1]+'</span><span class="pi-head">'+esc(h)+'</span></div>'; }).join('');
+      var latest={}; rows.forEach(function(x){ if(!latest[x.vertical] && x.headline) latest[x.vertical]=x; });
+      var html=verts.map(function(v){ var x=latest[v[0]]; if(!x) return '';
+        var why=piWhy(x.body);
+        return '<div class="preview-item"><span class="pi-tag" style="color:'+v[2]+';">'+v[1]+'</span><span class="pi-main"><span class="pi-head">'+esc(x.headline)+'</span>'+(why?'<span class="pi-why"><strong>Why it matters:</strong> '+esc(why)+'</span>':'')+'</span></div>'; }).join('');
       if(html) document.getElementById('previewList').innerHTML=html;
     }catch(e){}
   })();
