@@ -384,7 +384,7 @@
 <footer class="site-footer">
   <div class="footer-inner">
     <span>&copy; 2026 Atomic Media Group. All rights reserved.</span>
-    <span><a href="/">Home</a> &nbsp;·&nbsp; <a href="mailto:hello@atomicmediagroup.ai">Contact</a></span>
+    <span><a href="/">Home</a> &nbsp;·&nbsp; <a href="/archive.html">Archive</a> &nbsp;·&nbsp; <a href="mailto:hello@atomicmediagroup.ai">Contact</a></span>
     <span class="footer-powered">Powered by Atomic Media Group, LLC</span>
   </div>
 </footer>
@@ -454,7 +454,8 @@ const VERTS = [
     h1:'Power is the constraint<br>on everything else.', desc:'Every data center, semiconductor breakthrough, and power story, tracked by what it enables or blocks.' },
 ];
 const VMAP = {}; VERTS.forEach(v => VMAP[v.key] = v);
-const ARTICLES = {};   // id -> story object
+const ARTICLES = {};
+var ARTICLE_SLUGS = {};   // 'vertical/story_id' -> slug   // id -> story object
 const WEEK_LABEL = (function(){ try { return new Date().toLocaleDateString('en-US',{month:'long',day:'numeric',year:'numeric'}); } catch(e){ return ''; } })();
 
 // ── HELPERS ──
@@ -542,10 +543,18 @@ function tileImgDiv(v, s, cls){
 }
 
 // ── TILES ──
+function tileHref(v, s){
+  var slug = ARTICLE_SLUGS[v.key+'/'+s.id];
+  return slug ? '/a/'+slug+'.html' : (s.url || '#');
+}
+function tileClick(e, id){
+  if(e.metaKey||e.ctrlKey||e.shiftKey||e.button===1) return true; // let new-tab / modified clicks follow the link
+  e.preventDefault(); openArticle(id); return false;
+}
 function tileHTML(v, s, id, span){
   var tag = esc(s.category || v.name);
   var meta = esc(s.source||'') + (s.source?'</span><div class="tile-meta-dot"></div><span>':'') + timeAgo(s.published_at||s.created_at);
-  return '<a class="tile'+(span?' span2':'')+'" data-article="'+id+'" onclick="openArticle(\''+id+'\')">'+
+  return '<a class="tile'+(span?' span2':'')+'" href="'+tileHref(v,s)+'" data-article="'+id+'" onclick="return tileClick(event,\''+id+'\')">'+
     tileImgDiv(v, s)+
     '<div class="tile-body">'+
       '<div class="tile-tag" style="background:'+v.soft+';color:'+v.color+';">'+tag+'</div>'+
@@ -748,12 +757,19 @@ document.getElementById('articleModal').addEventListener('click', function(e){ i
 document.getElementById('brief-overlay').addEventListener('click', function(e){ if(e.target===this) closeBrief(); });
 document.getElementById('wlModal').addEventListener('click', function(e){ if(e.target===this) closeWl(); });
 
+async function loadArticleSlugs(){
+  try{
+    var rows = await sb('article_index', 'select=vertical,story_id,slug&limit=500');
+    (rows||[]).forEach(function(r){ ARTICLE_SLUGS[r.vertical+'/'+r.story_id] = r.slug; });
+  }catch(e){}
+}
+
 // ── INIT ──
 buildShell();
 wireSearch();
 wireTabs();
 handleFeedback();
-VERTS.forEach(function(v){ loadVertical(v); loadEditorial(v); loadCompanies(v); });
+loadArticleSlugs().then(function(){ VERTS.forEach(function(v){ loadVertical(v); loadEditorial(v); loadCompanies(v); }); });
 // open Monday Brief if requested
 if(new URLSearchParams(location.search).get('brief')==='1') openBrief();
 </script>
