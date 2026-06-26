@@ -300,7 +300,7 @@
 <main id="feed">
   <div class="seo-content page" id="seo-content">
     <!--AMG-FEED-SEO-START-->
-    <p style="font-size:15px;font-weight:700;letter-spacing:0.08em;text-transform:uppercase;color:#6e6e73;padding-top:40px;">Week of June 26, 2026</p>
+    <p style="font-size:15px;font-weight:700;letter-spacing:0.08em;text-transform:uppercase;color:#6e6e73;padding-top:40px;">Updated June 26, 2026</p>
     <h1 style="font-size:34px;font-weight:700;letter-spacing:-0.03em;margin:6px 0 10px;">This week’s intelligence brief</h1>
     <p>Five forces shaping where humanity goes next: artificial intelligence, robotics, space, longevity, and the energy and compute powering them.</p>
     <section><h2 style="color:#2563eb;">Artificial Intelligence</h2>
@@ -412,7 +412,7 @@
         </div>
         <button class="modal-close" style="position:static;background:rgba(0,0,0,0.08);color:#555;" onclick="closeBrief()" aria-label="Close">✕</button>
       </div>
-      <div id="brief-content" style="margin-top:14px;"><div style="color:#9ca3af;font-style:italic;padding:20px 24px;">Loading this week’s brief…</div></div>
+      <div id="brief-content" style="margin-top:14px;"><div style="color:#9ca3af;font-style:italic;padding:20px 24px;" aria-hidden="true"></div></div>
     </div>
   </div>
 </div>
@@ -499,7 +499,7 @@ function buildShell(){
       '<div class="vertical-header">'+
         '<div class="vh-top">'+
           '<div class="vertical-label" style="color:'+v.color+';"><span class="label-dot" style="background:'+v.color+';"></span>'+v.name+'</div>'+
-          '<div class="meta-week">Week of '+WEEK_LABEL+'</div>'+
+          '<div class="meta-week">Updated '+WEEK_LABEL+'</div>'+
         '</div>'+
         '<h1>'+v.h1+'</h1><p>'+v.desc+'</p>'+
       '</div>'+
@@ -634,7 +634,7 @@ async function loadEditorial(v){
     '<div class="editorial-band-header"><div>'+
       '<div class="editorial-band-eyebrow">'+esc(v.name)+' &nbsp;·&nbsp; Weekly Analysis</div>'+
       '<div class="editorial-band-title">What this week means for where '+esc(v.key==='ai'?'AI':v.name.toLowerCase())+' is headed.</div>'+
-    '</div><div class="editorial-band-week">Week of '+WEEK_LABEL+'</div></div>'+
+    '</div><div class="editorial-band-week">Updated '+WEEK_LABEL+'</div></div>'+
     '<div class="editorial-columns">'+
       '<div class="editorial-col"><div class="editorial-col-label">What Happened</div>'+(paras(whatP)||'<p></p>')+'</div>'+
       '<div class="editorial-col"><div class="editorial-col-label">Why It Matters</div>'+(paras(whyP)||'<p></p>')+'</div>'+
