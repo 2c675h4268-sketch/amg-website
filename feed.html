@@ -115,6 +115,8 @@
   .tile-image { background-size: cover; background-position: center; flex-shrink: 0; position: relative; overflow: hidden; }
   .tile.span2 .tile-image { width: 45%; min-height: 280px; }
   .tile:not(.span2) .tile-image { width: 100%; height: 180px; }
+  .img-fb-mark { position:absolute; inset:0; display:flex; align-items:center; justify-content:center; font-size:52px; opacity:0.4; filter:grayscale(0.1); }
+  .modal-hero .img-fb-mark { font-size:84px; }
   .tile-image::after { content: ''; position: absolute; inset: 0; background: linear-gradient(135deg, rgba(0,0,0,0.08) 0%, rgba(0,0,0,0) 60%); }
   .tile-body { flex: 1; padding: 22px 22px 20px; display: flex; flex-direction: column; }
   .tile.span2 .tile-body { padding: 28px 28px 24px; justify-content: center; }
@@ -391,7 +393,7 @@
 <div class="modal-backdrop" id="articleModal">
   <div class="modal" id="modalInner">
     <button class="modal-close" onclick="closeArticle()" aria-label="Close">✕</button>
-    <div class="modal-hero" id="modalHero"><div class="modal-hero-overlay"></div><div class="modal-hero-tag" id="modalTag"></div></div>
+    <div class="modal-hero" id="modalHero"><span class="img-fb-mark" id="modalMark" style="display:none;"></span><div class="modal-hero-overlay"></div><div class="modal-hero-tag" id="modalTag"></div></div>
     <div class="modal-body">
       <div class="modal-meta"><a class="modal-source-link" id="modalSource" href="#" target="_blank" rel="noopener"></a><div class="modal-meta-dot"></div><span id="modalTime"></span></div>
       <div class="modal-headline" id="modalHeadline"></div>
@@ -436,19 +438,19 @@ const AMG_SUBSCRIBE_WEBHOOK = 'https://hook.us2.make.com/mb8j5gstllh5cutlw0byhii
 
 const VERTS = [
   { key:'ai',        table:'stories',           name:'AI Intelligence', emoji:'🦾', color:'#2563eb', soft:'#eff4ff',
-    grad:'linear-gradient(135deg,#0f172a 0%,#1e3a5f 100%)', fb:'linear-gradient(135deg,#1e3a5f,#2563eb)',
+    grad:'linear-gradient(135deg,#0f172a 0%,#1e3a5f 100%)', fb:'linear-gradient(135deg,#1e40af 0%,#3b82f6 55%,#bfdbfe 100%)',
     h1:'Machines are learning<br>to think and act.', desc:'The decisions being made in AI labs today will define what human capability means for the next century.' },
   { key:'robotics',  table:'robotics_stories',  name:'Robotics', emoji:'🤖', color:'#7c3aed', soft:'#f5f3ff',
-    grad:'linear-gradient(135deg,#1e0a3c 0%,#3b1a6e 100%)', fb:'linear-gradient(135deg,#2d1b69,#7c3aed)',
+    grad:'linear-gradient(135deg,#1e0a3c 0%,#3b1a6e 100%)', fb:'linear-gradient(135deg,#5b21b6 0%,#8b5cf6 55%,#ddd6fe 100%)',
     h1:'Humanoid robots are<br>leaving the lab.', desc:'Physical AI is entering factories, hospitals, and homes, tracked as the deployments happen.' },
   { key:'frontier',  table:'frontier_stories',  name:'Space', emoji:'🚀', color:'#ea580c', soft:'#fff7ed',
-    grad:'linear-gradient(135deg,#431407 0%,#7c2d12 100%)', fb:'linear-gradient(135deg,#7c2d12,#ea580c)',
+    grad:'linear-gradient(135deg,#431407 0%,#7c2d12 100%)', fb:'linear-gradient(135deg,#9a3412 0%,#fb923c 55%,#fed7aa 100%)',
     h1:'Humanity is becoming<br>a multi-planetary species.', desc:'Every launch, mission, and breakthrough moving that story forward.' },
   { key:'longevity', table:'longevity_stories', name:'Longevity', emoji:'🧬', color:'#059669', soft:'#ecfdf5',
-    grad:'linear-gradient(135deg,#064e3b 0%,#065f46 100%)', fb:'linear-gradient(135deg,#064e3b,#059669)',
+    grad:'linear-gradient(135deg,#064e3b 0%,#065f46 100%)', fb:'linear-gradient(135deg,#065f46 0%,#10b981 55%,#a7f3d0 100%)',
     h1:'The biology of aging<br>is being cracked open.', desc:'The science, companies, and therapies extending the human lifespan, tracked as they emerge.' },
   { key:'grid',      table:'grid_stories',      name:'The Grid', emoji:'⚡', color:'#ca8a04', soft:'#fefce8',
-    grad:'linear-gradient(135deg,#422006 0%,#713f12 100%)', fb:'linear-gradient(135deg,#713f12,#ca8a04)',
+    grad:'linear-gradient(135deg,#422006 0%,#713f12 100%)', fb:'linear-gradient(135deg,#854d0e 0%,#eab308 55%,#fde68a 100%)',
     h1:'Power is the constraint<br>on everything else.', desc:'Every data center, semiconductor breakthrough, and power story, tracked by what it enables or blocks.' },
 ];
 const VMAP = {}; VERTS.forEach(v => VMAP[v.key] = v);
@@ -520,13 +522,31 @@ function subscribeBand(){
 }
 function goVert(key){ var el=document.getElementById(key); if(el) el.scrollIntoView({behavior:'smooth',block:'start'}); }
 
+// ── IMAGE FALLBACK ──
+// A usable content image, or null for empty / favicon / icon junk.
+function goodImg(u){
+  if(!u) return false;
+  var x=String(u).toLowerCase();
+  if(x.indexOf('favico')>=0||x.indexOf('favicon')>=0) return false;
+  if(/\\.(ico|svg)([?#]|$)/.test(x)) return false;
+  if(x.indexOf('data:')===0) return false;
+  if(/[\\/_-](16|24|32|48|64)x(16|24|32|48|64)[\\/_.]/.test(x)) return false;
+  return true;
+}
+function tileImgDiv(v, s, cls){
+  cls = cls || 'tile-image';
+  if(goodImg(s.image_url)){
+    return '<div class="'+cls+'" style="background-image:url(\''+esc(s.image_url)+'\'), '+v.fb+';"></div>';
+  }
+  return '<div class="'+cls+'" style="background:'+v.fb+';"><span class="img-fb-mark">'+v.emoji+'</span></div>';
+}
+
 // ── TILES ──
 function tileHTML(v, s, id, span){
-  var img = s.image_url ? "background-image:url('"+esc(s.image_url)+"');" : 'background:'+v.fb+';';
   var tag = esc(s.category || v.name);
   var meta = esc(s.source||'') + (s.source?'</span><div class="tile-meta-dot"></div><span>':'') + timeAgo(s.published_at||s.created_at);
   return '<a class="tile'+(span?' span2':'')+'" data-article="'+id+'" onclick="openArticle(\''+id+'\')">'+
-    '<div class="tile-image" style="'+img+'"></div>'+
+    tileImgDiv(v, s)+
     '<div class="tile-body">'+
       '<div class="tile-tag" style="background:'+v.soft+';color:'+v.color+';">'+tag+'</div>'+
       '<h3>'+esc(s.title||'')+'</h3>'+
@@ -552,8 +572,9 @@ function openArticle(id){
   var a = ARTICLES[id]; if(!a) return;
   var v = VMAP[a.v], s = a.s;
   var hero = document.getElementById('modalHero');
-  hero.style.backgroundImage=''; hero.style.background = s.image_url ? '' : v.fb;
-  if(s.image_url) hero.style.backgroundImage = "url('"+s.image_url+"')";
+  var mk=document.getElementById('modalMark');
+  if(goodImg(s.image_url)){ hero.style.background=''; hero.style.backgroundImage="url('"+s.image_url+"'), "+v.fb; if(mk){mk.textContent='';mk.style.display='none';} }
+  else { hero.style.backgroundImage=v.fb; hero.style.background=v.fb; if(mk){mk.textContent=v.emoji;mk.style.display='flex';} }
   var tagEl=document.getElementById('modalTag'); tagEl.textContent=s.category||v.name; tagEl.style.background=v.color;
   var src=document.getElementById('modalSource'); src.textContent=s.source||v.name; src.href=s.url||'#'; src.style.color=v.color;
   document.getElementById('modalTime').textContent=timeAgo(s.published_at||s.created_at);
