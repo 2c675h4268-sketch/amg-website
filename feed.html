@@ -51,14 +51,14 @@
     display: flex; align-items: stretch; gap: 18px;
     padding: 0 24px; min-height: 54px;
   }
-  .nav-logo { flex: 1 1 0; min-width: max-content; display: flex; align-items: center; font-size: 17px; font-weight: 600; letter-spacing: -0.3px; color: var(--black); text-decoration: none; white-space: nowrap; }
+  .nav-logo { flex: 1 1 0; min-width: max-content; display: flex; align-items: center; font-size: 16px; font-weight: 600; letter-spacing: -0.3px; color: var(--black); text-decoration: none; white-space: nowrap; }
   .tabs { flex: 0 1 auto; min-width: 0; display: flex; align-items: stretch; justify-content: center; overflow-x: auto; scrollbar-width: none; }
   .tabs::-webkit-scrollbar { display: none; }
-  .tab { display: flex; align-items: center; gap: 7px; padding: 0 16px; font-size: 15px; font-weight: 500; color: var(--gray); cursor: pointer; border-bottom: 2px solid transparent; white-space: nowrap; text-decoration: none; transition: color 0.15s, border-color 0.15s; }
+  .tab { display: flex; align-items: center; gap: 7px; padding: 0 15px; font-size: 14px; font-weight: 500; color: var(--gray); cursor: pointer; border-bottom: 2px solid transparent; white-space: nowrap; text-decoration: none; transition: color 0.15s, border-color 0.15s; }
   .tab:hover { color: var(--black); }
   .tab.active { color: var(--tabcolor, #1d1d1f); border-bottom-color: var(--tabcolor, #1d1d1f); }
   .nav-right { flex: 1 1 0; display: flex; align-items: center; justify-content: flex-end; }
-  .nav-search { background: var(--light-gray); border-radius: 980px; padding: 7px 14px; font-size: 15px; color: var(--gray); border: none; outline: none; font-family: inherit; width: 150px; transition: width 0.2s, background 0.2s; }
+  .nav-search { background: var(--light-gray); border-radius: 980px; padding: 7px 14px; font-size: 14px; color: var(--gray); border: none; outline: none; font-family: inherit; width: 150px; transition: width 0.2s, background 0.2s; }
   .nav-search:focus { width: 190px; background: #ebebed; color: var(--black); }
 
   /* PAGE */
@@ -487,7 +487,7 @@ const ARROW = '<svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke
 // ── BUILD NAV + TABS + SECTION SHELLS ──
 function buildShell(){
   document.getElementById('tabBar').innerHTML =
-    VERTS.map(v => '<a class="tab" id="tab-'+v.key+'" style="--tabcolor:'+v.color+';" onclick="goVert(\''+v.key+'\')">'+v.emoji+' '+v.name+'</a>').join('') +
+    VERTS.map(v => '<a class="tab" id="tab-'+v.key+'" style="--tabcolor:'+v.color+';" onclick="goVert(\''+v.key+'\')">'+v.emoji+' '+(v.key==='ai'?'AI':v.key==='grid'?'Energy':v.name)+'</a>').join('') +
     '<a class="tab" style="--tabcolor:#1d1d1f;" onclick="openBrief()">📋 Monday Brief</a>';
 
   var feedHtml = '';
