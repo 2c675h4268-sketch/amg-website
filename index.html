@@ -55,6 +55,8 @@
   .hs-meta { display:flex; align-items:center; justify-content:center; flex-wrap:wrap; gap:8px; margin-top:14px; font-size:13px; color:var(--gray); }
   .tz-select { font-family:inherit; font-size:13px; font-weight:600; padding:5px 26px 5px 10px; border:1.5px solid var(--mid-gray); border-radius:980px; background:var(--white); color:var(--black); outline:none; cursor:pointer; appearance:none; -webkit-appearance:none; background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='10' height='6' viewBox='0 0 10 6'%3E%3Cpath d='M1 1l4 4 4-4' stroke='%239ca3af' stroke-width='1.6' fill='none' stroke-linecap='round'/%3E%3C/svg%3E"); background-repeat:no-repeat; background-position:right 11px center; }
   .hs-note { font-size:13px; color:var(--gray); margin-top:8px; }
+  .hero-feed-link { display:inline-block; margin-top:18px; font-size:14px; font-weight:600; color:var(--ai-blue); }
+  .hero-feed-link:hover { opacity:0.8; }
   .hero-audience { font-size:14px; line-height:1.6; color:var(--gray); max-width:560px; margin:26px auto 0; padding-top:22px; border-top:1px solid var(--light-gray); }
 
   .section { max-width:1080px; margin:0 auto; padding:0 24px; }
@@ -73,6 +75,10 @@
   .preview-foot { text-align:center; font-size:15px; color:var(--gray); margin:26px auto 0; max-width:560px; }
   .preview-cta { display:block; text-align:center; margin-top:14px; font-size:15px; font-weight:600; color:var(--ai-blue); }
   .preview-cta:hover { opacity:0.8; }
+
+  .proof-strip { max-width:900px; margin:40px auto 0; display:flex; flex-wrap:wrap; justify-content:center; gap:10px 28px; }
+  .proof-strip span { font-size:13.5px; font-weight:600; color:var(--gray); position:relative; }
+  .proof-strip span:not(:last-child)::after { content:'·'; position:absolute; right:-16px; color:var(--mid-gray); }
 
   /* WHAT MAKES ATOMIC DIFFERENT */
   .diff { background:var(--light-gray); }
@@ -95,8 +101,14 @@
   .v-card h3 { font-size:21px; font-weight:700; letter-spacing:-0.02em; margin-bottom:7px; }
   .v-card.span2 h3 { font-size:26px; }
   .v-card p { font-size:15px; line-height:1.55; color:var(--gray); margin-bottom:14px; }
+  .v-kicker { font-size:12px; font-weight:700; letter-spacing:0.04em; text-transform:uppercase; color:var(--gray); margin-bottom:8px; }
   .v-link { font-size:14px; font-weight:600; display:inline-flex; align-items:center; gap:5px; transition:gap .15s; }
   .v-card:hover .v-link { gap:9px; }
+
+  /* WHY ATOMIC */
+  .why { max-width:760px; margin:0 auto; padding:72px 24px 8px; text-align:center; }
+  .why-lead { font-size:clamp(20px,2.6vw,26px); font-weight:500; letter-spacing:-0.02em; line-height:1.4; color:var(--black); margin:8px 0 18px; }
+  .why-tag { font-size:14px; font-weight:600; letter-spacing:0.04em; text-transform:uppercase; color:var(--gray); }
 
   /* CLOSING CTA */
   .cta-band { max-width:1080px; margin:64px auto 0; }
@@ -130,6 +142,15 @@
   .footer-inner a { color:var(--gray); } .footer-inner a:hover { color:var(--black); }
   .footer-powered { letter-spacing:0.06em; text-transform:uppercase; font-size:11px; }
 
+  /* STICKY SCROLL PROMPT */
+  .scroll-prompt { position:fixed; left:50%; bottom:20px; transform:translateX(-50%) translateY(160%); max-width:680px; width:calc(100% - 32px); background:#1d1d1f; color:#fff; border-radius:980px; padding:11px 13px 11px 24px; display:flex; align-items:center; gap:16px; box-shadow:0 14px 44px rgba(0,0,0,0.3); transition:transform .4s cubic-bezier(.2,.85,.25,1); z-index:600; }
+  .scroll-prompt.show { transform:translateX(-50%) translateY(0); }
+  .scroll-prompt > span { font-size:14px; font-weight:500; line-height:1.35; flex:1; }
+  .sp-btn { background:var(--ai-blue); color:#fff; font-size:14px; font-weight:600; padding:9px 22px; border-radius:980px; white-space:nowrap; }
+  .sp-btn:hover { background:#1d4ed8; }
+  .sp-close { background:rgba(255,255,255,0.14); border:none; color:#fff; width:30px; height:30px; border-radius:50%; cursor:pointer; font-size:13px; flex-shrink:0; }
+  @media (max-width:560px) { .scroll-prompt { padding:10px 10px 10px 18px; gap:10px; } .scroll-prompt > span { font-size:12.5px; } .sp-btn { padding:9px 16px; } }
+
   /* WHITELIST */
   .wl-modal { display:none; position:fixed; inset:0; z-index:700; background:rgba(0,0,0,0.55); backdrop-filter:blur(4px); align-items:center; justify-content:center; padding:20px; }
   .wl-modal.open { display:flex; }
@@ -160,13 +181,11 @@
   <div class="nav-inner">
     <a class="nav-logo" href="/">Atomic Media Group</a>
     <div class="nav-links">
-      <a href="/feed.html?v=ai">AI Intelligence</a>
-      <a href="/feed.html?v=robotics">Robotics</a>
-      <a href="/feed.html?v=frontier">Space</a>
-      <a href="/feed.html?v=longevity">Longevity</a>
-      <a href="/feed.html?v=grid">The Grid</a>
+      <a href="/feed.html">Intelligence Feed</a>
+      <a href="/about.html">About</a>
+      <a href="/feed.html?brief=1">Latest Brief</a>
     </div>
-    <a class="nav-feed" href="/feed.html">Intelligence Feed →</a>
+    <a class="nav-feed" href="#join">Subscribe</a>
   </div>
 </nav>
 
@@ -186,6 +205,7 @@
     </div>
     <p class="hs-note">No hype, no daily inbox overload.</p>
   </div>
+  <a class="hero-feed-link" href="/feed.html">Explore the Intelligence Feed →</a>
   <p class="hero-audience">Built for leaders, investors, builders, and curious people who want to understand the forces shaping the next decade without following hundreds of sources.</p>
 </section>
 
@@ -208,6 +228,12 @@
   </div>
   <p class="preview-foot">5-minute read. Five essential developments. One clear view of what comes next.</p>
   <a class="preview-cta" href="/feed.html?brief=1">Read this week’s full brief →</a>
+  <div class="proof-strip">
+    <span>Hundreds of developments reviewed each week</span>
+    <span>Five forces connected in one briefing</span>
+    <span>Five-minute Monday read</span>
+    <span>Free to subscribe</span>
+  </div>
 </section>
 
 <!-- WHAT MAKES ATOMIC DIFFERENT -->
@@ -229,7 +255,7 @@
 <section class="verticals">
   <div class="section section-head" style="padding:0;">
     <div class="eyebrow">The five forces</div>
-    <h2>The frontiers reshaping the century.</h2>
+    <h2>Five forces reshaping the next decade and beyond.</h2>
   </div>
   <div class="section" style="padding:0;">
     <div class="v-grid" style="margin-top:36px;">
@@ -253,21 +279,22 @@
         <div class="v-emoji">🚀</div>
         <div class="v-accent" style="background:var(--space-orange);"></div>
         <h3 style="color:var(--space-orange);">Space</h3>
-        <p>Humanity is becoming a multi-planetary species, one launch at a time.</p>
+        <p>Commercial launch, lunar infrastructure, and a new space economy are moving from ambition to execution.</p>
         <span class="v-link" style="color:var(--space-orange);">Explore →</span>
       </a>
       <a class="v-card" href="/feed.html?v=longevity">
         <div class="v-emoji">🧬</div>
         <div class="v-accent" style="background:var(--longevity-green);"></div>
         <h3 style="color:var(--longevity-green);">Longevity</h3>
-        <p>The biology of aging is being cracked open by new science and therapies.</p>
+        <p>Scientists are gaining a deeper understanding of aging, healthspan, and the therapies that may change how long people live well.</p>
         <span class="v-link" style="color:var(--longevity-green);">Explore →</span>
       </a>
       <a class="v-card" href="/feed.html?v=grid">
         <div class="v-emoji">⚡</div>
         <div class="v-accent" style="background:var(--grid-yellow);"></div>
         <h3 style="color:var(--grid-yellow);">The Grid</h3>
-        <p>Energy, compute, and chips: the constraint behind everything else.</p>
+        <div class="v-kicker">Energy · Chips · Compute</div>
+        <p>The constraint behind everything else, from data centers to the power grid.</p>
         <span class="v-link" style="color:var(--grid-yellow);">Explore →</span>
       </a>
     </div>
@@ -275,7 +302,16 @@
 </section>
 
 <!-- CLOSING CTA -->
-<div class="cta-band">
+<!-- WHY ATOMIC -->
+<section class="why" id="about">
+  <div class="why-inner">
+    <div class="eyebrow">Why Atomic exists</div>
+    <p class="why-lead">The technologies shaping the future are usually covered in isolation. Atomic Media Group was created to connect them, explain their implications, and give readers a clearer picture of where the world is going.</p>
+    <p class="why-tag">An independent publication from Atomic Media Group.</p>
+  </div>
+</section>
+
+<div class="cta-band" id="join">
   <div class="cta-inner" data-sub>
     <h2>Start your week understanding the future.</h2>
     <p>Five forces. One brief. Free, every Monday morning.</p>
@@ -297,7 +333,7 @@
   <div class="sponsor-card">
     <div class="pt-mark">PT</div>
     <div>
-      <div class="sponsor-eyebrow">Sponsored by</div>
+      <div class="sponsor-eyebrow">Founding sponsor</div>
       <div class="sponsor-name">Penfield Talent <span>FIND · BUILD · LEAD</span></div>
       <div class="sponsor-desc">Executive talent advisory connecting high-growth companies with exceptional leaders. <a href="https://penfieldtalent.com" target="_blank" rel="noopener">Learn more →</a></div>
     </div>
@@ -308,10 +344,17 @@
 <footer class="site-footer">
   <div class="footer-inner">
     <span>&copy; 2026 Atomic Media Group. All rights reserved.</span>
-    <span><a href="/feed.html">Intelligence Feed</a> &nbsp;·&nbsp; <a href="mailto:hello@atomicmediagroup.ai">Contact</a></span>
+    <span><a href="/feed.html">Intelligence Feed</a> &nbsp;·&nbsp; <a href="/about.html">About</a> &nbsp;·&nbsp; <a href="mailto:hello@atomicmediagroup.ai">Contact</a></span>
     <span class="footer-powered">Powered by Atomic Media Group, LLC</span>
   </div>
 </footer>
+
+<!-- STICKY SCROLL PROMPT -->
+<div class="scroll-prompt" id="scrollPrompt">
+  <span>Understand the five forces shaping the future. Get the free Monday Brief.</span>
+  <a href="#join" class="sp-btn" onclick="dismissPrompt()">Subscribe</a>
+  <button class="sp-close" onclick="dismissPrompt()" aria-label="Dismiss">✕</button>
+</div>
 
 <!-- WHITELIST MODAL -->
 <div class="wl-modal" id="wlModal">
@@ -364,11 +407,20 @@
     var body=new URLSearchParams({ email:email, region:tzf.region, tz:tzf.tz, utm_source:'website', utm_medium:'landing', utm_campaign:'home', page:location.pathname });
     fetch(AMG_SUBSCRIBE_WEBHOOK,{ method:'POST', body:body })
       .then(function(res){ if(!res.ok) throw new Error('HTTP '+res.status); btn.textContent='✓ You’re in!'; btn.style.background='#059669'; input.disabled=true;
-        try{ localStorage.setItem('amg-subscribed','1'); }catch(e){} setTimeout(openWl,700); })
+        try{ localStorage.setItem('amg-subscribed','1'); }catch(e){} dismissPrompt(); setTimeout(openWl,700); })
       .catch(function(err){ console.error('[AMG] Subscribe failed:',err); btn.textContent='Already subscribed!'; btn.disabled=false; setTimeout(function(){ btn.textContent=orig; },2500); });
   }
   function openWl(){ document.getElementById('wlModal').classList.add('open'); document.body.style.overflow='hidden'; }
   function closeWl(){ document.getElementById('wlModal').classList.remove('open'); document.body.style.overflow=''; }
+
+  // Restrained sticky prompt after the reader has scrolled past the fold.
+  function dismissPrompt(){ var p=document.getElementById('scrollPrompt'); if(p) p.classList.remove('show'); try{ sessionStorage.setItem('amg-sp-dismissed','1'); }catch(e){} }
+  (function(){
+    var done=false; try{ done = localStorage.getItem('amg-subscribed')==='1' || sessionStorage.getItem('amg-sp-dismissed')==='1'; }catch(e){}
+    if(done) return;
+    var onScroll=function(){ if(window.scrollY>1000){ var p=document.getElementById('scrollPrompt'); if(p) p.classList.add('show'); window.removeEventListener('scroll',onScroll); } };
+    window.addEventListener('scroll', onScroll, {passive:true});
+  })();
   document.getElementById('wlModal').addEventListener('click', function(e){ if(e.target===this) closeWl(); });
   document.addEventListener('keydown', function(e){ if(e.key==='Escape') closeWl(); });
 
