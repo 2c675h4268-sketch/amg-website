@@ -670,7 +670,9 @@ async function openBrief(){
   if(!rows || !rows.length || !rows[0].brief_html){ el.innerHTML='<p style="color:#6b7280;padding:20px 24px;font-size:17px;line-height:1.6;">The Monday Brief launches soon. Subscribe to get it the moment it goes live.</p>'; return; }
   try { document.getElementById('brief-date').textContent = 'Monday Brief, ' + new Date(rows[0].created_at).toLocaleDateString('en-US',{month:'long',day:'numeric',year:'numeric'}); } catch(e){}
   var parser=new DOMParser(); var doc=parser.parseFromString(rows[0].brief_html,'text/html');
-  var st=doc.createElement('style'); st.textContent='img{max-width:100%!important;height:auto;}'; doc.head.appendChild(st);
+  // In the on-site modal the brief renders narrower than its desktop email width, so force the
+  // weekly-analysis columns to stack (matching the email's own mobile layout) instead of cramming 3-up.
+  var st=doc.createElement('style'); st.textContent='img{max-width:100%!important;height:auto;}.col{display:block!important;width:100%!important;box-sizing:border-box!important;border-right:none!important;border-bottom:1px solid rgba(255,255,255,0.12)!important;}.col:last-child{border-bottom:none!important;}'; doc.head.appendChild(st);
   var ifr=document.createElement('iframe'); ifr.title='The Monday Brief'; ifr.setAttribute('scrolling','no');
   ifr.addEventListener('load', function(){ try{ ifr.style.height=(ifr.contentDocument.documentElement.scrollHeight+8)+'px'; }catch(e){} });
   ifr.srcdoc = doc.documentElement.outerHTML; el.innerHTML=''; el.appendChild(ifr);
