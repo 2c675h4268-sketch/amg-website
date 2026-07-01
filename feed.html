@@ -277,7 +277,7 @@
     .modal-footer { flex-direction: column; align-items: flex-start; }
   }
 
-  /* MONDAY BRIEF MODAL */
+  /* THE ATOMIC FIVE MODAL */
   #brief-overlay { display:none; position:fixed; inset:0; z-index:600; background:rgba(0,0,0,0.55); backdrop-filter:blur(4px); -webkit-backdrop-filter:blur(4px); overflow-y:auto; padding:24px 16px 48px; }
   #brief-overlay.open { display:block; }
   .brief-modal { background:#fff; border-radius:20px; max-width:660px; margin:0 auto; overflow:hidden; position:relative; box-shadow:0 32px 80px rgba(0,0,0,0.28); }
@@ -413,13 +413,13 @@
   </div>
 </div>
 
-<!-- MONDAY BRIEF MODAL -->
+<!-- THE ATOMIC FIVE MODAL -->
 <div id="brief-overlay">
   <div class="brief-modal">
     <div class="brief-modal-inner">
       <div class="brief-modal-head">
         <div>
-          <div class="bd-date" id="brief-date">The Monday Brief</div>
+          <div class="bd-date" id="brief-date">The Atomic Five</div>
           <div class="bd-title">Atomic Media Group</div>
         </div>
         <button class="modal-close" style="position:static;background:rgba(0,0,0,0.08);color:#555;" onclick="closeBrief()" aria-label="Close">✕</button>
@@ -501,7 +501,7 @@ const ARROW = '<svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke
 function buildShell(){
   document.getElementById('tabBar').innerHTML =
     VERTS.map(v => '<a class="tab" id="tab-'+v.key+'" style="--tabcolor:'+v.color+';" onclick="goVert(\''+v.key+'\')">'+v.emoji+' '+(v.key==='ai'?'AI':v.key==='grid'?'Energy':v.name)+'</a>').join('') +
-    '<a class="tab" style="--tabcolor:#1d1d1f;" onclick="openBrief()">📋 Monday Brief</a>';
+    '<a class="tab" style="--tabcolor:#1d1d1f;" onclick="openBrief()">📋 The Atomic Five</a>';
 
   var feedHtml = '';
   VERTS.forEach(function(v, idx){
@@ -530,7 +530,7 @@ function buildShell(){
 function subscribeBand(){
   return '<div class="page"><div class="sub-band">'+
     '<div class="sub-band-text">'+
-      '<h2>Get the Atomic Brief every Monday.</h2>'+
+      '<h2>Get the Atomic Five every Monday.</h2>'+
       '<p>Five forces. One brief. Free, delivered Monday 6&nbsp;AM in your timezone.</p>'+
     '</div>'+
     '<div class="sub-band-form">'+
@@ -674,18 +674,18 @@ async function loadCompanies(v){
   sec.style.display='block';
 }
 
-// ── MONDAY BRIEF MODAL ──
+// ── THE ATOMIC FIVE MODAL ──
 async function openBrief(){
   var ov=document.getElementById('brief-overlay'); ov.classList.add('open'); document.body.style.overflow='hidden';
   var el=document.getElementById('brief-content');
   var rows = await sb('daily_brief', 'select=brief_html,created_at&order=created_at.desc&limit=1');
-  if(!rows || !rows.length || !rows[0].brief_html){ el.innerHTML='<p style="color:#6b7280;padding:20px 24px;font-size:17px;line-height:1.6;">The Monday Brief launches soon. Subscribe to get it the moment it goes live.</p>'; return; }
-  try { document.getElementById('brief-date').textContent = 'Monday Brief, ' + new Date(rows[0].created_at).toLocaleDateString('en-US',{month:'long',day:'numeric',year:'numeric'}); } catch(e){}
+  if(!rows || !rows.length || !rows[0].brief_html){ el.innerHTML='<p style="color:#6b7280;padding:20px 24px;font-size:17px;line-height:1.6;">The Atomic Five launches soon. Subscribe to get it the moment it goes live.</p>'; return; }
+  try { document.getElementById('brief-date').textContent = 'The Atomic Five, ' + new Date(rows[0].created_at).toLocaleDateString('en-US',{month:'long',day:'numeric',year:'numeric'}); } catch(e){}
   var parser=new DOMParser(); var doc=parser.parseFromString(rows[0].brief_html,'text/html');
   // In the on-site modal the brief renders narrower than its desktop email width, so force the
   // weekly-analysis columns to stack (matching the email's own mobile layout) instead of cramming 3-up.
   var st=doc.createElement('style'); st.textContent='img{max-width:100%!important;height:auto;}.col{display:block!important;width:100%!important;box-sizing:border-box!important;border-right:none!important;border-bottom:1px solid rgba(255,255,255,0.12)!important;}.col:last-child{border-bottom:none!important;}'; doc.head.appendChild(st);
-  var ifr=document.createElement('iframe'); ifr.title='The Monday Brief'; ifr.setAttribute('scrolling','no');
+  var ifr=document.createElement('iframe'); ifr.title='The Atomic Five'; ifr.setAttribute('scrolling','no');
   ifr.addEventListener('load', function(){ try{ ifr.style.height=(ifr.contentDocument.documentElement.scrollHeight+8)+'px'; }catch(e){} });
   ifr.srcdoc = doc.documentElement.outerHTML; el.innerHTML=''; el.appendChild(ifr);
 }
@@ -791,7 +791,7 @@ wireSearch();
 wireTabs();
 handleFeedback();
 loadArticleSlugs().then(function(){ VERTS.forEach(function(v){ loadVertical(v); loadEditorial(v); loadCompanies(v); }); });
-// open Monday Brief if requested
+// open The Atomic Five if requested
 if(new URLSearchParams(location.search).get('brief')==='1') openBrief();
 </script>
 </body>
