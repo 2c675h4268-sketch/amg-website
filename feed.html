@@ -432,8 +432,8 @@
 <!-- WHITELIST MODAL -->
 <div class="wl-modal" id="wlModal">
   <div class="wl-inner">
-    <h3>You’re in. One quick step.</h3>
-    <p>To make sure the brief lands in your inbox, add <span class="wl-mail">brief@atomicmediagroup.ai</span> to your contacts. First issue arrives Monday at 6&nbsp;AM your time.</p>
+    <h3>Almost there — confirm your email.</h3>
+    <p>We just sent a confirmation link to your inbox. Click it to activate your free subscription. Add <span class="wl-mail">brief@atomicmediagroup.ai</span> to your contacts so the brief never lands in spam. First issue arrives the next Monday at 6&nbsp;AM your time.</p>
     <button class="wl-close" onclick="closeWl()">Got it</button>
   </div>
 </div>
@@ -444,7 +444,7 @@
 // ── CONFIG ──
 const SUPABASE_URL = 'https://qybwjkyifdroktiriaqt.supabase.co';
 const SUPABASE_KEY = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6InF5Yndqa3lpZmRyb2t0aXJpYXF0Iiwicm9sZSI6ImFub24iLCJpYXQiOjE3ODA1MTUzNzYsImV4cCI6MjA5NjA5MTM3Nn0.JJFqoCugHoe6fsah3kEjk8ezZZ4kTVzcfu_AQ7x-lg8';
-const AMG_SUBSCRIBE_WEBHOOK = 'https://hook.us2.make.com/mb8j5gstllh5cutlw0byhii3y7hf66ub';
+const AMG_SUBSCRIBE_WEBHOOK = 'https://qybwjkyifdroktiriaqt.supabase.co/functions/v1/subscribe';
 
 const VERTS = [
   { key:'ai',        table:'stories',           name:'Artificial Intelligence', emoji:'🦾', color:'#2563eb', soft:'#eff4ff',
@@ -534,7 +534,7 @@ function subscribeBand(){
       '<p>Five forces. One brief. Free, delivered Monday 6&nbsp;AM in your timezone.</p>'+
     '</div>'+
     '<div class="sub-band-form">'+
-      '<div class="sub-row"><input class="sub-input" type="email" placeholder="your@email.com" /><button class="sub-btn" onclick="amgSubscribe(this,\'feed-band\')">Subscribe Free</button></div>'+
+      '<div class="sub-row"><input class="sub-input" type="email" placeholder="your@email.com" /><input class="hp" type="text" name="company" tabindex="-1" autocomplete="off" aria-hidden="true" style="position:absolute;left:-9999px;top:-9999px;width:1px;height:1px;opacity:0" /><button class="sub-btn" onclick="amgSubscribe(this,\'feed-band\')">Subscribe Free</button></div>'+
       '<select class="nl-tz sub-tz" aria-label="Your timezone"></select>'+
     '</div>'+
   '</div></div>';
@@ -728,11 +728,12 @@ function amgSubscribe(btn, sourceTag){
   if(!email || !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)){ input.style.borderColor='#e74c3c'; setTimeout(function(){ input.style.borderColor=''; },1500); return; }
   var orig = btn.textContent; btn.textContent='…'; btn.disabled=true;
   var tzf = amgTzFields(card);
-  var body = new URLSearchParams({ email:email, region:tzf.region, tz:tzf.tz, utm_source:'website', utm_medium:'feed', utm_campaign:sourceTag||'feed', page:location.pathname });
+  var hp = card.querySelector('.hp'); var honeypot = hp?hp.value:'';
+  var body = new URLSearchParams({ email:email, region:tzf.region, tz:tzf.tz, company:honeypot, utm_source:'website', utm_medium:'feed', utm_campaign:sourceTag||'feed', page:location.pathname });
   fetch(AMG_SUBSCRIBE_WEBHOOK, { method:'POST', body:body })
-    .then(function(res){ if(!res.ok) throw new Error('HTTP '+res.status); btn.textContent='✓ Done!'; btn.style.background='#27ae60'; input.disabled=true;
+    .then(function(res){ if(!res.ok) throw new Error('HTTP '+res.status); btn.textContent='✓ Check your email'; btn.style.background='#27ae60'; input.disabled=true;
       try{ localStorage.setItem('amg-subscribed','1'); }catch(e){} setTimeout(openWl, 700); })
-    .catch(function(err){ console.error('[AMG] Subscribe failed:', err); btn.textContent='Already subscribed!'; btn.disabled=false; setTimeout(function(){ btn.textContent=orig; },2500); });
+    .catch(function(err){ console.error('[AMG] Subscribe failed:', err); btn.textContent='Try again'; btn.disabled=false; setTimeout(function(){ btn.textContent=orig; },2500); });
 }
 function openWl(){ document.getElementById('wlModal').classList.add('open'); document.body.style.overflow='hidden'; }
 function closeWl(){ document.getElementById('wlModal').classList.remove('open'); document.body.style.overflow=''; }
