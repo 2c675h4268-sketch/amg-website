@@ -51,9 +51,9 @@
       if(forces) forces.style.display='none';
       check.style.background='#fef2f2';
       check.innerHTML='<svg viewBox="0 0 24 24" fill="none" stroke="#dc2626" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" style="width:36px;height:36px"><path d="M12 8v5M12 17h.01"/><circle cx="12" cy="12" r="9"/></svg>';
-      if(s==='expired'){
-        h1.textContent='This link has expired.';
-        p.innerHTML='Confirmation links are valid for 7 days. Please head back and sign up again to get a fresh link.';
+      if(s==='invalid'){
+        h1.textContent='This link isn’t valid.';
+        p.innerHTML='The confirmation link looks incomplete. Please head back and sign up again to get a fresh one.';
       } else {
         h1.textContent='Something went wrong.';
         p.innerHTML='We could not confirm your subscription just now. Please try signing up again, or email brief@atomicmediagroup.ai.';
