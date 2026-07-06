@@ -1,0 +1,97 @@
+# The Atomic Five — atomicmediagroup.ai
+# Free weekly newsletter. Search discovery is our acquisition funnel; the
+# original editorial synthesis is our moat. Policy: welcome search engines and
+# AI answer engines that cite and send traffic; block training-only crawlers
+# that ingest our analysis with no attribution and no visit.
+
+# ------------------------------------------------------------------
+# Search engines — full access (this is how readers find us)
+# ------------------------------------------------------------------
+User-agent: Googlebot
+Allow: /
+
+User-agent: Bingbot
+Allow: /
+
+User-agent: Applebot
+Allow: /
+
+User-agent: DuckDuckBot
+Allow: /
+
+# ------------------------------------------------------------------
+# AI answer / agent bots that CITE sources — allowed (reach + brand)
+# ------------------------------------------------------------------
+User-agent: OAI-SearchBot
+Allow: /
+
+User-agent: ChatGPT-User
+Allow: /
+
+User-agent: PerplexityBot
+Allow: /
+
+User-agent: Perplexity-User
+Allow: /
+
+User-agent: Claude-User
+Allow: /
+
+User-agent: Claude-SearchBot
+Allow: /
+
+# Google-Extended governs Gemini + Google AI Overviews grounding.
+# Allowed on purpose: staying in Google's AI answers drives signups.
+User-agent: Google-Extended
+Allow: /
+
+# ------------------------------------------------------------------
+# Training-only crawlers — blocked (no attribution, no traffic)
+# ------------------------------------------------------------------
+User-agent: GPTBot
+Disallow: /
+
+User-agent: ClaudeBot
+Disallow: /
+
+User-agent: anthropic-ai
+Disallow: /
+
+User-agent: CCBot
+Disallow: /
+
+User-agent: Bytespider
+Disallow: /
+
+User-agent: Amazonbot
+Disallow: /
+
+User-agent: meta-externalagent
+Disallow: /
+
+User-agent: Meta-ExternalAgent
+Disallow: /
+
+User-agent: Applebot-Extended
+Disallow: /
+
+User-agent: Omgilibot
+Disallow: /
+
+User-agent: Diffbot
+Disallow: /
+
+User-agent: Timpibot
+Disallow: /
+
+# ------------------------------------------------------------------
+# Everyone else — may crawl; opt out of AI training via Content Signal.
+# search=yes (index us), ai-input=yes (cite us in answers), ai-train=no.
+# ------------------------------------------------------------------
+User-agent: *
+Content-Signal: search=yes, ai-input=yes, ai-train=no
+Allow: /
+Disallow: /og-preview.source.html
+Disallow: /_social_preview/
+
+Sitemap: https://atomicmediagroup.ai/sitemap.xml
