@@ -7,6 +7,7 @@
 User-agent: *
 Allow: /
 Disallow: /confirmed
+Disallow: /admin
 Disallow: /og-preview.source.html
 Disallow: /_social_preview/
 Content-Signal: search=yes, ai-input=yes, ai-train=no, use=reference
