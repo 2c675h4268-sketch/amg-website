@@ -44,6 +44,9 @@
 <footer id="foot">The Atomic Five · private</footer>
 <script>
 const STATS="https://qybwjkyifdroktiriaqt.supabase.co/functions/v1/admin-stats";
+// Cross-read the feeder click count from The Morning Current (its public aggregate RPC).
+const TMC_FEEDER="https://wrnhbuaxuaibxrpibujh.supabase.co/rest/v1/rpc/get_feeder_stats";
+const TMC_ANON="eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6IndybmhidWF4dWFpYnhycGlidWpoIiwicm9sZSI6ImFub24iLCJpYXQiOjE3ODIzMjMwMjUsImV4cCI6MjA5Nzg5OTAyNX0.j320uHvZ3LEplUBBGn004zdYUSlb2XIO2dConfgnWfw";
 const esc=(s)=>String(s==null?"":s).replace(/&/g,"&amp;").replace(/</g,"&lt;").replace(/>/g,"&gt;").replace(/"/g,"&quot;");
 const CONSUMER={"gmail.com":"Gmail","googlemail.com":"Gmail","outlook.com":"Outlook","hotmail.com":"Outlook / Hotmail","live.com":"Outlook / Live","icloud.com":"Apple (iCloud)","me.com":"Apple (iCloud)","mac.com":"Apple (iCloud)","yahoo.com":"Yahoo","proton.me":"Proton","protonmail.com":"Proton","aol.com":"AOL","privaterelay.appleid.com":"Apple (Hide My Email)"};
 const isPersonal=(d)=>!!CONSUMER[d]; const domainLabel=(d)=>CONSUMER[d]||d;
@@ -93,6 +96,13 @@ function dashboard(d){
       <div class="card"><div class="k">Delivered</div><div class="v">${eng.d30.delivered.toLocaleString()}</div><div class="m">emails &middot; last 30 days</div></div>
     </div><div style="margin-top:12px;color:#7a7e8a;font-size:12px">Across all sends. Click rate is the more reliable signal &mdash; Apple Mail privacy inflates open rate.</div>`:`<div class="empty">Brevo engagement stats unavailable right now.</div>`}
   </div>
+  <div class="panel"><h2>From The Morning Current &middot; feeder &#9670;</h2>
+    <div style="display:grid;grid-template-columns:repeat(3,1fr);gap:12px">
+      <div class="card"><div class="k">Clicks in</div><div class="v accent">${(d.feeder&&d.feeder.total)||0}</div><div class="m">from the Friday feeder</div></div>
+      <div class="card"><div class="k">Last 7 days</div><div class="v">${(d.feeder&&d.feeder.last_7d)||0}</div><div class="m">recent clicks</div></div>
+      <div class="card"><div class="k">Most recent</div><div class="v" style="font-size:15px;line-height:1.5">${d.feeder&&d.feeder.last_click?esc(d.feeder.last_click):"&mdash;"}</div></div>
+    </div>
+    <div style="margin-top:12px;color:#7a7e8a;font-size:12px">Morning Current readers who clicked through to The Atomic Five via the Friday cross-promo. Click-through only &mdash; not yet matched to confirmed signups.</div></div>
   <div class="panel"><h2>Subscriber growth · last 30 days</h2>${growthChart(d.daily||[])}
     <div class="legend"><span><i style="background:#2563eb"></i>Total subscribers (cumulative)</span><span><i style="background:#2563eb;opacity:.16"></i>New signups / day</span></div></div>
   <div class="grid2">
@@ -114,6 +124,7 @@ function dashboard(d){
   let d={ok:false};
   try{ const r=await fetch(STATS+"?key="+encodeURIComponent(key),{headers:{accept:"application/json"}}); d=await r.json(); }catch(e){}
   if(!d||!d.ok){ app.innerHTML=gate("That key wasn't recognized. Try again."); return; }
+  try{ const fr=await fetch(TMC_FEEDER,{method:"POST",headers:{apikey:TMC_ANON,Authorization:"Bearer "+TMC_ANON,"content-type":"application/json"},body:"{}"}); d.feeder=await fr.json(); }catch(e){}
   app.innerHTML=dashboard(d);
 })();
 </script></body></html>
