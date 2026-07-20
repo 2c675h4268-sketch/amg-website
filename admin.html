@@ -90,10 +90,11 @@ function dashboard(d){
     <div class="card"><div class="k">Feedback</div><div class="v gold">${fb.yes+fb.no?fbPct+"%":"&mdash;"}</div><div class="m">${fb.yes} &#128077; · ${fb.no} &#128078;</div></div>
   </div>
   <div class="panel"><h2>Email engagement · opens &amp; clicks</h2>
-    ${eng?`<div style="display:grid;grid-template-columns:repeat(3,1fr);gap:12px">
+    ${eng?`<div style="display:grid;grid-template-columns:repeat(4,1fr);gap:12px">
       <div class="card"><div class="k">Open rate</div><div class="v accent">${eng.d30.open}%</div><div class="m">${eng.d7.open}% last 7d &middot; 30-day avg</div></div>
       <div class="card"><div class="k">Click rate</div><div class="v green">${eng.d30.click}%</div><div class="m">${eng.d7.click}% last 7d &middot; 30-day avg</div></div>
       <div class="card"><div class="k">Delivered</div><div class="v">${eng.d30.delivered.toLocaleString()}</div><div class="m">emails &middot; last 30 days</div></div>
+      <div class="card"><div class="k">Unsubscribes</div><div class="v" style="color:#c0392b">${eng.d30.unsub||0}</div><div class="m">last 30 days${eng.d30.delivered?` &middot; ${Math.round((eng.d30.unsub/eng.d30.delivered)*1000)/10}% rate`:""}</div></div>
     </div><div style="margin-top:12px;color:#7a7e8a;font-size:12px">Across all sends. Click rate is the more reliable signal &mdash; Apple Mail privacy inflates open rate.</div>`:`<div class="empty">Brevo engagement stats unavailable right now.</div>`}
   </div>
   <div class="panel"><h2>From The Morning Current &middot; feeder &#9670;</h2>
