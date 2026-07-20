@@ -94,8 +94,13 @@ function dashboard(d){
       <div class="card"><div class="k">Open rate</div><div class="v accent">${eng.d30.open}%</div><div class="m">${eng.d7.open}% last 7d &middot; 30-day avg</div></div>
       <div class="card"><div class="k">Click rate</div><div class="v green">${eng.d30.click}%</div><div class="m">${eng.d7.click}% last 7d &middot; 30-day avg</div></div>
       <div class="card"><div class="k">Delivered</div><div class="v">${eng.d30.delivered.toLocaleString()}</div><div class="m">emails &middot; last 30 days</div></div>
-      <div class="card"><div class="k">Unsubscribes</div><div class="v" style="color:#c0392b">${eng.d30.unsub||0}</div><div class="m">last 30 days${eng.d30.delivered?` &middot; ${Math.round((eng.d30.unsub/eng.d30.delivered)*1000)/10}% rate`:""}</div></div>
-    </div><div style="margin-top:12px;color:#7a7e8a;font-size:12px">Across all sends. Click rate is the more reliable signal &mdash; Apple Mail privacy inflates open rate.</div>`:`<div class="empty">Brevo engagement stats unavailable right now.</div>`}
+      <div class="card"><div class="k">Unsubscribes</div><div class="v" style="color:#c0392b">${(d.unsub_amg&&d.unsub_amg.count30)||0}</div><div class="m">Atomic Five &middot; last 30 days</div></div>
+    </div><div style="margin-top:12px;color:#7a7e8a;font-size:12px">Open / click / delivered are <strong>account-wide</strong> (the Brevo account is shared across The Atomic Five, The Morning Current &amp; The Veil) &mdash; treat as directional. Unsubscribes are Atomic Five only. Click rate beats open rate; Apple Mail privacy inflates opens.</div>`:`<div class="empty">Brevo engagement stats unavailable right now.</div>`}
+  </div>
+  <div class="panel"><h2>Recent unsubscribes &middot; Atomic Five</h2>
+    ${(d.unsub_amg&&d.unsub_amg.recent&&d.unsub_amg.recent.length)
+      ? `<div class="rows">`+d.unsub_amg.recent.map(u=>`<div class="row"><div class="nm"><strong>${esc(u.email)}</strong></div><div class="n" style="width:auto;min-width:90px;color:#7a7e8a;font-weight:600">${esc(u.at)}</div></div>`).join("")+`</div><div style="margin-top:10px;color:#7a7e8a;font-size:12px">${d.unsub_amg.total90} in the last 90 days &middot; ${d.unsub_amg.count7} in the last 7.</div>`
+      : `<div class="empty">No one has unsubscribed from The Atomic Five yet. &#127881;</div>`}
   </div>
   <div class="panel"><h2>From The Morning Current &middot; feeder &#9670;</h2>
     <div style="display:grid;grid-template-columns:repeat(3,1fr);gap:12px">
