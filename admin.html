@@ -46,6 +46,9 @@
 const STATS="https://qybwjkyifdroktiriaqt.supabase.co/functions/v1/admin-stats";
 // Cross-read the feeder click count from The Morning Current (its public aggregate RPC).
 const TMC_FEEDER="https://wrnhbuaxuaibxrpibujh.supabase.co/rest/v1/rpc/get_feeder_stats";
+// Atomic-only engagement: all brands share one Brevo account, so admin-stats' report is
+// account-wide. This aggregates The Atomic Five's own campaigns instead.
+const ATOMIC_ENG="https://themorningcurrent.com/brevo-engagement";
 const TMC_ANON="eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6IndybmhidWF4dWFpYnhycGlidWpoIiwicm9sZSI6ImFub24iLCJpYXQiOjE3ODIzMjMwMjUsImV4cCI6MjA5Nzg5OTAyNX0.j320uHvZ3LEplUBBGn004zdYUSlb2XIO2dConfgnWfw";
 const esc=(s)=>String(s==null?"":s).replace(/&/g,"&amp;").replace(/</g,"&lt;").replace(/>/g,"&gt;").replace(/"/g,"&quot;");
 const CONSUMER={"gmail.com":"Gmail","googlemail.com":"Gmail","outlook.com":"Outlook","hotmail.com":"Outlook / Hotmail","live.com":"Outlook / Live","icloud.com":"Apple (iCloud)","me.com":"Apple (iCloud)","mac.com":"Apple (iCloud)","yahoo.com":"Yahoo","proton.me":"Proton","protonmail.com":"Proton","aol.com":"AOL","privaterelay.appleid.com":"Apple (Hide My Email)"};
@@ -95,7 +98,7 @@ function dashboard(d){
       <div class="card"><div class="k">Click rate</div><div class="v green">${eng.d30.click}%</div><div class="m">${eng.d7.click}% last 7d &middot; 30-day avg</div></div>
       <div class="card"><div class="k">Delivered</div><div class="v">${eng.d30.delivered.toLocaleString()}</div><div class="m">emails &middot; last 30 days</div></div>
       <div class="card"><div class="k">Unsubscribes</div><div class="v" style="color:#c0392b">${(d.unsub_amg&&d.unsub_amg.count30)||0}</div><div class="m">Atomic Five &middot; last 30 days</div></div>
-    </div><div style="margin-top:12px;color:#7a7e8a;font-size:12px">Open / click / delivered are <strong>account-wide</strong> (the Brevo account is shared across The Atomic Five, The Morning Current &amp; The Veil) &mdash; treat as directional. Unsubscribes are Atomic Five only. Click rate beats open rate; Apple Mail privacy inflates opens.</div>`:`<div class="empty">Brevo engagement stats unavailable right now.</div>`}
+    </div><div style="margin-top:12px;color:#7a7e8a;font-size:12px">Open / click / delivered are <strong>The Atomic Five campaigns only</strong> (excludes The Morning Current &amp; The Veil, which share the Brevo account). Unsubscribes are Atomic Five only. Click rate beats open rate; Apple Mail privacy inflates opens, so open rate is capped at 100%.</div>`:`<div class="empty">Brevo engagement stats unavailable right now.</div>`}
   </div>
   <div class="panel"><h2>Recent unsubscribes &middot; Atomic Five</h2>
     ${(d.unsub_amg&&d.unsub_amg.recent&&d.unsub_amg.recent.length)
@@ -131,6 +134,7 @@ function dashboard(d){
   try{ const r=await fetch(STATS+"?key="+encodeURIComponent(key),{headers:{accept:"application/json"}}); d=await r.json(); }catch(e){}
   if(!d||!d.ok){ app.innerHTML=gate("That key wasn't recognized. Try again."); return; }
   try{ const fr=await fetch(TMC_FEEDER,{method:"POST",headers:{apikey:TMC_ANON,Authorization:"Bearer "+TMC_ANON,"content-type":"application/json"},body:"{}"}); d.feeder=await fr.json(); }catch(e){}
+  try{ const er=await fetch(ATOMIC_ENG+"?key="+encodeURIComponent(key)+"&scope=atomic",{headers:{accept:"application/json"}}); const ej=await er.json(); if(ej&&ej.ok) d.engagement={d30:ej.d30,d7:ej.d7}; }catch(e){}
   app.innerHTML=dashboard(d);
 })();
 </script></body></html>
