@@ -90,6 +90,13 @@
   .sub-band-text h2 { font-size: 29px; font-weight: 700; letter-spacing: -0.024em; line-height: 1.1; margin-bottom: 8px; color: #fff; }
   .sub-band-text p { font-size: 18px; color: rgba(255,255,255,0.68); line-height: 1.5; }
   .sub-band-form { flex-shrink: 0; width: 410px; }
+  .fp-sticky { position:fixed; left:50%; bottom:20px; transform:translateX(-50%) translateY(180%); max-width:660px; width:calc(100% - 32px); background:#1d1d1f; color:#fff; border-radius:980px; padding:11px 12px 11px 24px; display:flex; align-items:center; gap:14px; box-shadow:0 14px 44px rgba(0,0,0,0.32); transition:transform .45s cubic-bezier(.2,.85,.25,1); z-index:600; }
+  .fp-sticky.show { transform:translateX(-50%) translateY(0); }
+  .fp-sticky > span.fps-t { font-size:15px; font-weight:500; line-height:1.35; flex:1; }
+  .fp-sticky .fps-btn { background:#2563eb; color:#fff; font-size:15px; font-weight:600; padding:10px 22px; border-radius:980px; white-space:nowrap; cursor:pointer; }
+  .fp-sticky .fps-btn:hover { background:#1d4ed8; }
+  .fp-sticky .fps-x { color:rgba(255,255,255,0.55); font-size:22px; line-height:1; cursor:pointer; padding:0 8px; }
+  @media (max-width:560px){ .fp-sticky { padding:10px 10px 10px 18px; gap:9px; } .fp-sticky > span.fps-t { font-size:12.5px; } .fp-sticky .fps-btn { padding:9px 15px; } }
   .sub-row { display: flex; gap: 10px; }
   .sub-input { flex: 1; min-width: 0; font-family: inherit; font-size: 17px; padding: 14px 20px; border: 1.5px solid rgba(255,255,255,0.22); border-radius: 980px; outline: none; background: rgba(255,255,255,0.1); color: #fff; transition: border-color .2s, background .2s; }
   .sub-input::placeholder { color: rgba(255,255,255,0.5); }
@@ -794,6 +801,26 @@ handleFeedback();
 loadArticleSlugs().then(function(){ VERTS.forEach(function(v){ loadVertical(v); loadEditorial(v); loadCompanies(v); }); });
 // open The Atomic Five if requested
 if(new URLSearchParams(location.search).get('brief')==='1') openBrief();
+
+// ── STICKY SUBSCRIBE BAR (appears after the reader has engaged with the feed) ──
+function fpSubscribe(){
+  var bands=document.querySelectorAll('.sub-band');
+  if(bands.length){ var b=bands[bands.length-1]; b.scrollIntoView({behavior:'smooth',block:'center'});
+    setTimeout(function(){ var i=b.querySelector('input[type=email]'); if(i) i.focus(); },650); }
+  fpDismiss();
+}
+function fpDismiss(){ var p=document.getElementById('fpSticky'); if(p) p.classList.remove('show'); try{ sessionStorage.setItem('amg-fps','1'); }catch(e){} }
+(function(){
+  var done=false; try{ done = sessionStorage.getItem('amg-fps')==='1' || localStorage.getItem('amg-subscribed')==='1'; }catch(e){}
+  if(done) return;
+  var onScroll=function(){ if(window.scrollY>900){ var p=document.getElementById('fpSticky'); if(p) p.classList.add('show'); window.removeEventListener('scroll',onScroll); } };
+  window.addEventListener('scroll', onScroll, {passive:true});
+})();
 </script>
+<div class="fp-sticky" id="fpSticky">
+  <span class="fps-t">Like what you're seeing? Get all five forces in one free brief, every Monday.</span>
+  <a class="fps-btn" onclick="fpSubscribe()">Subscribe</a>
+  <span class="fps-x" onclick="fpDismiss()" title="Dismiss">&times;</span>
+</div>
 </body>
 </html>

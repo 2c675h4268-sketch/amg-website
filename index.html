@@ -58,6 +58,13 @@
   .hero-feed-link { display:inline-flex; align-items:center; gap:8px; margin-top:24px; font-size:16px; font-weight:600; color:#fff; background:var(--ai-blue); border:none; padding:14px 28px; border-radius:980px; box-shadow:0 4px 14px rgba(37,99,235,0.35); transition:background .2s, transform .15s, box-shadow .2s; }
   .hero-feed-link:hover { background:#1d4ed8; transform:translateY(-1px); box-shadow:0 8px 22px rgba(37,99,235,0.30); }
   .hero-audience { font-size:16px; line-height:1.6; color:var(--gray); max-width:560px; margin:26px auto 0; padding-top:22px; border-top:1px solid var(--light-gray); }
+  .force-pills { display:flex; flex-wrap:wrap; justify-content:center; gap:10px; margin:30px auto 0; max-width:580px; }
+  .force-pills .fp { display:inline-flex; align-items:center; gap:8px; font-size:15px; font-weight:600; color:var(--black); padding:8px 16px; border-radius:980px; background:var(--light-gray); border:1px solid var(--mid-gray); }
+  .force-pills .fp i { width:9px; height:9px; border-radius:50%; background:var(--fc); }
+  .hero-cta-primary { display:inline-block; margin-top:36px; font-size:19px; font-weight:600; color:#fff; background:var(--ai-blue); padding:17px 42px; border-radius:980px; box-shadow:0 6px 20px rgba(37,99,235,0.35); transition:background .2s, transform .15s, box-shadow .2s; }
+  .hero-cta-primary:hover { background:#1d4ed8; transform:translateY(-1px); box-shadow:0 10px 28px rgba(37,99,235,0.32); }
+  .hero-cta-secondary { display:block; margin-top:18px; font-size:16px; font-weight:600; color:var(--gray); }
+  .hero-cta-secondary:hover { color:var(--ai-blue); }
 
   .section { max-width:1080px; margin:0 auto; padding:0 24px; }
   .section-head { text-align:center; margin-bottom:36px; }
@@ -204,23 +211,18 @@
 
 <!-- HERO -->
 <section class="hero">
-  <div class="eyebrow">Five forces · One brief · Every Monday</div>
+  <div class="eyebrow">Five forces · One view of the future</div>
   <h1>Know where humanity is headed.</h1>
-  <p class="hero-sub">A five-minute weekly briefing on the breakthroughs reshaping business, society, and human life: AI, robotics, space, longevity, and the infrastructure powering them.</p>
-  <div class="hero-signup" data-sub>
-    <div class="hs-row">
-      <input class="hs-input" type="email" placeholder="your@email.com" />
-      <input class="hp" type="text" name="company" tabindex="-1" autocomplete="off" aria-hidden="true" style="position:absolute;left:-9999px;top:-9999px;width:1px;height:1px;opacity:0" />
-      <button class="hs-btn" onclick="amgSubscribe(this)">Get The Atomic Five</button>
-    </div>
-    <div class="hs-meta">
-      <span>Delivered every Monday at 6&nbsp;AM in your timezone:</span>
-      <select class="tz-select" aria-label="Your timezone"></select>
-    </div>
-    <p class="hs-note">No hype, no daily inbox overload.</p>
+  <p class="hero-sub">The five forces reshaping the next decade — AI, robotics, space, longevity, and energy &amp; compute — tracked and connected in one place.</p>
+  <div class="force-pills">
+    <span class="fp" style="--fc:#2563eb"><i></i>AI</span>
+    <span class="fp" style="--fc:#7c3aed"><i></i>Robotics</span>
+    <span class="fp" style="--fc:#ea580c"><i></i>Space</span>
+    <span class="fp" style="--fc:#059669"><i></i>Longevity</span>
+    <span class="fp" style="--fc:#ca8a04"><i></i>Energy &amp; Compute</span>
   </div>
-  <a class="hero-feed-link" href="/feed">Explore the Intelligence Feed →</a>
-  <p class="hero-audience">Built for leaders, investors, builders, and curious people who want to understand the forces shaping the next decade without following hundreds of sources.</p>
+  <a class="hero-cta-primary" href="/feed">Enter the Intelligence Feed →</a>
+  <a class="hero-cta-secondary" href="#join">or get the free brief every Monday →</a>
 </section>
 
 <!-- INSIDE THIS WEEK -->
@@ -247,21 +249,6 @@
     <span>Five forces connected in one briefing</span>
     <span>Five-minute Monday read</span>
     <span>Free to subscribe</span>
-  </div>
-</section>
-
-<!-- WHAT MAKES ATOMIC DIFFERENT -->
-<section class="diff">
-  <div class="diff-inner">
-    <div class="section-head">
-      <div class="eyebrow">What makes Atomic different</div>
-      <h2>Many cover one frontier. We cover the convergence.</h2>
-    </div>
-    <div class="diff-grid">
-      <div class="diff-card"><div class="dc-num">01</div><h3>Connected thinking</h3><p>We cover the intersection of AI, robotics, energy, biology, and space, rather than treating them as separate stories.</p></div>
-      <div class="diff-card"><div class="dc-num">02</div><h3>Meaning over headlines</h3><p>Every development includes the implication, not merely the announcement.</p></div>
-      <div class="diff-card"><div class="dc-num">03</div><h3>One weekly briefing</h3><p>The important developments, distilled into a focused Monday read.</p></div>
-    </div>
   </div>
 </section>
 
