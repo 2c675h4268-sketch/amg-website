@@ -654,12 +654,12 @@ async function loadEditorial(v){
       '<div class="editorial-band-eyebrow">'+esc(v.name)+' &nbsp;·&nbsp; Weekly Analysis</div>'+
       '<div class="editorial-band-title">What this week means for where '+esc(v.key==='ai'?'AI':v.name.toLowerCase())+' is headed.</div>'+
     '</div><div class="editorial-band-week">Updated '+WEEK_LABEL+'</div></div>'+
-    '<div class="editorial-columns">'+
+    '<div class="editorial-columns" style="grid-template-columns:'+(watch.length?'1fr 1fr 1fr':'1fr 1fr')+';">'+
       '<div class="editorial-col"><div class="editorial-col-label">What Happened</div>'+(paras(whatP)||'<p></p>')+'</div>'+
       '<div class="editorial-col"><div class="editorial-col-label">Why It Matters</div>'+(paras(whyP)||'<p></p>')+'</div>'+
-      '<div class="editorial-col"><div class="editorial-col-label">Watch List: Next 90 Days</div><ul class="watch-list" style="color:#fff;">'+
+      (watch.length ? '<div class="editorial-col"><div class="editorial-col-label">Watch List: Next 90 Days</div><ul class="watch-list" style="color:#fff;">'+
         watch.map(function(w){ return '<li><span class="watch-bullet" style="background:#fff;"></span><span>'+w+'</span></li>'; }).join('')+
-      '</ul></div>'+
+      '</ul></div>' : '')+
     '</div>';
   band.style.display='block';
 }
