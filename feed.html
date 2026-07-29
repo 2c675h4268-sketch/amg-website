@@ -592,8 +592,14 @@ function tileHTML(v, s, id, span){
     '</div></a>';
 }
 async function loadVertical(v){
-  var rows = await sb(v.table, 'select=id,title,excerpt,source,category,url,image_url,published_at,created_at&order=source_tier.asc,published_at.desc.nullslast&limit=5');
-  if(!rows || !rows.length){ rows = await sb(v.table, 'select=id,title,excerpt,source,category,url,image_url,published_at,created_at&order=created_at.desc&limit=5'); }
+  // Only show this week's stories (last 9 days). Without a date window the tiles rank
+  // purely by source_tier, so old tier-1 stories outrank fresh news and the feed looks
+  // like it never updated. Fall back to widen the window / drop it only if a force is dry.
+  var COLS = 'select=id,title,excerpt,source,category,url,image_url,published_at,created_at';
+  var cutoff = new Date(Date.now() - 9*864e5).toISOString();
+  var rows = await sb(v.table, COLS+'&published_at=gte.'+cutoff+'&order=source_tier.asc,published_at.desc.nullslast&limit=5');
+  if(!rows || !rows.length){ rows = await sb(v.table, COLS+'&order=source_tier.asc,published_at.desc.nullslast&limit=5'); }
+  if(!rows || !rows.length){ rows = await sb(v.table, COLS+'&order=created_at.desc&limit=5'); }
   var grid = document.getElementById('tiles-'+v.key);
   if(!rows || !rows.length){ grid.innerHTML = '<div class="tiles-empty">Fresh stories land here every week. Subscribe to get them first.</div>'; return; }
   grid.innerHTML = rows.map(function(s,i){
