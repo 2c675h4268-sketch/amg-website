@@ -1,0 +1,3 @@
+# Root serves the Intelligence Feed directly (no landing-page hop).
+# 200 = rewrite (URL stays atomicmediagroup.ai/, content is the feed).
+/    /feed    200
