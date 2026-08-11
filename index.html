@@ -206,18 +206,17 @@
   .ed-sec:first-of-type { border-top: none; padding-top: 10px; }
   .ed-label { font-size: 11px; font-weight: 800; letter-spacing: 0.13em; text-transform: uppercase; color: rgba(255,255,255,0.9); margin-bottom: 12px; display: flex; align-items: center; gap: 8px; }
   .ed-label::before { content: ''; display: block; width: 18px; height: 2px; border-radius: 1px; background: currentColor; opacity: 0.85; }
-  .ed-sec p { margin: 0; font-size: 16px; line-height: 1.62; color: rgba(255,255,255,0.9); }
+  /* one consistent body font across every thesis section (16px / 1.62 / 0.9 white);
+     The Bet leads via its background tint and position, not a different size. */
+  .ed-sec p, .ed-players li, .watch-list li { font-size: 16px; line-height: 1.62; color: rgba(255,255,255,0.9); }
+  .ed-sec p { margin: 0; }
   .ed-sec p + p { margin-top: 11px; }
   .ed-bet { background: rgba(255,255,255,0.05); }
-  .ed-bet p { font-size: 17.5px; line-height: 1.6; color: #fff; }
-  .ed-risk .ed-label { color: rgba(255,255,255,0.72); }
-  .ed-risk p { font-size: 15px; color: rgba(255,255,255,0.78); }
   .ed-players ul { list-style: none; margin: 0; padding: 0; display: flex; flex-direction: column; gap: 12px; }
-  .ed-players li { font-size: 15px; line-height: 1.5; color: rgba(255,255,255,0.86); }
   .ed-players .co { font-weight: 800; color: #fff; }
   .ed-watch { padding: 20px 32px 26px; border-top: 1px solid rgba(255,255,255,0.1); }
   .watch-list { list-style: none; display: flex; flex-direction: column; gap: 10px; margin-top: 2px; }
-  .watch-list li { display: flex; align-items: flex-start; gap: 10px; font-size: 16px; line-height: 1.5; color: rgba(255,255,255,0.92); }
+  .watch-list li { display: flex; align-items: flex-start; gap: 10px; }
   .watch-list li b, .watch-list li strong { font-weight: 700; color: #fff; }
   .watch-bullet { width: 6px; height: 6px; border-radius: 50%; flex-shrink: 0; margin-top: 6px; background: currentColor; opacity: 0.9; }
 
@@ -293,11 +292,10 @@
     /* larger reading text on phones (40+ readability) */
     .tile-summary, .tile.span2 .tile-summary { font-size: 18px; line-height: 1.55; }
     .tile h3 { font-size: 21px; }
-    .editorial-col p, .ed-sec p { font-size: 18px; line-height: 1.62; }
-    .ed-bet p { font-size: 19px; }
-    .ed-players li { font-size: 16.5px; }
+    .editorial-col p { font-size: 18px; line-height: 1.62; }
+    /* keep every thesis section the same size on mobile too */
+    .ed-sec p, .ed-players li, .watch-list li { font-size: 18px; line-height: 1.62; }
     .editorial-col h4 { font-size: 19px; }
-    .watch-list li { font-size: 17px; line-height: 1.55; }
     .tile-meta, .tile-meta span { font-size: 15px; }
     .tile-tag { font-size: 12px; }
     .vertical-header p { font-size: 18px; }
