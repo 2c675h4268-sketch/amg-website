@@ -4,13 +4,13 @@
 <meta charset="UTF-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 <title>Intelligence Feed | Atomic Media Group</title>
-<meta name="description" content="Five forces shaping where humanity goes next: AI, Robotics, Space, Longevity, and Energy & Compute. One brief, every Monday morning." />
+<meta name="description" content="Five forces shaping where humanity goes next: AI, Robotics, Space, Longevity, and Energy & Compute. A two-minute investment thesis on the future, every weekday." />
 <link rel="canonical" href="https://atomicmediagroup.ai/" />
 <meta property="og:type" content="website" />
 <meta property="og:url" content="https://atomicmediagroup.ai/" />
 <meta property="og:site_name" content="Atomic Media Group" />
 <meta property="og:title" content="Atomic Media Group Intelligence Feed" />
-<meta property="og:description" content="Five forces shaping where humanity goes next. One brief, every Monday morning." />
+<meta property="og:description" content="Five forces shaping where humanity goes next. A two-minute investment thesis on the future, every weekday." />
 <meta property="og:image" content="https://atomicmediagroup.ai/og-preview.png" />
 <meta property="og:image:width" content="1200" />
 <meta property="og:image:height" content="630" />
@@ -27,14 +27,14 @@
       "name": "Atomic Media Group",
       "url": "https://atomicmediagroup.ai/",
       "logo": "https://atomicmediagroup.ai/og-preview.png",
-      "description": "A weekly intelligence brief on the five forces shaping where humanity goes next: AI, robotics, space, longevity, and energy & compute."
+      "description": "A daily intelligence brief on the five forces shaping where humanity goes next: AI, robotics, space, longevity, and energy & compute. One force's investment thesis each weekday."
     },
     {
       "@type": "WebSite",
       "@id": "https://atomicmediagroup.ai/#site",
       "url": "https://atomicmediagroup.ai/",
       "name": "Atomic Media Group",
-      "description": "Five forces shaping where humanity goes next: AI, Robotics, Space, Longevity, and Energy & Compute. One brief, every Monday morning.",
+      "description": "Five forces shaping where humanity goes next: AI, Robotics, Space, Longevity, and Energy & Compute. A two-minute investment thesis on the future, every weekday.",
       "publisher": { "@id": "https://atomicmediagroup.ai/#org" }
     }
   ]
@@ -369,8 +369,8 @@
 </header>
 
 <div class="intro-strip">
-  <div class="intro-strip-text"><b>The five forces shaping where humanity goes next</b> &mdash; AI, robotics, space, longevity, and energy. Read the feed free, or get it all in one brief every Monday.</div>
-  <div class="intro-strip-cta" onclick="fpSubscribe()">Get the free Monday brief &rarr;</div>
+  <div class="intro-strip-text"><b>The five forces shaping where humanity goes next</b> &mdash; AI, robotics, space, longevity, and energy. Read the feed free, or get a two-minute investment thesis in your inbox every weekday.</div>
+  <div class="intro-strip-cta" onclick="fpSubscribe()">Get the daily thesis &rarr;</div>
 </div>
 
 <main id="feed">
@@ -497,7 +497,7 @@
 <div class="wl-modal" id="wlModal">
   <div class="wl-inner">
     <h3>Almost there — confirm your email.</h3>
-    <p>We just sent a confirmation link to your inbox. Click it to activate your free subscription. Add <span class="wl-mail">brief@atomicmediagroup.ai</span> to your contacts so the brief never lands in spam. First issue arrives the next Monday at 6&nbsp;AM your time.</p>
+    <p>We just sent a confirmation link to your inbox. Click it to activate your free subscription. Add <span class="wl-mail">brief@atomicmediagroup.ai</span> to your contacts so the thesis never lands in spam. Your first thesis arrives the next weekday morning.</p>
     <button class="wl-close" onclick="closeWl()">Got it</button>
   </div>
 </div>
@@ -594,8 +594,8 @@ function buildShell(){
 function subscribeBand(){
   return '<div class="page"><div class="sub-band">'+
     '<div class="sub-band-text">'+
-      '<h2>Get the Atomic Five every Monday.</h2>'+
-      '<p>Five forces. One brief. Free, delivered Monday 6&nbsp;AM in your timezone.</p>'+
+      '<h2>Get the Atomic Five every weekday.</h2>'+
+      '<p>Five forces, one two-minute thesis a day. Free, delivered every weekday morning.</p>'+
     '</div>'+
     '<div class="sub-band-form">'+
       '<div class="sub-row"><input class="sub-input" type="email" placeholder="your@email.com" /><input class="hp" type="text" name="company" tabindex="-1" autocomplete="off" aria-hidden="true" style="position:absolute;left:-9999px;top:-9999px;width:1px;height:1px;opacity:0" /><button class="sub-btn" onclick="amgSubscribe(this,\'feed-band\')">Subscribe Free</button></div>'+
@@ -794,7 +794,7 @@ var AMG_TZ_OPTIONS = [['ET','US Eastern'],['CT','US Central'],['MT','US Mountain
 function populateTzSelects(){
   var detected = amgBucketFromIana(amgDetectIana());
   document.querySelectorAll('.nl-tz').forEach(function(sel){
-    sel.innerHTML = AMG_TZ_OPTIONS.map(function(o){ return '<option value="'+o[0]+'"'+(o[0]===detected?' selected':'')+'>Delivered Monday 6 AM · '+o[1]+'</option>'; }).join('');
+    sel.innerHTML = AMG_TZ_OPTIONS.map(function(o){ return '<option value="'+o[0]+'"'+(o[0]===detected?' selected':'')+'>Weekday mornings · '+o[1]+'</option>'; }).join('');
   });
 }
 function amgTzFields(card){
@@ -895,7 +895,7 @@ function fpDismiss(){ var p=document.getElementById('fpSticky'); if(p) p.classLi
 })();
 </script>
 <div class="fp-sticky" id="fpSticky">
-  <span class="fps-t">Like what you're seeing? Get all five forces in one free brief, every Monday.</span>
+  <span class="fps-t">Like what you're seeing? Get a two-minute investment thesis in your inbox every weekday.</span>
   <a class="fps-btn" onclick="fpSubscribe()">Subscribe</a>
   <span class="fps-x" onclick="fpDismiss()" title="Dismiss">&times;</span>
 </div>
