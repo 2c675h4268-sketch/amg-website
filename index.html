@@ -741,7 +741,7 @@ async function loadEditorial(v){
   var band = document.getElementById('ed-'+v.key);
   var head = esc(rows[0].headline || ('Where '+(v.key==='ai'?'AI':v.name.toLowerCase())+' is headed'));
   var bnHtml = '';
-  if(byNum){ var ci=byNum.indexOf(','); var num=ci>0?byNum.slice(0,ci):byNum; var rest=ci>0?byNum.slice(ci+1).trim():'';
+  if(byNum){ var ci=byNum.indexOf(', '); var num=ci>0?byNum.slice(0,ci):byNum; var rest=ci>0?byNum.slice(ci+2).trim():'';
     bnHtml = '<div class="ed-sec ed-stat">'+lbl('📊','By the Numbers')+'<p><span class="ed-statnum">'+esc(num)+'</span>'+(rest?' '+esc(rest):'')+'</p></div>'; }
   band.innerHTML =
     '<div class="editorial-band-header"><div>'+
