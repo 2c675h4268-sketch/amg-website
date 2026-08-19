@@ -760,6 +760,8 @@ async function loadEditorial(v){
     (watch.length ? '<div class="ed-watch">'+lbl('🔭','Watch: Next 90 Days')+'<ul class="watch-list" style="color:#fff;">'+
       watch.map(function(w){ return '<li><span class="watch-bullet" style="background:#fff;"></span><span>'+w+'</span></li>'; }).join('')+
     '</ul></div>' : '');
+  // Ban em/en dashes (house style): swap to comma+space, tidy double commas.
+  band.innerHTML = band.innerHTML.replace(/\s*[—–]\s*/g, ', ').replace(/, ,/g, ', ');
   band.style.display='block';
 }
 async function loadCompanies(v){
