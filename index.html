@@ -506,8 +506,8 @@
 <!-- WHITELIST MODAL -->
 <div class="wl-modal" id="wlModal">
   <div class="wl-inner">
-    <h3>Almost there — confirm your email.</h3>
-    <p>We just sent a confirmation link to your inbox. Click it to activate your free subscription. Add <span class="wl-mail">brief@atomicmediagroup.ai</span> to your contacts so the thesis never lands in spam. Your first thesis arrives the next weekday morning.</p>
+    <h3>Almost there. Confirm your email.</h3>
+    <p>We just sent a confirmation link to your inbox. Click it to activate your free subscription. Add <span class="wl-mail">brief@atomicmediagroup.ai</span> to your contacts so the thesis never lands in spam. <span id="wlWhen">Your first thesis arrives the next weekday morning.</span></p>
     <button class="wl-close" onclick="closeWl()">Got it</button>
   </div>
 </div>
@@ -604,11 +604,15 @@ function buildShell(){
 function subscribeBand(){
   return '<div class="page"><div class="sub-band">'+
     '<div class="sub-band-text">'+
-      '<h2>Get the Atomic Five every weekday.</h2>'+
-      '<p>Five forces, one two-minute thesis a day. Free, delivered every weekday morning.</p>'+
+      '<h2>Get the Atomic Five in your inbox.</h2>'+
+      '<p>Five forces, one two-minute investment thesis. Free. Pick your pace below.</p>'+
     '</div>'+
     '<div class="sub-band-form">'+
       '<div class="sub-row"><input class="sub-input" type="email" placeholder="your@email.com" /><input class="hp" type="text" name="company" tabindex="-1" autocomplete="off" aria-hidden="true" style="position:absolute;left:-9999px;top:-9999px;width:1px;height:1px;opacity:0" /><button class="sub-btn" onclick="amgSubscribe(this,\'feed-band\')">Subscribe Free</button></div>'+
+      '<select class="nl-cadence sub-tz" aria-label="How often you want it">'+
+        '<option value="daily" selected>One force each weekday</option>'+
+        '<option value="weekly">All five, one brief every Monday</option>'+
+      '</select>'+
       '<select class="nl-tz sub-tz" aria-label="Your timezone"></select>'+
     '</div>'+
   '</div></div>';
@@ -818,7 +822,7 @@ var AMG_TZ_OPTIONS = [['ET','US Eastern'],['CT','US Central'],['MT','US Mountain
 function populateTzSelects(){
   var detected = amgBucketFromIana(amgDetectIana());
   document.querySelectorAll('.nl-tz').forEach(function(sel){
-    sel.innerHTML = AMG_TZ_OPTIONS.map(function(o){ return '<option value="'+o[0]+'"'+(o[0]===detected?' selected':'')+'>Weekday mornings · '+o[1]+'</option>'; }).join('');
+    sel.innerHTML = AMG_TZ_OPTIONS.map(function(o){ return '<option value="'+o[0]+'"'+(o[0]===detected?' selected':'')+'>Mornings · '+o[1]+'</option>'; }).join('');
   });
 }
 function amgTzFields(card){
@@ -836,14 +840,15 @@ function amgSubscribe(btn, sourceTag){
   if(!email || !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)){ input.style.borderColor='#e74c3c'; setTimeout(function(){ input.style.borderColor=''; },1500); return; }
   var orig = btn.textContent; btn.textContent='…'; btn.disabled=true;
   var tzf = amgTzFields(card);
+  var cadEl = card.querySelector('.nl-cadence'); var cadence = (cadEl && cadEl.value==='weekly') ? 'weekly' : 'daily';
   var hp = card.querySelector('.hp'); var honeypot = hp?hp.value:'';
-  var body = new URLSearchParams({ email:email, region:tzf.region, tz:tzf.tz, company:honeypot, utm_source:'website', utm_medium:'feed', utm_campaign:sourceTag||'feed', page:location.pathname });
+  var body = new URLSearchParams({ email:email, region:tzf.region, tz:tzf.tz, cadence:cadence, company:honeypot, utm_source:'website', utm_medium:'feed', utm_campaign:sourceTag||'feed', page:location.pathname });
   fetch(AMG_SUBSCRIBE_WEBHOOK, { method:'POST', body:body })
     .then(function(res){ if(!res.ok) throw new Error('HTTP '+res.status); btn.textContent='✓ Check your email'; btn.style.background='#27ae60'; input.disabled=true;
-      try{ localStorage.setItem('amg-subscribed','1'); }catch(e){} setTimeout(openWl, 700); })
+      try{ localStorage.setItem('amg-subscribed','1'); }catch(e){} setTimeout(function(){ openWl(cadence); }, 700); })
     .catch(function(err){ console.error('[AMG] Subscribe failed:', err); btn.textContent='Try again'; btn.disabled=false; setTimeout(function(){ btn.textContent=orig; },2500); });
 }
-function openWl(){ document.getElementById('wlModal').classList.add('open'); document.body.style.overflow='hidden'; }
+function openWl(cadence){ var w=document.getElementById('wlWhen'); if(w) w.textContent = (cadence==='weekly') ? 'Your first brief lands the next Monday morning.' : 'Your first thesis arrives the next weekday morning.'; document.getElementById('wlModal').classList.add('open'); document.body.style.overflow='hidden'; }
 function closeWl(){ document.getElementById('wlModal').classList.remove('open'); document.body.style.overflow=''; }
 
 // ── SEARCH (client-side filter against rendered headlines) ──
