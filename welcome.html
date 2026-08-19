@@ -212,7 +212,7 @@
 <section class="hero">
   <div class="eyebrow">Five forces · One view of the future</div>
   <h1>Know where humanity is headed.</h1>
-  <p class="hero-sub">The five forces reshaping the next decade — AI, robotics, space, longevity, and energy &amp; compute — tracked and connected in one place.</p>
+  <p class="hero-sub">The five forces reshaping the next decade: AI, robotics, space, longevity, and energy &amp; compute, tracked and connected in one place.</p>
   <div class="force-pills">
     <span class="fp" style="--fc:#2563eb"><i></i>AI</span>
     <span class="fp" style="--fc:#7c3aed"><i></i>Robotics</span>
@@ -305,7 +305,7 @@
 <div class="cta-band" id="join">
   <div class="cta-inner" data-sub>
     <h2>Understand where the world is headed, two minutes a day.</h2>
-    <p>Five forces, one investment thesis a day. Free, every weekday morning.</p>
+    <p>Five forces, one two-minute investment thesis. Free. Pick your pace.</p>
     <div class="cta-form">
       <div class="cta-row">
         <input class="cta-input" type="email" placeholder="your@email.com" />
@@ -313,7 +313,10 @@
         <button class="cta-btn" onclick="amgSubscribe(this)">Get The Atomic Five</button>
       </div>
       <div class="cta-meta">
-        <span>Delivered every weekday morning:</span>
+        <select class="cadence-select" aria-label="How often you want it">
+          <option value="daily" selected>One force each weekday</option>
+          <option value="weekly">All five, one brief every Monday</option>
+        </select>
         <select class="tz-select" aria-label="Your timezone"></select>
       </div>
     </div>
@@ -351,8 +354,8 @@
 <!-- WHITELIST MODAL -->
 <div class="wl-modal" id="wlModal">
   <div class="wl-inner">
-    <h3>Almost there — confirm your email.</h3>
-    <p>We just sent a confirmation link to your inbox. Click it to activate your free subscription. Add <span class="wl-mail">brief@atomicmediagroup.ai</span> to your contacts so the thesis never lands in spam. Your first thesis arrives the next weekday morning.</p>
+    <h3>Almost there. Confirm your email.</h3>
+    <p>We just sent a confirmation link to your inbox. Click it to activate your free subscription. Add <span class="wl-mail">brief@atomicmediagroup.ai</span> to your contacts so the thesis never lands in spam. <span id="wlWhen">Your first thesis arrives the next weekday morning.</span></p>
     <button class="wl-close" onclick="closeWl()">Got it</button>
   </div>
 </div>
@@ -396,14 +399,15 @@
     if(!email || !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)){ input.style.borderColor='#ef4444'; setTimeout(function(){ input.style.borderColor=''; },1500); return; }
     var orig=btn.textContent; btn.textContent='…'; btn.disabled=true;
     var tzf=amgTzFields(host);
+    var cadEl=host.querySelector('.cadence-select'); var cadence=(cadEl&&cadEl.value==='weekly')?'weekly':'daily';
     var hp=host.querySelector('.hp'); var honeypot=hp?hp.value:'';
-    var body=new URLSearchParams({ email:email, region:tzf.region, tz:tzf.tz, company:honeypot, utm_source:'website', utm_medium:'landing', utm_campaign:'home', page:location.pathname });
+    var body=new URLSearchParams({ email:email, region:tzf.region, tz:tzf.tz, cadence:cadence, company:honeypot, utm_source:'website', utm_medium:'landing', utm_campaign:'home', page:location.pathname });
     fetch(AMG_SUBSCRIBE_WEBHOOK,{ method:'POST', body:body })
       .then(function(res){ if(!res.ok) throw new Error('HTTP '+res.status); btn.textContent='✓ Check your email'; btn.style.background='#059669'; input.disabled=true;
-        try{ localStorage.setItem('amg-subscribed','1'); }catch(e){} dismissPrompt(); setTimeout(openWl,700); })
+        try{ localStorage.setItem('amg-subscribed','1'); }catch(e){} dismissPrompt(); setTimeout(function(){ openWl(cadence); },700); })
       .catch(function(err){ console.error('[AMG] Subscribe failed:',err); btn.textContent='Try again'; btn.disabled=false; setTimeout(function(){ btn.textContent=orig; },2500); });
   }
-  function openWl(){ document.getElementById('wlModal').classList.add('open'); document.body.style.overflow='hidden'; }
+  function openWl(cadence){ var w=document.getElementById('wlWhen'); if(w) w.textContent=(cadence==='weekly')?'Your first brief lands the next Monday morning.':'Your first thesis arrives the next weekday morning.'; document.getElementById('wlModal').classList.add('open'); document.body.style.overflow='hidden'; }
   function closeWl(){ document.getElementById('wlModal').classList.remove('open'); document.body.style.overflow=''; }
 
   // Restrained sticky prompt after the reader has scrolled past the fold.
