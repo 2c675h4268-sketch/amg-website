@@ -739,6 +739,11 @@ async function loadEditorial(v){
   var byNum = (ex.by_numbers||'').trim();
   var money = (ex.follow_money||[]).filter(function(m){ return m && m.label && m.detail; });
   var bearP = amgParas((ex.bear_case||'').trim());
+  var secondP = amgParas((ex.second_order||'').trim());
+  var crossP  = amgParas((ex.cross_force||'').trim());
+  var nearT   = (ex.near_term||'').trim();
+  var longT   = (ex.long_term||'').trim();
+  var privP   = amgParas((ex.private_watch||'').trim());
   if(!betP.length && !setupP.length && !players.length && !watch.length) return;
   function paras(arr){ return arr.map(function(p,i){ return '<p'+(i?' style="margin-top:11px;"':'')+'>'+esc(p)+'</p>'; }).join(''); }
   function lbl(e,t){ return '<div class="ed-label"><span class="ed-ic">'+e+'</span>'+t+'</div>'; }
@@ -757,10 +762,16 @@ async function loadEditorial(v){
     (setupP.length ? '<div class="ed-sec">'+lbl('📰','The Setup This Week')+paras(setupP)+'</div>' : '')+
     (players.length ? '<div class="ed-sec ed-players">'+lbl('🏢','The Players Driving It')+'<ul>'+
       players.map(function(p){ return '<li>'+(p.name?'<span class="co">'+esc(p.name)+'</span> ':'')+esc(p.note)+'</li>'; }).join('')+'</ul></div>' : '')+
+    (secondP.length ? '<div class="ed-sec">'+lbl('⛏️','Who Sells the Shovels')+paras(secondP)+'</div>' : '')+
     (money.length ? '<div class="ed-sec ed-players">'+lbl('💰','Follow the Money')+'<ul>'+
       money.map(function(m){ return '<li><span class="co">'+esc(m.label)+'</span> '+esc(m.detail)+'</li>'; }).join('')+'</ul></div>' : '')+
+    (crossP.length ? '<div class="ed-sec">'+lbl('🔗','The Ripple')+paras(crossP)+'</div>' : '')+
+    ((nearT||longT) ? '<div class="ed-sec">'+lbl('⏳','Near-Term vs Long-Term')+
+      (nearT ? '<p><span class="co">Next 12 months:</span> '+esc(nearT)+'</p>' : '')+
+      (longT ? '<p style="margin-top:11px;"><span class="co">Next 5 to 10 years:</span> '+esc(longT)+'</p>' : '')+'</div>' : '')+
     (riskP.length ? '<div class="ed-sec ed-risk">'+lbl('⚠️','What Breaks It')+paras(riskP)+'</div>' : '')+
     (bearP.length ? '<div class="ed-sec ed-risk">'+lbl('🐻','The Bear Case')+paras(bearP)+'</div>' : '')+
+    (privP.length ? '<div class="ed-sec">'+lbl('🦄','Pre-IPO Watch')+paras(privP)+'</div>' : '')+
     (watch.length ? '<div class="ed-watch">'+lbl('🔭','Watch: Next 90 Days')+'<ul class="watch-list" style="color:#fff;">'+
       watch.map(function(w){ return '<li><span class="watch-bullet" style="background:#fff;"></span><span>'+w+'</span></li>'; }).join('')+
     '</ul></div>' : '');
