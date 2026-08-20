@@ -44,6 +44,7 @@
 <footer id="foot">The Atomic Five · private</footer>
 <script>
 const STATS="https://qybwjkyifdroktiriaqt.supabase.co/functions/v1/admin-stats";
+const CADENCE="https://qybwjkyifdroktiriaqt.supabase.co/functions/v1/admin-cadence";
 // Cross-read the feeder click count from The Morning Current (its public aggregate RPC).
 const TMC_FEEDER="https://wrnhbuaxuaibxrpibujh.supabase.co/rest/v1/rpc/get_feeder_stats";
 // Atomic-only engagement: all brands share one Brevo account, so admin-stats' report is
@@ -59,6 +60,8 @@ function gate(msg){return `<div class="gate"><h1>Growth dashboard</h1><p>${esc(m
 function barRows(items,keyName){ if(!items||!items.length) return `<div class="empty">Nothing yet.</div>`;
   const max=Math.max(1,...items.map(i=>i.n));
   return `<div class="rows">`+items.map(i=>`<div class="row"><div class="nm">${esc(i[keyName])}</div><div class="bar"><i style="width:${Math.round(i.n/max*100)}%"></i></div><div class="n">${i.n}</div></div>`).join("")+`</div>`;}
+function memberList(ms){ if(!ms||!ms.length) return `<div class="empty">None yet.</div>`;
+  return `<div class="rows">`+ms.map(m=>`<div class="row"><div class="nm">${esc(m.email)}</div><div class="n" style="width:auto;min-width:80px;color:#7a7e8a;font-weight:600">${esc(m.at)}</div></div>`).join("")+`</div>`;}
 function growthChart(daily){
   const W=900,H=240,PADL=34,PADR=14,PADT=14,PADB=26,iw=W-PADL-PADR,ih=H-PADT-PADB,n=daily.length;
   if(!n) return `<div class="empty">No data yet.</div>`;
@@ -92,6 +95,16 @@ function dashboard(d){
     <div class="card"><div class="k">Click rate</div><div class="v accent">${eng?eng.d30.click+"%":"&mdash;"}</div><div class="m">${eng?eng.d7.click+"% last 7d":"no data"}</div></div>
     <div class="card"><div class="k">Feedback</div><div class="v gold">${fb.yes+fb.no?fbPct+"%":"&mdash;"}</div><div class="m">${fb.yes} &#128077; · ${fb.no} &#128078;</div></div>
   </div>
+  ${d.cadence?`<div class="panel"><h2>Cadence &middot; daily drip vs weekly brief</h2>
+    <div style="display:grid;grid-template-columns:1fr 1fr;gap:14px;margin-bottom:18px">
+      <div class="card"><div class="k">Daily drip</div><div class="v accent">${d.cadence.daily.count}</div><div class="m">one force each weekday</div></div>
+      <div class="card"><div class="k">Weekly brief</div><div class="v green">${d.cadence.weekly.count}</div><div class="m">all five &middot; every Monday</div></div>
+    </div>
+    <div class="grid2">
+      <div><div style="font-size:12px;font-weight:700;letter-spacing:.5px;text-transform:uppercase;color:#7a7e8a;margin-bottom:10px">On the daily (${d.cadence.daily.count})</div>${memberList(d.cadence.daily.members)}</div>
+      <div><div style="font-size:12px;font-weight:700;letter-spacing:.5px;text-transform:uppercase;color:#7a7e8a;margin-bottom:10px">On the weekly (${d.cadence.weekly.count})</div>${memberList(d.cadence.weekly.members)}</div>
+    </div>
+    <div style="margin-top:12px;color:#7a7e8a;font-size:12px">Weekly readers are excluded from the daily send; the date is when they joined that list. Live from Brevo.</div></div>`:``}
   <div class="panel"><h2>Email engagement · opens &amp; clicks</h2>
     ${eng?`<div style="display:grid;grid-template-columns:repeat(4,1fr);gap:12px">
       <div class="card"><div class="k">Open rate</div><div class="v accent">${eng.d30.open}%</div><div class="m">${eng.d7.open}% last 7d &middot; 30-day avg</div></div>
@@ -140,6 +153,7 @@ function dashboard(d){
   if(!d||!d.ok){ app.innerHTML=gate("That key wasn't recognized. Try again."); return; }
   try{ const fr=await fetch(TMC_FEEDER,{method:"POST",headers:{apikey:TMC_ANON,Authorization:"Bearer "+TMC_ANON,"content-type":"application/json"},body:"{}"}); d.feeder=await fr.json(); }catch(e){}
   try{ const er=await fetch(ATOMIC_ENG+"?key="+encodeURIComponent(key)+"&scope=atomic",{headers:{accept:"application/json"}}); const ej=await er.json(); if(ej&&ej.ok) d.engagement={d30:ej.d30,d7:ej.d7}; }catch(e){}
+  try{ const cr=await fetch(CADENCE+"?key="+encodeURIComponent(key),{headers:{accept:"application/json"}}); const cj=await cr.json(); if(cj&&cj.ok) d.cadence=cj; }catch(e){}
   app.innerHTML=dashboard(d);
 })();
 </script></body></html>
