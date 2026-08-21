@@ -1,0 +1,56 @@
+<!doctype html><html lang="en"><head>
+<meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Switch your cadence · The Atomic Five</title><meta name="robots" content="noindex"><link rel="icon" href="data:,">
+<style>
+  *{box-sizing:border-box;margin:0;padding:0}
+  body{background:#f4f4f5;font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Helvetica,Arial,sans-serif;color:#1d1d1f;display:flex;min-height:100vh;align-items:center;justify-content:center;padding:24px}
+  .card{background:#fff;border-radius:16px;box-shadow:0 12px 40px rgba(15,23,42,.1);max-width:480px;width:100%;overflow:hidden;text-align:center}
+  .bar{height:6px}
+  .in{padding:36px 36px 40px}
+  .eyebrow{font-size:12px;font-weight:800;letter-spacing:.16em;text-transform:uppercase;margin-bottom:10px}
+  h1{font-size:24px;font-weight:800;letter-spacing:-.02em;margin-bottom:12px}
+  p{font-size:16px;line-height:1.55;color:#43434a;margin-bottom:24px}
+  button{display:inline-block;color:#fff;font-size:16px;font-weight:700;padding:14px 34px;border:none;border-radius:980px;cursor:pointer;font-family:inherit;box-shadow:0 4px 12px rgba(15,23,42,.16)}
+  button:disabled{opacity:.6;cursor:default}
+  .fine{margin:18px 0 0;font-size:13px;color:#9aa3b2}
+  a.back{display:inline-block;color:#2563eb;font-weight:600;text-decoration:none;font-size:15px}
+</style></head><body>
+<div class="card" id="card"><div class="bar" id="bar"></div><div class="in" id="in"></div></div>
+<script>
+var SET_CADENCE="https://qybwjkyifdroktiriaqt.supabase.co/functions/v1/set-cadence";
+var q=new URLSearchParams(location.search);
+var to=q.get("to"), email=(q.get("e")||"").trim().toLowerCase();
+var valid=email && /^[^@\s]+@[^@\s]+\.[^@\s]+$/.test(email) && (to==="weekly"||to==="daily");
+var weekly=to==="weekly", accent=weekly?"#059669":"#2563eb";
+var bar=document.getElementById("bar"), inEl=document.getElementById("in");
+function esc(s){return String(s==null?"":s).replace(/&/g,"&amp;").replace(/</g,"&lt;").replace(/>/g,"&gt;");}
+function render(){
+  if(!valid){ bar.style.background="#ea580c";
+    inEl.innerHTML='<div class="eyebrow" style="color:#ea580c">The Atomic Five</div><h1>This link looks off</h1><p>We couldn’t read your preference from that link. Head back to the site and try again, or just reply to any issue.</p><a class="back" href="https://atomicmediagroup.ai/">Back to The Atomic Five &rarr;</a>';
+    return; }
+  bar.style.background=accent;
+  var label=weekly?"the weekly brief":"the daily";
+  var desc=weekly
+    ?"You’ll get all five forces in one brief every Monday morning, instead of one force a day."
+    :"You’ll get one force each weekday morning, a two-minute read: AI Monday, Robotics Tuesday, Space Wednesday, Longevity Thursday, Energy Friday.";
+  inEl.innerHTML='<div class="eyebrow" style="color:'+accent+'">The Atomic Five</div>'+
+    '<h1>Switch to '+label+'?</h1><p>'+desc+'</p>'+
+    '<button id="go" style="background:'+accent+'">Confirm switch to '+(weekly?"weekly":"daily")+' &rarr;</button>'+
+    '<p class="fine">Not you, or changed your mind? Close this page, nothing changes unless you confirm.</p>';
+  document.getElementById("go").addEventListener("click",submit);
+}
+function submit(){
+  var b=document.getElementById("go"); b.disabled=true; b.textContent="Switching…";
+  fetch(SET_CADENCE,{method:"POST",headers:{"content-type":"application/json"},body:JSON.stringify({to:to,e:email})})
+    .then(function(r){return r.json();}).then(function(j){
+      if(!j||!j.ok) throw new Error("failed");
+      bar.style.background=accent;
+      if(weekly) inEl.innerHTML='<div class="eyebrow" style="color:#059669">The Atomic Five</div><h1>You’re on the weekly brief.</h1><p>From now on you’ll get all five forces in one brief every Monday morning, instead of one a day. Changed your mind? There’s a switch-back link in every issue.</p><a class="back" href="https://atomicmediagroup.ai/">Back to The Atomic Five &rarr;</a>';
+      else inEl.innerHTML='<div class="eyebrow" style="color:#2563eb">The Atomic Five</div><h1>You’re on the daily.</h1><p>From now on you’ll get one force each weekday morning, a two-minute read: AI Monday, Robotics Tuesday, Space Wednesday, Longevity Thursday, Energy Friday. There’s a switch-back link in every issue.</p><a class="back" href="https://atomicmediagroup.ai/">Back to The Atomic Five &rarr;</a>';
+    }).catch(function(){
+      b.disabled=false; b.textContent="Try again";
+      inEl.insertAdjacentHTML("beforeend",'<p class="fine" style="color:#c0392b">Something went wrong. Please try again, or reply to any issue and we’ll switch you over.</p>');
+    });
+}
+render();
+</script></body></html>
