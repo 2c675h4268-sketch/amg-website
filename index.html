@@ -624,7 +624,8 @@ async function loadEditorial(v){
       (nearT ? '<p><span class="co">Next 12 months:</span> '+esc(nearT)+'</p>' : '')+
       (longT ? '<p style="margin-top:10px;"><span class="co">Next 5 to 10 years:</span> '+esc(longT)+'</p>' : '')+'</div>') : '';
   var watchHtml = watch.length ? ('<div class="ed-watch">'+lbl('Watch · Next 90 Days')+'<ul class="watch-list">'+
-      watch.map(function(w){ return '<li><span class="watch-bullet"></span><span>'+w+'</span></li>'; }).join('')+'</ul></div>') : '';
+      watch.map(function(w){ return '<li><span class="watch-bullet"></span><span>'+w+'</span></li>'; }).join('')+'</ul>'+
+      (privP.length ? paras(privP) : '')+'</div>') : '';
   band.innerHTML =
     '<div class="editorial-band-header"><div>'+
       '<div class="editorial-band-eyebrow">'+esc(v.name)+' · The Thesis</div>'+
@@ -633,16 +634,8 @@ async function loadEditorial(v){
     (oneLine ? '<p class="ed-oneline"><b>The bet, in one line:</b> '+esc(oneLine)+'</p>' : '')+
     dataHtml+
     (why ? '<div class="ed-why"><span class="t">Why it matters</span><p>'+esc(why)+'</p></div>' : '')+
-    sec('The Bet', betP, 'ed-bet')+
-    sec('The Setup This Week', setupP)+
-    playersHtml+
-    sec('Who Sells the Shovels', secondP)+
-    moneyHtml+
-    sec('The Ripple', crossP)+
-    horizonHtml+
-    sec('What Breaks It', riskP, 'ed-risk')+
-    sec('The Bear Case', bearP, 'ed-risk')+
-    sec('Pre-IPO Watch', privP)+
+    sec('Who Sells the Shovels', secondP.concat(crossP))+
+    sec('The Risk', riskP.concat(bearP), 'ed-risk')+
     watchHtml;
   band.innerHTML = band.innerHTML.replace(/\s*[—–]\s*/g, ', ').replace(/, ,/g, ', ');
   band.style.display='block';
