@@ -68,7 +68,6 @@
   .tab { display:flex; align-items:center; gap:6px; padding:0 14px; font-family:var(--mono); font-size:11px; font-weight:500; letter-spacing:.1em; text-transform:uppercase; color:var(--mut); cursor:pointer; border-bottom:2px solid transparent; white-space:nowrap; text-decoration:none; transition:color .15s, border-color .15s; }
   .tab:hover { color:var(--ink); }
   .tab.active { color:var(--ox); border-bottom-color:var(--ox); }
-  .tab-rn { font-size:9px; color:var(--mut); opacity:.75; letter-spacing:.08em; }
   .nav-right { flex:1 1 0; display:flex; align-items:center; justify-content:flex-end; }
   .nav-search { background:var(--soft); border-radius:3px; padding:7px 12px; font-family:var(--mono); font-size:12px; color:var(--ink); border:1px solid var(--line); outline:none; width:150px; transition:width .2s; }
   .nav-search:focus { width:190px; border-color:var(--mut); }
@@ -80,8 +79,6 @@
   /* HERO */
   .site-hero { border-bottom:1px solid var(--line); }
   .site-hero-inner { max-width:1040px; margin:0 auto; padding:52px 24px 40px; }
-  .sh-index { font-family:var(--mono); font-size:13px; font-weight:600; letter-spacing:.34em; color:var(--mut); margin-bottom:14px; }
-  .sh-index b { color:var(--ox); font-weight:600; }
   .sh-eyebrow { font-family:var(--mono); font-size:12px; font-weight:500; letter-spacing:.2em; text-transform:uppercase; color:var(--mut); margin-bottom:18px; }
   .sh-title { font-family:var(--serif); font-size:clamp(36px,6.4vw,64px); font-weight:600; letter-spacing:-.02em; line-height:1.02; color:var(--ink); margin:0 0 18px; max-width:17ch; text-wrap:balance; }
   .sh-title em { font-style:italic; color:var(--ox); }
@@ -97,7 +94,6 @@
   .vertical-header { padding:52px 0 32px; border-bottom:1px solid var(--line); }
   .vh-top { display:flex; align-items:baseline; justify-content:space-between; gap:16px; margin-bottom:14px; }
   .vertical-label { display:flex; align-items:baseline; gap:12px; flex-wrap:wrap; }
-  .vl-rn { font-family:var(--mono); font-size:12px; font-weight:600; letter-spacing:.18em; text-transform:uppercase; color:var(--ox); }
   .vl-name { font-family:var(--serif); font-size:clamp(28px,4.2vw,44px); font-weight:600; letter-spacing:-.02em; line-height:1.0; color:var(--ink); }
   .vertical-header h1 { font-family:var(--serif); font-size:clamp(19px,2.3vw,25px); font-weight:500; letter-spacing:-.01em; line-height:1.28; margin:12px 0 12px; color:var(--ink2); text-wrap:balance; }
   .vertical-header h1 br { display:none; }
@@ -294,7 +290,6 @@
 
 <div class="site-hero">
   <div class="site-hero-inner">
-    <div class="sh-index">I&nbsp;&middot;&nbsp;II&nbsp;&middot;&nbsp;III&nbsp;&middot;&nbsp;IV&nbsp;&middot;&nbsp;<b>V</b></div>
     <div class="sh-eyebrow">Five forces · one investment thesis</div>
     <h1 class="sh-title">Know where humanity is <em>headed</em>.</h1>
     <p class="sh-sub">A two-minute investment thesis on the forces shaping the future, every weekday. Sourced, specific, built to help you decide where to put money, not to sell you the hype.</p>
@@ -436,7 +431,7 @@ const ARROW = '<svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke
 // ── BUILD NAV + TABS + SECTION SHELLS ──
 function buildShell(){
   document.getElementById('tabBar').innerHTML =
-    VERTS.map(v => '<a class="tab" id="tab-'+v.key+'" onclick="goVert(\''+v.key+'\')">'+(v.key==='ai'?'AI':v.key==='grid'?'Energy':v.name)+'<span class="tab-rn">'+v.rn+'</span></a>').join('') +
+    VERTS.map(v => '<a class="tab" id="tab-'+v.key+'" onclick="goVert(\''+v.key+'\')">'+(v.key==='ai'?'AI':v.key==='grid'?'Energy':v.name)+'</a>').join('') +
     '<a class="tab" onclick="openBrief()">The Weekly Brief</a>';
 
   var feedHtml = '';
@@ -446,7 +441,7 @@ function buildShell(){
     '<section class="page" id="'+v.key+'">'+
       '<div class="vertical-header">'+
         '<div class="vh-top">'+
-          '<div class="vertical-label"><span class="vl-rn">'+v.rn+'</span><span class="vl-name">'+v.name+'</span></div>'+
+          '<div class="vertical-label"><span class="vl-name">'+v.name+'</span></div>'+
           '<div class="meta-week">Updated '+WEEK_LABEL+'</div>'+
         '</div>'+
         '<h1>'+v.h1+'</h1><p>'+v.desc+'</p>'+
