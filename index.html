@@ -4,6 +4,8 @@
 <meta charset="UTF-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 <title>Intelligence Feed | Atomic Media Group</title>
+<link rel="icon" href="data:image/svg+xml,%3Csvg%20xmlns='http://www.w3.org/2000/svg'%20viewBox='0%200%2032%2032'%3E%3Crect%20width='32'%20height='32'%20rx='5'%20fill='%2319160f'/%3E%3Ctext%20x='16'%20y='24'%20font-family='Georgia,serif'%20font-size='23'%20font-weight='600'%20fill='%23f2f0ea'%20text-anchor='middle'%3EV%3C/text%3E%3C/svg%3E" />
+<link rel="apple-touch-icon" href="data:image/svg+xml,%3Csvg%20xmlns='http://www.w3.org/2000/svg'%20viewBox='0%200%2032%2032'%3E%3Crect%20width='32'%20height='32'%20fill='%2319160f'/%3E%3Ctext%20x='16'%20y='24'%20font-family='Georgia,serif'%20font-size='23'%20font-weight='600'%20fill='%23f2f0ea'%20text-anchor='middle'%3EV%3C/text%3E%3C/svg%3E" />
 <meta name="description" content="Five forces shaping where humanity goes next: AI, Robotics, Space, Longevity, and Energy & Compute. A two-minute investment thesis on the future, every weekday." />
 <link rel="canonical" href="https://atomicmediagroup.ai/" />
 <meta property="og:type" content="website" />
@@ -60,6 +62,7 @@
   .topbar { position:sticky; top:0; z-index:100; background:var(--paper); border-bottom:1.5px solid var(--rule); }
   .topbar-inner { max-width:1040px; margin:0 auto; display:flex; align-items:stretch; gap:18px; padding:0 24px; min-height:56px; }
   .nav-logo { flex:1 1 0; min-width:max-content; display:flex; align-items:center; font-size:19px; font-weight:700; letter-spacing:-.01em; color:var(--ink); text-decoration:none; white-space:nowrap; }
+  .nav-mark { font-family:var(--serif); font-size:24px; font-weight:600; line-height:1; color:var(--ox); margin-right:10px; }
   .tabs { flex:0 1 auto; min-width:0; display:flex; align-items:stretch; justify-content:center; overflow-x:auto; scrollbar-width:none; }
   .tabs::-webkit-scrollbar { display:none; }
   .tab { display:flex; align-items:center; gap:6px; padding:0 14px; font-family:var(--mono); font-size:11px; font-weight:500; letter-spacing:.1em; text-transform:uppercase; color:var(--mut); cursor:pointer; border-bottom:2px solid transparent; white-space:nowrap; text-decoration:none; transition:color .15s, border-color .15s; }
@@ -77,6 +80,8 @@
   /* HERO */
   .site-hero { border-bottom:1px solid var(--line); }
   .site-hero-inner { max-width:1040px; margin:0 auto; padding:52px 24px 40px; }
+  .sh-index { font-family:var(--mono); font-size:13px; font-weight:600; letter-spacing:.34em; color:var(--mut); margin-bottom:14px; }
+  .sh-index b { color:var(--ox); font-weight:600; }
   .sh-eyebrow { font-family:var(--mono); font-size:12px; font-weight:500; letter-spacing:.2em; text-transform:uppercase; color:var(--mut); margin-bottom:18px; }
   .sh-title { font-family:var(--serif); font-size:clamp(36px,6.4vw,64px); font-weight:600; letter-spacing:-.02em; line-height:1.02; color:var(--ink); margin:0 0 18px; max-width:17ch; text-wrap:balance; }
   .sh-title em { font-style:italic; color:var(--ox); }
@@ -281,7 +286,7 @@
 
 <header class="topbar">
   <div class="topbar-inner">
-    <a class="nav-logo" href="/">The Atomic Five</a>
+    <a class="nav-logo" href="/"><span class="nav-mark">V</span>The Atomic Five</a>
     <div class="tabs" id="tabBar"></div>
     <div class="nav-right"><input class="nav-search" id="navSearch" type="text" placeholder="Search stories" /></div>
   </div>
@@ -289,6 +294,7 @@
 
 <div class="site-hero">
   <div class="site-hero-inner">
+    <div class="sh-index">I&nbsp;&middot;&nbsp;II&nbsp;&middot;&nbsp;III&nbsp;&middot;&nbsp;IV&nbsp;&middot;&nbsp;<b>V</b></div>
     <div class="sh-eyebrow">Five forces · one investment thesis</div>
     <h1 class="sh-title">Know where humanity is <em>headed</em>.</h1>
     <p class="sh-sub">A two-minute investment thesis on the forces shaping the future, every weekday. Sourced, specific, built to help you decide where to put money, not to sell you the hype.</p>
