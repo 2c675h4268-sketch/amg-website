@@ -65,6 +65,7 @@
   .tab { display:flex; align-items:center; gap:6px; padding:0 14px; font-family:var(--mono); font-size:11px; font-weight:500; letter-spacing:.1em; text-transform:uppercase; color:var(--mut); cursor:pointer; border-bottom:2px solid transparent; white-space:nowrap; text-decoration:none; transition:color .15s, border-color .15s; }
   .tab:hover { color:var(--ink); }
   .tab.active { color:var(--ox); border-bottom-color:var(--ox); }
+  .tab-rn { font-size:9px; color:var(--mut); opacity:.75; letter-spacing:.08em; }
   .nav-right { flex:1 1 0; display:flex; align-items:center; justify-content:flex-end; }
   .nav-search { background:var(--soft); border-radius:3px; padding:7px 12px; font-family:var(--mono); font-size:12px; color:var(--ink); border:1px solid var(--line); outline:none; width:150px; transition:width .2s; }
   .nav-search:focus { width:190px; border-color:var(--mut); }
@@ -90,12 +91,12 @@
   /* VERTICAL HEADER */
   .vertical-header { padding:52px 0 32px; border-bottom:1px solid var(--line); }
   .vh-top { display:flex; align-items:baseline; justify-content:space-between; gap:16px; margin-bottom:14px; }
-  .vertical-label { display:inline-flex; align-items:center; gap:10px; font-family:var(--mono); font-size:12px; font-weight:600; letter-spacing:.16em; text-transform:uppercase; color:var(--ox); }
-  .label-dot { font-family:var(--mono); font-weight:600; color:var(--ox); }
-  .label-dot::before { content:none; }
-  .vertical-header h1 { font-family:var(--serif); font-size:clamp(30px,4.4vw,46px); font-weight:600; letter-spacing:-.02em; line-height:1.05; margin-bottom:14px; text-wrap:balance; }
+  .vertical-label { display:flex; align-items:baseline; gap:12px; flex-wrap:wrap; }
+  .vl-rn { font-family:var(--mono); font-size:12px; font-weight:600; letter-spacing:.18em; text-transform:uppercase; color:var(--ox); }
+  .vl-name { font-family:var(--serif); font-size:clamp(28px,4.2vw,44px); font-weight:600; letter-spacing:-.02em; line-height:1.0; color:var(--ink); }
+  .vertical-header h1 { font-family:var(--serif); font-size:clamp(19px,2.3vw,25px); font-weight:500; letter-spacing:-.01em; line-height:1.28; margin:12px 0 12px; color:var(--ink2); text-wrap:balance; }
   .vertical-header h1 br { display:none; }
-  .vertical-header p { font-size:19px; line-height:1.5; color:var(--ink2); max-width:56ch; }
+  .vertical-header p { font-size:17px; line-height:1.5; color:var(--mut); max-width:58ch; }
   .meta-week { font-family:var(--mono); font-size:11px; font-weight:500; letter-spacing:.12em; text-transform:uppercase; color:var(--mut); white-space:nowrap; }
 
   /* TILES */
@@ -429,7 +430,7 @@ const ARROW = '<svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke
 // ── BUILD NAV + TABS + SECTION SHELLS ──
 function buildShell(){
   document.getElementById('tabBar').innerHTML =
-    VERTS.map(v => '<a class="tab" id="tab-'+v.key+'" onclick="goVert(\''+v.key+'\')">'+v.rn+' · '+(v.key==='ai'?'AI':v.key==='grid'?'Energy':v.name)+'</a>').join('') +
+    VERTS.map(v => '<a class="tab" id="tab-'+v.key+'" onclick="goVert(\''+v.key+'\')">'+(v.key==='ai'?'AI':v.key==='grid'?'Energy':v.name)+'<span class="tab-rn">'+v.rn+'</span></a>').join('') +
     '<a class="tab" onclick="openBrief()">The Weekly Brief</a>';
 
   var feedHtml = '';
@@ -439,7 +440,7 @@ function buildShell(){
     '<section class="page" id="'+v.key+'">'+
       '<div class="vertical-header">'+
         '<div class="vh-top">'+
-          '<div class="vertical-label"><span class="label-dot">'+v.rn+'</span>'+v.name+'</div>'+
+          '<div class="vertical-label"><span class="vl-rn">'+v.rn+'</span><span class="vl-name">'+v.name+'</span></div>'+
           '<div class="meta-week">Updated '+WEEK_LABEL+'</div>'+
         '</div>'+
         '<h1>'+v.h1+'</h1><p>'+v.desc+'</p>'+
